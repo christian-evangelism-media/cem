@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "firstName": "名",
+      "lastName": "姓",
+      "preferredLanguages": "希望言語",
+      "addressId": "住所",
+      "mediaId": "商品",
+      "quantity": "数量",
+      "name": "名前",
+      "streetAddress": "住所",
+      "streetAddress2": "住所2行目",
+      "city": "市区町村",
+      "province": "都道府県",
+      "postalCode": "郵便番号",
+      "country": "国",
+      "message": "メッセージ",
+      "subject": "件名",
+      "status": "ステータス",
+      "trackingNumber": "追跡番号",
+      "notes": "備考"
+    },
+    "messages": {
+      "required": "{field}は必須です",
+      "email": "{field}は有効なメールアドレスである必要があります",
+      "minLength": "{field}は{min}文字以上である必要があります",
+      "maxLength": "{field}は{max}文字以下である必要があります",
+      "confirmed": "{field}の確認が一致しません",
+      "enum": "選択された{field}は無効です",
+      "number": "{field}は数値である必要があります",
+      "min": "{field}は{min}以上である必要があります",
+      "max": "{field}は{max}以下である必要があります",
+      "array": "{field}は配列である必要があります",
+      "distinct": "{field}に重複した値が含まれています"
+    }
+  }
+}

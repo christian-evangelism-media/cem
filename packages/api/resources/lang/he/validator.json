@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "כתובת אימייל",
+      "password": "סיסמה",
+      "firstName": "שם פרטי",
+      "lastName": "שם משפחה",
+      "preferredLanguages": "שפות מועדפות",
+      "addressId": "כתובת",
+      "mediaId": "פריט",
+      "quantity": "כמות",
+      "name": "שם",
+      "streetAddress": "כתובת רחוב",
+      "streetAddress2": "כתובת שורה 2",
+      "city": "עיר",
+      "province": "מחוז",
+      "postalCode": "מיקוד",
+      "country": "מדינה",
+      "message": "הודעה",
+      "subject": "נושא",
+      "status": "סטטוס",
+      "trackingNumber": "מספר מעקב",
+      "notes": "הערות"
+    },
+    "messages": {
+      "required": "שדה {field} הוא חובה",
+      "email": "{field} חייב להיות כתובת אימייל תקינה",
+      "minLength": "{field} חייב להכיל לפחות {min} תווים",
+      "maxLength": "{field} לא יכול לעבור {max} תווים",
+      "confirmed": "אימות {field} אינו תואם",
+      "enum": "{field} שנבחר אינו תקין",
+      "number": "{field} חייב להיות מספר",
+      "min": "{field} חייב להיות לפחות {min}",
+      "max": "{field} לא יכול לעבור {max}",
+      "array": "{field} חייב להיות מערך",
+      "distinct": "{field} מכיל ערכים כפולים"
+    }
+  }
+}

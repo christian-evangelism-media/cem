@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "Email o password non validi",
+    "email_not_verified": "Verifica il tuo indirizzo email prima di accedere",
+    "unauthorized": "Devi essere connesso per accedere a questa risorsa",
+    "forbidden": "Non hai il permesso di eseguire questa azione",
+    "already_authenticated": "Sei già connesso"
+  },
+  "user": {
+    "not_found": "Utente non trovato",
+    "email_already_exists": "Questo indirizzo email è già in uso",
+    "cannot_delete_self": "Non puoi eliminare il tuo account",
+    "cannot_modify_role": "Non puoi modificare il ruolo di questo utente"
+  },
+  "order": {
+    "not_found": "Ordine non trovato",
+    "cannot_cancel": "Impossibile annullare l'ordine in questa fase",
+    "cannot_grab": "L'ordine non può essere preso nello stato attuale",
+    "insufficient_stock": "Scorte insufficienti per l'articolo {mediaId}"
+  },
+  "media": {
+    "not_found": "Articolo non trovato",
+    "not_visible": "Questo articolo non è disponibile"
+  },
+  "address": {
+    "not_found": "Indirizzo non trovato"
+  },
+  "message": {
+    "not_found": "Messaggio non trovato"
+  },
+  "general": {
+    "not_found": "Risorsa non trovata",
+    "server_error": "Si è verificato un errore imprevisto. Riprova più tardi",
+    "validation_failed": "I dati forniti non sono validi",
+    "rate_limit_exceeded": "Troppe richieste. Riprova più tardi"
+  }
+}

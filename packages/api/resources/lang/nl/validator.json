@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "e-mailadres",
+      "password": "wachtwoord",
+      "firstName": "voornaam",
+      "lastName": "achternaam",
+      "preferredLanguages": "voorkeurstalen",
+      "addressId": "adres",
+      "mediaId": "item",
+      "quantity": "hoeveelheid",
+      "name": "naam",
+      "streetAddress": "straatnaam",
+      "streetAddress2": "adresregel 2",
+      "city": "stad",
+      "province": "provincie",
+      "postalCode": "postcode",
+      "country": "land",
+      "message": "bericht",
+      "subject": "onderwerp",
+      "status": "status",
+      "trackingNumber": "trackingnummer",
+      "notes": "notities"
+    },
+    "messages": {
+      "required": "Het veld {field} is verplicht",
+      "email": "Het {field} moet een geldig e-mailadres zijn",
+      "minLength": "Het {field} moet minimaal {min} tekens bevatten",
+      "maxLength": "Het {field} mag niet meer dan {max} tekens bevatten",
+      "confirmed": "De bevestiging van {field} komt niet overeen",
+      "enum": "De geselecteerde {field} is ongeldig",
+      "number": "Het {field} moet een getal zijn",
+      "min": "Het {field} moet minimaal {min} zijn",
+      "max": "Het {field} mag niet meer dan {max} zijn",
+      "array": "Het {field} moet een array zijn",
+      "distinct": "Het {field} bevat dubbele waarden"
+    }
+  }
+}

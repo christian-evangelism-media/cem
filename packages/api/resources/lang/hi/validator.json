@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "ईमेल पता",
+      "password": "पासवर्ड",
+      "firstName": "पहला नाम",
+      "lastName": "अंतिम नाम",
+      "preferredLanguages": "पसंदीदा भाषाएं",
+      "addressId": "पता",
+      "mediaId": "वस्तु",
+      "quantity": "मात्रा",
+      "name": "नाम",
+      "streetAddress": "सड़क का पता",
+      "streetAddress2": "पता पंक्ति 2",
+      "city": "शहर",
+      "province": "प्रांत",
+      "postalCode": "पिन कोड",
+      "country": "देश",
+      "message": "संदेश",
+      "subject": "विषय",
+      "status": "स्थिति",
+      "trackingNumber": "ट्रैकिंग नंबर",
+      "notes": "नोट्स"
+    },
+    "messages": {
+      "required": "{field} फ़ील्ड आवश्यक है",
+      "email": "{field} एक वैध ईमेल पता होना चाहिए",
+      "minLength": "{field} में कम से कम {min} वर्ण होने चाहिए",
+      "maxLength": "{field} {max} वर्णों से अधिक नहीं होना चाहिए",
+      "confirmed": "{field} की पुष्टि मेल नहीं खाती",
+      "enum": "चयनित {field} अमान्य है",
+      "number": "{field} एक संख्या होनी चाहिए",
+      "min": "{field} कम से कम {min} होना चाहिए",
+      "max": "{field} {max} से अधिक नहीं होना चाहिए",
+      "array": "{field} एक सरणी होनी चाहिए",
+      "distinct": "{field} में डुप्लिकेट मान हैं"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "e-mail cím",
+      "password": "jelszó",
+      "firstName": "keresztnév",
+      "lastName": "vezetéknév",
+      "preferredLanguages": "előnyben részesített nyelvek",
+      "addressId": "cím",
+      "mediaId": "tétel",
+      "quantity": "mennyiség",
+      "name": "név",
+      "streetAddress": "utca",
+      "streetAddress2": "cím 2. sor",
+      "city": "város",
+      "province": "megye",
+      "postalCode": "irányítószám",
+      "country": "ország",
+      "message": "üzenet",
+      "subject": "tárgy",
+      "status": "státusz",
+      "trackingNumber": "nyomkövetési szám",
+      "notes": "megjegyzések"
+    },
+    "messages": {
+      "required": "A {field} mező kitöltése kötelező",
+      "email": "A {field} érvényes e-mail címnek kell lennie",
+      "minLength": "A {field} legalább {min} karakterből kell álljon",
+      "maxLength": "A {field} nem haladhatja meg a {max} karaktert",
+      "confirmed": "A {field} megerősítése nem egyezik",
+      "enum": "A kiválasztott {field} érvénytelen",
+      "number": "A {field} számnak kell lennie",
+      "min": "A {field} legalább {min} kell legyen",
+      "max": "A {field} nem haladhatja meg a {max} értéket",
+      "array": "A {field} tömbnek kell lennie",
+      "distinct": "A {field} duplikált értékeket tartalmaz"
+    }
+  }
+}

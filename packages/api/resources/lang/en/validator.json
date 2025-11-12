@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "email address",
+      "password": "password",
+      "firstName": "first name",
+      "lastName": "last name",
+      "preferredLanguages": "preferred languages",
+      "addressId": "address",
+      "mediaId": "media item",
+      "quantity": "quantity",
+      "name": "name",
+      "streetAddress": "street address",
+      "streetAddress2": "street address line 2",
+      "city": "city",
+      "province": "province/state",
+      "postalCode": "postal code",
+      "country": "country",
+      "message": "message",
+      "subject": "subject",
+      "status": "status",
+      "trackingNumber": "tracking number",
+      "notes": "notes"
+    },
+    "messages": {
+      "required": "The {field} field is required",
+      "email": "The {field} must be a valid email address",
+      "minLength": "The {field} must be at least {min} characters",
+      "maxLength": "The {field} must not exceed {max} characters",
+      "confirmed": "The {field} confirmation does not match",
+      "enum": "The selected {field} is invalid",
+      "number": "The {field} must be a number",
+      "min": "The {field} must be at least {min}",
+      "max": "The {field} must not exceed {max}",
+      "array": "The {field} must be an array",
+      "distinct": "The {field} has duplicate values"
+    }
+  }
+}

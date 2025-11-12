@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "sähköpostiosoite",
+      "password": "salasana",
+      "firstName": "etunimi",
+      "lastName": "sukunimi",
+      "preferredLanguages": "ensisijaiset kielet",
+      "addressId": "osoite",
+      "mediaId": "tuote",
+      "quantity": "määrä",
+      "name": "nimi",
+      "streetAddress": "katuosoite",
+      "streetAddress2": "osoite rivi 2",
+      "city": "kaupunki",
+      "province": "maakunta",
+      "postalCode": "postinumero",
+      "country": "maa",
+      "message": "viesti",
+      "subject": "aihe",
+      "status": "tila",
+      "trackingNumber": "seurantanumero",
+      "notes": "muistiinpanot"
+    },
+    "messages": {
+      "required": "Kenttä {field} on pakollinen",
+      "email": "{field} on oltava kelvollinen sähköpostiosoite",
+      "minLength": "{field} on sisällettävä vähintään {min} merkkiä",
+      "maxLength": "{field} ei saa ylittää {max} merkkiä",
+      "confirmed": "{field} vahvistus ei täsmää",
+      "enum": "Valittu {field} on virheellinen",
+      "number": "{field} on oltava numero",
+      "min": "{field} on oltava vähintään {min}",
+      "max": "{field} ei saa ylittää {max}",
+      "array": "{field} on oltava taulukko",
+      "distinct": "{field} sisältää kaksoiskappaleita"
+    }
+  }
+}

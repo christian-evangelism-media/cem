@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "Invalid email or password",
+    "email_not_verified": "Please verify your email address before logging in",
+    "unauthorized": "You must be logged in to access this resource",
+    "forbidden": "You don't have permission to perform this action",
+    "already_authenticated": "You are already logged in"
+  },
+  "user": {
+    "not_found": "User not found",
+    "email_already_exists": "This email address is already in use",
+    "cannot_delete_self": "You cannot delete your own account",
+    "cannot_modify_role": "You cannot modify this user's role"
+  },
+  "order": {
+    "not_found": "Order not found",
+    "cannot_cancel": "Cannot cancel order at this stage",
+    "cannot_grab": "Order cannot be grabbed in current status",
+    "insufficient_stock": "Insufficient stock for media item {mediaId}"
+  },
+  "media": {
+    "not_found": "Media item not found",
+    "not_visible": "This media item is not available"
+  },
+  "address": {
+    "not_found": "Address not found"
+  },
+  "message": {
+    "not_found": "Message not found"
+  },
+  "general": {
+    "not_found": "Resource not found",
+    "server_error": "An unexpected error occurred. Please try again later",
+    "validation_failed": "The provided data is invalid",
+    "rate_limit_exceeded": "Too many requests. Please try again later"
+  }
+}

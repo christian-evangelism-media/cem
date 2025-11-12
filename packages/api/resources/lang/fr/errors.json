@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "E-mail ou mot de passe invalide",
+    "email_not_verified": "Veuillez vérifier votre adresse e-mail avant de vous connecter",
+    "unauthorized": "Vous devez être connecté pour accéder à cette ressource",
+    "forbidden": "Vous n'avez pas la permission d'effectuer cette action",
+    "already_authenticated": "Vous êtes déjà connecté"
+  },
+  "user": {
+    "not_found": "Utilisateur non trouvé",
+    "email_already_exists": "Cette adresse e-mail est déjà utilisée",
+    "cannot_delete_self": "Vous ne pouvez pas supprimer votre propre compte",
+    "cannot_modify_role": "Vous ne pouvez pas modifier le rôle de cet utilisateur"
+  },
+  "order": {
+    "not_found": "Commande non trouvée",
+    "cannot_cancel": "Impossible d'annuler la commande à ce stade",
+    "cannot_grab": "La commande ne peut pas être prise dans son état actuel",
+    "insufficient_stock": "Stock insuffisant pour l'article {mediaId}"
+  },
+  "media": {
+    "not_found": "Article non trouvé",
+    "not_visible": "Cet article n'est pas disponible"
+  },
+  "address": {
+    "not_found": "Adresse non trouvée"
+  },
+  "message": {
+    "not_found": "Message non trouvé"
+  },
+  "general": {
+    "not_found": "Ressource non trouvée",
+    "server_error": "Une erreur inattendue s'est produite. Veuillez réessayer plus tard",
+    "validation_failed": "Les données fournies ne sont pas valides",
+    "rate_limit_exceeded": "Trop de requêtes. Veuillez réessayer plus tard"
+  }
+}

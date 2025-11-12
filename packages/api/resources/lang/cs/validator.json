@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "e-mailová adresa",
+      "password": "heslo",
+      "firstName": "jméno",
+      "lastName": "příjmení",
+      "preferredLanguages": "preferované jazyky",
+      "addressId": "adresa",
+      "mediaId": "položka",
+      "quantity": "množství",
+      "name": "název",
+      "streetAddress": "ulice",
+      "streetAddress2": "adresa řádek 2",
+      "city": "město",
+      "province": "kraj",
+      "postalCode": "PSČ",
+      "country": "země",
+      "message": "zpráva",
+      "subject": "předmět",
+      "status": "stav",
+      "trackingNumber": "sledovací číslo",
+      "notes": "poznámky"
+    },
+    "messages": {
+      "required": "Pole {field} je povinné",
+      "email": "{field} musí být platná e-mailová adresa",
+      "minLength": "{field} musí obsahovat alespoň {min} znaků",
+      "maxLength": "{field} nesmí přesáhnout {max} znaků",
+      "confirmed": "Potvrzení {field} se neshoduje",
+      "enum": "Vybraná {field} je neplatná",
+      "number": "{field} musí být číslo",
+      "min": "{field} musí být alespoň {min}",
+      "max": "{field} nesmí přesáhnout {max}",
+      "array": "{field} musí být pole",
+      "distinct": "{field} obsahuje duplicitní hodnoty"
+    }
+  }
+}

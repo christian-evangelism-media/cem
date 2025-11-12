@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "Érvénytelen e-mail vagy jelszó",
+    "email_not_verified": "Kérjük, igazolja e-mail címét bejelentkezés előtt",
+    "unauthorized": "Be kell jelentkeznie az erőforrás eléréséhez",
+    "forbidden": "Nincs engedélye a művelet végrehajtásához",
+    "already_authenticated": "Már bejelentkezett"
+  },
+  "user": {
+    "not_found": "A felhasználó nem található",
+    "email_already_exists": "Ez az e-mail cím már használatban van",
+    "cannot_delete_self": "Nem törölheti saját fiókját",
+    "cannot_modify_role": "Nem módosíthatja ennek a felhasználónak a szerepét"
+  },
+  "order": {
+    "not_found": "A rendelés nem található",
+    "cannot_cancel": "Ebben a szakaszban a rendelés nem törölhető",
+    "cannot_grab": "A rendelés nem vehető át a jelenlegi állapotban",
+    "insufficient_stock": "Nincs elegendő készlet a {mediaId} tételhez"
+  },
+  "media": {
+    "not_found": "A tétel nem található",
+    "not_visible": "Ez a tétel nem elérhető"
+  },
+  "address": {
+    "not_found": "A cím nem található"
+  },
+  "message": {
+    "not_found": "Az üzenet nem található"
+  },
+  "general": {
+    "not_found": "Az erőforrás nem található",
+    "server_error": "Váratlan hiba történt. Kérjük, próbálja újra később",
+    "validation_failed": "A megadott adatok érvénytelenek",
+    "rate_limit_exceeded": "Túl sok kérés. Kérjük, próbálja újra később"
+  }
+}

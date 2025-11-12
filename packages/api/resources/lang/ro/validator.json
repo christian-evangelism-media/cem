@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "adresă de email",
+      "password": "parolă",
+      "firstName": "prenume",
+      "lastName": "nume",
+      "preferredLanguages": "limbi preferate",
+      "addressId": "adresă",
+      "mediaId": "articol",
+      "quantity": "cantitate",
+      "name": "nume",
+      "streetAddress": "stradă",
+      "streetAddress2": "adresă linia 2",
+      "city": "oraș",
+      "province": "județ",
+      "postalCode": "cod poștal",
+      "country": "țară",
+      "message": "mesaj",
+      "subject": "subiect",
+      "status": "status",
+      "trackingNumber": "număr de urmărire",
+      "notes": "notițe"
+    },
+    "messages": {
+      "required": "Câmpul {field} este obligatoriu",
+      "email": "{field} trebuie să fie o adresă de email validă",
+      "minLength": "{field} trebuie să conțină cel puțin {min} caractere",
+      "maxLength": "{field} nu trebuie să depășească {max} caractere",
+      "confirmed": "Confirmarea {field} nu se potrivește",
+      "enum": "{field} selectat nu este valid",
+      "number": "{field} trebuie să fie un număr",
+      "min": "{field} trebuie să fie cel puțin {min}",
+      "max": "{field} nu trebuie să depășească {max}",
+      "array": "{field} trebuie să fie un array",
+      "distinct": "{field} conține valori duplicate"
+    }
+  }
+}

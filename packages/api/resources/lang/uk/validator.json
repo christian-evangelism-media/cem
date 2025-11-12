@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "адреса електронної пошти",
+      "password": "пароль",
+      "firstName": "ім'я",
+      "lastName": "прізвище",
+      "preferredLanguages": "бажані мови",
+      "addressId": "адреса",
+      "mediaId": "товар",
+      "quantity": "кількість",
+      "name": "назва",
+      "streetAddress": "вулиця",
+      "streetAddress2": "адреса рядок 2",
+      "city": "місто",
+      "province": "область",
+      "postalCode": "поштовий індекс",
+      "country": "країна",
+      "message": "повідомлення",
+      "subject": "тема",
+      "status": "статус",
+      "trackingNumber": "номер відстеження",
+      "notes": "примітки"
+    },
+    "messages": {
+      "required": "Поле {field} є обов'язковим",
+      "email": "Поле {field} має бути дійсною адресою електронної пошти",
+      "minLength": "Поле {field} має містити щонайменше {min} символів",
+      "maxLength": "Поле {field} не повинно перевищувати {max} символів",
+      "confirmed": "Підтвердження {field} не збігається",
+      "enum": "Вибране значення {field} недійсне",
+      "number": "Поле {field} має бути числом",
+      "min": "Поле {field} має бути щонайменше {min}",
+      "max": "Поле {field} не повинно перевищувати {max}",
+      "array": "Поле {field} має бути масивом",
+      "distinct": "Поле {field} містить повторювані значення"
+    }
+  }
+}

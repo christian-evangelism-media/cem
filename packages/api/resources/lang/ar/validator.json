@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "عنوان البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "preferredLanguages": "اللغات المفضلة",
+      "addressId": "العنوان",
+      "mediaId": "العنصر",
+      "quantity": "الكمية",
+      "name": "الاسم",
+      "streetAddress": "عنوان الشارع",
+      "streetAddress2": "عنوان الشارع السطر 2",
+      "city": "المدينة",
+      "province": "المحافظة",
+      "postalCode": "الرمز البريدي",
+      "country": "البلد",
+      "message": "الرسالة",
+      "subject": "الموضوع",
+      "status": "الحالة",
+      "trackingNumber": "رقم التتبع",
+      "notes": "ملاحظات"
+    },
+    "messages": {
+      "required": "حقل {field} مطلوب",
+      "email": "يجب أن يكون {field} عنوان بريد إلكتروني صالح",
+      "minLength": "يجب أن يحتوي {field} على {min} أحرف على الأقل",
+      "maxLength": "يجب ألا يتجاوز {field} {max} حرفاً",
+      "confirmed": "تأكيد {field} غير متطابق",
+      "enum": "{field} المحدد غير صالح",
+      "number": "يجب أن يكون {field} رقماً",
+      "min": "يجب أن يكون {field} على الأقل {min}",
+      "max": "يجب ألا يتجاوز {field} {max}",
+      "array": "يجب أن يكون {field} مصفوفة",
+      "distinct": "{field} يحتوي على قيم مكررة"
+    }
+  }
+}

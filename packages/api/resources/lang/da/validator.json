@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "e-mailadresse",
+      "password": "adgangskode",
+      "firstName": "fornavn",
+      "lastName": "efternavn",
+      "preferredLanguages": "foretrukne sprog",
+      "addressId": "adresse",
+      "mediaId": "vare",
+      "quantity": "antal",
+      "name": "navn",
+      "streetAddress": "gadeadresse",
+      "streetAddress2": "adresse linje 2",
+      "city": "by",
+      "province": "region",
+      "postalCode": "postnummer",
+      "country": "land",
+      "message": "besked",
+      "subject": "emne",
+      "status": "status",
+      "trackingNumber": "sporingsnummer",
+      "notes": "noter"
+    },
+    "messages": {
+      "required": "Feltet {field} er påkrævet",
+      "email": "{field} skal være en gyldig e-mailadresse",
+      "minLength": "{field} skal indeholde mindst {min} tegn",
+      "maxLength": "{field} må ikke overstige {max} tegn",
+      "confirmed": "Bekræftelsen af {field} matcher ikke",
+      "enum": "Den valgte {field} er ugyldig",
+      "number": "{field} skal være et tal",
+      "min": "{field} skal være mindst {min}",
+      "max": "{field} må ikke overstige {max}",
+      "array": "{field} skal være et array",
+      "distinct": "{field} indeholder duplikerede værdier"
+    }
+  }
+}

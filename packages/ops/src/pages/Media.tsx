@@ -1,0 +1,450 @@
+import { useState, useDeferredValue } from 'react'
+import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
+import { api } from '../services/api'
+import { useAuth } from '../contexts/AuthContext'
+import type { Media as MediaType, PaginatedResponse } from '../types'
+import ConfirmModal from '../components/ConfirmModal'
+
+// Map ISO language codes to English names
+const languageNames: Record<string, string> = {
+  'en': 'English',
+  'es': 'Spanish',
+  'zh': 'Chinese',
+  'hi': 'Hindi',
+  'ar': 'Arabic',
+  'bn': 'Bengali',
+  'pt': 'Portuguese',
+  'ru': 'Russian',
+  'fr': 'French',
+  'pa': 'Punjabi',
+  'ja': 'Japanese',
+  'ko': 'Korean',
+  'vi': 'Vietnamese',
+  'ta': 'Tamil',
+  'it': 'Italian',
+  'tl': 'Tagalog',
+  'fa': 'Persian',
+  'ro': 'Romanian',
+  'el': 'Greek',
+  'ht': 'Haitian Creole',
+  'ilo': 'Ilocano',
+  'ff': 'Fulah',
+  'ur': 'Urdu',
+  'he': 'Hebrew',
+  'de': 'German',
+  'id': 'Indonesian',
+  'mr': 'Marathi',
+  'sw': 'Swahili',
+  'te': 'Telugu',
+  'tr': 'Turkish',
+}
+
+export default function Media() {
+  const [page, setPage] = useState(1)
+  const [searchInput, setSearchInput] = useState('')
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([])
+  const [deleteMediaId, setDeleteMediaId] = useState<number | null>(null)
+  const [trackingModalMediaId, setTrackingModalMediaId] = useState<number | null>(null)
+  const [disableTrackingMediaId, setDisableTrackingMediaId] = useState<number | null>(null)
+  const [lowStockThreshold, setLowStockThreshold] = useState<number>(100)
+  const queryClient = useQueryClient()
+  const { user } = useAuth()
+  const { t } = useTranslation()
+
+  // Defer search to avoid blocking input
+  const search = useDeferredValue(searchInput)
+
+  const { data, isLoading } = useQuery<PaginatedResponse<MediaType>>({
+    queryKey: ['media', page, search, selectedLanguages],
+    queryFn: () => api.media.list({
+      page,
+      limit: 20,
+      search,
+      languages: selectedLanguages.length > 0 ? selectedLanguages.join(',') : undefined,
+      isManualFilter: selectedLanguages.length > 0,
+      sortByPopularity: true,
+    }),
+    placeholderData: keepPreviousData,
+  })
+
+  const deleteMutation = useMutation({
+    mutationFn: (id: number) => api.media.delete(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['media'] })
+    },
+  })
+
+  const toggleVisibleMutation = useMutation({
+    mutationFn: ({ id, isVisible }: { id: number; isVisible: boolean }) =>
+      api.media.update(id, { isVisible }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['media'] })
+    },
+  })
+
+  const inventoryAdjustMutation = useMutation({
+    mutationFn: ({ id, bundleSize, quantity }: { id: number; bundleSize: number; quantity: number }) =>
+      api.inventory.adjust(id, bundleSize, quantity),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['media'] })
+    },
+  })
+
+  const handleInventoryAdjust = (id: number, bundleSize: number, newQuantity: number) => {
+    if (newQuantity < 0) return
+    inventoryAdjustMutation.mutate({ id, bundleSize, quantity: newQuantity })
+  }
+
+  const enableTrackingMutation = useMutation({
+    mutationFn: ({ id, trackInventory, bundleSizes, lowStockThreshold }: { id: number; trackInventory: boolean; bundleSizes?: number[]; lowStockThreshold?: number }) =>
+      api.inventory.enableTracking(id, trackInventory, bundleSizes, lowStockThreshold),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['media'] })
+      setTrackingModalMediaId(null)
+    },
+  })
+
+  const handleEnableTracking = (item: MediaType) => {
+    setLowStockThreshold(100)
+    setTrackingModalMediaId(item.id)
+  }
+
+  const handleConfirmEnableTracking = (item: MediaType) => {
+    enableTrackingMutation.mutate({
+      id: item.id,
+      trackInventory: true,
+      bundleSizes: item.bundleSizes || undefined,
+      lowStockThreshold,
+    })
+  }
+
+  const handleDisableTracking = (id: number) => {
+    enableTrackingMutation.mutate({ id, trackInventory: false })
+    setDisableTrackingMediaId(null)
+  }
+
+  const canEditMedia = (item: MediaType) => {
+    if (user?.role === 'super_admin' || user?.role === 'admin') return true
+    if (user?.role === 'support') {
+      return item.createdBy === user.id && !item.isVisible
+    }
+    return false
+  }
+
+  const canToggleVisibility = () => {
+    return user?.role === 'super_admin' || user?.role === 'admin'
+  }
+
+  const toggleLanguage = (code: string) => {
+    setSelectedLanguages(prev =>
+      prev.includes(code)
+        ? prev.filter(l => l !== code)
+        : [...prev, code]
+    )
+    setPage(1) // Reset to first page when filter changes
+  }
+
+  const availableLanguageCodes = Object.keys(languageNames).sort((a, b) => a.localeCompare(b))
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    )
+  }
+
+  return (
+    <div className="p-8">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">{t('media.title')}</h1>
+        <button className="btn btn-primary">{t('media.addNew')}</button>
+      </div>
+
+      <div className="card bg-base-100 shadow-xl">
+        <div className="card-body">
+          <div className="mb-4 flex flex-wrap gap-3">
+            <input
+              type="text"
+              placeholder={t('media.searchPlaceholder')}
+              className="input input-bordered w-full max-w-md"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
+
+            {/* Language Filter */}
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="btn btn-outline btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                </svg>
+                <span>{t('media.filterLanguages')} ({selectedLanguages.length})</span>
+              </div>
+              <div tabIndex={0} className="dropdown-content z-[1] shadow bg-base-100 rounded-box w-[36rem] max-h-[32rem] overflow-y-auto mt-2 p-2">
+                <div className="px-2 py-3">
+                  <h3 className="font-bold text-sm mb-1">{t('media.filterLanguages')}</h3>
+                  <p className="text-xs text-base-content/70">
+                    {t('media.filterInfo')}
+                  </p>
+                </div>
+                <div className="divider my-0"></div>
+                <div className="grid grid-cols-3 gap-1">
+                  {availableLanguageCodes.map((code) => (
+                    <label key={code} className="label cursor-pointer justify-start gap-2 p-2">
+                      <input
+                        type="checkbox"
+                        checked={selectedLanguages.includes(code)}
+                        onChange={() => toggleLanguage(code)}
+                        className="checkbox checkbox-sm"
+                      />
+                      <span className="label-text text-sm">{t(`languageNames.${code}`)}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th className="w-16">{t('media.id')}</th>
+                  <th>{t('media.name')}</th>
+                  <th className="w-32">{t('media.type')}</th>
+                  <th className="w-48">{t('media.languages')}</th>
+                  <th className="w-32">{t('media.inventory')}</th>
+                  <th className="w-32">{t('media.status')}</th>
+                  <th className="w-44">{t('media.actions')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.data.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td>
+                      <div className="flex items-center gap-2">
+                        <span>{item.name}</span>
+                        {!item.isVisible && (
+                          <span className="badge badge-sm badge-warning">{t('media.draft')}</span>
+                        )}
+                      </div>
+                    </td>
+                    <td>
+                      <span className="badge badge-secondary">{item.type}</span>
+                    </td>
+                    <td>
+                      <div className="flex gap-1 flex-wrap">
+                        {item.languages.map((lang) => (
+                          <span key={lang} className="badge badge-sm badge-accent">
+                            {t(`languageNames.${lang}`)}
+                          </span>
+                        ))}
+                      </div>
+                    </td>
+                    <td>
+                      {item.trackInventory && item.inventoryStock ? (
+                        <div className="space-y-1">
+                          <div className="text-xs space-y-1">
+                            {Object.entries(item.inventoryStock)
+                              .sort(([a], [b]) => Number(b) - Number(a))
+                              .map(([bundleSize, count]) => {
+                                const totalTracts = Object.entries(item.inventoryStock!).reduce(
+                                  (sum, [size, qty]) => sum + Number(size) * qty,
+                                  0
+                                )
+                                const isLow = item.lowStockThreshold !== null && totalTracts <= item.lowStockThreshold
+                                return (
+                                  <div key={bundleSize} className={`flex items-center gap-1 ${isLow ? 'text-error font-semibold' : ''}`}>
+                                    <button
+                                      className="btn btn-xs btn-circle"
+                                      onClick={() => handleInventoryAdjust(item.id, Number(bundleSize), count - 1)}
+                                      disabled={count <= 0}
+                                    >
+                                      -
+                                    </button>
+                                    <span className="font-mono min-w-[3rem] text-center">{count}×{bundleSize}</span>
+                                    <button
+                                      className="btn btn-xs btn-circle"
+                                      onClick={() => handleInventoryAdjust(item.id, Number(bundleSize), count + 1)}
+                                    >
+                                      +
+                                    </button>
+                                    {isLow && bundleSize === Object.keys(item.inventoryStock!).sort((a, b) => Number(b) - Number(a))[0] && (
+                                      <span className="ml-1 badge badge-error badge-xs">{t('media.lowStock')}</span>
+                                    )}
+                                  </div>
+                                )
+                              })}
+                          </div>
+                          {canToggleVisibility() && (
+                            <button
+                              className="btn btn-xs btn-ghost text-error"
+                              onClick={() => setDisableTrackingMediaId(item.id)}
+                            >
+                              {t('media.disableTracking')}
+                            </button>
+                          )}
+                        </div>
+                      ) : (
+                        <div>
+                          {canToggleVisibility() ? (
+                            <button
+                              className="btn btn-xs btn-primary"
+                              onClick={() => handleEnableTracking(item)}
+                            >
+                              {t('media.enable')}
+                            </button>
+                          ) : (
+                            <span className="badge badge-ghost badge-sm">{t('media.noTracking')}</span>
+                          )}
+                        </div>
+                      )}
+                    </td>
+                    <td>
+                      {canToggleVisibility() ? (
+                        <input
+                          type="checkbox"
+                          className="toggle toggle-success"
+                          checked={item.isVisible}
+                          onChange={() =>
+                            toggleVisibleMutation.mutate({
+                              id: item.id,
+                              isVisible: !item.isVisible,
+                            })
+                          }
+                        />
+                      ) : (
+                        <span className={`badge ${item.isVisible ? 'badge-success' : 'badge-warning'}`}>
+                          {item.isVisible ? t('media.statusVisible') : t('media.statusDraft')}
+                        </span>
+                      )}
+                    </td>
+                    <td>
+                      <div className="flex gap-2">
+                        {canEditMedia(item) && (
+                          <button className="btn btn-sm btn-info">{t('media.edit')}</button>
+                        )}
+                        {canEditMedia(item) && (
+                          <button
+                            className="btn btn-sm btn-error"
+                            onClick={() => setDeleteMediaId(item.id)}
+                          >
+                            {t('media.delete')}
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {data && data.meta.lastPage > 1 && (
+            <div className="flex justify-center mt-4">
+              <div className="join">
+                <button
+                  className="join-item btn"
+                  onClick={() => setPage(page - 1)}
+                  disabled={page === 1}
+                >
+                  {t('common.previous')}
+                </button>
+                <button className="join-item btn">
+                  {t('common.page', { current: page, total: data.meta.lastPage })}
+                </button>
+                <button
+                  className="join-item btn"
+                  onClick={() => setPage(page + 1)}
+                  disabled={page === data.meta.lastPage}
+                >
+                  {t('common.next')}
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <ConfirmModal
+        isOpen={deleteMediaId !== null}
+        title={t('media.deleteConfirm')}
+        message={t('media.deleteMessage')}
+        confirmText={t('common.delete')}
+        cancelText={t('common.cancel')}
+        isDangerous={true}
+        onConfirm={() => {
+          if (deleteMediaId !== null) {
+            deleteMutation.mutate(deleteMediaId)
+          }
+        }}
+        onCancel={() => setDeleteMediaId(null)}
+      />
+
+      <ConfirmModal
+        isOpen={disableTrackingMediaId !== null}
+        title={t('media.disableTracking')}
+        message={t('media.confirmDisableTracking')}
+        confirmText={t('media.disableTracking')}
+        cancelText={t('common.cancel')}
+        isDangerous={true}
+        onConfirm={() => {
+          if (disableTrackingMediaId !== null) {
+            handleDisableTracking(disableTrackingMediaId)
+          }
+        }}
+        onCancel={() => setDisableTrackingMediaId(null)}
+      />
+
+      {/* Enable Inventory Tracking Modal */}
+      {trackingModalMediaId !== null && (
+        <dialog open className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">{t('media.enableInventoryTracking')}</h3>
+            <p className="py-4">{t('media.enableTrackingMessage')}</p>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">{t('media.lowStockThreshold')}</span>
+              </label>
+              <input
+                type="number"
+                className="input input-bordered"
+                value={lowStockThreshold}
+                onChange={(e) => setLowStockThreshold(Number(e.target.value))}
+                min={0}
+              />
+              <label className="label">
+                <span className="label-text-alt">{t('media.lowStockThresholdHint')}</span>
+              </label>
+            </div>
+
+            <div className="modal-action">
+              <button
+                className="btn"
+                onClick={() => setTrackingModalMediaId(null)}
+              >
+                {t('common.cancel')}
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  const item = data?.data.find((i) => i.id === trackingModalMediaId)
+                  if (item) handleConfirmEnableTracking(item)
+                }}
+                disabled={enableTrackingMutation.isPending}
+              >
+                {enableTrackingMutation.isPending ? t('common.saving') : t('media.enable')}
+              </button>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop" onClick={() => setTrackingModalMediaId(null)}>
+            <button>close</button>
+          </form>
+        </dialog>
+      )}
+    </div>
+  )
+}

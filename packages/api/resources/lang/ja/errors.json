@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "メールアドレスまたはパスワードが無効です",
+    "email_not_verified": "ログインする前にメールアドレスを確認してください",
+    "unauthorized": "このリソースにアクセスするにはログインが必要です",
+    "forbidden": "この操作を実行する権限がありません",
+    "already_authenticated": "すでにログインしています"
+  },
+  "user": {
+    "not_found": "ユーザーが見つかりません",
+    "email_already_exists": "このメールアドレスは既に使用されています",
+    "cannot_delete_self": "自分のアカウントを削除できません",
+    "cannot_modify_role": "このユーザーの役割を変更できません"
+  },
+  "order": {
+    "not_found": "注文が見つかりません",
+    "cannot_cancel": "この段階では注文をキャンセルできません",
+    "cannot_grab": "現在の状態では注文を取得できません",
+    "insufficient_stock": "商品{mediaId}の在庫が不足しています"
+  },
+  "media": {
+    "not_found": "商品が見つかりません",
+    "not_visible": "この商品は利用できません"
+  },
+  "address": {
+    "not_found": "住所が見つかりません"
+  },
+  "message": {
+    "not_found": "メッセージが見つかりません"
+  },
+  "general": {
+    "not_found": "リソースが見つかりません",
+    "server_error": "予期しないエラーが発生しました。後でもう一度お試しください",
+    "validation_failed": "提供されたデータが無効です",
+    "rate_limit_exceeded": "リクエストが多すぎます。後でもう一度お試しください"
+  }
+}

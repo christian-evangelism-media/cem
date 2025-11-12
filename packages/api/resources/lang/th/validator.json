@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "ที่อยู่อีเมล",
+      "password": "รหัสผ่าน",
+      "firstName": "ชื่อ",
+      "lastName": "นามสกุล",
+      "preferredLanguages": "ภาษาที่ต้องการ",
+      "addressId": "ที่อยู่",
+      "mediaId": "รายการ",
+      "quantity": "จำนวน",
+      "name": "ชื่อ",
+      "streetAddress": "ที่อยู่",
+      "streetAddress2": "ที่อยู่บรรทัด 2",
+      "city": "เมือง",
+      "province": "จังหวัด",
+      "postalCode": "รหัสไปรษณีย์",
+      "country": "ประเทศ",
+      "message": "ข้อความ",
+      "subject": "หัวเรื่อง",
+      "status": "สถานะ",
+      "trackingNumber": "หมายเลขติดตาม",
+      "notes": "หมายเหตุ"
+    },
+    "messages": {
+      "required": "ช่อง {field} จำเป็นต้องกรอก",
+      "email": "{field} ต้องเป็นที่อยู่อีเมลที่ถูกต้อง",
+      "minLength": "{field} ต้องมีอย่างน้อย {min} ตัวอักษร",
+      "maxLength": "{field} ต้องไม่เกิน {max} ตัวอักษร",
+      "confirmed": "การยืนยัน {field} ไม่ตรงกัน",
+      "enum": "{field} ที่เลือกไม่ถูกต้อง",
+      "number": "{field} ต้องเป็นตัวเลข",
+      "min": "{field} ต้องมีค่าอย่างน้อย {min}",
+      "max": "{field} ต้องไม่เกิน {max}",
+      "array": "{field} ต้องเป็นอาร์เรย์",
+      "distinct": "{field} มีค่าที่ซ้ำกัน"
+    }
+  }
+}

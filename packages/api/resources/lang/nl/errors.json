@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "Ongeldige e-mail of wachtwoord",
+    "email_not_verified": "Verifieer uw e-mailadres voordat u inlogt",
+    "unauthorized": "U moet ingelogd zijn om toegang te krijgen tot deze resource",
+    "forbidden": "U heeft geen toestemming om deze actie uit te voeren",
+    "already_authenticated": "U bent al ingelogd"
+  },
+  "user": {
+    "not_found": "Gebruiker niet gevonden",
+    "email_already_exists": "Dit e-mailadres is al in gebruik",
+    "cannot_delete_self": "U kunt uw eigen account niet verwijderen",
+    "cannot_modify_role": "U kunt de rol van deze gebruiker niet wijzigen"
+  },
+  "order": {
+    "not_found": "Bestelling niet gevonden",
+    "cannot_cancel": "Bestelling kan in dit stadium niet worden geannuleerd",
+    "cannot_grab": "Bestelling kan niet worden gepakt in de huidige status",
+    "insufficient_stock": "Onvoldoende voorraad voor artikel {mediaId}"
+  },
+  "media": {
+    "not_found": "Artikel niet gevonden",
+    "not_visible": "Dit artikel is niet beschikbaar"
+  },
+  "address": {
+    "not_found": "Adres niet gevonden"
+  },
+  "message": {
+    "not_found": "Bericht niet gevonden"
+  },
+  "general": {
+    "not_found": "Resource niet gevonden",
+    "server_error": "Er is een onverwachte fout opgetreden. Probeer het later opnieuw",
+    "validation_failed": "De verstrekte gegevens zijn ongeldig",
+    "rate_limit_exceeded": "Te veel verzoeken. Probeer het later opnieuw"
+  }
+}

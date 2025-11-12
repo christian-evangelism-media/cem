@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "địa chỉ email",
+      "password": "mật khẩu",
+      "firstName": "tên",
+      "lastName": "họ",
+      "preferredLanguages": "ngôn ngữ ưu tiên",
+      "addressId": "địa chỉ",
+      "mediaId": "mục",
+      "quantity": "số lượng",
+      "name": "tên",
+      "streetAddress": "địa chỉ đường",
+      "streetAddress2": "địa chỉ dòng 2",
+      "city": "thành phố",
+      "province": "tỉnh/thành",
+      "postalCode": "mã bưu điện",
+      "country": "quốc gia",
+      "message": "tin nhắn",
+      "subject": "chủ đề",
+      "status": "trạng thái",
+      "trackingNumber": "mã theo dõi",
+      "notes": "ghi chú"
+    },
+    "messages": {
+      "required": "Trường {field} là bắt buộc",
+      "email": "{field} phải là địa chỉ email hợp lệ",
+      "minLength": "{field} phải có ít nhất {min} ký tự",
+      "maxLength": "{field} không được vượt quá {max} ký tự",
+      "confirmed": "Xác nhận {field} không khớp",
+      "enum": "{field} đã chọn không hợp lệ",
+      "number": "{field} phải là một số",
+      "min": "{field} phải ít nhất là {min}",
+      "max": "{field} không được vượt quá {max}",
+      "array": "{field} phải là một mảng",
+      "distinct": "{field} có các giá trị trùng lặp"
+    }
+  }
+}

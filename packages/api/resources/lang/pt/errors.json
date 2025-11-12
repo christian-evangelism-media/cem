@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "E-mail ou senha inválidos",
+    "email_not_verified": "Por favor, verifique seu endereço de e-mail antes de fazer login",
+    "unauthorized": "Você deve estar logado para acessar este recurso",
+    "forbidden": "Você não tem permissão para executar esta ação",
+    "already_authenticated": "Você já está logado"
+  },
+  "user": {
+    "not_found": "Usuário não encontrado",
+    "email_already_exists": "Este endereço de e-mail já está em uso",
+    "cannot_delete_self": "Você não pode excluir sua própria conta",
+    "cannot_modify_role": "Você não pode modificar a função deste usuário"
+  },
+  "order": {
+    "not_found": "Pedido não encontrado",
+    "cannot_cancel": "Não é possível cancelar o pedido nesta etapa",
+    "cannot_grab": "O pedido não pode ser pego no status atual",
+    "insufficient_stock": "Estoque insuficiente para o item {mediaId}"
+  },
+  "media": {
+    "not_found": "Item não encontrado",
+    "not_visible": "Este item não está disponível"
+  },
+  "address": {
+    "not_found": "Endereço não encontrado"
+  },
+  "message": {
+    "not_found": "Mensagem não encontrada"
+  },
+  "general": {
+    "not_found": "Recurso não encontrado",
+    "server_error": "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde",
+    "validation_failed": "Os dados fornecidos são inválidos",
+    "rate_limit_exceeded": "Muitas solicitações. Por favor, tente novamente mais tarde"
+  }
+}

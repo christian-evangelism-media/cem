@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "Virheellinen sähköposti tai salasana",
+    "email_not_verified": "Vahvista sähköpostiosoitteesi ennen kirjautumista",
+    "unauthorized": "Sinun on kirjauduttava sisään päästäksesi tähän resurssiin",
+    "forbidden": "Sinulla ei ole oikeutta suorittaa tätä toimintoa",
+    "already_authenticated": "Olet jo kirjautunut sisään"
+  },
+  "user": {
+    "not_found": "Käyttäjää ei löytynyt",
+    "email_already_exists": "Tämä sähköpostiosoite on jo käytössä",
+    "cannot_delete_self": "Et voi poistaa omaa tiliäsi",
+    "cannot_modify_role": "Et voi muuttaa tämän käyttäjän roolia"
+  },
+  "order": {
+    "not_found": "Tilausta ei löytynyt",
+    "cannot_cancel": "Tilausta ei voi peruuttaa tässä vaiheessa",
+    "cannot_grab": "Tilausta ei voi ottaa nykyisessä tilassa",
+    "insufficient_stock": "Riittämätön varasto tuotteelle {mediaId}"
+  },
+  "media": {
+    "not_found": "Tuotetta ei löytynyt",
+    "not_visible": "Tämä tuote ei ole saatavilla"
+  },
+  "address": {
+    "not_found": "Osoitetta ei löytynyt"
+  },
+  "message": {
+    "not_found": "Viestiä ei löytynyt"
+  },
+  "general": {
+    "not_found": "Resurssia ei löytynyt",
+    "server_error": "Tapahtui odottamaton virhe. Yritä myöhemmin uudelleen",
+    "validation_failed": "Annetut tiedot ovat virheellisiä",
+    "rate_limit_exceeded": "Liikaa pyyntöjä. Yritä myöhemmin uudelleen"
+  }
+}

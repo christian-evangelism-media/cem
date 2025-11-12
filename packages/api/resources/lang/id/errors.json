@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "Email atau kata sandi tidak valid",
+    "email_not_verified": "Silakan verifikasi alamat email Anda sebelum login",
+    "unauthorized": "Anda harus login untuk mengakses sumber daya ini",
+    "forbidden": "Anda tidak memiliki izin untuk melakukan tindakan ini",
+    "already_authenticated": "Anda sudah login"
+  },
+  "user": {
+    "not_found": "Pengguna tidak ditemukan",
+    "email_already_exists": "Alamat email ini sudah digunakan",
+    "cannot_delete_self": "Anda tidak dapat menghapus akun Anda sendiri",
+    "cannot_modify_role": "Anda tidak dapat mengubah peran pengguna ini"
+  },
+  "order": {
+    "not_found": "Pesanan tidak ditemukan",
+    "cannot_cancel": "Tidak dapat membatalkan pesanan pada tahap ini",
+    "cannot_grab": "Pesanan tidak dapat diambil dalam status saat ini",
+    "insufficient_stock": "Stok tidak mencukupi untuk item {mediaId}"
+  },
+  "media": {
+    "not_found": "Item tidak ditemukan",
+    "not_visible": "Item ini tidak tersedia"
+  },
+  "address": {
+    "not_found": "Alamat tidak ditemukan"
+  },
+  "message": {
+    "not_found": "Pesan tidak ditemukan"
+  },
+  "general": {
+    "not_found": "Sumber daya tidak ditemukan",
+    "server_error": "Terjadi kesalahan yang tidak terduga. Silakan coba lagi nanti",
+    "validation_failed": "Data yang diberikan tidak valid",
+    "rate_limit_exceeded": "Terlalu banyak permintaan. Silakan coba lagi nanti"
+  }
+}

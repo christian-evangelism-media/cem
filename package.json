@@ -1,0 +1,37 @@
+{
+  "name": "cem",
+  "version": "1.0.0",
+  "description": "Christian Evangelism Media - Monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace=packages/api",
+    "dev:web": "npm run dev --workspace=packages/web",
+    "dev:ops": "npm run dev --workspace=packages/ops",
+    "dev:scanner": "npm run dev --workspace=packages/scanner",
+    "build:api": "npm run build --workspace=packages/api",
+    "build:web": "npm run build --workspace=packages/web",
+    "build:ops": "npm run build --workspace=packages/ops",
+    "build:scanner": "npm run build --workspace=packages/scanner",
+    "build:all": "npm run build:api && npm run build:web && npm run build:ops && npm run build:scanner",
+    "generate:types": "npm run generate:types --workspace=packages/api",
+    "install:all": "npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christian-evangelism-media/cem.git"
+  },
+  "keywords": [
+    "evangelism",
+    "media",
+    "monorepo"
+  ],
+  "author": "",
+  "license": "MIT OR Unlicense",
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}

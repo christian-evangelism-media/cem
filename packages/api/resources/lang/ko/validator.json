@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "이메일 주소",
+      "password": "비밀번호",
+      "firstName": "이름",
+      "lastName": "성",
+      "preferredLanguages": "선호 언어",
+      "addressId": "주소",
+      "mediaId": "항목",
+      "quantity": "수량",
+      "name": "이름",
+      "streetAddress": "도로명 주소",
+      "streetAddress2": "상세 주소",
+      "city": "도시",
+      "province": "시/도",
+      "postalCode": "우편번호",
+      "country": "국가",
+      "message": "메시지",
+      "subject": "제목",
+      "status": "상태",
+      "trackingNumber": "추적 번호",
+      "notes": "메모"
+    },
+    "messages": {
+      "required": "{field} 필드는 필수입니다",
+      "email": "{field}은(는) 유효한 이메일 주소여야 합니다",
+      "minLength": "{field}은(는) 최소 {min}자 이상이어야 합니다",
+      "maxLength": "{field}은(는) {max}자를 초과할 수 없습니다",
+      "confirmed": "{field} 확인이 일치하지 않습니다",
+      "enum": "선택한 {field}이(가) 유효하지 않습니다",
+      "number": "{field}은(는) 숫자여야 합니다",
+      "min": "{field}은(는) 최소 {min}이어야 합니다",
+      "max": "{field}은(는) {max}을(를) 초과할 수 없습니다",
+      "array": "{field}은(는) 배열이어야 합니다",
+      "distinct": "{field}에 중복된 값이 있습니다"
+    }
+  }
+}

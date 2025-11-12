@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "endereço de e-mail",
+      "password": "senha",
+      "firstName": "primeiro nome",
+      "lastName": "sobrenome",
+      "preferredLanguages": "idiomas preferidos",
+      "addressId": "endereço",
+      "mediaId": "item",
+      "quantity": "quantidade",
+      "name": "nome",
+      "streetAddress": "endereço",
+      "streetAddress2": "complemento",
+      "city": "cidade",
+      "province": "estado",
+      "postalCode": "código postal",
+      "country": "país",
+      "message": "mensagem",
+      "subject": "assunto",
+      "status": "status",
+      "trackingNumber": "número de rastreamento",
+      "notes": "notas"
+    },
+    "messages": {
+      "required": "O campo {field} é obrigatório",
+      "email": "O {field} deve ser um endereço de e-mail válido",
+      "minLength": "O {field} deve ter pelo menos {min} caracteres",
+      "maxLength": "O {field} não deve exceder {max} caracteres",
+      "confirmed": "A confirmação de {field} não corresponde",
+      "enum": "O {field} selecionado é inválido",
+      "number": "O {field} deve ser um número",
+      "min": "O {field} deve ser pelo menos {min}",
+      "max": "O {field} não deve exceder {max}",
+      "array": "O {field} deve ser um array",
+      "distinct": "O {field} tem valores duplicados"
+    }
+  }
+}

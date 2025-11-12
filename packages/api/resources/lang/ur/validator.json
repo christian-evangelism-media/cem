@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "ای میل پتہ",
+      "password": "پاس ورڈ",
+      "firstName": "پہلا نام",
+      "lastName": "آخری نام",
+      "preferredLanguages": "ترجیحی زبانیں",
+      "addressId": "پتہ",
+      "mediaId": "آئٹم",
+      "quantity": "تعداد",
+      "name": "نام",
+      "streetAddress": "گلی کا پتہ",
+      "streetAddress2": "پتہ لائن 2",
+      "city": "شہر",
+      "province": "صوبہ",
+      "postalCode": "پوسٹل کوڈ",
+      "country": "ملک",
+      "message": "پیغام",
+      "subject": "موضوع",
+      "status": "حیثیت",
+      "trackingNumber": "ٹریکنگ نمبر",
+      "notes": "نوٹس"
+    },
+    "messages": {
+      "required": "{field} فیلڈ ضروری ہے",
+      "email": "{field} ایک درست ای میل پتہ ہونا چاہیے",
+      "minLength": "{field} میں کم از کم {min} حروف ہونے چاہئیں",
+      "maxLength": "{field} {max} حروف سے زیادہ نہیں ہونا چاہیے",
+      "confirmed": "{field} کی تصدیق مماثل نہیں ہے",
+      "enum": "منتخب {field} غلط ہے",
+      "number": "{field} ایک نمبر ہونا چاہیے",
+      "min": "{field} کم از کم {min} ہونا چاہیے",
+      "max": "{field} {max} سے زیادہ نہیں ہونا چاہیے",
+      "array": "{field} ایک صف ہونا چاہیے",
+      "distinct": "{field} میں ڈپلیکیٹ اقدار ہیں"
+    }
+  }
+}

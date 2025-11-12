@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "adres e-mail",
+      "password": "hasło",
+      "firstName": "imię",
+      "lastName": "nazwisko",
+      "preferredLanguages": "preferowane języki",
+      "addressId": "adres",
+      "mediaId": "element",
+      "quantity": "ilość",
+      "name": "nazwa",
+      "streetAddress": "ulica",
+      "streetAddress2": "adres wiersz 2",
+      "city": "miasto",
+      "province": "województwo",
+      "postalCode": "kod pocztowy",
+      "country": "kraj",
+      "message": "wiadomość",
+      "subject": "temat",
+      "status": "status",
+      "trackingNumber": "numer śledzenia",
+      "notes": "notatki"
+    },
+    "messages": {
+      "required": "Pole {field} jest wymagane",
+      "email": "Pole {field} musi być prawidłowym adresem e-mail",
+      "minLength": "Pole {field} musi zawierać co najmniej {min} znaków",
+      "maxLength": "Pole {field} nie może przekraczać {max} znaków",
+      "confirmed": "Potwierdzenie {field} nie pasuje",
+      "enum": "Wybrane {field} jest nieprawidłowe",
+      "number": "Pole {field} musi być liczbą",
+      "min": "Pole {field} musi wynosić co najmniej {min}",
+      "max": "Pole {field} nie może przekraczać {max}",
+      "array": "Pole {field} musi być tablicą",
+      "distinct": "Pole {field} zawiera zduplikowane wartości"
+    }
+  }
+}

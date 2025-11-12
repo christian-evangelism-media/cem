@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Clear user data and rate limits from the database
+# Usage: ./scripts/clear-users.sh
+
+echo "Clearing user data and rate limits from database..."
+
+docker exec postgres psql -U postgres -d cem -c "
+  TRUNCATE users, verification_tokens, addresses, orders, rate_limits RESTART IDENTITY CASCADE;
+"
+
+if [ $? -eq 0 ]; then
+  echo "✓ User data and rate limits cleared successfully"
+else
+  echo "✗ Failed to clear data"
+  exit 1
+fi

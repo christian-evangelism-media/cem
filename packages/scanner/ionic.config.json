@@ -1,0 +1,7 @@
+{
+  "name": "cem-scanner",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

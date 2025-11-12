@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "电子邮件地址",
+      "password": "密码",
+      "firstName": "名字",
+      "lastName": "姓氏",
+      "preferredLanguages": "首选语言",
+      "addressId": "地址",
+      "mediaId": "项目",
+      "quantity": "数量",
+      "name": "名称",
+      "streetAddress": "街道地址",
+      "streetAddress2": "街道地址第2行",
+      "city": "城市",
+      "province": "省/州",
+      "postalCode": "邮政编码",
+      "country": "国家",
+      "message": "消息",
+      "subject": "主题",
+      "status": "状态",
+      "trackingNumber": "追踪号码",
+      "notes": "备注"
+    },
+    "messages": {
+      "required": "{field}字段是必填的",
+      "email": "{field}必须是有效的电子邮件地址",
+      "minLength": "{field}必须至少包含{min}个字符",
+      "maxLength": "{field}不得超过{max}个字符",
+      "confirmed": "{field}确认不匹配",
+      "enum": "所选的{field}无效",
+      "number": "{field}必须是数字",
+      "min": "{field}必须至少为{min}",
+      "max": "{field}不得超过{max}",
+      "array": "{field}必须是数组",
+      "distinct": "{field}包含重复值"
+    }
+  }
+}

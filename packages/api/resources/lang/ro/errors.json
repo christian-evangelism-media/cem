@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "E-mail sau parolă invalide",
+    "email_not_verified": "Vă rugăm să verificați adresa de e-mail înainte de autentificare",
+    "unauthorized": "Trebuie să fiți autentificat pentru a accesa această resursă",
+    "forbidden": "Nu aveți permisiunea de a efectua această acțiune",
+    "already_authenticated": "Sunteți deja autentificat"
+  },
+  "user": {
+    "not_found": "Utilizator negăsit",
+    "email_already_exists": "Această adresă de e-mail este deja folosită",
+    "cannot_delete_self": "Nu vă puteți șterge propriul cont",
+    "cannot_modify_role": "Nu puteți modifica rolul acestui utilizator"
+  },
+  "order": {
+    "not_found": "Comandă negăsită",
+    "cannot_cancel": "Nu se poate anula comanda în această etapă",
+    "cannot_grab": "Comanda nu poate fi preluată în starea actuală",
+    "insufficient_stock": "Stoc insuficient pentru articolul {mediaId}"
+  },
+  "media": {
+    "not_found": "Articol negăsit",
+    "not_visible": "Acest articol nu este disponibil"
+  },
+  "address": {
+    "not_found": "Adresă negăsită"
+  },
+  "message": {
+    "not_found": "Mesaj negăsit"
+  },
+  "general": {
+    "not_found": "Resursă negăsită",
+    "server_error": "A apărut o eroare neașteptată. Vă rugăm să încercați din nou mai târziu",
+    "validation_failed": "Datele furnizate nu sunt valide",
+    "rate_limit_exceeded": "Prea multe cereri. Vă rugăm să încercați din nou mai târziu"
+  }
+}

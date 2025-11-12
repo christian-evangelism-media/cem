@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "ইমেইল ঠিকানা",
+      "password": "পাসওয়ার্ড",
+      "firstName": "প্রথম নাম",
+      "lastName": "শেষ নাম",
+      "preferredLanguages": "পছন্দের ভাষা",
+      "addressId": "ঠিকানা",
+      "mediaId": "আইটেম",
+      "quantity": "পরিমাণ",
+      "name": "নাম",
+      "streetAddress": "রাস্তার ঠিকানা",
+      "streetAddress2": "ঠিকানা লাইন 2",
+      "city": "শহর",
+      "province": "প্রদেশ",
+      "postalCode": "পোস্টাল কোড",
+      "country": "দেশ",
+      "message": "বার্তা",
+      "subject": "বিষয়",
+      "status": "অবস্থা",
+      "trackingNumber": "ট্র্যাকিং নম্বর",
+      "notes": "নোট"
+    },
+    "messages": {
+      "required": "{field} ক্ষেত্রটি প্রয়োজনীয়",
+      "email": "{field} একটি বৈধ ইমেইল ঠিকানা হতে হবে",
+      "minLength": "{field} কমপক্ষে {min} অক্ষর হতে হবে",
+      "maxLength": "{field} {max} অক্ষরের বেশি হতে পারবে না",
+      "confirmed": "{field} নিশ্চিতকরণ মিলছে না",
+      "enum": "নির্বাচিত {field} অবৈধ",
+      "number": "{field} একটি সংখ্যা হতে হবে",
+      "min": "{field} কমপক্ষে {min} হতে হবে",
+      "max": "{field} {max} এর বেশি হতে পারবে না",
+      "array": "{field} একটি অ্যারে হতে হবে",
+      "distinct": "{field} এ ডুপ্লিকেট মান আছে"
+    }
+  }
+}

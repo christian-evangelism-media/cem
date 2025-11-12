@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "אימייל או סיסמה לא חוקיים",
+    "email_not_verified": "אנא אמת את כתובת האימייל שלך לפני ההתחברות",
+    "unauthorized": "עליך להתחבר כדי לגשת למשאב זה",
+    "forbidden": "אין לך הרשאה לבצע פעולה זו",
+    "already_authenticated": "כבר התחברת"
+  },
+  "user": {
+    "not_found": "המשתמש לא נמצא",
+    "email_already_exists": "כתובת אימייל זו כבר בשימוש",
+    "cannot_delete_self": "אינך יכול למחוק את החשבון שלך",
+    "cannot_modify_role": "אינך יכול לשנות את התפקיד של משתמש זה"
+  },
+  "order": {
+    "not_found": "ההזמנה לא נמצאה",
+    "cannot_cancel": "לא ניתן לבטל את ההזמנה בשלב זה",
+    "cannot_grab": "לא ניתן לקחת את ההזמנה בסטטוס הנוכחי",
+    "insufficient_stock": "מלאי לא מספיק עבור פריט {mediaId}"
+  },
+  "media": {
+    "not_found": "הפריט לא נמצא",
+    "not_visible": "פריט זה אינו זמין"
+  },
+  "address": {
+    "not_found": "הכתובת לא נמצאה"
+  },
+  "message": {
+    "not_found": "ההודעה לא נמצאה"
+  },
+  "general": {
+    "not_found": "המשאב לא נמצא",
+    "server_error": "אירעה שגיאה בלתי צפויה. אנא נסה שוב מאוחר יותר",
+    "validation_failed": "הנתונים שסופקו אינם תקינים",
+    "rate_limit_exceeded": "יותר מדי בקשות. אנא נסה שוב מאוחר יותר"
+  }
+}

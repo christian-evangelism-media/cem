@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "电子邮件或密码无效",
+    "email_not_verified": "请在登录前验证您的电子邮件地址",
+    "unauthorized": "您必须登录才能访问此资源",
+    "forbidden": "您没有权限执行此操作",
+    "already_authenticated": "您已经登录"
+  },
+  "user": {
+    "not_found": "未找到用户",
+    "email_already_exists": "此电子邮件地址已被使用",
+    "cannot_delete_self": "您不能删除自己的账户",
+    "cannot_modify_role": "您不能修改此用户的角色"
+  },
+  "order": {
+    "not_found": "未找到订单",
+    "cannot_cancel": "无法在此阶段取消订单",
+    "cannot_grab": "订单在当前状态下无法被接取",
+    "insufficient_stock": "物品{mediaId}库存不足"
+  },
+  "media": {
+    "not_found": "未找到项目",
+    "not_visible": "此项目不可用"
+  },
+  "address": {
+    "not_found": "未找到地址"
+  },
+  "message": {
+    "not_found": "未找到消息"
+  },
+  "general": {
+    "not_found": "未找到资源",
+    "server_error": "发生意外错误。请稍后再试",
+    "validation_failed": "提供的数据无效",
+    "rate_limit_exceeded": "请求过多。请稍后再试"
+  }
+}

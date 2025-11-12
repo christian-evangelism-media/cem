@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "alamat email",
+      "password": "kata sandi",
+      "firstName": "nama depan",
+      "lastName": "nama belakang",
+      "preferredLanguages": "bahasa yang disukai",
+      "addressId": "alamat",
+      "mediaId": "item",
+      "quantity": "jumlah",
+      "name": "nama",
+      "streetAddress": "alamat jalan",
+      "streetAddress2": "alamat baris 2",
+      "city": "kota",
+      "province": "provinsi",
+      "postalCode": "kode pos",
+      "country": "negara",
+      "message": "pesan",
+      "subject": "subjek",
+      "status": "status",
+      "trackingNumber": "nomor pelacakan",
+      "notes": "catatan"
+    },
+    "messages": {
+      "required": "Bidang {field} wajib diisi",
+      "email": "{field} harus berupa alamat email yang valid",
+      "minLength": "{field} harus memiliki setidaknya {min} karakter",
+      "maxLength": "{field} tidak boleh melebihi {max} karakter",
+      "confirmed": "Konfirmasi {field} tidak cocok",
+      "enum": "{field} yang dipilih tidak valid",
+      "number": "{field} harus berupa angka",
+      "min": "{field} harus setidaknya {min}",
+      "max": "{field} tidak boleh melebihi {max}",
+      "array": "{field} harus berupa array",
+      "distinct": "{field} memiliki nilai duplikat"
+    }
+  }
+}

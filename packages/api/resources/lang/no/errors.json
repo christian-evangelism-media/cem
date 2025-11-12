@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "Ugyldig e-post eller passord",
+    "email_not_verified": "Vennligst bekreft e-postadressen din før du logger inn",
+    "unauthorized": "Du må være logget inn for å få tilgang til denne ressursen",
+    "forbidden": "Du har ikke tillatelse til å utføre denne handlingen",
+    "already_authenticated": "Du er allerede logget inn"
+  },
+  "user": {
+    "not_found": "Bruker ikke funnet",
+    "email_already_exists": "Denne e-postadressen er allerede i bruk",
+    "cannot_delete_self": "Du kan ikke slette din egen konto",
+    "cannot_modify_role": "Du kan ikke endre rollen til denne brukeren"
+  },
+  "order": {
+    "not_found": "Bestilling ikke funnet",
+    "cannot_cancel": "Kan ikke kansellere bestillingen på dette tidspunktet",
+    "cannot_grab": "Bestillingen kan ikke tas i nåværende status",
+    "insufficient_stock": "Utilstrekkelig lager for vare {mediaId}"
+  },
+  "media": {
+    "not_found": "Vare ikke funnet",
+    "not_visible": "Denne varen er ikke tilgjengelig"
+  },
+  "address": {
+    "not_found": "Adresse ikke funnet"
+  },
+  "message": {
+    "not_found": "Melding ikke funnet"
+  },
+  "general": {
+    "not_found": "Ressurs ikke funnet",
+    "server_error": "En uventet feil oppstod. Vennligst prøv igjen senere",
+    "validation_failed": "De oppgitte dataene er ugyldige",
+    "rate_limit_exceeded": "For mange forespørsler. Vennligst prøv igjen senere"
+  }
+}

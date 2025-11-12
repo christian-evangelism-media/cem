@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "Ogiltig e-post eller lösenord",
+    "email_not_verified": "Verifiera din e-postadress innan du loggar in",
+    "unauthorized": "Du måste vara inloggad för att komma åt denna resurs",
+    "forbidden": "Du har inte behörighet att utföra denna åtgärd",
+    "already_authenticated": "Du är redan inloggad"
+  },
+  "user": {
+    "not_found": "Användaren hittades inte",
+    "email_already_exists": "Denna e-postadress används redan",
+    "cannot_delete_self": "Du kan inte ta bort ditt eget konto",
+    "cannot_modify_role": "Du kan inte ändra denna användares roll"
+  },
+  "order": {
+    "not_found": "Beställningen hittades inte",
+    "cannot_cancel": "Kan inte avbryta beställningen i detta skede",
+    "cannot_grab": "Beställningen kan inte tas i nuvarande status",
+    "insufficient_stock": "Otillräckligt lager för artikel {mediaId}"
+  },
+  "media": {
+    "not_found": "Artikeln hittades inte",
+    "not_visible": "Denna artikel är inte tillgänglig"
+  },
+  "address": {
+    "not_found": "Adressen hittades inte"
+  },
+  "message": {
+    "not_found": "Meddelandet hittades inte"
+  },
+  "general": {
+    "not_found": "Resursen hittades inte",
+    "server_error": "Ett oväntat fel inträffade. Försök igen senare",
+    "validation_failed": "De angivna uppgifterna är ogiltiga",
+    "rate_limit_exceeded": "För många förfrågningar. Försök igen senare"
+  }
+}

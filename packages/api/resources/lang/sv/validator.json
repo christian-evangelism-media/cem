@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "e-postadress",
+      "password": "lösenord",
+      "firstName": "förnamn",
+      "lastName": "efternamn",
+      "preferredLanguages": "föredragna språk",
+      "addressId": "adress",
+      "mediaId": "artikel",
+      "quantity": "antal",
+      "name": "namn",
+      "streetAddress": "gatuadress",
+      "streetAddress2": "adress rad 2",
+      "city": "stad",
+      "province": "län",
+      "postalCode": "postnummer",
+      "country": "land",
+      "message": "meddelande",
+      "subject": "ämne",
+      "status": "status",
+      "trackingNumber": "spårningsnummer",
+      "notes": "anteckningar"
+    },
+    "messages": {
+      "required": "Fältet {field} är obligatoriskt",
+      "email": "{field} måste vara en giltig e-postadress",
+      "minLength": "{field} måste innehålla minst {min} tecken",
+      "maxLength": "{field} får inte överskrida {max} tecken",
+      "confirmed": "Bekräftelsen av {field} matchar inte",
+      "enum": "Det valda {field} är ogiltigt",
+      "number": "{field} måste vara ett nummer",
+      "min": "{field} måste vara minst {min}",
+      "max": "{field} får inte överskrida {max}",
+      "array": "{field} måste vara en array",
+      "distinct": "{field} innehåller duplicerade värden"
+    }
+  }
+}

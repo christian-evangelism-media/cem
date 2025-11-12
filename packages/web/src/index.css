@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+  logs: false;
+}
+
+/* Prevent scrollbar from appearing due to absolutely positioned elements */
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+#root {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Prevent password manager dropdowns from causing scrollbars */
+#ip-live-region,
+[data-lastpass-icon-root],
+[data-1p-wrapper],
+com-1password-button {
+  position: fixed !important;
+  z-index: 9999;
+}

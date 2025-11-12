@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "Nieprawidłowy e-mail lub hasło",
+    "email_not_verified": "Przed zalogowaniem zweryfikuj swój adres e-mail",
+    "unauthorized": "Musisz być zalogowany, aby uzyskać dostęp do tego zasobu",
+    "forbidden": "Nie masz uprawnień do wykonania tej czynności",
+    "already_authenticated": "Jesteś już zalogowany"
+  },
+  "user": {
+    "not_found": "Nie znaleziono użytkownika",
+    "email_already_exists": "Ten adres e-mail jest już używany",
+    "cannot_delete_self": "Nie możesz usunąć własnego konta",
+    "cannot_modify_role": "Nie możesz zmodyfikować roli tego użytkownika"
+  },
+  "order": {
+    "not_found": "Nie znaleziono zamówienia",
+    "cannot_cancel": "Nie można anulować zamówienia na tym etapie",
+    "cannot_grab": "Zamówienia nie można pobrać w bieżącym stanie",
+    "insufficient_stock": "Niewystarczający zapas dla przedmiotu {mediaId}"
+  },
+  "media": {
+    "not_found": "Nie znaleziono elementu",
+    "not_visible": "Ten element nie jest dostępny"
+  },
+  "address": {
+    "not_found": "Nie znaleziono adresu"
+  },
+  "message": {
+    "not_found": "Nie znaleziono wiadomości"
+  },
+  "general": {
+    "not_found": "Nie znaleziono zasobu",
+    "server_error": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie później",
+    "validation_failed": "Podane dane są nieprawidłowe",
+    "rate_limit_exceeded": "Zbyt wiele żądań. Spróbuj ponownie później"
+  }
+}

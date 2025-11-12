@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Clear orders and cart data from the database
+# Usage: ./clear-orders
+
+echo "Clearing orders and cart data from database..."
+
+docker exec postgres psql -U postgres -d cem -c "
+  TRUNCATE orders, order_items, cart_items RESTART IDENTITY CASCADE;
+"
+
+if [ $? -eq 0 ]; then
+  echo "✓ Orders and cart data cleared successfully"
+else
+  echo "✗ Failed to clear data"
+  exit 1
+fi

@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "Email hoặc mật khẩu không hợp lệ",
+    "email_not_verified": "Vui lòng xác minh địa chỉ email của bạn trước khi đăng nhập",
+    "unauthorized": "Bạn phải đăng nhập để truy cập tài nguyên này",
+    "forbidden": "Bạn không có quyền thực hiện hành động này",
+    "already_authenticated": "Bạn đã đăng nhập"
+  },
+  "user": {
+    "not_found": "Không tìm thấy người dùng",
+    "email_already_exists": "Địa chỉ email này đã được sử dụng",
+    "cannot_delete_self": "Bạn không thể xóa tài khoản của chính mình",
+    "cannot_modify_role": "Bạn không thể sửa đổi vai trò của người dùng này"
+  },
+  "order": {
+    "not_found": "Không tìm thấy đơn hàng",
+    "cannot_cancel": "Không thể hủy đơn hàng ở giai đoạn này",
+    "cannot_grab": "Không thể nhận đơn hàng ở trạng thái hiện tại",
+    "insufficient_stock": "Không đủ hàng cho mặt hàng {mediaId}"
+  },
+  "media": {
+    "not_found": "Không tìm thấy mục",
+    "not_visible": "Mục này không khả dụng"
+  },
+  "address": {
+    "not_found": "Không tìm thấy địa chỉ"
+  },
+  "message": {
+    "not_found": "Không tìm thấy tin nhắn"
+  },
+  "general": {
+    "not_found": "Không tìm thấy tài nguyên",
+    "server_error": "Đã xảy ra lỗi không mong muốn. Vui lòng thử lại sau",
+    "validation_failed": "Dữ liệu được cung cấp không hợp lệ",
+    "rate_limit_exceeded": "Quá nhiều yêu cầu. Vui lòng thử lại sau"
+  }
+}

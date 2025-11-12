@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "Geçersiz e-posta veya şifre",
+    "email_not_verified": "Giriş yapmadan önce e-posta adresinizi doğrulayın",
+    "unauthorized": "Bu kaynağa erişmek için giriş yapmalısınız",
+    "forbidden": "Bu eylemi gerçekleştirme izniniz yok",
+    "already_authenticated": "Zaten giriş yapmışsınız"
+  },
+  "user": {
+    "not_found": "Kullanıcı bulunamadı",
+    "email_already_exists": "Bu e-posta adresi zaten kullanımda",
+    "cannot_delete_self": "Kendi hesabınızı silemezsiniz",
+    "cannot_modify_role": "Bu kullanıcının rolünü değiştiremezsiniz"
+  },
+  "order": {
+    "not_found": "Sipariş bulunamadı",
+    "cannot_cancel": "Sipariş bu aşamada iptal edilemez",
+    "cannot_grab": "Sipariş mevcut durumda alınamaz",
+    "insufficient_stock": "{mediaId} öğesi için yetersiz stok"
+  },
+  "media": {
+    "not_found": "Öğe bulunamadı",
+    "not_visible": "Bu öğe mevcut değil"
+  },
+  "address": {
+    "not_found": "Adres bulunamadı"
+  },
+  "message": {
+    "not_found": "Mesaj bulunamadı"
+  },
+  "general": {
+    "not_found": "Kaynak bulunamadı",
+    "server_error": "Beklenmeyen bir hata oluştu. Lütfen daha sonra tekrar deneyin",
+    "validation_failed": "Sağlanan veriler geçersiz",
+    "rate_limit_exceeded": "Çok fazla istek. Lütfen daha sonra tekrar deneyin"
+  }
+}

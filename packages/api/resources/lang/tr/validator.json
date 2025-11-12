@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "fields": {
+      "email": "e-posta adresi",
+      "password": "şifre",
+      "firstName": "ad",
+      "lastName": "soyad",
+      "preferredLanguages": "tercih edilen diller",
+      "addressId": "adres",
+      "mediaId": "öğe",
+      "quantity": "miktar",
+      "name": "isim",
+      "streetAddress": "sokak adresi",
+      "streetAddress2": "adres satır 2",
+      "city": "şehir",
+      "province": "il",
+      "postalCode": "posta kodu",
+      "country": "ülke",
+      "message": "mesaj",
+      "subject": "konu",
+      "status": "durum",
+      "trackingNumber": "takip numarası",
+      "notes": "notlar"
+    },
+    "messages": {
+      "required": "{field} alanı gereklidir",
+      "email": "{field} geçerli bir e-posta adresi olmalıdır",
+      "minLength": "{field} en az {min} karakter olmalıdır",
+      "maxLength": "{field} {max} karakteri aşmamalıdır",
+      "confirmed": "{field} onayı eşleşmiyor",
+      "enum": "Seçilen {field} geçersiz",
+      "number": "{field} bir sayı olmalıdır",
+      "min": "{field} en az {min} olmalıdır",
+      "max": "{field} {max} değerini aşmamalıdır",
+      "array": "{field} bir dizi olmalıdır",
+      "distinct": "{field} yinelenen değerler içeriyor"
+    }
+  }
+}

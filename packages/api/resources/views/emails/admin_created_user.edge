@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome - Your Account Has Been Created</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <h1 style="color: #4a5568; margin-bottom: 20px;">Welcome to CEM!</h1>
+
+  <p>Hello {{ user.firstName }},</p>
+
+  <p>An administrator has created an account for you. Here are your login credentials:</p>
+
+  <div style="background-color: #f7fafc; border-left: 4px solid #3b82f6; padding: 15px; margin: 20px 0;">
+    <p style="margin: 5px 0;"><strong>Email:</strong> {{ user.email }}</p>
+    <p style="margin: 5px 0;"><strong>Temporary Password:</strong> <code style="background-color: #fff; padding: 2px 6px; border-radius: 3px;">{{ tempPassword }}</code></p>
+  </div>
+
+  <p><strong>Important:</strong> This is a temporary password. For security reasons, please change it immediately after your first login.</p>
+
+  <div style="margin: 30px 0;">
+    <a href="{{ appUrl }}/login"
+       style="display: inline-block; padding: 12px 24px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+      Log In Now
+    </a>
+  </div>
+
+  <p style="color: #718096; font-size: 14px;">
+    If the button doesn't work, you can copy and paste this link into your browser:
+  </p>
+  <p style="color: #718096; font-size: 14px; word-break: break-all;">
+    {{ appUrl }}/login
+  </p>
+
+  <p style="color: #718096; font-size: 14px; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 20px;">
+    If you did not expect this account to be created, please contact an administrator immediately.
+  </p>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "invalid_credentials": "Neplatný e-mail nebo heslo",
+    "email_not_verified": "Před přihlášením ověřte svou e-mailovou adresu",
+    "unauthorized": "Pro přístup k tomuto zdroji se musíte přihlásit",
+    "forbidden": "Nemáte oprávnění k provedení této akce",
+    "already_authenticated": "Již jste přihlášeni"
+  },
+  "user": {
+    "not_found": "Uživatel nenalezen",
+    "email_already_exists": "Tato e-mailová adresa je již používána",
+    "cannot_delete_self": "Nemůžete smazat svůj vlastní účet",
+    "cannot_modify_role": "Nemůžete změnit roli tohoto uživatele"
+  },
+  "order": {
+    "not_found": "Objednávka nenalezena",
+    "cannot_cancel": "Objednávku nelze v této fázi zrušit",
+    "cannot_grab": "Objednávku nelze vzít v aktuálním stavu",
+    "insufficient_stock": "Nedostatečné zásoby pro položku {mediaId}"
+  },
+  "media": {
+    "not_found": "Položka nenalezena",
+    "not_visible": "Tato položka není k dispozici"
+  },
+  "address": {
+    "not_found": "Adresa nenalezena"
+  },
+  "message": {
+    "not_found": "Zpráva nenalezena"
+  },
+  "general": {
+    "not_found": "Zdroj nenalezen",
+    "server_error": "Došlo k neočekávané chybě. Zkuste to prosím později",
+    "validation_failed": "Poskytnuté údaje jsou neplatné",
+    "rate_limit_exceeded": "Příliš mnoho požadavků. Zkuste to prosím později"
+  }
+}
