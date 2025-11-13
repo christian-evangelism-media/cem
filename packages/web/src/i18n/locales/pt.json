@@ -118,7 +118,10 @@
     "add": "Adicionar",
     "update": "Atualizar",
     "edit": "Editar",
-    "delete": "Excluir"
+    "delete": "Excluir",
+    "confirm": "Confirmar",
+    "ok": "OK",
+    "notice": "Aviso"
   },
   "address": {
     "title": "Meus Endereços",
@@ -129,7 +132,8 @@
     "noAddresses": "Nenhum endereço salvo ainda.",
     "default": "Padrão",
     "setDefault": "Definir como endereço padrão",
-    "confirmDelete": "Tem certeza de que deseja excluir este endereço?",
+    "confirmDelete": "Excluir Endereço",
+    "confirmDeleteMessage": "Tem certeza de que deseja excluir este endereço? Esta ação não pode ser desfeita.",
     "loadError": "Falha ao carregar endereços",
     "name": "Nome do Destinatário",
     "label": "Etiqueta (Opcional)",

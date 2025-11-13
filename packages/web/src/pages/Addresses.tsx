@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useUser } from '../contexts/UserContext'
 import AddressForm from '../components/AddressForm'
+import ConfirmModal from '../components/ConfirmModal'
 import { useAddresses, useCreateAddress, useUpdateAddress, useDeleteAddress, type Address } from '../hooks/useAddressQueries'
 
 export default function Addresses() {
@@ -9,6 +10,7 @@ export default function Addresses() {
   const { user } = useUser()
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editingAddress, setEditingAddress] = useState<Address | null>(null)
+  const [deleteAddressId, setDeleteAddressId] = useState<number | null>(null)
 
   // Fetch addresses
   const {
@@ -32,10 +34,8 @@ export default function Addresses() {
     setIsFormOpen(true)
   }
 
-  const handleDeleteAddress = async (id: number) => {
-    if (confirm(t('address.confirmDelete') || 'Are you sure you want to delete this address?')) {
-      deleteAddressMutation.mutate(id)
-    }
+  const handleDeleteAddress = (id: number) => {
+    setDeleteAddressId(id)
   }
 
   const handleFormSubmit = async (addressData: Omit<Address, 'id' | 'createdAt' | 'updatedAt'>) => {
@@ -140,6 +140,22 @@ export default function Addresses() {
         defaultName={user ? `${user.firstName} ${user.lastName}` : ''}
         onSubmit={handleFormSubmit}
         onCancel={handleFormCancel}
+      />
+
+      <ConfirmModal
+        isOpen={deleteAddressId !== null}
+        title={t('address.confirmDelete')}
+        message={t('address.confirmDeleteMessage')}
+        confirmText={t('common.delete')}
+        cancelText={t('common.cancel')}
+        isDangerous={true}
+        onConfirm={() => {
+          if (deleteAddressId !== null) {
+            deleteAddressMutation.mutate(deleteAddressId)
+            setDeleteAddressId(null)
+          }
+        }}
+        onCancel={() => setDeleteAddressId(null)}
       />
     </div>
   )

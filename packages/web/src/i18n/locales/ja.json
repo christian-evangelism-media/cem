@@ -118,7 +118,10 @@
     "add": "追加",
     "update": "更新",
     "edit": "編集",
-    "delete": "削除"
+    "delete": "削除",
+    "confirm": "確認",
+    "ok": "OK",
+    "notice": "お知らせ"
   },
   "address": {
     "title": "マイアドレス",
@@ -129,7 +132,8 @@
     "noAddresses": "まだ住所が保存されていません。",
     "default": "デフォルト",
     "setDefault": "デフォルトの住所に設定",
-    "confirmDelete": "この住所を削除してもよろしいですか？",
+    "confirmDelete": "住所を削除",
+    "confirmDeleteMessage": "この住所を削除してもよろしいですか？この操作は元に戻せません。",
     "loadError": "住所の読み込みに失敗しました",
     "name": "受取人氏名",
     "label": "ラベル（オプション）",

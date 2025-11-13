@@ -119,7 +119,10 @@
     "add": "Ƙara",
     "update": "Sabuntawa",
     "edit": "Gyara",
-    "delete": "Goge"
+    "delete": "Goge",
+    "confirm": "Tabbatar",
+    "ok": "OK",
+    "notice": "Sanarwa"
   },
   "address": {
     "title": "Adiresoshina",
@@ -130,7 +133,8 @@
     "noAddresses": "Har yanzu babu adiresoshin da aka adana.",
     "default": "Asali",
     "setDefault": "Sanya a matsayin adireshin asali",
-    "confirmDelete": "Kuna tabbatar kuna son goge wannan adireshi?",
+    "confirmDelete": "Goge Adireshi",
+    "confirmDeleteMessage": "Kuna tabbatar kuna son goge wannan adireshi? Ba za a iya soke wannan aiki ba.",
     "loadError": "Ba a iya ɗaukar adiresoshi ba",
     "name": "Sunan Mai Karɓa",
     "label": "Alamar (Na Zaɓi)",

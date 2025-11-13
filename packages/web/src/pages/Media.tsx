@@ -7,6 +7,7 @@ import { useCart, useAddToCart, useRemoveCartItem } from '../hooks/useCartQuerie
 import { useFavorites, useToggleFavorite } from '../hooks/useFavoriteQueries'
 import { useAddresses } from '../hooks/useAddressQueries'
 import { API_URL } from '../services/api'
+import AlertModal from '../components/AlertModal'
 
 // Map UI language codes to media language values
 const languageMap: Record<string, string> = {
@@ -51,6 +52,7 @@ export default function Media() {
   const [limit, setLimit] = useState(7)
   const createOrder = useCreateOrder()
   const { data: addresses = [] } = useAddresses(!!user)
+  const [alertModal, setAlertModal] = useState<{ isOpen: boolean; message: string } | null>(null)
 
   // Calculate items per page based on screen height
   useEffect(() => {
@@ -151,8 +153,7 @@ export default function Media() {
 
   const quickPlaceOrder = () => {
     if (addresses.length === 0) {
-      alert(t('cart.noAddress'))
-      navigate('/profile')
+      setAlertModal({ isOpen: true, message: t('cart.noAddress') })
       return
     }
 
@@ -371,6 +372,21 @@ export default function Media() {
           </div>
         )}
       </div>
+
+      {alertModal && (
+        <AlertModal
+          isOpen={alertModal.isOpen}
+          title={t('common.notice')}
+          message={alertModal.message}
+          type="warning"
+          onClose={() => {
+            setAlertModal(null)
+            if (alertModal.message === t('cart.noAddress')) {
+              navigate('/addresses')
+            }
+          }}
+        />
+      )}
     </div>
   )
 }

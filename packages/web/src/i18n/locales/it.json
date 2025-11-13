@@ -118,7 +118,10 @@
     "add": "Aggiungi",
     "update": "Aggiorna",
     "edit": "Modifica",
-    "delete": "Elimina"
+    "delete": "Elimina",
+    "confirm": "Conferma",
+    "ok": "OK",
+    "notice": "Avviso"
   },
   "address": {
     "title": "I Miei Indirizzi",
@@ -129,7 +132,8 @@
     "noAddresses": "Nessun indirizzo salvato ancora.",
     "default": "Predefinito",
     "setDefault": "Imposta come indirizzo predefinito",
-    "confirmDelete": "Sei sicuro di voler eliminare questo indirizzo?",
+    "confirmDelete": "Elimina Indirizzo",
+    "confirmDeleteMessage": "Sei sicuro di voler eliminare questo indirizzo? Questa azione non può essere annullata.",
     "loadError": "Caricamento indirizzi non riuscito",
     "name": "Nome Destinatario",
     "label": "Etichetta (Opzionale)",

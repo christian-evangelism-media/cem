@@ -118,7 +118,10 @@
     "add": "Magdagdag",
     "update": "I-update",
     "edit": "I-edit",
-    "delete": "Tanggalin"
+    "delete": "Tanggalin",
+    "confirm": "Kumpirmahin",
+    "ok": "OK",
+    "notice": "Paalala"
   },
   "address": {
     "title": "Aking mga Address",
@@ -129,7 +132,8 @@
     "noAddresses": "Walang naka-save na address pa.",
     "default": "Default",
     "setDefault": "Itakda bilang default na address",
-    "confirmDelete": "Sigurado ka bang gusto mong tanggalin ang address na ito?",
+    "confirmDelete": "Tanggalin ang Address",
+    "confirmDeleteMessage": "Sigurado ka bang gusto mong tanggalin ang address na ito? Hindi na mababawi ang aksyong ito.",
     "loadError": "Hindi na-load ang mga address",
     "name": "Pangalan ng Tatanggap",
     "label": "Label (Opsyonal)",

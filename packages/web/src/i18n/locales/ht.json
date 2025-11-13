@@ -118,7 +118,10 @@
     "add": "Ajoute",
     "update": "Aktyalize",
     "edit": "Modifye",
-    "delete": "Efase"
+    "delete": "Efase",
+    "confirm": "Konfime",
+    "ok": "OK",
+    "notice": "Avi"
   },
   "address": {
     "title": "Adrès Mwen",
@@ -129,7 +132,8 @@
     "noAddresses": "Poko gen adrès anrejistre.",
     "default": "Pa Defo",
     "setDefault": "Mete kòm adrès pa defo",
-    "confirmDelete": "Èske ou sèten ou vle efase adrès sa a?",
+    "confirmDelete": "Efase Adrès",
+    "confirmDeleteMessage": "Èske ou sèten ou vle efase adrès sa a? Aksyon sa a pa ka defèt.",
     "loadError": "Echwe chajman adrès yo",
     "name": "Non Moun k ap Resevwa",
     "label": "Etikèt (Opsyonèl)",

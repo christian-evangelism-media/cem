@@ -118,7 +118,10 @@
     "add": "Hinzufügen",
     "update": "Aktualisieren",
     "edit": "Bearbeiten",
-    "delete": "Löschen"
+    "delete": "Löschen",
+    "confirm": "Bestätigen",
+    "ok": "OK",
+    "notice": "Hinweis"
   },
   "address": {
     "title": "Meine Adressen",
@@ -129,7 +132,8 @@
     "noAddresses": "Noch keine Adressen gespeichert.",
     "default": "Standard",
     "setDefault": "Als Standardadresse festlegen",
-    "confirmDelete": "Möchten Sie diese Adresse wirklich löschen?",
+    "confirmDelete": "Adresse löschen",
+    "confirmDeleteMessage": "Möchten Sie diese Adresse wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
     "loadError": "Adressen konnten nicht geladen werden",
     "name": "Empfängername",
     "label": "Bezeichnung (Optional)",

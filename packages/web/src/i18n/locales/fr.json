@@ -145,7 +145,10 @@
     "add": "Ajouter",
     "update": "Mettre à jour",
     "edit": "Modifier",
-    "delete": "Supprimer"
+    "delete": "Supprimer",
+    "confirm": "Confirmer",
+    "ok": "OK",
+    "notice": "Avis"
   },
   "address": {
     "title": "Mes Adresses",
@@ -168,7 +171,8 @@
     "addTitle": "Ajouter une Nouvelle Adresse",
     "editTitle": "Modifier l'Adresse",
     "loadError": "Échec du chargement des adresses",
-    "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette adresse ?",
+    "confirmDelete": "Supprimer l'Adresse",
+    "confirmDeleteMessage": "Êtes-vous sûr de vouloir supprimer cette adresse ? Cette action ne peut pas être annulée.",
     "errors": {
       "nameRequired": "Le nom est obligatoire",
       "streetRequired": "L'adresse est obligatoire",

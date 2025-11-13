@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useFavorites, useRemoveFavorite } from '../hooks/useFavoriteQueries'
@@ -6,6 +7,7 @@ import { useCreateOrder } from '../hooks/useMediaQueries'
 import { useAddresses } from '../hooks/useAddressQueries'
 import { useUser } from '../contexts/UserContext'
 import { API_URL } from '../services/api'
+import AlertModal from '../components/AlertModal'
 
 export default function Favorites() {
   const { t } = useTranslation()
@@ -18,6 +20,7 @@ export default function Favorites() {
   const removeCartItem = useRemoveCartItem()
   const createOrder = useCreateOrder()
   const { data: addresses = [] } = useAddresses(!!user)
+  const [alertModal, setAlertModal] = useState<{ isOpen: boolean; message: string } | null>(null)
 
   const handleRemoveFavorite = (mediaId: number) => {
     removeFavorite.mutate(mediaId)
@@ -60,8 +63,7 @@ export default function Favorites() {
 
   const quickPlaceOrder = () => {
     if (addresses.length === 0) {
-      alert(t('cart.noAddress'))
-      navigate('/profile')
+      setAlertModal({ isOpen: true, message: t('cart.noAddress') })
       return
     }
 
@@ -220,6 +222,21 @@ export default function Favorites() {
             </div>
           ))}
         </div>
+      )}
+
+      {alertModal && (
+        <AlertModal
+          isOpen={alertModal.isOpen}
+          title={t('common.notice')}
+          message={alertModal.message}
+          type="warning"
+          onClose={() => {
+            setAlertModal(null)
+            if (alertModal.message === t('cart.noAddress')) {
+              navigate('/addresses')
+            }
+          }}
+        />
       )}
     </div>
   )

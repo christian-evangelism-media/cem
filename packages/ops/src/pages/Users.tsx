@@ -111,6 +111,7 @@ export default function Users() {
     mutationFn: (id: number) => api.users.delete(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] })
+      setDeleteUserId(null)
     },
   })
 
@@ -674,7 +675,6 @@ export default function Users() {
         onConfirm={() => {
           if (deleteUserId !== null) {
             deleteMutation.mutate(deleteUserId)
-            setDeleteUserId(null)
           }
         }}
         onCancel={() => setDeleteUserId(null)}

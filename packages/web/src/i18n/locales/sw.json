@@ -118,7 +118,10 @@
     "add": "Ongeza",
     "update": "Sasisha",
     "edit": "Hariri",
-    "delete": "Futa"
+    "delete": "Futa",
+    "confirm": "Thibitisha",
+    "ok": "OK",
+    "notice": "Taarifa"
   },
   "address": {
     "title": "Anwani Zangu",
@@ -129,7 +132,8 @@
     "noAddresses": "Hakuna anwani zilizohifadhiwa bado.",
     "default": "Chaguo-msingi",
     "setDefault": "Weka kama anwani ya chaguo-msingi",
-    "confirmDelete": "Una uhakika unataka kufuta anwani hii?",
+    "confirmDelete": "Futa Anwani",
+    "confirmDeleteMessage": "Una uhakika unataka kufuta anwani hii? Hatua hii haiwezi kutenduliwa.",
     "loadError": "Imeshindikana kupakia anwani",
     "name": "Jina la Mpokeaji",
     "label": "Lebo (Si Lazima)",

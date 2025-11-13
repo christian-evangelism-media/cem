@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useCart, useUpdateCartItem, useRemoveCartItem } from '../hooks/useCartQueries'
 import { useCreateOrder } from '../hooks/useMediaQueries'
 import { useAddresses } from '../hooks/useAddressQueries'
+import AlertModal from '../components/AlertModal'
 
 export default function Cart() {
   const { t, i18n } = useTranslation()
@@ -11,6 +12,7 @@ export default function Cart() {
   const { data: cartItems = [], isLoading } = useCart()
   const { data: addresses = [] } = useAddresses()
   const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null)
+  const [alertModal, setAlertModal] = useState<{ isOpen: boolean; message: string } | null>(null)
   const updateCartItem = useUpdateCartItem()
   const removeCartItem = useRemoveCartItem()
   const createOrder = useCreateOrder()
@@ -35,13 +37,12 @@ export default function Cart() {
 
   const placeOrder = async () => {
     if (addresses.length === 0) {
-      alert(t('cart.noAddress'))
-      navigate('/profile')
+      setAlertModal({ isOpen: true, message: t('cart.noAddress') })
       return
     }
 
     if (!selectedAddressId) {
-      alert(t('cart.selectAddress'))
+      setAlertModal({ isOpen: true, message: t('cart.selectAddress') })
       return
     }
 
@@ -177,6 +178,21 @@ export default function Cart() {
             )}
           </div>
         </>
+      )}
+
+      {alertModal && (
+        <AlertModal
+          isOpen={alertModal.isOpen}
+          title={t('common.notice')}
+          message={alertModal.message}
+          type="warning"
+          onClose={() => {
+            setAlertModal(null)
+            if (alertModal.message === t('cart.noAddress')) {
+              navigate('/addresses')
+            }
+          }}
+        />
       )}
     </div>
   )

@@ -118,7 +118,10 @@
     "add": "Adăugare",
     "update": "Actualizare",
     "edit": "Editare",
-    "delete": "Ștergere"
+    "delete": "Ștergere",
+    "confirm": "Confirmă",
+    "ok": "OK",
+    "notice": "Notificare"
   },
   "address": {
     "title": "Adresele Mele",
@@ -129,7 +132,8 @@
     "noAddresses": "Încă nu aveți adrese salvate.",
     "default": "Implicit",
     "setDefault": "Setați ca adresă implicită",
-    "confirmDelete": "Sigur doriți să ștergeți această adresă?",
+    "confirmDelete": "Ștergeți Adresa",
+    "confirmDeleteMessage": "Sigur doriți să ștergeți această adresă? Această acțiune nu poate fi anulată.",
     "loadError": "Încărcarea adreselor a eșuat",
     "name": "Nume Destinatar",
     "label": "Etichetă (Opțional)",

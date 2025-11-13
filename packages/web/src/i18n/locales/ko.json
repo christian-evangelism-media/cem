@@ -118,7 +118,10 @@
     "add": "추가",
     "update": "업데이트",
     "edit": "편집",
-    "delete": "삭제"
+    "delete": "삭제",
+    "confirm": "확인",
+    "ok": "OK",
+    "notice": "알림"
   },
   "address": {
     "title": "내 주소",
@@ -129,7 +132,8 @@
     "noAddresses": "아직 저장된 주소가 없습니다.",
     "default": "기본",
     "setDefault": "기본 주소로 설정",
-    "confirmDelete": "이 주소를 삭제하시겠습니까?",
+    "confirmDelete": "주소 삭제",
+    "confirmDeleteMessage": "이 주소를 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.",
     "loadError": "주소를 불러오는데 실패했습니다",
     "name": "수령인 이름",
     "label": "라벨 (선택사항)",

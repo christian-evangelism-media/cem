@@ -118,7 +118,10 @@
     "add": "添加",
     "update": "更新",
     "edit": "编辑",
-    "delete": "删除"
+    "delete": "删除",
+    "confirm": "确认",
+    "ok": "OK",
+    "notice": "通知"
   },
   "address": {
     "title": "我的地址",
@@ -129,7 +132,8 @@
     "noAddresses": "尚未保存地址。",
     "default": "默认",
     "setDefault": "设为默认地址",
-    "confirmDelete": "您确定要删除此地址吗？",
+    "confirmDelete": "删除地址",
+    "confirmDeleteMessage": "您确定要删除此地址吗？此操作无法撤消。",
     "loadError": "加载地址失败",
     "name": "收件人姓名",
     "label": "标签（可选）",

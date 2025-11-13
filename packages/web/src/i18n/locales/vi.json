@@ -118,7 +118,10 @@
     "add": "Thêm",
     "update": "Cập Nhật",
     "edit": "Chỉnh Sửa",
-    "delete": "Xóa"
+    "delete": "Xóa",
+    "confirm": "Xác Nhận",
+    "ok": "OK",
+    "notice": "Thông Báo"
   },
   "address": {
     "title": "Địa Chỉ Của Tôi",
@@ -129,7 +132,8 @@
     "noAddresses": "Chưa có địa chỉ nào được lưu.",
     "default": "Mặc Định",
     "setDefault": "Đặt làm địa chỉ mặc định",
-    "confirmDelete": "Bạn có chắc chắn muốn xóa địa chỉ này không?",
+    "confirmDelete": "Xóa Địa Chỉ",
+    "confirmDeleteMessage": "Bạn có chắc chắn muốn xóa địa chỉ này không? Hành động này không thể hoàn tác.",
     "loadError": "Tải địa chỉ thất bại",
     "name": "Tên Người Nhận",
     "label": "Nhãn (Tùy Chọn)",

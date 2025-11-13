@@ -118,7 +118,10 @@
     "add": "Ekle",
     "update": "Güncelle",
     "edit": "Düzenle",
-    "delete": "Sil"
+    "delete": "Sil",
+    "confirm": "Onayla",
+    "ok": "OK",
+    "notice": "Bildirim"
   },
   "address": {
     "title": "Adreslerim",
@@ -129,7 +132,8 @@
     "noAddresses": "Henüz kaydedilmiş adres yok.",
     "default": "Varsayılan",
     "setDefault": "Varsayılan adres olarak ayarla",
-    "confirmDelete": "Bu adresi silmek istediğinizden emin misiniz?",
+    "confirmDelete": "Adresi Sil",
+    "confirmDeleteMessage": "Bu adresi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
     "loadError": "Adresler yüklenemedi",
     "name": "Alıcı Adı",
     "label": "Etiket (İsteğe Bağlı)",

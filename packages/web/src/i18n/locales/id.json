@@ -118,7 +118,10 @@
     "add": "Tambah",
     "update": "Perbarui",
     "edit": "Edit",
-    "delete": "Hapus"
+    "delete": "Hapus",
+    "confirm": "Konfirmasi",
+    "ok": "OK",
+    "notice": "Pemberitahuan"
   },
   "address": {
     "title": "Alamat Saya",
@@ -129,7 +132,8 @@
     "noAddresses": "Belum ada alamat yang tersimpan.",
     "default": "Default",
     "setDefault": "Jadikan alamat default",
-    "confirmDelete": "Apakah Anda yakin ingin menghapus alamat ini?",
+    "confirmDelete": "Hapus Alamat",
+    "confirmDeleteMessage": "Apakah Anda yakin ingin menghapus alamat ini? Tindakan ini tidak dapat dibatalkan.",
     "loadError": "Gagal memuat alamat",
     "name": "Nama Penerima",
     "label": "Label (Opsional)",

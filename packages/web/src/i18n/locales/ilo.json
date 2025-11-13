@@ -118,7 +118,10 @@
     "add": "Inayon",
     "update": "Pabaruen",
     "edit": "Urnosen",
-    "delete": "Ikkaten"
+    "delete": "Ikkaten",
+    "confirm": "Pasingkedan",
+    "ok": "OK",
+    "notice": "Pakdaar"
   },
   "address": {
     "title": "Dagiti Addressko",
@@ -129,7 +132,8 @@
     "noAddresses": "Awan pay ti naisalimetmet nga address.",
     "default": "Default",
     "setDefault": "Isaad kas default nga address",
-    "confirmDelete": "Sigurado ka kadi nga kayat-mo nga ikkaten daytoy nga address?",
+    "confirmDelete": "Ikkaten ti Address",
+    "confirmDeleteMessage": "Sigurado ka kadi nga kayat-mo nga ikkaten daytoy nga address? Saan a mabalin a maisubli daytoy nga aramid.",
     "loadError": "Napaay ti panagkarga dagiti address",
     "name": "Nagan ti Umawat",
     "label": "Etiketa (Opsional)",
