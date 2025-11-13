@@ -2,6 +2,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import Order from '#models/order'
 import Media from '#models/media'
+import Message from '#models/message'
 import db from '@adonisjs/lucid/services/db'
 
 export default class AdminController {
@@ -31,6 +32,34 @@ export default class AdminController {
       .distinct('addresses.city')
 
     const uniqueCities = citiesResult.length
+
+    // Get count of orders ready to ship
+    const ordersReadyToShip = await Order.query()
+      .where('status', 'ready')
+      .where('delivery_method', 'shipping')
+      .count('* as total')
+
+    // Get count of orders awaiting pickup
+    const ordersAwaitingPickup = await Order.query()
+      .where('status', 'awaiting')
+      .where('delivery_method', 'pickup')
+      .count('* as total')
+
+    // Get count of low stock media items
+    const mediaItems = await Media.query()
+      .where('track_inventory', true)
+      .where('is_visible', true)
+      .whereNotNull('low_stock_threshold')
+
+    let lowStockMedia = 0
+    for (const media of mediaItems) {
+      if (media.inventoryStock && media.lowStockThreshold) {
+        const totalStock = Object.values(media.inventoryStock).reduce((sum, val) => sum + (val || 0), 0)
+        if (totalStock <= media.lowStockThreshold) {
+          lowStockMedia++
+        }
+      }
+    }
 
     // Get total quantity of gospel tracts shipped
     const tractsShippedResult = await db
@@ -73,13 +102,13 @@ export default class AdminController {
     `)
 
     // Get orders with unread feedback
-    const ordersWithUnreadFeedback = await db.rawQuery(`
-      SELECT DISTINCT order_id
-      FROM messages
-      WHERE order_id IS NOT NULL
-        AND is_read = false
-    `)
-    const unreadFeedbackOrderIds = ordersWithUnreadFeedback.rows.map((row: any) => row.order_id)
+    const messagesWithUnreadFeedback = await Message.query()
+      .whereNotNull('order_id')
+      .where('is_read', false)
+      .select('order_id')
+      .groupBy('order_id')
+
+    const unreadFeedbackOrderIds = messagesWithUnreadFeedback.map((msg) => msg.orderId!)
 
     const recentOrders = await Order.query()
       .where((query) => {
@@ -115,6 +144,9 @@ export default class AdminController {
       uniqueCountries,
       uniqueCities,
       totalTractsShipped,
+      ordersReadyToShip: ordersReadyToShip[0].$extras.total,
+      ordersAwaitingPickup: ordersAwaitingPickup[0].$extras.total,
+      lowStockMedia,
       ordersPerMonth: ordersPerMonth.rows,
       tractsByCountry: tractsByCountry.rows,
       recentOrders: recentOrders,

@@ -10,9 +10,11 @@ export default function Dashboard() {
   const { data: stats, isLoading } = useQuery<DashboardStats>({
     queryKey: ['dashboard-stats'],
     queryFn: () => api.stats.dashboard(),
+    placeholderData: (previousData) => previousData, // Keep previous data while refetching
   })
 
-  if (isLoading) {
+  // Only show spinner on initial load
+  if (isLoading && !stats) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <span className="loading loading-spinner loading-lg"></span>
@@ -105,6 +107,30 @@ export default function Dashboard() {
                 <Bar dataKey="count" fill="hsl(var(--wa))" name={t('dashboard.tracts')} />
               </BarChart>
             </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+
+      {/* Actionable Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div className="stats shadow">
+          <div className="stat p-4">
+            <div className="stat-title text-xs">{t('dashboard.ordersReadyToShip')}</div>
+            <div className="stat-value text-2xl text-primary">{stats?.ordersReadyToShip || 0}</div>
+          </div>
+        </div>
+
+        <div className="stats shadow">
+          <div className="stat p-4">
+            <div className="stat-title text-xs">{t('dashboard.ordersAwaitingPickup')}</div>
+            <div className="stat-value text-2xl text-secondary">{stats?.ordersAwaitingPickup || 0}</div>
+          </div>
+        </div>
+
+        <div className="stats shadow">
+          <div className="stat p-4">
+            <div className="stat-title text-xs">{t('dashboard.lowStockMedia')}</div>
+            <div className="stat-value text-2xl text-warning">{stats?.lowStockMedia || 0}</div>
           </div>
         </div>
       </div>

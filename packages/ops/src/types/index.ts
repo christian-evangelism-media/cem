@@ -121,6 +121,9 @@ export interface DashboardStats {
   uniqueCountries: number
   uniqueCities: number
   totalTractsShipped: number
+  ordersReadyToShip: number
+  ordersAwaitingPickup: number
+  lowStockMedia: number
   ordersPerMonth: Array<{ month: string; month_sort: string; count: string }>
   tractsByCountry: Array<{ country: string; count: string }>
   recentOrders: Order[]
