@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>تأكيد بريدك الإلكتروني</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <h1 style="color: #4a5568; margin-bottom: 20px;">تأكيد عنوان بريدك الإلكتروني</h1>
+
+  <p>شكراً لتسجيلك! يرجى تأكيد عنوان بريدك الإلكتروني بالنقر على الزر أدناه:</p>
+
+  <div style="margin: 30px 0;">
+    <a href="{{ verificationUrl }}"
+       style="display: inline-block; padding: 12px 24px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+      تأكيد البريد الإلكتروني
+    </a>
+  </div>
+
+  <p style="color: #718096; font-size: 14px;">
+    إذا لم يعمل الزر، يمكنك نسخ ولصق هذا الرابط في متصفحك:
+  </p>
+  <p style="color: #718096; font-size: 14px; word-break: break-all;">
+    {{ verificationUrl }}
+  </p>
+
+  <p style="color: #718096; font-size: 14px; margin-top: 30px;">
+    ستنتهي صلاحية هذا الرابط خلال 24 ساعة.
+  </p>
+</body>
+</html>

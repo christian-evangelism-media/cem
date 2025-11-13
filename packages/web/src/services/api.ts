@@ -5,6 +5,7 @@ interface RegisterData {
   password: string
   firstName: string
   lastName: string
+  language?: string
 }
 
 interface LoginData {

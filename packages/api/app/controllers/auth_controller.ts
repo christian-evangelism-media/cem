@@ -32,6 +32,7 @@ export default class AuthController {
           .regex(/[^a-zA-Z0-9]/), // At least one special character
         firstName: vine.string().trim().minLength(2).maxLength(50),
         lastName: vine.string().trim().minLength(2).maxLength(50),
+        language: vine.string().optional(),
       })
     )
 
@@ -54,8 +55,8 @@ export default class AuthController {
       expiresAt,
     })
 
-    // Send verification email
-    await mail.send(new VerifyEmailNotification(user.email, token))
+    // Send verification email in user's language (default to 'en' if not provided)
+    await mail.send(new VerifyEmailNotification(user.email, token, data.language || 'en'))
 
     return response.created({
       message: 'User created. Please check your email to verify your account.',
@@ -265,8 +266,9 @@ export default class AuthController {
       expiresAt,
     })
 
-    // Send verification email
-    await mail.send(new VerifyEmailNotification(user.email, token))
+    // Send verification email in user's preferred language (default to 'en')
+    const userLanguage = user.preferredLanguages?.[0] || 'en'
+    await mail.send(new VerifyEmailNotification(user.email, token, userLanguage))
 
     return response.ok({
       message: 'Verification email sent. Please check your inbox.',

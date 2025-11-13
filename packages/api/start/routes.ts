@@ -19,7 +19,7 @@ router.get('/maintenance/status', '#controllers/maintenances_controller.status')
 router.post('/maintenance/activate', '#controllers/maintenances_controller.activate').use([middleware.auth(), middleware.admin()])
 router.post('/maintenance/deactivate', '#controllers/maintenances_controller.deactivate').use([middleware.auth(), middleware.admin()])
 
-router.post('/register', '#controllers/auth_controller.register') // .use(registerThrottle)
+router.post('/register', '#controllers/auth_controller.register').use(registerThrottle)
 router.post('/login', '#controllers/auth_controller.login').use(authThrottle)
 router.post('/logout', '#controllers/auth_controller.logout').use(middleware.auth())
 router.get('/me', '#controllers/auth_controller.me').use(middleware.auth())

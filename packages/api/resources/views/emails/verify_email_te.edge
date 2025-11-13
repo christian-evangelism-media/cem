@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>మీ ఇమెయిల్‌ను ధృవీకరించండి</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <h1 style="color: #4a5568; margin-bottom: 20px;">మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి</h1>
+
+  <p>నమోదు చేసినందుకు ధన్యవాదాలు! దిగువ బటన్‌ను క్లిక్ చేయడం ద్వారా మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి:</p>
+
+  <div style="margin: 30px 0;">
+    <a href="{{ verificationUrl }}"
+       style="display: inline-block; padding: 12px 24px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+      ఇమెయిల్ ధృవీకరించండి
+    </a>
+  </div>
+
+  <p style="color: #718096; font-size: 14px;">
+    బటన్ పనిచేయకపోతే, మీరు ఈ లింక్‌ను కాపీ చేసి మీ బ్రౌజర్‌లో పేస్ట్ చేయవచ్చు:
+  </p>
+  <p style="color: #718096; font-size: 14px; word-break: break-all;">
+    {{ verificationUrl }}
+  </p>
+
+  <p style="color: #718096; font-size: 14px; margin-top: 30px;">
+    ఈ లింక్ 24 గంటల్లో గడువు ముగుస్తుంది.
+  </p>
+</body>
+</html>

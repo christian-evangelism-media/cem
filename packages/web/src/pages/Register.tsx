@@ -51,7 +51,7 @@ function getPasswordStrength(password: string, t: (key: string) => string): { sc
 
 export default function Register() {
   const navigate = useNavigate()
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [serverError, setServerError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
@@ -71,7 +71,7 @@ export default function Register() {
 
     try {
       const { confirmPassword, ...registerData } = data
-      await api.auth.register(registerData)
+      await api.auth.register({ ...registerData, language: i18n.language })
       navigate('/login')
     } catch (err) {
       setServerError(err instanceof Error ? err.message : 'Registration failed')
