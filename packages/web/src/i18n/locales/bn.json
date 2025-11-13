@@ -106,11 +106,16 @@
       "shipping": "পাঠানো হচ্ছে",
       "shipped": "পাঠানো হয়েছে",
       "cancelling": "বাতিল করা হচ্ছে",
-      "cancelled": "বাতিল"
+      "cancelled": "বাতিল",
+      "awaiting": "পিকআপের জন্য অপেক্ষমান",
+      "collected": "সংগৃহীত"
     },
     "errors": {
       "noItems": "অনুগ্রহ করে অন্তত একটি আইটেম নির্বাচন করুন"
-    }
+    },
+    "deliveryMethod": "সরবরাহ পদ্ধতি",
+    "shipping": "শিপিং",
+    "pickup": "পিকআপ"
   },
   "common": {
     "loading": "লোড হচ্ছে...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "শপিং কার্ট",
     "empty": "আপনার কার্ট খালি",
-    "placeOrder": "অর্ডার করুন"
+    "placeOrder": "অর্ডার করুন",
+    "shipping": "শিপিং",
+    "pickup": "পিকআপ",
+    "placeOrderPickup": "পিকআপ অর্ডার দিন"
   },
   "favorites": {
     "title": "আমার প্রিয়",

@@ -106,11 +106,16 @@
       "shipping": "Ipinapadala",
       "shipped": "Naipadala Na",
       "cancelling": "Kinakansela",
-      "cancelled": "Nakansela"
+      "cancelled": "Nakansela",
+      "awaiting": "Naghihintay ng Pagkuha",
+      "collected": "Nakolekta"
     },
     "errors": {
       "noItems": "Mangyaring pumili ng hindi bababa sa isang item"
-    }
+    },
+    "deliveryMethod": "Paraan ng Paghahatid",
+    "shipping": "Pagpapadala",
+    "pickup": "Pagkuha"
   },
   "common": {
     "loading": "Nag-lo-load...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "Shopping Cart",
     "empty": "Walang laman ang iyong cart",
-    "placeOrder": "Mag-order"
+    "placeOrder": "Mag-order",
+    "shipping": "Pagpapadala",
+    "pickup": "Pagkuha",
+    "placeOrderPickup": "Mag-order ng Pagkuha"
   },
   "favorites": {
     "title": "Aking mga Paboritong Item",

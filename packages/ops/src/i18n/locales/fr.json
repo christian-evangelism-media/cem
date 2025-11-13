@@ -46,6 +46,7 @@
     "cancelling": "en annulation",
     "ordersShipped": "Commandes Expédiées",
     "uniqueCountries": "Pays Atteints",
+    "uniqueCities": "Villes Atteintes",
     "tractsShipped": "Tracts Expédiés",
     "ordersOverTime": "Commandes Expédiées au Fil du Temps",
     "tractsByCountry": "Tracts Expédiés par Pays",
@@ -109,7 +110,8 @@
     "verifiedStatus": {
       "verified": "Vérifié",
       "unverified": "Non vérifié"
-    }
+    },
+    "allowPickup": "Autoriser Ramassage"
   },
   "media": {
     "title": "Gestion des Médias",
@@ -216,6 +218,9 @@
     "automatic": "Automatique",
     "close": "Fermer",
     "updateStatus": "Mettre à jour le statut",
+    "deliveryMethod": "Méthode de Livraison",
+    "shipping": "Expédition",
+    "pickup": "Ramassage",
     "statuses": {
       "pending": "En attente",
       "processing": "En traitement",
@@ -223,6 +228,8 @@
       "ready": "Prêt",
       "shipping": "En expédition",
       "shipped": "Expédié",
+      "awaiting": "En Attente de Ramassage",
+      "collected": "Ramassé",
       "cancelling": "En annulation",
       "cancelled": "Annulé"
     }

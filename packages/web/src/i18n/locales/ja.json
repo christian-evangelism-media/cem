@@ -106,11 +106,16 @@
       "shipping": "発送中",
       "shipped": "発送済み",
       "cancelling": "キャンセル中",
-      "cancelled": "キャンセル済み"
+      "cancelled": "キャンセル済み",
+      "awaiting": "引き取り待ち",
+      "collected": "引き取り済み"
     },
     "errors": {
       "noItems": "少なくとも1つの項目を選択してください"
-    }
+    },
+    "deliveryMethod": "配送方法",
+    "shipping": "配送",
+    "pickup": "引き取り"
   },
   "common": {
     "loading": "読み込み中...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "ショッピングカート",
     "empty": "カートは空です",
-    "placeOrder": "注文する"
+    "placeOrder": "注文する",
+    "shipping": "配送",
+    "pickup": "引き取り",
+    "placeOrderPickup": "引き取り注文を行う"
   },
   "favorites": {
     "title": "お気に入り",

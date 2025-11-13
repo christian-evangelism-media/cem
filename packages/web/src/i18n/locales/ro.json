@@ -106,11 +106,16 @@
       "shipping": "În Expediere",
       "shipped": "Expediat",
       "cancelling": "În Anulare",
-      "cancelled": "Anulat"
+      "cancelled": "Anulat",
+      "awaiting": "În Așteptarea Ridicării",
+      "collected": "Ridicat"
     },
     "errors": {
       "noItems": "Vă rugăm să selectați cel puțin un articol"
-    }
+    },
+    "deliveryMethod": "Metodă de Livrare",
+    "shipping": "Livrare",
+    "pickup": "Ridicare"
   },
   "common": {
     "loading": "Se încarcă...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "Coș de Cumpărături",
     "empty": "Coșul dvs. este gol",
-    "placeOrder": "Plasați Comanda"
+    "placeOrder": "Plasați Comanda",
+    "shipping": "Livrare",
+    "pickup": "Ridicare",
+    "placeOrderPickup": "Plasați Comandă de Ridicare"
   },
   "favorites": {
     "title": "Preferințele Mele",

@@ -106,11 +106,16 @@
       "shipping": "בשילוח",
       "shipped": "נשלח",
       "cancelling": "מבוטל",
-      "cancelled": "בוטל"
+      "cancelled": "בוטל",
+      "awaiting": "ממתין לאיסוף",
+      "collected": "נאסף"
     },
     "errors": {
       "noItems": "אנא בחר לפחות פריט אחד"
-    }
+    },
+    "deliveryMethod": "שיטת משלוח",
+    "shipping": "משלוח",
+    "pickup": "איסוף"
   },
   "common": {
     "loading": "טוען...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "עגלת קניות",
     "empty": "העגלה שלך ריקה",
-    "placeOrder": "בצע הזמנה"
+    "placeOrder": "בצע הזמנה",
+    "shipping": "משלוח",
+    "pickup": "איסוף",
+    "placeOrderPickup": "בצע הזמנת איסוף"
   },
   "favorites": {
     "title": "המועדפות שלי",

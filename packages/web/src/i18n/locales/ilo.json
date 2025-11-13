@@ -106,11 +106,16 @@
       "shipping": "Maipatulod",
       "shipped": "Naipatuloden",
       "cancelling": "Maikalkalat",
-      "cancelled": "Naikalkat"
+      "cancelled": "Naikalkat",
+      "awaiting": "Agur-uray iti Pickup",
+      "collected": "Naurnong"
     },
     "errors": {
       "noItems": "Pangngaasi a pilien ti di kumurang a maysa nga item"
-    }
+    },
+    "deliveryMethod": "Pamay-an ti Panagited",
+    "shipping": "Panagited",
+    "pickup": "Pickup"
   },
   "common": {
     "loading": "Agkarkarga...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "Karton ti Panaggatang",
     "empty": "Awan ti linaon ti karton-mo",
-    "placeOrder": "Ag-order"
+    "placeOrder": "Ag-order",
+    "shipping": "Panagited",
+    "pickup": "Pickup",
+    "placeOrderPickup": "Mangaramid ti Order a Pickup"
   },
   "favorites": {
     "title": "Dagiti Paboritoko",

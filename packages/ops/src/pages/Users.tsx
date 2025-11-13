@@ -19,6 +19,7 @@ interface EditUserFormData {
   firstName: string
   lastName: string
   email: string
+  allowPickup: boolean
 }
 
 export default function Users() {
@@ -632,6 +633,17 @@ export default function Users() {
                     <span className="text-error text-sm">{editErrors.email.message}</span>
                   )}
                 </div>
+              </div>
+
+              <div className="form-control mb-4">
+                <label className="label cursor-pointer justify-start gap-3">
+                  <input
+                    type="checkbox"
+                    {...registerEdit('allowPickup')}
+                    className="checkbox"
+                  />
+                  <span className="label-text">{t('users.allowPickup')}</span>
+                </label>
               </div>
 
               <div className="modal-action">

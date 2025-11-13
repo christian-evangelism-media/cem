@@ -42,7 +42,8 @@ export default class OrdersController {
 
     const schema = vine.compile(
       vine.object({
-        addressId: vine.number(),
+        deliveryMethod: vine.enum(['shipping', 'pickup']).optional(),
+        addressId: vine.number().optional(),
         items: vine.array(
           vine.object({
             mediaId: vine.number(),
@@ -53,10 +54,25 @@ export default class OrdersController {
     )
 
     const data = await request.validateUsing(schema)
+    const deliveryMethod = data.deliveryMethod || 'shipping'
+
+    // Check if user can use pickup
+    if (deliveryMethod === 'pickup') {
+      const canPickup = user.allowPickup || ['super_admin', 'admin', 'support', 'help'].includes(user.role)
+      if (!canPickup) {
+        return response.forbidden({ message: 'You do not have permission to create pickup orders' })
+      }
+    }
+
+    // Validate address is provided for shipping orders
+    if (deliveryMethod === 'shipping' && !data.addressId) {
+      return response.badRequest({ message: 'Address is required for shipping orders' })
+    }
 
     const order = await Order.create({
       userId: user.id,
-      addressId: data.addressId,
+      addressId: data.addressId || null,
+      deliveryMethod: deliveryMethod,
       status: 'pending',
     })
 
@@ -108,8 +124,8 @@ export default class OrdersController {
       .where('user_id', user.id)
       .firstOrFail()
 
-    // Only allow cancellation for orders that haven't shipped yet
-    if (['shipped', 'cancelled', 'cancelling'].includes(order.status)) {
+    // Only allow cancellation for orders that haven't been shipped/collected yet
+    if (['shipped', 'collected', 'cancelled', 'cancelling'].includes(order.status)) {
       return response.forbidden({
         message: 'Cannot cancel order at this stage',
       })
@@ -197,7 +213,7 @@ export default class OrdersController {
 
     const schema = vine.compile(
       vine.object({
-        status: vine.enum(['pending', 'processing', 'packing', 'ready', 'shipping', 'shipped', 'cancelling', 'cancelled']).optional(),
+        status: vine.enum(['pending', 'processing', 'packing', 'ready', 'shipping', 'shipped', 'awaiting', 'collected', 'cancelling', 'cancelled']).optional(),
         trackingNumber: vine.string().trim().nullable().optional(),
         notes: vine.string().trim().nullable().optional(),
       })

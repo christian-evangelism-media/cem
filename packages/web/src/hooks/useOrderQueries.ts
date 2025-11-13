@@ -26,6 +26,7 @@ interface Order {
   id: number
   userId: number
   addressId: number | null
+  deliveryMethod: 'shipping' | 'pickup'
   status: string
   createdAt: string
   items: OrderItem[]

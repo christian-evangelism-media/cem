@@ -106,11 +106,16 @@
       "shipping": "运输中",
       "shipped": "已发货",
       "cancelling": "取消中",
-      "cancelled": "已取消"
+      "cancelled": "已取消",
+      "awaiting": "等待自取",
+      "collected": "已自取"
     },
     "errors": {
       "noItems": "请至少选择一项"
-    }
+    },
+    "deliveryMethod": "配送方式",
+    "shipping": "配送",
+    "pickup": "自取"
   },
   "common": {
     "loading": "加载中...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "购物车",
     "empty": "您的购物车是空的",
-    "placeOrder": "下订单"
+    "placeOrder": "下订单",
+    "shipping": "配送",
+    "pickup": "自取",
+    "placeOrderPickup": "下自取订单"
   },
   "favorites": {
     "title": "我的收藏",

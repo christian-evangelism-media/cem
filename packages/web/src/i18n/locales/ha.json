@@ -107,11 +107,16 @@
       "shipping": "Ana Jigilarwa",
       "shipped": "An Jigilar",
       "cancelling": "Ana Sokewa",
-      "cancelled": "An Soke"
+      "cancelled": "An Soke",
+      "awaiting": "Jiran Ɗaukar Kaya",
+      "collected": "An Ɗauka"
     },
     "errors": {
       "noItems": "Don Allah zaɓi aƙalla abu ɗaya"
-    }
+    },
+    "deliveryMethod": "Hanyar Isar da Kaya",
+    "shipping": "Jigilar Kaya",
+    "pickup": "Ɗaukar Kaya"
   },
   "common": {
     "loading": "Ana ɗaukar...",
@@ -161,7 +166,10 @@
     "selectAddress": "Don Allah zaɓi adireshin jigilar kaya.",
     "selectShippingAddress": "Zaɓi Adireshin Jigilar Kaya",
     "default": "Asali",
-    "placeOrder": "Yi Oda"
+    "placeOrder": "Yi Oda",
+    "shipping": "Jigilar Kaya",
+    "pickup": "Ɗaukar Kaya",
+    "placeOrderPickup": "Yi Odar Ɗaukar Kaya"
   },
   "favorites": {
     "title": "Abubuwan da Na Fi So",

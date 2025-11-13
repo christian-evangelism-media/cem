@@ -106,11 +106,16 @@
       "shipping": "शिपिंग",
       "shipped": "भेज दिया गया",
       "cancelling": "रद्द कर रहा है",
-      "cancelled": "रद्द"
+      "cancelled": "रद्द",
+      "awaiting": "पिकअप की प्रतीक्षा में",
+      "collected": "एकत्रित"
     },
     "errors": {
       "noItems": "कृपया कम से कम एक आइटम चुनें"
-    }
+    },
+    "deliveryMethod": "वितरण विधि",
+    "shipping": "शिपिंग",
+    "pickup": "पिकअप"
   },
   "common": {
     "loading": "लोड हो रहा है...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "शॉपिंग कार्ट",
     "empty": "आपकी कार्ट खाली है",
-    "placeOrder": "आदेश दें"
+    "placeOrder": "आदेश दें",
+    "shipping": "शिपिंग",
+    "pickup": "पिकअप",
+    "placeOrderPickup": "पिकअप ऑर्डर दें"
   },
   "favorites": {
     "title": "मेरे पसंदीदा",

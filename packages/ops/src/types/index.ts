@@ -7,6 +7,7 @@ export interface User {
   isBlocked: boolean
   emailVerifiedAt: string | null
   preferredLanguages: string[] | null
+  allowPickup: boolean
   notes: string | null
   createdAt: string
   updatedAt: string | null
@@ -77,6 +78,7 @@ export interface Order {
   id: number
   userId: number
   addressId: number | null
+  deliveryMethod: 'shipping' | 'pickup'
   status: string
   trackingNumber: string | null
   notes: string | null
@@ -117,6 +119,7 @@ export interface DashboardStats {
   ordersShipped: number
   totalMedia: number
   uniqueCountries: number
+  uniqueCities: number
   totalTractsShipped: number
   ordersPerMonth: Array<{ month: string; month_sort: string; count: string }>
   tractsByCountry: Array<{ country: string; count: string }>

@@ -98,6 +98,9 @@
     "reorderNoAddress": "تحتاج إلى إضافة عنوان قبل إعادة الطلب.",
     "shippingAddress": "عنوان الشحن",
     "giveFeedback": "تقديم الملاحظات",
+    "deliveryMethod": "طريقة التسليم",
+    "shipping": "الشحن",
+    "pickup": "الاستلام",
     "statuses": {
       "pending": "قيد الانتظار",
       "processing": "قيد المعالجة",
@@ -105,6 +108,8 @@
       "ready": "جاهز",
       "shipping": "قيد الشحن",
       "shipped": "تم الشحن",
+      "awaiting": "في انتظار الاستلام",
+      "collected": "تم الاستلام",
       "cancelling": "قيد الإلغاء",
       "cancelled": "ملغى"
     },
@@ -156,7 +161,14 @@
   "cart": {
     "title": "عربة التسوق",
     "empty": "عربة التسوق فارغة",
-    "placeOrder": "تقديم الطلب"
+    "noAddress": "تحتاج إلى إضافة عنوان قبل تقديم الطلب.",
+    "selectAddress": "الرجاء تحديد عنوان الشحن.",
+    "selectShippingAddress": "حدد عنوان الشحن",
+    "default": "افتراضي",
+    "placeOrder": "تقديم الطلب",
+    "shipping": "الشحن",
+    "pickup": "الاستلام",
+    "placeOrderPickup": "تقديم طلب استلام"
   },
   "favorites": {
     "title": "مفضلاتي",

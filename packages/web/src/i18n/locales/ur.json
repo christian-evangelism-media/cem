@@ -106,11 +106,16 @@
       "shipping": "بھیجا جا رہا ہے",
       "shipped": "بھیج دیا گیا",
       "cancelling": "منسوخ کیا جا رہا ہے",
-      "cancelled": "منسوخ"
+      "cancelled": "منسوخ",
+      "awaiting": "پک اپ کا انتظار",
+      "collected": "جمع کیا گیا"
     },
     "errors": {
       "noItems": "براہ کرم کم از کم ایک چیز منتخب کریں"
-    }
+    },
+    "deliveryMethod": "ترسیل کا طریقہ",
+    "shipping": "ترسیل",
+    "pickup": "پک اپ"
   },
   "common": {
     "loading": "لوڈ ہو رہا ہے...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "شاپنگ کارٹ",
     "empty": "آپ کا کارٹ خالی ہے",
-    "placeOrder": "آرڈر دیں"
+    "placeOrder": "آرڈر دیں",
+    "shipping": "ترسیل",
+    "pickup": "پک اپ",
+    "placeOrderPickup": "پک اپ آرڈر کریں"
   },
   "favorites": {
     "title": "میرے پسندیدہ",

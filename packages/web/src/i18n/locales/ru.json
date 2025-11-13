@@ -106,11 +106,16 @@
       "shipping": "Отправляется",
       "shipped": "Отправлен",
       "cancelling": "Отменяется",
-      "cancelled": "Отменен"
+      "cancelled": "Отменен",
+      "awaiting": "Ожидание Получения",
+      "collected": "Получено"
     },
     "errors": {
       "noItems": "Пожалуйста, выберите хотя бы один элемент"
-    }
+    },
+    "deliveryMethod": "Способ Доставки",
+    "shipping": "Доставка",
+    "pickup": "Самовывоз"
   },
   "common": {
     "loading": "Загрузка...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "Корзина",
     "empty": "Ваша корзина пуста",
-    "placeOrder": "Оформить Заказ"
+    "placeOrder": "Оформить Заказ",
+    "shipping": "Доставка",
+    "pickup": "Самовывоз",
+    "placeOrderPickup": "Оформить Заказ на Самовывоз"
   },
   "favorites": {
     "title": "Мои Избранные",

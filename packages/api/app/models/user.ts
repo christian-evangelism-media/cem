@@ -52,6 +52,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   })
   declare preferredLanguages: string[] | null
 
+  @column({ columnName: 'allow_pickup' })
+  declare allowPickup: boolean
+
   @column()
   declare notes: string | null
 

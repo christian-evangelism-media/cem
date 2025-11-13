@@ -30,7 +30,37 @@ export default function Orders() {
   }
 
   const canCancelOrder = (status: string) => {
-    return !['shipped', 'cancelled', 'cancelling'].includes(status)
+    return !['shipped', 'collected', 'cancelled', 'cancelling'].includes(status)
+  }
+
+  const getStatusBadgeColor = (status: string) => {
+    switch (status) {
+      case 'pending':
+        return 'badge-warning'
+      case 'processing':
+      case 'packing':
+        return 'badge-info'
+      case 'ready':
+      case 'awaiting':
+        return 'badge-primary'
+      case 'shipping':
+        return 'badge-accent'
+      case 'shipped':
+      case 'collected':
+        return 'badge-success'
+      case 'cancelling':
+      case 'cancelled':
+        return 'badge-error'
+      default:
+        return 'badge-ghost'
+    }
+  }
+
+  const getDeliveryMethodBadge = (deliveryMethod: 'shipping' | 'pickup') => {
+    if (deliveryMethod === 'pickup') {
+      return 'badge-secondary'
+    }
+    return 'badge-neutral'
   }
 
   const handleReorder = async (orderId: number) => {
@@ -142,7 +172,14 @@ export default function Orders() {
                       {new Date(order.createdAt).toLocaleDateString()}
                     </p>
                   </div>
-                  <div className="badge badge-primary">{t(`orders.statuses.${order.status}`)}</div>
+                  <div className="flex flex-col gap-2 items-end">
+                    <span className={`badge ${getStatusBadgeColor(order.status)}`}>
+                      {t(`orders.statuses.${order.status}`)}
+                    </span>
+                    <span className={`badge ${getDeliveryMethodBadge(order.deliveryMethod)}`}>
+                      {t(`orders.${order.deliveryMethod}`)}
+                    </span>
+                  </div>
                 </div>
 
                 <div className="divider"></div>
@@ -172,7 +209,7 @@ export default function Orders() {
                 </div>
 
                 <div className="card-actions justify-end mt-4">
-                  {order.status === 'shipped' && (
+                  {(order.status === 'shipped' || order.status === 'collected') && (
                     <button
                       className="btn btn-accent btn-sm"
                       onClick={() => setFeedbackOrderId(order.id)}

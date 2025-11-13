@@ -133,11 +133,16 @@
       "shipping": "En expédition",
       "shipped": "Expédié",
       "cancelling": "En annulation",
-      "cancelled": "Annulé"
+      "cancelled": "Annulé",
+      "awaiting": "En Attente de Ramassage",
+      "collected": "Ramassé"
     },
     "errors": {
       "noItems": "Veuillez sélectionner au moins un article"
-    }
+    },
+    "deliveryMethod": "Méthode de Livraison",
+    "shipping": "Expédition",
+    "pickup": "Ramassage"
   },
   "common": {
     "loading": "Chargement...",
@@ -187,7 +192,10 @@
     "selectAddress": "Veuillez sélectionner une adresse de livraison.",
     "selectShippingAddress": "Sélectionner l'Adresse de Livraison",
     "default": "Par défaut",
-    "placeOrder": "Passer la Commande"
+    "placeOrder": "Passer la Commande",
+    "shipping": "Expédition",
+    "pickup": "Ramassage",
+    "placeOrderPickup": "Passer Commande de Ramassage"
   },
   "favorites": {
     "title": "Mes Favoris",

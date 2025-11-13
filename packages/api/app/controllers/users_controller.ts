@@ -170,6 +170,7 @@ export default class UsersController {
         email: emailValidator.optional(),
         password: vine.string().minLength(6).optional(),
         preferredLanguages: vine.array(vine.string()).nullable().optional(),
+        allowPickup: vine.boolean().optional(),
         notes: vine.string().trim().nullable().optional(),
       })
     )

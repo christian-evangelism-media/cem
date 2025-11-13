@@ -118,9 +118,9 @@ export const api = {
   orders: {
     list: () => fetchApi('/orders'),
     get: (id: number) => fetchApi(`/orders/${id}`),
-    create: (addressId: number, items: OrderItem[]) => fetchApi('/orders', {
+    create: (addressId: number | null, items: OrderItem[], deliveryMethod?: 'shipping' | 'pickup') => fetchApi('/orders', {
       method: 'POST',
-      body: JSON.stringify({ addressId, items }),
+      body: JSON.stringify({ addressId, items, deliveryMethod }),
     }),
     cancel: (id: number) => fetchApi(`/orders/${id}/cancel`, {
       method: 'PUT',

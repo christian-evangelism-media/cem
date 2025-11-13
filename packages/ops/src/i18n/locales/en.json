@@ -46,6 +46,7 @@
     "cancelling": "cancelling",
     "ordersShipped": "Orders Shipped",
     "uniqueCountries": "Countries Reached",
+    "uniqueCities": "Cities Reached",
     "tractsShipped": "Tracts Shipped",
     "ordersOverTime": "Orders Shipped Over Time",
     "tractsByCountry": "Tracts Shipped by Country",
@@ -109,7 +110,8 @@
     "verifiedStatus": {
       "verified": "Verified",
       "unverified": "Unverified"
-    }
+    },
+    "allowPickup": "Allow Pickup"
   },
   "media": {
     "title": "Media Management",
@@ -216,6 +218,9 @@
     "automatic": "Automatic",
     "close": "Close",
     "updateStatus": "Update Status",
+    "deliveryMethod": "Delivery Method",
+    "shipping": "Shipping",
+    "pickup": "Pickup",
     "statuses": {
       "pending": "Pending",
       "processing": "Processing",
@@ -223,6 +228,8 @@
       "ready": "Ready",
       "shipping": "Shipping",
       "shipped": "Shipped",
+      "awaiting": "Awaiting Pickup",
+      "collected": "Collected",
       "cancelling": "Cancelling",
       "cancelled": "Cancelled"
     }

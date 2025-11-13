@@ -6,7 +6,7 @@ import { api } from '../services/api'
 import type { Order, PaginatedResponse } from '../types'
 import FeedbackModal from '../components/FeedbackModal'
 
-const statusOptions = ['pending', 'processing', 'packing', 'ready', 'shipping', 'shipped', 'cancelling', 'cancelled']
+const statusOptions = ['pending', 'processing', 'packing', 'ready', 'shipping', 'shipped', 'awaiting', 'collected', 'cancelling', 'cancelled']
 
 export default function Orders() {
   const [page, setPage] = useState(1)
@@ -29,6 +29,36 @@ export default function Orders() {
     if (!order.statusChanges) return null
     const firstNonPending = order.statusChanges.find(change => change.status !== 'pending')
     return firstNonPending?.changedByUser || null
+  }
+
+  const getStatusBadgeColor = (status: string) => {
+    switch (status) {
+      case 'pending':
+        return 'badge-warning'
+      case 'processing':
+      case 'packing':
+        return 'badge-info'
+      case 'ready':
+      case 'awaiting':
+        return 'badge-primary'
+      case 'shipping':
+        return 'badge-accent'
+      case 'shipped':
+      case 'collected':
+        return 'badge-success'
+      case 'cancelling':
+      case 'cancelled':
+        return 'badge-error'
+      default:
+        return 'badge-ghost'
+    }
+  }
+
+  const getDeliveryMethodBadge = (deliveryMethod: 'shipping' | 'pickup') => {
+    if (deliveryMethod === 'pickup') {
+      return 'badge-secondary'
+    }
+    return 'badge-neutral'
   }
 
   const updateStatusMutation = useMutation({
@@ -132,6 +162,7 @@ export default function Orders() {
                 <tr>
                   <th className="w-16">{t('orders.id')}</th>
                   <th>{t('orders.user')}</th>
+                  <th className="w-32">{t('orders.deliveryMethod')}</th>
                   <th className="w-40">{t('orders.status')}</th>
                   <th>{t('dashboard.processor')}</th>
                   <th className="w-24">{t('orders.items')}</th>
@@ -159,22 +190,32 @@ export default function Orders() {
                       )}
                     </td>
                     <td>
-                      <select
-                        className="select select-bordered select-sm"
-                        value={order.status}
-                        onChange={(e) =>
-                          updateStatusMutation.mutate({
-                            id: order.id,
-                            status: e.target.value,
-                          })
-                        }
-                      >
-                        {statusOptions.map((status) => (
-                          <option key={status} value={status}>
-                            {t(`orders.statuses.${status}`)}
-                          </option>
-                        ))}
-                      </select>
+                      <span className={`badge ${getDeliveryMethodBadge(order.deliveryMethod)}`}>
+                        {t(`orders.${order.deliveryMethod}`)}
+                      </span>
+                    </td>
+                    <td>
+                      <div className="flex flex-col gap-2">
+                        <span className={`badge ${getStatusBadgeColor(order.status)}`}>
+                          {t(`orders.statuses.${order.status}`)}
+                        </span>
+                        <select
+                          className="select select-bordered select-sm"
+                          value={order.status}
+                          onChange={(e) =>
+                            updateStatusMutation.mutate({
+                              id: order.id,
+                              status: e.target.value,
+                            })
+                          }
+                        >
+                          {statusOptions.map((status) => (
+                            <option key={status} value={status}>
+                              {t(`orders.statuses.${status}`)}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                     </td>
                     <td>
                       {(() => {

@@ -106,11 +106,16 @@
       "shipping": "Đang Giao",
       "shipped": "Đã Giao",
       "cancelling": "Đang Hủy",
-      "cancelled": "Đã Hủy"
+      "cancelled": "Đã Hủy",
+      "awaiting": "Đang Chờ Nhận Hàng",
+      "collected": "Đã Nhận"
     },
     "errors": {
       "noItems": "Vui lòng chọn ít nhất một mục"
-    }
+    },
+    "deliveryMethod": "Phương Thức Giao Hàng",
+    "shipping": "Vận Chuyển",
+    "pickup": "Nhận Hàng"
   },
   "common": {
     "loading": "Đang tải...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "Giỏ Hàng",
     "empty": "Giỏ hàng của bạn trống",
-    "placeOrder": "Đặt Hàng"
+    "placeOrder": "Đặt Hàng",
+    "shipping": "Vận Chuyển",
+    "pickup": "Nhận Hàng",
+    "placeOrderPickup": "Đặt Đơn Hàng Nhận Tại Chỗ"
   },
   "favorites": {
     "title": "Yêu Thích Của Tôi",

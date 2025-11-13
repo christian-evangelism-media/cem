@@ -23,6 +23,15 @@ export default class AdminController {
 
     const uniqueCountries = countriesResult.length
 
+    // Get unique cities from shipped orders
+    const citiesResult = await db
+      .from('orders')
+      .join('addresses', 'orders.address_id', 'addresses.id')
+      .whereIn('orders.status', ['shipped'])
+      .distinct('addresses.city')
+
+    const uniqueCities = citiesResult.length
+
     // Get total quantity of gospel tracts shipped
     const tractsShippedResult = await db
       .from('order_items')
@@ -104,6 +113,7 @@ export default class AdminController {
       ordersShipped: ordersShipped[0].$extras.total,
       totalMedia: totalMedia[0].$extras.total,
       uniqueCountries,
+      uniqueCities,
       totalTractsShipped,
       ordersPerMonth: ordersPerMonth.rows,
       tractsByCountry: tractsByCountry.rows,

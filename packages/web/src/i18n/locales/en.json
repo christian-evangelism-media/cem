@@ -125,6 +125,9 @@
     "reorderNoAddress": "You need to add an address before reordering.",
     "shippingAddress": "Shipping Address",
     "giveFeedback": "Give Feedback",
+    "deliveryMethod": "Delivery Method",
+    "shipping": "Shipping",
+    "pickup": "Pickup",
     "statuses": {
       "pending": "Pending",
       "processing": "Processing",
@@ -132,6 +135,8 @@
       "ready": "Ready",
       "shipping": "Shipping",
       "shipped": "Shipped",
+      "awaiting": "Awaiting Pickup",
+      "collected": "Collected",
       "cancelling": "Cancelling",
       "cancelled": "Cancelled"
     },
@@ -187,7 +192,10 @@
     "selectAddress": "Please select a shipping address.",
     "selectShippingAddress": "Select Shipping Address",
     "default": "Default",
-    "placeOrder": "Place Order"
+    "placeOrder": "Place Order",
+    "shipping": "Shipping",
+    "pickup": "Pickup",
+    "placeOrderPickup": "Place Pickup Order"
   },
   "favorites": {
     "title": "My Favorites",

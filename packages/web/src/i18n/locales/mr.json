@@ -106,11 +106,16 @@
       "shipping": "शिपिंग",
       "shipped": "पाठविले",
       "cancelling": "रद्द करत आहे",
-      "cancelled": "रद्द केले"
+      "cancelled": "रद्द केले",
+      "awaiting": "पिकअपची प्रतीक्षा",
+      "collected": "गोळा केले"
     },
     "errors": {
       "noItems": "कृपया किमान एक आयटम निवडा"
-    }
+    },
+    "deliveryMethod": "वितरण पद्धत",
+    "shipping": "शिपिंग",
+    "pickup": "पिकअप"
   },
   "common": {
     "loading": "लोड होत आहे...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "शॉपिंग कार्ट",
     "empty": "आपली कार्ट रिक्त आहे",
-    "placeOrder": "ऑर्डर ठेवा"
+    "placeOrder": "ऑर्डर ठेवा",
+    "shipping": "शिपिंग",
+    "pickup": "पिकअप",
+    "placeOrderPickup": "पिकअप ऑर्डर द्या"
   },
   "favorites": {
     "title": "माझे आवडते",

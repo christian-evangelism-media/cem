@@ -106,11 +106,16 @@
       "shipping": "Inasafirishwa",
       "shipped": "Imesafirishwa",
       "cancelling": "Inaghairishwa",
-      "cancelled": "Imeghairiwa"
+      "cancelled": "Imeghairiwa",
+      "awaiting": "Inasubiri Kuchukuliwa",
+      "collected": "Imechukuliwa"
     },
     "errors": {
       "noItems": "Tafadhali chagua angalau kipengee kimoja"
-    }
+    },
+    "deliveryMethod": "Njia ya Utoaji",
+    "shipping": "Usafirishaji",
+    "pickup": "Kuchukua"
   },
   "common": {
     "loading": "Inapakia...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "Kikapu cha Ununuzi",
     "empty": "Kikapu chako ni tupu",
-    "placeOrder": "Weka Agizo"
+    "placeOrder": "Weka Agizo",
+    "shipping": "Usafirishaji",
+    "pickup": "Kuchukua",
+    "placeOrderPickup": "Weka Agizo la Kuchukua"
   },
   "favorites": {
     "title": "Favorite Zangu",

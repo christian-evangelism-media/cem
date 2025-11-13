@@ -106,11 +106,16 @@
       "shipping": "Enviando",
       "shipped": "Enviado",
       "cancelling": "Cancelando",
-      "cancelled": "Cancelado"
+      "cancelled": "Cancelado",
+      "awaiting": "Aguardando Retirada",
+      "collected": "Retirado"
     },
     "errors": {
       "noItems": "Por favor selecione pelo menos um item"
-    }
+    },
+    "deliveryMethod": "Método de Entrega",
+    "shipping": "Envio",
+    "pickup": "Retirada"
   },
   "common": {
     "loading": "Carregando...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "Carrinho de Compras",
     "empty": "Seu carrinho está vazio",
-    "placeOrder": "Fazer Pedido"
+    "placeOrder": "Fazer Pedido",
+    "shipping": "Envio",
+    "pickup": "Retirada",
+    "placeOrderPickup": "Fazer Pedido de Retirada"
   },
   "favorites": {
     "title": "Meus Favoritos",

@@ -106,11 +106,16 @@
       "shipping": "Dikirim",
       "shipped": "Terkirim",
       "cancelling": "Dibatalkan",
-      "cancelled": "Dibatalkan"
+      "cancelled": "Dibatalkan",
+      "awaiting": "Menunggu Pengambilan",
+      "collected": "Diambil"
     },
     "errors": {
       "noItems": "Silakan pilih minimal satu item"
-    }
+    },
+    "deliveryMethod": "Metode Pengiriman",
+    "shipping": "Pengiriman",
+    "pickup": "Pengambilan"
   },
   "common": {
     "loading": "Memuat...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "Keranjang Belanja",
     "empty": "Keranjang Anda kosong",
-    "placeOrder": "Buat Pesanan"
+    "placeOrder": "Buat Pesanan",
+    "shipping": "Pengiriman",
+    "pickup": "Pengambilan",
+    "placeOrderPickup": "Lakukan Pesanan Pengambilan"
   },
   "favorites": {
     "title": "Favorit Saya",

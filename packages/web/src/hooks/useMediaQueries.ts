@@ -74,8 +74,8 @@ export function useCreateOrder() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: async ({ addressId, items }: { addressId: number; items: OrderItem[] }) => {
-      const response = await api.orders.create(addressId, items)
+    mutationFn: async ({ addressId, items, deliveryMethod }: { addressId: number | null; items: OrderItem[]; deliveryMethod?: 'shipping' | 'pickup' }) => {
+      const response = await api.orders.create(addressId, items, deliveryMethod)
       return response.order
     },
     onSuccess: () => {

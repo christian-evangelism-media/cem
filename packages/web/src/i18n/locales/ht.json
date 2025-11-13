@@ -106,11 +106,16 @@
       "shipping": "Ap Voye",
       "shipped": "Voye",
       "cancelling": "Ap Anile",
-      "cancelled": "Anile"
+      "cancelled": "Anile",
+      "awaiting": "Ap Tann pou Ranmase",
+      "collected": "Ranmase"
     },
     "errors": {
       "noItems": "Tanpri chwazi omwen yon atik"
-    }
+    },
+    "deliveryMethod": "Metòd Livrezon",
+    "shipping": "Livrezon",
+    "pickup": "Ranmase"
   },
   "common": {
     "loading": "Ap chaje...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "Panyen Achte",
     "empty": "Panyen ou vid",
-    "placeOrder": "Fè Kòmand"
+    "placeOrder": "Fè Kòmand",
+    "shipping": "Livrezon",
+    "pickup": "Ranmase",
+    "placeOrderPickup": "Fè Kòmand Ranmase"
   },
   "favorites": {
     "title": "Favori Mwen",

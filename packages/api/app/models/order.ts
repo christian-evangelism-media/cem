@@ -7,6 +7,9 @@ import OrderItem from './order_item.js'
 import OrderStatusChange from './order_status_change.js'
 import Message from './message.js'
 
+export type OrderStatus = 'pending' | 'processing' | 'packing' | 'ready' | 'shipping' | 'shipped' | 'awaiting' | 'collected' | 'cancelling' | 'cancelled'
+export type DeliveryMethod = 'shipping' | 'pickup'
+
 export default class Order extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
@@ -18,7 +21,10 @@ export default class Order extends BaseModel {
   declare addressId: number | null
 
   @column()
-  declare status: string
+  declare status: OrderStatus
+
+  @column({ columnName: 'delivery_method' })
+  declare deliveryMethod: DeliveryMethod
 
   @column({ columnName: 'tracking_number' })
   declare trackingNumber: string | null

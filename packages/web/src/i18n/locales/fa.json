@@ -106,11 +106,16 @@
       "shipping": "در حال ارسال",
       "shipped": "ارسال شده",
       "cancelling": "در حال لغو",
-      "cancelled": "لغو شده"
+      "cancelled": "لغو شده",
+      "awaiting": "در انتظار دریافت",
+      "collected": "دریافت شده"
     },
     "errors": {
       "noItems": "لطفاً حداقل یک مورد را انتخاب کنید"
-    }
+    },
+    "deliveryMethod": "روش تحویل",
+    "shipping": "ارسال",
+    "pickup": "دریافت حضوری"
   },
   "common": {
     "loading": "در حال بارگذاری...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "سبد خرید",
     "empty": "سبد خرید شما خالی است",
-    "placeOrder": "ثبت سفارش"
+    "placeOrder": "ثبت سفارش",
+    "shipping": "ارسال",
+    "pickup": "دریافت حضوری",
+    "placeOrderPickup": "ثبت سفارش دریافت حضوری"
   },
   "favorites": {
     "title": "مورد علاقه‌های من",

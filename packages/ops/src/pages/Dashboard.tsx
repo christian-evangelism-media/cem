@@ -24,7 +24,7 @@ export default function Dashboard() {
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-4">{t('dashboard.title')}</h1>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
         <div className="stats shadow">
           <div className="stat p-4">
             <div className="stat-title text-xs">{t('dashboard.totalUsers')}</div>
@@ -50,6 +50,13 @@ export default function Dashboard() {
           <div className="stat p-4">
             <div className="stat-title text-xs">{t('dashboard.uniqueCountries')}</div>
             <div className="stat-value text-2xl text-success">{stats?.uniqueCountries || 0}</div>
+          </div>
+        </div>
+
+        <div className="stats shadow">
+          <div className="stat p-4">
+            <div className="stat-title text-xs">{t('dashboard.uniqueCities')}</div>
+            <div className="stat-value text-2xl text-info">{stats?.uniqueCities || 0}</div>
           </div>
         </div>
 

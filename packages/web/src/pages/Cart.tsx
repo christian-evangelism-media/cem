@@ -4,18 +4,24 @@ import { useNavigate } from 'react-router-dom'
 import { useCart, useUpdateCartItem, useRemoveCartItem } from '../hooks/useCartQueries'
 import { useCreateOrder } from '../hooks/useMediaQueries'
 import { useAddresses } from '../hooks/useAddressQueries'
+import { useUser } from '../contexts/UserContext'
 import AlertModal from '../components/AlertModal'
 
 export default function Cart() {
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
+  const { user } = useUser()
   const { data: cartItems = [], isLoading } = useCart()
   const { data: addresses = [] } = useAddresses()
   const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null)
+  const [deliveryMethod, setDeliveryMethod] = useState<'shipping' | 'pickup'>('shipping')
   const [alertModal, setAlertModal] = useState<{ isOpen: boolean; message: string } | null>(null)
   const updateCartItem = useUpdateCartItem()
   const removeCartItem = useRemoveCartItem()
   const createOrder = useCreateOrder()
+
+  // Check if user can use pickup
+  const canPickup = user && (user.allowPickup || ['super_admin', 'admin', 'support', 'help'].includes(user.role))
 
   // Set default address when addresses load
   useEffect(() => {
@@ -36,14 +42,17 @@ export default function Cart() {
   }
 
   const placeOrder = async () => {
-    if (addresses.length === 0) {
-      setAlertModal({ isOpen: true, message: t('cart.noAddress') })
-      return
-    }
+    // For shipping orders, require address
+    if (deliveryMethod === 'shipping') {
+      if (addresses.length === 0) {
+        setAlertModal({ isOpen: true, message: t('cart.noAddress') })
+        return
+      }
 
-    if (!selectedAddressId) {
-      setAlertModal({ isOpen: true, message: t('cart.selectAddress') })
-      return
+      if (!selectedAddressId) {
+        setAlertModal({ isOpen: true, message: t('cart.selectAddress') })
+        return
+      }
     }
 
     const items = cartItems.map((item) => ({
@@ -51,7 +60,11 @@ export default function Cart() {
       quantity: item.quantity,
     }))
 
-    createOrder.mutate({ addressId: selectedAddressId, items }, {
+    createOrder.mutate({
+      addressId: deliveryMethod === 'shipping' ? selectedAddressId : null,
+      items,
+      deliveryMethod
+    }, {
       onSuccess: () => {
         navigate('/orders')
       },
@@ -141,39 +154,76 @@ export default function Cart() {
             ))}
           </div>
 
-          <div className="mt-6">
-            {addresses.length > 0 ? (
-              <div className="flex flex-col sm:flex-row gap-4 justify-end">
-                {/* Address Selector */}
-                <select
-                  className="select select-bordered w-full sm:w-auto sm:min-w-96"
-                  value={selectedAddressId || ''}
-                  onChange={(e) => setSelectedAddressId(Number(e.target.value))}
-                >
-                  {addresses.map((address) => (
-                    <option key={address.id} value={address.id}>
-                      {address.label ? `${address.label} - ` : ''}{address.name} - {address.streetAddress}, {address.city}
-                      {address.isDefault ? ` (${t('cart.default')})` : ''}
-                    </option>
-                  ))}
-                </select>
+          <div className="mt-6 space-y-4">
+            {/* Delivery Method Selector */}
+            {canPickup && (
+              <div className="flex justify-end">
+                <div className="join">
+                  <button
+                    className={`btn join-item ${deliveryMethod === 'shipping' ? 'btn-primary' : 'btn-outline'}`}
+                    onClick={() => setDeliveryMethod('shipping')}
+                  >
+                    {t('cart.shipping')}
+                  </button>
+                  <button
+                    className={`btn join-item ${deliveryMethod === 'pickup' ? 'btn-primary' : 'btn-outline'}`}
+                    onClick={() => setDeliveryMethod('pickup')}
+                  >
+                    {t('cart.pickup')}
+                  </button>
+                </div>
+              </div>
+            )}
 
-                {/* Place Order Button */}
+            {/* Address and Order Button */}
+            {deliveryMethod === 'shipping' ? (
+              addresses.length > 0 ? (
+                <div className="flex flex-col sm:flex-row gap-4 justify-end">
+                  {/* Address Selector */}
+                  <select
+                    className="select select-bordered w-full sm:w-auto sm:min-w-96"
+                    value={selectedAddressId || ''}
+                    onChange={(e) => setSelectedAddressId(Number(e.target.value))}
+                  >
+                    {addresses.map((address) => (
+                      <option key={address.id} value={address.id}>
+                        {address.label ? `${address.label} - ` : ''}{address.name} - {address.streetAddress}, {address.city}
+                        {address.isDefault ? ` (${t('cart.default')})` : ''}
+                      </option>
+                    ))}
+                  </select>
+
+                  {/* Place Order Button */}
+                  <button
+                    onClick={placeOrder}
+                    className="btn btn-primary btn-lg w-full sm:w-auto"
+                    disabled={createOrder.isPending || cartItems.length === 0 || !selectedAddressId}
+                  >
+                    {createOrder.isPending ? (
+                      <span className="loading loading-spinner"></span>
+                    ) : (
+                      t('cart.placeOrder')
+                    )}
+                  </button>
+                </div>
+              ) : (
+                <div className="alert alert-warning">
+                  <span>{t('cart.noAddress')}</span>
+                </div>
+              )
+            ) : (
+              <div className="flex justify-end">
                 <button
                   onClick={placeOrder}
-                  className="btn btn-primary btn-lg w-full sm:w-auto"
-                  disabled={createOrder.isPending || cartItems.length === 0 || !selectedAddressId}
+                  className="btn btn-primary btn-lg"
+                  disabled={createOrder.isPending || cartItems.length === 0}
                 >
                   {createOrder.isPending ? (
                     <span className="loading loading-spinner"></span>
                   ) : (
-                    t('cart.placeOrder')
+                    t('cart.placeOrderPickup')
                   )}
                 </button>
-              </div>
-            ) : (
-              <div className="alert alert-warning">
-                <span>{t('cart.noAddress')}</span>
               </div>
             )}
           </div>

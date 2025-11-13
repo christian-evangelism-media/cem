@@ -106,11 +106,16 @@
       "shipping": "Kargoda",
       "shipped": "Gönderildi",
       "cancelling": "İptal Ediliyor",
-      "cancelled": "İptal Edildi"
+      "cancelled": "İptal Edildi",
+      "awaiting": "Teslim Alma Bekleniyor",
+      "collected": "Teslim Alındı"
     },
     "errors": {
       "noItems": "Lütfen en az bir ürün seçin"
-    }
+    },
+    "deliveryMethod": "Teslimat Yöntemi",
+    "shipping": "Kargo",
+    "pickup": "Teslim Alma"
   },
   "common": {
     "loading": "Yükleniyor...",
@@ -156,7 +161,10 @@
   "cart": {
     "title": "Alışveriş Sepeti",
     "empty": "Sepetiniz boş",
-    "placeOrder": "Sipariş Ver"
+    "placeOrder": "Sipariş Ver",
+    "shipping": "Kargo",
+    "pickup": "Teslim Alma",
+    "placeOrderPickup": "Teslim Alma Siparişi Ver"
   },
   "favorites": {
     "title": "Favorilerim",
