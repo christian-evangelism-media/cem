@@ -12,6 +12,7 @@ import ThemeToggle from './components/ThemeToggle'
 import LanguageSwitcher from './components/LanguageSwitcher'
 import LanguagePreferences from './components/LanguagePreferences'
 import ContactModal from './components/ContactModal'
+import DonateModal from './components/DonateModal'
 import LockdownBanner from './components/LockdownBanner'
 import ProtectedRoute from './components/ProtectedRoute'
 import Landing from './pages/Landing'
@@ -25,6 +26,8 @@ import Favorites from './pages/Favorites'
 import Messages from './pages/Messages'
 import Account from './pages/Account'
 import VerifyEmail from './pages/VerifyEmail'
+import DonateSuccess from './pages/DonateSuccess'
+import DonateCancel from './pages/DonateCancel'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,6 +49,7 @@ function AppContent() {
   const [resendingVerification, setResendingVerification] = useState(false)
   const [verificationMessage, setVerificationMessage] = useState('')
   const [contactModalOpen, setContactModalOpen] = useState(false)
+  const [donateModalOpen, setDonateModalOpen] = useState(false)
   const [isLockedDown, setIsLockedDown] = useState(false)
   const { data: cartItems = [] } = useCart(!!user)
 
@@ -171,6 +175,9 @@ function AppContent() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex flex-none gap-2">
           <Link to="/media" className="btn btn-ghost">{t('nav.media')}</Link>
+          <button onClick={() => setDonateModalOpen(true)} className="btn btn-ghost">
+            {t('nav.donate')}
+          </button>
           {user && <Link to="/favorites" className="btn btn-ghost">{t('nav.myFavorites')}</Link>}
           {user && <Link to="/orders" className="btn btn-ghost">{t('nav.myOrders')}</Link>}
           {user && <Link to="/addresses" className="btn btn-ghost">{t('nav.myAddresses')}</Link>}
@@ -237,6 +244,11 @@ function AppContent() {
             </div>
             <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
               <li><Link to="/media" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.media')}</Link></li>
+              <li>
+                <button onClick={() => { setDonateModalOpen(true); (document.activeElement as HTMLElement)?.blur(); }}>
+                  {t('nav.donate')}
+                </button>
+              </li>
               {user && (
                 <>
                   <li>
@@ -278,6 +290,8 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/media" element={<Media />} />
+          <Route path="/donate/success" element={<DonateSuccess />} />
+          <Route path="/donate/cancel" element={<DonateCancel />} />
           <Route
             path="/cart"
             element={
@@ -357,6 +371,9 @@ function AppContent() {
 
       {/* Contact Modal */}
       {user && <ContactModal isOpen={contactModalOpen} onClose={() => setContactModalOpen(false)} />}
+
+      {/* Donate Modal */}
+      <DonateModal isOpen={donateModalOpen} onClose={() => setDonateModalOpen(false)} />
     </div>
   )
 }

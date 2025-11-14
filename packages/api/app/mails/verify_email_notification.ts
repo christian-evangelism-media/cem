@@ -36,7 +36,7 @@ const EMAIL_SUBJECTS: Record<string, string> = {
 }
 
 export default class VerifyEmailNotification extends BaseMail {
-  from = 'onboarding@resend.dev'
+  from = env.get('RESEND_FROM_EMAIL')
   subject = 'Verify your email address'
 
   constructor(

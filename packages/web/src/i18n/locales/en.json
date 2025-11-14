@@ -2,6 +2,7 @@
   "nav": {
     "home": "Christian Evangelism Media",
     "media": "Media",
+    "donate": "Donate",
     "myFavorites": "My Favorites",
     "myOrders": "My Orders",
     "myAddresses": "My Addresses",
@@ -153,7 +154,29 @@
     "delete": "Delete",
     "confirm": "Confirm",
     "ok": "OK",
-    "notice": "Notice"
+    "notice": "Notice",
+    "returnHome": "Return Home"
+  },
+  "donate": {
+    "title": "Support Our Mission",
+    "description": "Support our mission to support evangelists worldwide",
+    "selectAmount": "Select Amount",
+    "customAmount": "Custom Amount",
+    "enterAmount": "Enter Amount",
+    "message": "Message (Optional)",
+    "messagePlaceholder": "Leave a message...",
+    "proceed": "Proceed to Payment",
+    "processing": "Processing...",
+    "thankYou": "Thank You!",
+    "successMessage": "Your donation has been received successfully.",
+    "amount": "Amount",
+    "yourMessage": "Your Message",
+    "receiptEmail": "A receipt has been sent to your email address.",
+    "cancelled": "Donation Cancelled",
+    "cancelMessage": "Your donation was cancelled. No charges were made.",
+    "cancelHelp": "If you experienced any issues, please contact us.",
+    "invalidSession": "Invalid donation session",
+    "verifying": "Verifying your donation..."
   },
   "address": {
     "title": "My Addresses",

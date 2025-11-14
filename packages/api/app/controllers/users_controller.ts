@@ -81,7 +81,7 @@ export default class UsersController {
     await mail.send((message) => {
       message
         .to(user.email)
-        .from(env.get('MAIL_FROM_ADDRESS', 'noreply@example.com'))
+        .from(env.get('RESEND_FROM_EMAIL'))
         .subject('Welcome - Your Account Has Been Created')
         .htmlView('emails/admin_created_user', {
           user,

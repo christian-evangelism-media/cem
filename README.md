@@ -7,12 +7,12 @@ A monorepo containing all CEM applications with end-to-end type safety via Tuyau
 ```
 cem/
 ├── packages/
-│   ├── api/          Backend API (AdonisJS)
-│   ├── web/          Public website (React)
-│   ├── ops/          Staff operations panel (React)
-│   └── scanner/      Mobile app for warehouse (Ionic/React)
-├── package.json      Workspace configuration
-└── .adonisjs/        Generated API types (Tuyau)
+│   ├── api/            Backend API (AdonisJS)
+│   │   └── .adonisjs/  Generated API types (Tuyau)
+│   ├── web/            Public website (React)
+│   ├── ops/            Staff operations panel (React)
+│   └── scanner/        Mobile app for warehouse (Ionic/React)
+└── package.json        Workspace configuration
 ```
 
 ## Quick Start
@@ -74,7 +74,7 @@ npm run generate:types
 
 This command:
 1. Analyzes all API routes in `packages/api`
-2. Generates TypeScript definitions in `.adonisjs/`
+2. Generates TypeScript definitions in `packages/api/.adonisjs/`
 3. Makes types available to web, ops, and scanner packages
 
 ### When to Regenerate Types
@@ -166,7 +166,8 @@ Each package requires its own `.env` file:
 
 ### packages/api/.env
 - `DATABASE_URL` - PostgreSQL connection
-- `RESEND_API_KEY` - Email service
+- `RESEND_API_KEY` - Email service API key
+- `RESEND_FROM_EMAIL` - Email sender address (e.g., noreply@yourdomain.com)
 - `SESSION_DRIVER` - Session storage
 - `APP_KEY` - Encryption key
 

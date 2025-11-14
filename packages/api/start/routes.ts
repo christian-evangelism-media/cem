@@ -57,6 +57,13 @@ router.get('/favorites', '#controllers/favorites_controller.index').use(middlewa
 router.post('/favorites', '#controllers/favorites_controller.store').use(middleware.auth())
 router.delete('/favorites/:id', '#controllers/favorites_controller.destroy').use(middleware.auth())
 
+// Donation routes
+router.post('/donations/checkout', '#controllers/donations_controller.createCheckoutSession')
+router.post('/donations/webhook', '#controllers/donations_controller.handleWebhook')
+router.get('/donations', '#controllers/donations_controller.index').use(middleware.auth())
+router.get('/donations/:id', '#controllers/donations_controller.show').use(middleware.auth())
+router.get('/donations/session/:sessionId', '#controllers/donations_controller.getSessionDetails')
+
 router.get('/messages', '#controllers/messages_controller.index').use(middleware.auth())
 router.get('/messages/:id', '#controllers/messages_controller.show').use(middleware.auth())
 router.post('/messages', '#controllers/messages_controller.store').use(middleware.auth())
