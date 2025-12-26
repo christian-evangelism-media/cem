@@ -1,8 +1,10 @@
-import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
+import { useState, useMemo } from 'react'
+import { useNavigate, Link as RouterLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { api } from '../services/api'
+import { Form, Input, Button, Card, Flex, Progress, Typography, Alert } from 'asterui'
+
+const { Paragraph, Text } = Typography
 
 interface RegisterFormData {
   firstName: string
@@ -12,251 +14,150 @@ interface RegisterFormData {
   confirmPassword: string
 }
 
-interface PasswordRequirement {
-  key: string
-  test: (password: string) => boolean
-}
+function getPasswordStrength(password: string, t: (key: string) => string): { score: number; label: string; type: 'error' | 'warning' | 'info' | 'success' } {
+  const hasMinLength = password.length >= 8
+  const hasUppercase = /[A-Z]/.test(password)
+  const hasLowercase = /[a-z]/.test(password)
+  const hasNumber = /[0-9]/.test(password)
+  const hasSpecial = /[!@#$%^&*.?]/.test(password)
 
-function validatePassword(password: string, t: (key: string) => string): { isValid: boolean; errors: string[] } {
-  const requirements: PasswordRequirement[] = [
-    { key: 'auth.passwordRequirements.length', test: (p) => p.length >= 8 },
-    { key: 'auth.passwordRequirements.lowercase', test: (p) => /[a-z]/.test(p) },
-    { key: 'auth.passwordRequirements.uppercase', test: (p) => /[A-Z]/.test(p) },
-    { key: 'auth.passwordRequirements.number', test: (p) => /[0-9]/.test(p) },
-    { key: 'auth.passwordRequirements.special', test: (p) => /[^a-zA-Z0-9]/.test(p) },
-  ]
+  // Count basic rules met
+  const basicRules = [hasMinLength, hasUppercase, hasLowercase, hasNumber, hasSpecial]
+  const basicRulesMet = basicRules.filter(Boolean).length
 
-  const errors = requirements.filter(req => !req.test(password)).map(req => t(req.key))
+  // If not all basic rules are met, it's weak
+  if (basicRulesMet < 5) {
+    const score = Math.round((basicRulesMet / 5) * 50)
+    return { score, label: t('auth.passwordStrength.weak'), type: 'error' }
+  }
 
-  return { isValid: errors.length === 0, errors }
-}
-
-function getPasswordStrength(password: string, t: (key: string) => string): { score: number; label: string; color: string } {
-  const checks = [
-    password.length >= 8,
-    /[a-z]/.test(password),
-    /[A-Z]/.test(password),
-    /[0-9]/.test(password),
-    /[^a-zA-Z0-9]/.test(password),
-    password.length >= 12,
-  ]
-
-  const score = checks.filter(Boolean).length
-
-  if (score <= 2) return { score, label: t('auth.passwordStrength.weak'), color: 'error' }
-  if (score <= 4) return { score, label: t('auth.passwordStrength.fair'), color: 'warning' }
-  if (score === 5) return { score, label: t('auth.passwordStrength.good'), color: 'info' }
-  return { score, label: t('auth.passwordStrength.strong'), color: 'success' }
+  // All basic rules met - check for extra strength
+  if (password.length >= 16) return { score: 100, label: t('auth.passwordStrength.strong'), type: 'success' }
+  if (password.length >= 12) return { score: 83, label: t('auth.passwordStrength.good'), type: 'info' }
+  return { score: 67, label: t('auth.passwordStrength.fair'), type: 'warning' }
 }
 
 export default function Register() {
   const navigate = useNavigate()
   const { t, i18n } = useTranslation()
   const [serverError, setServerError] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors, isSubmitting },
-  } = useForm<RegisterFormData>()
+  const [password, setPassword] = useState('')
+  const strength = useMemo(() => password ? getPasswordStrength(password, t) : null, [password, t])
 
-  const password = watch('password', '')
-  const passwordStrength = password ? getPasswordStrength(password, t) : null
-  const passwordValidation = password ? validatePassword(password, t) : null
-
-  const onSubmit = async (data: RegisterFormData) => {
+  const handleSubmit = async (values: RegisterFormData) => {
     setServerError('')
 
     try {
-      const { confirmPassword, ...registerData } = data
+      const { confirmPassword, ...registerData } = values
       await api.auth.register({ ...registerData, language: i18n.language })
       navigate('/login')
     } catch (err) {
-      setServerError(err instanceof Error ? err.message : 'Registration failed')
+      setServerError(err instanceof Error ? err.message : t('auth.errors.registerFailed'))
     }
   }
 
   return (
-    <div className="max-w-md mx-auto p-4 md:p-8">
-      <div className="card bg-base-100 shadow-xl">
-        <div className="card-body p-4 md:p-6">
-          <h1 className="card-title text-2xl md:text-3xl mb-4">{t('auth.registerTitle')}</h1>
+    <Flex justify="center" align="center" minHeight="screen" className="bg-base-200 p-4">
+      <Card title={t('auth.registerTitle')} className="w-full max-w-md">
+        {serverError && (
+          <Alert type="error" className="mb-4">
+            {serverError}
+          </Alert>
+        )}
 
-          {serverError && (
-            <div className="alert alert-error mb-4">
-              <span>{serverError}</span>
+        <Form onFinish={handleSubmit}>
+          <Form.Item
+            name="firstName"
+            label={t('auth.firstName')}
+            rules={[
+              { required: true, message: t('auth.errors.firstNameRequired') },
+              { min: 2, message: t('auth.errors.firstNameMin') },
+            ]}
+          >
+            <Input className="w-full" />
+          </Form.Item>
+
+          <Form.Item
+            name="lastName"
+            label={t('auth.lastName')}
+            rules={[
+              { required: true, message: t('auth.errors.lastNameRequired') },
+              { min: 2, message: t('auth.errors.lastNameMin') },
+            ]}
+          >
+            <Input className="w-full" />
+          </Form.Item>
+
+          <Form.Item
+            name="email"
+            label={t('auth.email')}
+            rules={[
+              { required: true, message: t('auth.errors.emailRequired') },
+              { type: 'email', message: t('auth.errors.emailInvalid') },
+            ]}
+          >
+            <Input className="w-full" placeholder="you@example.com" />
+          </Form.Item>
+
+          <Form.Item
+            name="password"
+            label={t('auth.password')}
+            rules={[
+              { required: true, message: t('auth.errors.passwordRequired') },
+              { min: 8, message: t('auth.passwordRequirements.length') },
+              { pattern: /[A-Z]/, message: t('auth.passwordRequirements.uppercase') },
+              { pattern: /[a-z]/, message: t('auth.passwordRequirements.lowercase') },
+              { pattern: /[0-9]/, message: t('auth.passwordRequirements.number') },
+              { pattern: /[!@#$%^&*.?]/, message: t('auth.passwordRequirements.special') },
+            ]}
+          >
+            <Input
+              className="w-full"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Item>
+
+          {password && strength && (
+            <div className="mb-4">
+              <Progress value={strength.score} type={strength.type} className="h-1" />
+              <Text className={`text-xs text-${strength.type}`}>
+                {t('auth.passwordStrength.label')}: {strength.label}
+              </Text>
             </div>
           )}
 
-          <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <div className="form-control mb-1">
-              <label className="label">
-                <span className="label-text">{t('auth.firstName')}</span>
-              </label>
-              <input
-                type="text"
-                {...register('firstName', {
-                  required: t('auth.errors.firstNameRequired'),
-                  minLength: {
-                    value: 2,
-                    message: t('auth.errors.firstNameMin'),
-                  },
-                })}
-                className={`input input-bordered w-full ${errors.firstName ? 'input-error' : ''}`}
-              />
-              <div className="h-6 mt-1">
-                {errors.firstName && (
-                  <span className="text-error text-sm">{errors.firstName.message}</span>
-                )}
-              </div>
-            </div>
+          <Form.Item
+            name="confirmPassword"
+            label={t('auth.confirmPassword')}
+            dependencies={['password']}
+            rules={[
+              { required: true, message: t('auth.errors.confirmPasswordRequired') },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve()
+                  }
+                  return Promise.reject(t('auth.errors.passwordsNotMatch'))
+                },
+              }),
+            ]}
+          >
+            <Input className="w-full" type="password" />
+          </Form.Item>
 
-            <div className="form-control mb-1">
-              <label className="label">
-                <span className="label-text">{t('auth.lastName')}</span>
-              </label>
-              <input
-                type="text"
-                {...register('lastName', {
-                  required: t('auth.errors.lastNameRequired'),
-                  minLength: {
-                    value: 2,
-                    message: t('auth.errors.lastNameMin'),
-                  },
-                })}
-                className={`input input-bordered w-full ${errors.lastName ? 'input-error' : ''}`}
-              />
-              <div className="h-6 mt-1">
-                {errors.lastName && (
-                  <span className="text-error text-sm">{errors.lastName.message}</span>
-                )}
-              </div>
-            </div>
+          <Button color="primary" htmlType="submit" shape="block">
+            {t('auth.registerButton')}
+          </Button>
 
-            <div className="form-control mb-1">
-              <label className="label">
-                <span className="label-text">{t('auth.email')}</span>
-              </label>
-              <input
-                type="email"
-                {...register('email', {
-                  required: t('auth.errors.emailRequired'),
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: t('auth.errors.emailInvalid'),
-                  },
-                })}
-                className={`input input-bordered w-full ${errors.email ? 'input-error' : ''}`}
-              />
-              <div className="h-6 mt-1">
-                {errors.email && (
-                  <span className="text-error text-sm">{errors.email.message}</span>
-                )}
-              </div>
-            </div>
-
-            <div className="form-control mb-1">
-              <label className="label">
-                <span className="label-text">{t('auth.password')}</span>
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  {...register('password', {
-                    required: t('auth.errors.passwordRequired'),
-                    validate: (value) => {
-                      const validation = validatePassword(value, t)
-                      return validation.isValid || t('auth.errors.passwordRequirements')
-                    },
-                  })}
-                  className={`input input-bordered w-full pe-10 ${errors.password ? 'input-error' : ''}`}
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute end-3 top-1/2 -translate-y-1/2 text-base-content/50 hover:text-base-content"
-                >
-                  {showPassword ? '👁️' : '👁️‍🗨️'}
-                </button>
-              </div>
-
-              <div className="h-6 mt-1">
-                {errors.password && (
-                  <span className="text-error text-sm">{errors.password.message}</span>
-                )}
-              </div>
-
-              {password && passwordStrength && (
-                <div className="mb-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <progress
-                      className={`progress progress-${passwordStrength.color} w-full`}
-                      value={passwordStrength.score}
-                      max="6"
-                    ></progress>
-                    <span className={`text-${passwordStrength.color} text-sm font-medium min-w-[60px]`}>
-                      {passwordStrength.label}
-                    </span>
-                  </div>
-                  {passwordValidation && !passwordValidation.isValid && (
-                    <div className="text-xs text-base-content/70 space-y-1 mt-2">
-                      <div className="font-medium">{t('auth.passwordRequirements.title')}</div>
-                      {passwordValidation.errors.map((err, idx) => (
-                        <div key={idx} className="flex items-center gap-1">
-                          <span className="text-error">✗</span>
-                          <span>{err}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-
-            <div className="form-control mb-1">
-              <label className="label">
-                <span className="label-text">{t('auth.confirmPassword')}</span>
-              </label>
-              <div className="relative">
-                <input
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  {...register('confirmPassword', {
-                    required: t('auth.errors.confirmPasswordRequired'),
-                    validate: (value) => value === password || t('auth.errors.passwordsNotMatch'),
-                  })}
-                  className={`input input-bordered w-full pe-10 ${errors.confirmPassword ? 'input-error' : ''}`}
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute end-3 top-1/2 -translate-y-1/2 text-base-content/50 hover:text-base-content"
-                >
-                  {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
-                </button>
-              </div>
-              <div className="h-6 mt-1">
-                {errors.confirmPassword && (
-                  <span className="text-error text-sm">{errors.confirmPassword.message}</span>
-                )}
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              className="btn btn-primary w-full mt-4"
-              disabled={isSubmitting || (passwordValidation ? !passwordValidation.isValid : false)}
-            >
-              {isSubmitting ? <span className="loading loading-spinner"></span> : t('auth.registerButton')}
-            </button>
-          </form>
-
-          <p className="text-center mt-4">
-            {t('auth.hasAccount')} <Link to="/login" className="link link-primary">{t('auth.loginLink')}</Link>
-          </p>
-        </div>
-      </div>
-    </div>
+          <Paragraph align="center" size="sm" className="mt-4">
+            {t('auth.hasAccount')}{' '}
+            <RouterLink to="/login" className="link link-primary">
+              {t('auth.loginLink')}
+            </RouterLink>
+          </Paragraph>
+        </Form>
+      </Card>
+    </Flex>
   )
 }

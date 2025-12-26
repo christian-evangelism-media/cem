@@ -39,7 +39,8 @@
       "weak": "Nakapuy",
       "fair": "Makalalo",
       "good": "Nasayaat",
-      "strong": "Napigsa"
+      "strong": "Napigsa",
+      "label": "Pigsa ti password"
     },
     "passwordRequirements": {
       "title": "Ti password ket masapul nga adda:",

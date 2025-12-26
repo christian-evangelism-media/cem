@@ -39,7 +39,8 @@
       "weak": "Feb",
       "fair": "Mwayen",
       "good": "Bon",
-      "strong": "Fò"
+      "strong": "Fò",
+      "label": "Fòs modpas"
     },
     "passwordRequirements": {
       "title": "Modpas dwe genyen:",

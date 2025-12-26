@@ -1,0 +1,31 @@
+# Translation Keys Needing Translation to 29 Languages
+
+These keys have been added to en.json but need to be translated to the other 29 languages:
+ar, bn, de, el, es, fa, fr, ha, he, hi, ht, id, ilo, it, ja, ko, mr, pa, pt, ro, ru, sw, ta, te, tl, tr, ur, vi, zh
+
+## New Keys Added During AsterUI Migration:
+
+### auth.passwordStrength.label
+English: "Password strength"
+
+### media.filterLanguagesTitle
+English: "Filter Languages"
+
+### media.filterLanguagesDescription
+English: "Select languages to filter. Only media where all languages are in your selection will be shown."
+
+### favorites.addToFavorites
+English: "Add to favorites"
+
+### favorites.removeFromFavorites
+English: "Remove from favorites"
+
+### cart.removeFromCart
+English: "Remove from cart"
+
+---
+
+## Instructions for translating:
+1. Open each locale file in src/i18n/locales/
+2. Add the translations using the same nested structure as shown above
+3. Use culturally appropriate translations for each language

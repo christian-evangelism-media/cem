@@ -39,7 +39,8 @@
       "weak": "Débil",
       "fair": "Regular",
       "good": "Buena",
-      "strong": "Fuerte"
+      "strong": "Fuerte",
+      "label": "Seguridad de contraseña"
     },
     "passwordRequirements": {
       "title": "La contraseña debe contener:",

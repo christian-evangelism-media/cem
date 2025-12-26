@@ -39,7 +39,8 @@
       "weak": "Lemah",
       "fair": "Cukup",
       "good": "Bagus",
-      "strong": "Kuat"
+      "strong": "Kuat",
+      "label": "Kekuatan kata sandi"
     },
     "passwordRequirements": {
       "title": "Kata sandi harus berisi:",

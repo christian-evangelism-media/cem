@@ -39,7 +39,8 @@
       "weak": "कमजोर",
       "fair": "ठीक",
       "good": "अच्छा",
-      "strong": "मजबूत"
+      "strong": "मजबूत",
+      "label": "पासवर्ड की मजबूती"
     },
     "passwordRequirements": {
       "title": "पासवर्ड में होना चाहिए:",

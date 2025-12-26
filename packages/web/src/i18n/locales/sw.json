@@ -39,7 +39,8 @@
       "weak": "Dhaifu",
       "fair": "Wastani",
       "good": "Nzuri",
-      "strong": "Imara"
+      "strong": "Imara",
+      "label": "Nguvu ya nenosiri"
     },
     "passwordRequirements": {
       "title": "Nenosiri lazima liwe na:",

@@ -39,7 +39,8 @@
       "weak": "Zayıf",
       "fair": "Orta",
       "good": "İyi",
-      "strong": "Güçlü"
+      "strong": "Güçlü",
+      "label": "Şifre gücü"
     },
     "passwordRequirements": {
       "title": "Şifre şunları içermelidir:",

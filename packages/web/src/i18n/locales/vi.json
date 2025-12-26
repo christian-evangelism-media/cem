@@ -39,7 +39,8 @@
       "weak": "Yếu",
       "fair": "Trung Bình",
       "good": "Tốt",
-      "strong": "Mạnh"
+      "strong": "Mạnh",
+      "label": "Độ mạnh mật khẩu"
     },
     "passwordRequirements": {
       "title": "Mật khẩu phải có:",

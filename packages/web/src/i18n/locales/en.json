@@ -66,7 +66,8 @@
       "weak": "Weak",
       "fair": "Fair",
       "good": "Good",
-      "strong": "Strong"
+      "strong": "Strong",
+      "label": "Password strength"
     },
     "passwordRequirements": {
       "title": "Password must contain:",
@@ -103,7 +104,9 @@
     "quickOrder": "Quick Order",
     "orderSuccess": "Order placed successfully!",
     "orderError": "Failed to place order",
-    "loadError": "Failed to load media"
+    "loadError": "Failed to load media",
+    "filterLanguagesTitle": "Filter Languages",
+    "filterLanguagesDescription": "Select languages to filter. Only media where all languages are in your selection will be shown."
   },
   "orders": {
     "title": "My Orders",
@@ -218,13 +221,16 @@
     "placeOrder": "Place Order",
     "shipping": "Shipping",
     "pickup": "Pickup",
-    "placeOrderPickup": "Place Pickup Order"
+    "placeOrderPickup": "Place Pickup Order",
+    "removeFromCart": "Remove from cart"
   },
   "favorites": {
     "title": "My Favorites",
     "noFavorites": "You have no favorite items yet.",
     "loadError": "Failed to load favorites",
-    "remove": "Remove"
+    "remove": "Remove",
+    "addToFavorites": "Add to favorites",
+    "removeFromFavorites": "Remove from favorites"
   },
   "account": {
     "title": "Account Settings",

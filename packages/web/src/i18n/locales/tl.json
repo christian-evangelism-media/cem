@@ -39,7 +39,8 @@
       "weak": "Mahina",
       "fair": "Katamtaman",
       "good": "Mabuti",
-      "strong": "Malakas"
+      "strong": "Malakas",
+      "label": "Lakas ng password"
     },
     "passwordRequirements": {
       "title": "Ang password ay dapat may:",

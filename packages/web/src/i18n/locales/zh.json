@@ -39,7 +39,8 @@
       "weak": "弱",
       "fair": "一般",
       "good": "良好",
-      "strong": "强"
+      "strong": "强",
+      "label": "密码强度"
     },
     "passwordRequirements": {
       "title": "密码必须包含：",

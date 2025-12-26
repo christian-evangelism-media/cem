@@ -39,7 +39,8 @@
       "weak": "약함",
       "fair": "보통",
       "good": "좋음",
-      "strong": "강함"
+      "strong": "강함",
+      "label": "비밀번호 강도"
     },
     "passwordRequirements": {
       "title": "비밀번호는 다음을 포함해야 합니다:",

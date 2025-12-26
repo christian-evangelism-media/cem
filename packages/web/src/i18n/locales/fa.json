@@ -39,7 +39,8 @@
       "weak": "ضعیف",
       "fair": "متوسط",
       "good": "خوب",
-      "strong": "قوی"
+      "strong": "قوی",
+      "label": "قدرت رمز عبور"
     },
     "passwordRequirements": {
       "title": "رمز عبور باید شامل:",

@@ -39,7 +39,8 @@
       "weak": "Fraca",
       "fair": "Razoável",
       "good": "Boa",
-      "strong": "Forte"
+      "strong": "Forte",
+      "label": "Força da senha"
     },
     "passwordRequirements": {
       "title": "A senha deve conter:",

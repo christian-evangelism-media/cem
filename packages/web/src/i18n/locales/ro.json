@@ -39,7 +39,8 @@
       "weak": "Slabă",
       "fair": "Acceptabilă",
       "good": "Bună",
-      "strong": "Puternică"
+      "strong": "Puternică",
+      "label": "Puterea parolei"
     },
     "passwordRequirements": {
       "title": "Parola trebuie să conțină:",

@@ -39,7 +39,8 @@
       "weak": "کمزور",
       "fair": "ٹھیک",
       "good": "اچھا",
-      "strong": "مضبوط"
+      "strong": "مضبوط",
+      "label": "پاس ورڈ کی مضبوطی"
     },
     "passwordRequirements": {
       "title": "پاس ورڈ میں ہونا ضروری ہے:",

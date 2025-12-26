@@ -3,6 +3,7 @@
   themes: light --default, dark --prefersdark;
   logs: false;
 }
+@source "../node_modules/asterui";
 
 /* Prevent scrollbar from appearing due to absolutely positioned elements */
 html {

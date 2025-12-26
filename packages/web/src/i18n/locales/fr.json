@@ -65,7 +65,8 @@
       "weak": "Faible",
       "fair": "Moyen",
       "good": "Bon",
-      "strong": "Fort"
+      "strong": "Fort",
+      "label": "Force du mot de passe"
     },
     "passwordRequirements": {
       "title": "Le mot de passe doit contenir:",

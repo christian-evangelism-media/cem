@@ -39,7 +39,8 @@
       "weak": "Rauni",
       "fair": "Matsakaici",
       "good": "Mai Kyau",
-      "strong": "Mai Ƙarfi"
+      "strong": "Mai Ƙarfi",
+      "label": "Ƙarfin kalmar sirri"
     },
     "passwordRequirements": {
       "title": "Kalmar sirri dole ta ƙunshi:",

@@ -39,7 +39,8 @@
       "weak": "Debole",
       "fair": "Discreta",
       "good": "Buona",
-      "strong": "Forte"
+      "strong": "Forte",
+      "label": "Forza della password"
     },
     "passwordRequirements": {
       "title": "La password deve contenere:",

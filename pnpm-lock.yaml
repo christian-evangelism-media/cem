@@ -355,11 +355,14 @@ importers:
       '@tuyau/inertia':
         specifier: ^0.0.15
         version: 0.0.15(@tuyau/client@0.2.10)(react@19.2.3)
+      asterui:
+        specifier: ^0.12.73
+        version: 0.12.73(qrcode@1.5.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       cem-api:
         specifier: file:../api
-        version: file:packages/api(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@aws-sdk/client-ses@3.958.0)(@japa/api-client@3.1.1(@japa/assert@4.2.0(@japa/runner@4.4.0))(@japa/runner@4.4.0))(@japa/plugin-adonisjs@4.0.0(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@japa/api-client@3.1.1(@japa/assert@4.2.0(@japa/runner@4.4.0))(@japa/runner@4.4.0))(@japa/runner@4.4.0))(@types/luxon@3.7.1)(@types/node@24.10.4)
+        version: file:packages/api(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@aws-sdk/client-ses@3.958.0)(@japa/api-client@3.1.1(@japa/assert@4.2.0(@japa/runner@4.4.0))(@japa/runner@4.4.0))(@japa/plugin-adonisjs@4.0.0(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@japa/api-client@3.1.1(@japa/assert@4.2.0(@japa/runner@4.4.0))(@japa/runner@4.4.0))(@japa/runner@4.4.0))(@types/luxon@3.7.1)(@types/node@24.10.4)(dayjs@1.11.19)
       daisyui:
-        specifier: ^5.4.2
+        specifier: ^5.5.14
         version: 5.5.14
       i18next:
         specifier: ^25.6.1
@@ -376,9 +379,6 @@ importers:
       react-dom:
         specifier: ^19.1.1
         version: 19.2.3(react@19.2.3)
-      react-hook-form:
-        specifier: ^7.66.0
-        version: 7.69.0(react@19.2.3)
       react-i18next:
         specifier: ^16.2.4
         version: 16.5.0(i18next@25.7.3(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
@@ -3105,6 +3105,37 @@ packages:
   assertion-error@2.0.1:
     resolution: {integrity: sha512-Izi8RQcffqCeNVgFigKli1ssklIbpHnCYc6AknXGYoB6grJqyeby7jv12JUQgmTAnIDnbck1uxksT4dzN3PWBA==}
     engines: {node: '>=12'}
+
+  asterui@0.12.73:
+    resolution: {integrity: sha512-9/bfaj6T/6VlZP5jlxHWSNr8I28/vVPKn4eyg29+rF9ZWxms3j+Gvf0DsGVULuUFzMWFA0aHmm3ux+tZQ029AQ==}
+    peerDependencies:
+      '@tanstack/react-virtual': ^3.0.0
+      '@tiptap/extension-link': ^2.0.0
+      '@tiptap/extension-placeholder': ^2.0.0
+      '@tiptap/extension-underline': ^2.0.0
+      '@tiptap/react': ^2.0.0
+      '@tiptap/starter-kit': ^2.0.0
+      apexcharts: ^5.3.6
+      qrcode: ^1.5.4
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@tanstack/react-virtual':
+        optional: true
+      '@tiptap/extension-link':
+        optional: true
+      '@tiptap/extension-placeholder':
+        optional: true
+      '@tiptap/extension-underline':
+        optional: true
+      '@tiptap/react':
+        optional: true
+      '@tiptap/starter-kit':
+        optional: true
+      apexcharts:
+        optional: true
+      qrcode:
+        optional: true
 
   astral-regex@2.0.0:
     resolution: {integrity: sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==}
@@ -7237,6 +7268,33 @@ snapshots:
       - moment-timezone
       - rrule
 
+  '@adonisjs/mail@9.2.2(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@aws-sdk/client-ses@3.958.0)(@types/luxon@3.7.1)(@types/node@24.10.4)(dayjs@1.11.19)(edge.js@6.4.0)(luxon@3.7.2)':
+    dependencies:
+      '@adonisjs/core': 6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0)
+      '@poppinss/colors': 4.1.6
+      '@poppinss/macroable': 1.1.0
+      '@poppinss/utils': 6.10.1
+      '@types/nodemailer': 6.4.21
+      edge.js: 6.4.0
+      fastq: 1.20.1
+      formdata-node: 6.0.3
+      got: 14.6.5
+      ical-generator: 7.2.0(@types/luxon@3.7.1)(@types/node@24.10.4)(dayjs@1.11.19)(luxon@3.7.2)
+      nodemailer: 6.10.1
+    optionalDependencies:
+      '@aws-sdk/client-ses': 3.958.0
+    transitivePeerDependencies:
+      - '@touch4it/ical-timezones'
+      - '@types/luxon'
+      - '@types/mocha'
+      - '@types/node'
+      - aws-crt
+      - dayjs
+      - luxon
+      - moment
+      - moment-timezone
+      - rrule
+
   '@adonisjs/mail@9.2.2(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@aws-sdk/client-ses@3.958.0)(@types/luxon@3.7.1)(@types/node@24.10.4)(edge.js@6.4.0)(luxon@3.7.2)':
     dependencies:
       '@adonisjs/core': 6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0)
@@ -7724,7 +7782,7 @@ snapshots:
       '@babel/types': 7.28.5
       '@jridgewell/remapping': 2.3.5
       convert-source-map: 2.0.0
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -8358,7 +8416,7 @@ snapshots:
       '@babel/parser': 7.28.5
       '@babel/template': 7.27.2
       '@babel/types': 7.28.5
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -8570,7 +8628,7 @@ snapshots:
   '@eslint/config-array@0.21.1':
     dependencies:
       '@eslint/object-schema': 2.1.7
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -8590,7 +8648,7 @@ snapshots:
   '@eslint/eslintrc@3.3.3':
     dependencies:
       ajv: 6.12.6
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       espree: 10.4.0
       globals: 14.0.0
       ignore: 5.3.2
@@ -9738,7 +9796,7 @@ snapshots:
 
   '@tokenizer/inflate@0.4.1':
     dependencies:
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       token-types: 6.1.1
     transitivePeerDependencies:
       - supports-color
@@ -9964,7 +10022,7 @@ snapshots:
     dependencies:
       '@types/cookiejar': 2.1.5
       '@types/methods': 1.1.4
-      '@types/node': 22.19.3
+      '@types/node': 24.10.4
       form-data: 4.0.5
 
   '@types/supercluster@7.1.3':
@@ -10040,7 +10098,7 @@ snapshots:
       '@typescript-eslint/types': 8.50.1
       '@typescript-eslint/typescript-estree': 8.50.1(typescript@5.9.3)
       '@typescript-eslint/visitor-keys': 8.50.1
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       eslint: 9.39.2(jiti@2.6.1)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -10059,7 +10117,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.50.1(typescript@5.9.3)
       '@typescript-eslint/types': 8.50.1
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -10094,7 +10152,7 @@ snapshots:
       '@typescript-eslint/types': 8.50.1
       '@typescript-eslint/typescript-estree': 8.50.1(typescript@5.9.3)
       '@typescript-eslint/utils': 8.50.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       eslint: 9.39.2(jiti@2.6.1)
       ts-api-utils: 2.1.0(typescript@5.9.3)
       typescript: 5.9.3
@@ -10124,7 +10182,7 @@ snapshots:
       '@typescript-eslint/tsconfig-utils': 8.50.1(typescript@5.9.3)
       '@typescript-eslint/types': 8.50.1
       '@typescript-eslint/visitor-keys': 8.50.1
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       minimatch: 9.0.5
       semver: 7.7.3
       tinyglobby: 0.2.15
@@ -10388,6 +10446,14 @@ snapshots:
 
   assertion-error@2.0.1: {}
 
+  asterui@0.12.73(qrcode@1.5.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+      react-hook-form: 7.69.0(react@19.2.3)
+    optionalDependencies:
+      qrcode: 1.5.4
+
   astral-regex@2.0.0: {}
 
   astring@1.9.0: {}
@@ -10560,6 +10626,53 @@ snapshots:
       '@adonisjs/limiter': 2.4.0(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@adonisjs/lucid@21.8.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@vinejs/vine@3.0.1)(luxon@3.7.2)(pg@8.16.3))
       '@adonisjs/lucid': 21.8.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@vinejs/vine@3.0.1)(luxon@3.7.2)(pg@8.16.3)
       '@adonisjs/mail': 9.2.2(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@aws-sdk/client-ses@3.958.0)(@types/luxon@3.7.1)(@types/node@24.10.4)(edge.js@6.4.0)(luxon@3.7.2)
+      '@adonisjs/session': 7.7.1(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@adonisjs/lucid@21.8.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@vinejs/vine@3.0.1)(luxon@3.7.2)(pg@8.16.3))(@japa/api-client@3.1.1(@japa/assert@4.2.0(@japa/runner@4.4.0))(@japa/runner@4.4.0))(edge.js@6.4.0)
+      '@adonisjs/static': 1.1.1(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))
+      '@tuyau/core': 0.4.2(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))
+      '@vinejs/vine': 3.0.1
+      edge.js: 6.4.0
+      luxon: 3.7.2
+      pg: 8.16.3
+      reflect-metadata: 0.2.2
+      stripe: 19.3.1(@types/node@24.10.4)
+    transitivePeerDependencies:
+      - '@adonisjs/assembler'
+      - '@adonisjs/redis'
+      - '@aws-sdk/client-dynamodb'
+      - '@aws-sdk/client-ses'
+      - '@aws-sdk/util-dynamodb'
+      - '@japa/api-client'
+      - '@japa/browser-client'
+      - '@japa/plugin-adonisjs'
+      - '@touch4it/ical-timezones'
+      - '@types/luxon'
+      - '@types/mocha'
+      - '@types/node'
+      - argon2
+      - aws-crt
+      - bcrypt
+      - better-sqlite3
+      - dayjs
+      - moment
+      - moment-timezone
+      - mysql
+      - mysql2
+      - pg-native
+      - rrule
+      - sqlite3
+      - supports-color
+      - tedious
+
+  cem-api@file:packages/api(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@aws-sdk/client-ses@3.958.0)(@japa/api-client@3.1.1(@japa/assert@4.2.0(@japa/runner@4.4.0))(@japa/runner@4.4.0))(@japa/plugin-adonisjs@4.0.0(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@japa/api-client@3.1.1(@japa/assert@4.2.0(@japa/runner@4.4.0))(@japa/runner@4.4.0))(@japa/runner@4.4.0))(@types/luxon@3.7.1)(@types/node@24.10.4)(dayjs@1.11.19):
+    dependencies:
+      '@adonisjs/auth': 9.5.1(8db54d6d64de2a3db904d831e3b558be)
+      '@adonisjs/core': 6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0)
+      '@adonisjs/cors': 2.2.1(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))
+      '@adonisjs/health': 2.0.0
+      '@adonisjs/i18n': 2.2.3(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@vinejs/vine@3.0.1)(edge.js@6.4.0)
+      '@adonisjs/limiter': 2.4.0(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@adonisjs/lucid@21.8.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@vinejs/vine@3.0.1)(luxon@3.7.2)(pg@8.16.3))
+      '@adonisjs/lucid': 21.8.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@vinejs/vine@3.0.1)(luxon@3.7.2)(pg@8.16.3)
+      '@adonisjs/mail': 9.2.2(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@aws-sdk/client-ses@3.958.0)(@types/luxon@3.7.1)(@types/node@24.10.4)(dayjs@1.11.19)(edge.js@6.4.0)(luxon@3.7.2)
       '@adonisjs/session': 7.7.1(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@adonisjs/lucid@21.8.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))(@vinejs/vine@3.0.1)(luxon@3.7.2)(pg@8.16.3))(@japa/api-client@3.1.1(@japa/assert@4.2.0(@japa/runner@4.4.0))(@japa/runner@4.4.0))(edge.js@6.4.0)
       '@adonisjs/static': 1.1.1(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))
       '@tuyau/core': 0.4.2(@adonisjs/core@6.19.1(@adonisjs/assembler@7.8.2(typescript@5.9.3))(@vinejs/vine@3.0.1)(edge.js@6.4.0))
@@ -10911,6 +11024,10 @@ snapshots:
   debug@4.3.4:
     dependencies:
       ms: 2.1.2
+
+  debug@4.4.3:
+    dependencies:
+      ms: 2.1.3
 
   debug@4.4.3(supports-color@8.1.1):
     dependencies:
@@ -11300,7 +11417,7 @@ snapshots:
       ajv: 6.12.6
       chalk: 4.1.2
       cross-spawn: 7.0.6
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       escape-string-regexp: 4.0.0
       eslint-scope: 8.4.0
       eslint-visitor-keys: 4.2.1
@@ -11809,6 +11926,15 @@ snapshots:
       dayjs: 1.11.19
       luxon: 3.7.2
 
+  ical-generator@7.2.0(@types/luxon@3.7.1)(@types/node@24.10.4)(dayjs@1.11.19)(luxon@3.7.2):
+    dependencies:
+      uuid-random: 1.3.2
+    optionalDependencies:
+      '@types/luxon': 3.7.1
+      '@types/node': 24.10.4
+      dayjs: 1.11.19
+      luxon: 3.7.2
+
   ical-generator@7.2.0(@types/luxon@3.7.1)(@types/node@24.10.4)(luxon@3.7.2):
     dependencies:
       uuid-random: 1.3.2
@@ -12190,7 +12316,7 @@ snapshots:
 
   knex-dynamic-connection@3.2.0(pg@8.16.3):
     dependencies:
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       knex: 3.1.0(pg@8.16.3)
     transitivePeerDependencies:
       - better-sqlite3
@@ -13680,7 +13806,7 @@ snapshots:
     dependencies:
       component-emitter: 1.3.1
       cookiejar: 2.1.4
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       fast-safe-stringify: 2.1.1
       form-data: 4.0.5
       formidable: 3.5.4

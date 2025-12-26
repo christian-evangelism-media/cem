@@ -39,7 +39,8 @@
       "weak": "弱い",
       "fair": "普通",
       "good": "良い",
-      "strong": "強い"
+      "strong": "強い",
+      "label": "パスワードの強度"
     },
     "passwordRequirements": {
       "title": "パスワードには以下を含める必要があります：",

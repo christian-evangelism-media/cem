@@ -7,7 +7,22 @@ import { useCart, useAddToCart, useRemoveCartItem } from '../hooks/useCartQuerie
 import { useFavorites, useToggleFavorite } from '../hooks/useFavoriteQueries'
 import { useAddresses } from '../hooks/useAddressQueries'
 import { API_URL } from '../services/api'
-import AlertModal from '../components/AlertModal'
+import {
+  Alert,
+  Badge,
+  Button,
+  Card,
+  Checkbox,
+  Divider,
+  Dropdown,
+  Loading,
+  Modal,
+  Pagination,
+  Select,
+  Typography
+} from 'asterui'
+
+const { Title, Paragraph } = Typography
 
 // Map UI language codes to media language values
 const languageMap: Record<string, string> = {
@@ -52,13 +67,10 @@ export default function Media() {
   const [limit, setLimit] = useState(7)
   const createOrder = useCreateOrder()
   const { data: addresses = [] } = useAddresses(!!user)
-  const [alertModal, setAlertModal] = useState<{ isOpen: boolean; message: string } | null>(null)
 
   // Calculate items per page based on screen height
   useEffect(() => {
     const calculateLimit = () => {
-      // Approximate card height: 85px for compact cards (including gap)
-      // Header + filter: ~150px, Pagination: ~50px, Padding: ~100px
       const availableHeight = window.innerHeight - 390
       const cardHeight = 85
       const calculatedLimit = Math.max(3, Math.floor(availableHeight / cardHeight))
@@ -76,15 +88,12 @@ export default function Media() {
     setPage(1)
   }, [i18n.language])
 
-  // Determine which languages to filter by:
-  // If user has manually selected languages, use those
-  // Otherwise, default to current UI language
+  // Determine which languages to filter by
   const currentUiLang = languageMap[i18n.language]
   const languagesToFilter = manualLanguageSelection.length > 0
     ? manualLanguageSelection
     : (currentUiLang ? [currentUiLang] : [])
 
-  // Include user preferences in query key to trigger refetch when preferences change
   const userPreferences = user?.preferredLanguages || null
 
   const { data: mediaResponse, isLoading, error } = useMedia({
@@ -108,7 +117,6 @@ export default function Media() {
     const item = cartItems.find((item) => item.mediaId === mediaId)
     const currentQty = item?.quantity || 0
 
-    // If current quantity is not in allowed quantities, return first allowed quantity
     if (currentQty > 0 && !allowedQuantities.includes(currentQty)) {
       return allowedQuantities[0]
     }
@@ -126,7 +134,6 @@ export default function Media() {
   }
 
   const addToCartHandler = (mediaId: number) => {
-    // Add with default quantity of 1
     addToCart.mutate({ mediaId, quantity: 1 })
   }
 
@@ -153,7 +160,11 @@ export default function Media() {
 
   const quickPlaceOrder = () => {
     if (addresses.length === 0) {
-      setAlertModal({ isOpen: true, message: t('cart.noAddress') })
+      Modal.warning({
+        title: t('common.notice'),
+        content: t('cart.noAddress'),
+        onOk: () => navigate('/addresses'),
+      })
       return
     }
 
@@ -174,10 +185,24 @@ export default function Media() {
     })
   }
 
-  if (isLoading) return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-spinner loading-lg"></span></div>
-  if (error) return <div className="alert alert-error m-8"><span>{error instanceof Error ? error.message : t('media.loadError')}</span></div>
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <Loading size="lg" />
+      </div>
+    )
+  }
 
-  // Get unique languages from media data, sorted by language code
+  if (error) {
+    return (
+      <div className="m-8">
+        <Alert type="error">
+          {error instanceof Error ? error.message : t('media.loadError')}
+        </Alert>
+      </div>
+    )
+  }
+
   const availableLanguageCodes = Object.keys(languageMap).sort((a, b) => a.localeCompare(b))
 
   const toggleLanguage = (code: string) => {
@@ -187,206 +212,189 @@ export default function Media() {
         ? prev.filter(l => l !== langName)
         : [...prev, langName]
     )
-    setPage(1) // Reset to first page when filter changes
+    setPage(1)
   }
+
+  const languageFilterMenu = (
+    <div className="px-2 py-3 w-[90vw] sm:w-[36rem] max-h-[32rem] overflow-y-auto">
+      <div className="mb-2">
+        <Title level={5} className="mb-1">{t('media.filterLanguagesTitle')}</Title>
+        <Paragraph size="sm" className="text-base-content/70">
+          {t('media.filterLanguagesDescription')}
+        </Paragraph>
+      </div>
+      <Divider className="my-2" />
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
+        {availableLanguageCodes.map((code) => (
+          <label key={code} className="label cursor-pointer justify-start gap-2 p-2">
+            <Checkbox
+              size="sm"
+              checked={manualLanguageSelection.includes(languageMap[code])}
+              onChange={() => toggleLanguage(code)}
+            />
+            <span className="label-text text-sm">{t(`languages.${code}`)}</span>
+          </label>
+        ))}
+      </div>
+    </div>
+  )
 
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold">{t('media.title')}</h1>
+        <Title level={1} className="text-3xl md:text-4xl">{t('media.title')}</Title>
 
         <div className="flex gap-2 w-full sm:w-auto">
-          {/* Quick Place Order Button */}
           {cartItems.length > 0 && (
-            <button
+            <Button
+              color="primary"
+              size="sm"
               onClick={quickPlaceOrder}
-              className="btn btn-primary btn-sm flex-1 sm:flex-initial"
-              disabled={createOrder.isPending}
+              loading={createOrder.isPending}
+              className="flex-1 sm:flex-initial"
             >
-              {createOrder.isPending ? (
-                <span className="loading loading-spinner loading-xs"></span>
-              ) : (
-                t('media.quickOrder')
-              )}
-            </button>
+              {t('media.quickOrder')}
+            </Button>
           )}
 
-          {/* Language Filter */}
-          <div className="dropdown dropdown-end flex-1 sm:flex-initial">
-          <div tabIndex={0} role="button" className="btn btn-outline btn-sm w-full sm:w-auto">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-            </svg>
-            <span className="truncate">
-              {t('media.filterLanguages') || 'Filter Languages'} ({manualLanguageSelection.length})
-            </span>
-          </div>
-          <div tabIndex={0} className="dropdown-content z-[1] shadow bg-base-100 rounded-box w-[90vw] sm:w-[36rem] max-h-[32rem] overflow-y-auto mt-2 p-2">
-            <div className="px-2 py-3">
-              <h3 className="font-bold text-sm mb-1">Filter Languages</h3>
-              <p className="text-xs text-base-content/70">
-                Select languages to filter. Only media where all languages are in your selection will be shown.
-              </p>
-            </div>
-            <div className="divider my-0"></div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
-              {availableLanguageCodes.map((code) => (
-                <label key={code} className="label cursor-pointer justify-start gap-2 p-2">
-                  <input
-                    type="checkbox"
-                    checked={manualLanguageSelection.includes(languageMap[code])}
-                    onChange={() => toggleLanguage(code)}
-                    className="checkbox checkbox-sm"
-                  />
-                  <span className="label-text text-sm">{t(`languages.${code}`)}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-          </div>
+          <Dropdown
+            trigger={['click']}
+            overlay={languageFilterMenu}
+            placement="bottomRight"
+          >
+            <Button variant="outline" size="sm" className="flex-1 sm:flex-initial">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              <span className="truncate">
+                {t('media.filterLanguages')} ({manualLanguageSelection.length})
+              </span>
+            </Button>
+          </Dropdown>
         </div>
       </div>
 
       <div>
         {media.length === 0 ? (
-          <div className="alert alert-info">
-            <span>{t('media.noMedia')}</span>
-          </div>
+          <Alert type="info">{t('media.noMedia')}</Alert>
         ) : (
           <div className="grid gap-2">
             {media.map((item) => (
-              <div key={item.id} className="card bg-base-100 shadow">
-                <div className="card-body p-3 md:p-4">
-                  <div className="flex flex-col md:flex-row justify-between items-start gap-3 md:gap-4">
-                    <div className="flex items-start gap-2 flex-wrap flex-1 w-full">
-                      <div className="flex items-center gap-2 w-full md:w-auto">
-                        <h2 className="card-title text-base md:text-lg flex-1">{item.name}</h2>
-                        {user && (
-                          <button
-                            onClick={() => handleToggleFavorite(item.id)}
-                            className="btn btn-xs btn-ghost btn-circle"
-                            disabled={toggleFavorite.isPending}
-                            title={isFavorited(item.id) ? 'Remove from favorites' : 'Add to favorites'}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
-                              fill={isFavorited(item.id) ? 'currentColor' : 'none'}
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                          </button>
-                        )}
-                      </div>
-                      <div className="badge badge-sm badge-secondary">{item.type}</div>
-                      {item.languages.map(lang => (
-                        <div key={lang} className="badge badge-sm badge-accent">
-                          {t(`languages.${lang}`)}
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 items-center w-full md:w-auto md:flex-shrink-0">
-                      {item.digitalPdfUrl && (
-                        <a href={`${API_URL}${item.digitalPdfUrl}`} target="_blank" rel="noopener noreferrer" className="btn btn-xs btn-outline flex-1 md:flex-initial">
-                          {t('media.viewDigital') || 'View Digital'}
-                        </a>
-                      )}
-                      {item.pressPdfUrl && (
-                        <a href={`${API_URL}${item.pressPdfUrl}`} target="_blank" rel="noopener noreferrer" className="btn btn-xs btn-outline btn-secondary flex-1 md:flex-initial">
-                          {t('media.viewPress') || 'View Press'}
-                        </a>
-                      )}
-
-                      {user && !isInCart(item.id) && (
-                        <button
-                          onClick={() => addToCartHandler(item.id)}
-                          className="btn btn-xs btn-primary flex-1 md:flex-initial"
-                          disabled={addToCart.isPending}
+              <Card key={item.id} className="shadow">
+                <div className="flex flex-col md:flex-row justify-between items-start gap-3 md:gap-4">
+                  <div className="flex items-start gap-2 flex-wrap flex-1 w-full">
+                    <div className="flex items-center gap-2 w-full md:w-auto">
+                      <Title level={4} className="text-base md:text-lg flex-1">{item.name}</Title>
+                      {user && (
+                        <Button
+                          size="xs"
+                          variant="ghost"
+                          shape="circle"
+                          onClick={() => handleToggleFavorite(item.id)}
+                          loading={toggleFavorite.isPending}
+                          title={isFavorited(item.id) ? t('favorites.removeFromFavorites') : t('favorites.addToFavorites')}
                         >
-                          {t('media.addToCart') || 'Add to Cart'}
-                        </button>
-                      )}
-
-                      {user && isInCart(item.id) && (
-                        <div className="flex items-center gap-2 w-full md:w-auto">
-                          <select
-                            value={getCartQuantity(item.id, item.allowedQuantities)}
-                            onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
-                            className="select select-bordered select-xs flex-1 md:w-20"
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            fill={isFavorited(item.id) ? 'currentColor' : 'none'}
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
                           >
-                            {item.allowedQuantities.map((qty) => (
-                              <option key={qty} value={qty}>{qty}</option>
-                            ))}
-                          </select>
-                          <button
-                            onClick={() => removeFromCart(item.id)}
-                            className="btn btn-xs btn-circle btn-ghost text-error"
-                            disabled={removeCartItem.isPending}
-                            title="Remove from cart"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                          </button>
-                        </div>
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                          </svg>
+                        </Button>
                       )}
                     </div>
+                    <Badge color="secondary" size="sm">{item.type}</Badge>
+                    {item.languages.map(lang => (
+                      <Badge key={lang} color="accent" size="sm">
+                        {t(`languages.${lang}`)}
+                      </Badge>
+                    ))}
                   </div>
-                  {item.description && <p className="text-sm mt-2">{item.description}</p>}
+
+                  <div className="flex flex-wrap gap-2 items-center w-full md:w-auto md:flex-shrink-0">
+                    {item.digitalPdfUrl && (
+                      <a href={`${API_URL}${item.digitalPdfUrl}`} target="_blank" rel="noopener noreferrer">
+                        <Button size="xs" variant="outline" className="flex-1 md:flex-initial">
+                          {t('media.viewDigital')}
+                        </Button>
+                      </a>
+                    )}
+                    {item.pressPdfUrl && (
+                      <a href={`${API_URL}${item.pressPdfUrl}`} target="_blank" rel="noopener noreferrer">
+                        <Button size="xs" variant="outline" color="secondary" className="flex-1 md:flex-initial">
+                          {t('media.viewPress')}
+                        </Button>
+                      </a>
+                    )}
+
+                    {user && !isInCart(item.id) && (
+                      <Button
+                        size="xs"
+                        color="primary"
+                        onClick={() => addToCartHandler(item.id)}
+                        loading={addToCart.isPending}
+                        className="flex-1 md:flex-initial"
+                      >
+                        {t('media.addToCart')}
+                      </Button>
+                    )}
+
+                    {user && isInCart(item.id) && (
+                      <div className="flex items-center gap-2 w-full md:w-auto">
+                        <Select
+                          size="xs"
+                          value={getCartQuantity(item.id, item.allowedQuantities)}
+                          onChange={(value) => updateQuantity(item.id, Number(value))}
+                          className="flex-1 md:w-20"
+                        >
+                          {item.allowedQuantities.map((qty) => (
+                            <Select.Option key={qty} value={qty}>{qty}</Select.Option>
+                          ))}
+                        </Select>
+                        <Button
+                          size="xs"
+                          shape="circle"
+                          variant="ghost"
+                          className="text-error"
+                          onClick={() => removeFromCart(item.id)}
+                          loading={removeCartItem.isPending}
+                          title={t('cart.removeFromCart')}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </Button>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
+                {item.description && <Paragraph size="sm" className="mt-2">{item.description}</Paragraph>}
+              </Card>
             ))}
           </div>
         )}
 
         {meta && meta.lastPage > 1 && (
           <div className="flex justify-center mt-8">
-            <div className="join">
-              <button
-                onClick={() => setPage(p => Math.max(1, p - 1))}
-                disabled={page === 1}
-                className="join-item btn btn-sm"
-              >
-                «
-              </button>
-              <button className="join-item btn btn-sm">
-                {t('pagination.pageOf', { current: page, total: meta.lastPage })}
-              </button>
-              <button
-                onClick={() => setPage(p => Math.min(meta.lastPage, p + 1))}
-                disabled={page === meta.lastPage}
-                className="join-item btn btn-sm"
-              >
-                »
-              </button>
-            </div>
+            <Pagination
+              current={page}
+              total={meta.total}
+              pageSize={limit}
+              onChange={setPage}
+              showSizeChanger={false}
+            />
           </div>
         )}
       </div>
-
-      {alertModal && (
-        <AlertModal
-          isOpen={alertModal.isOpen}
-          title={t('common.notice')}
-          message={alertModal.message}
-          type="warning"
-          onClose={() => {
-            setAlertModal(null)
-            if (alertModal.message === t('cart.noAddress')) {
-              navigate('/addresses')
-            }
-          }}
-        />
-      )}
     </div>
   )
 }

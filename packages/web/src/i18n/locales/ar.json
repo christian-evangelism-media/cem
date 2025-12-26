@@ -39,7 +39,8 @@
       "weak": "ضعيفة",
       "fair": "مقبولة",
       "good": "جيدة",
-      "strong": "قوية"
+      "strong": "قوية",
+      "label": "قوة كلمة المرور"
     },
     "passwordRequirements": {
       "title": "يجب أن تحتوي كلمة المرور على:",

@@ -39,7 +39,8 @@
       "weak": "חלשה",
       "fair": "סבירה",
       "good": "טובה",
-      "strong": "חזקה"
+      "strong": "חזקה",
+      "label": "חוזק הסיסמה"
     },
     "passwordRequirements": {
       "title": "הסיסמה חייבת להכיל:",

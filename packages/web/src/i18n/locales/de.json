@@ -39,7 +39,8 @@
       "weak": "Schwach",
       "fair": "Ausreichend",
       "good": "Gut",
-      "strong": "Stark"
+      "strong": "Stark",
+      "label": "Passwortstärke"
     },
     "passwordRequirements": {
       "title": "Passwort muss enthalten:",
