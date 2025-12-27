@@ -56,7 +56,7 @@ export default function Login() {
     <Flex justify="center" align="center" minHeight="screen" className="bg-base-200 p-4">
       <Card title={t('auth.loginTitle')} className="w-full max-w-sm">
         {serverError && (
-          <Alert type="error" className="mb-4">
+          <Alert color="error" className="mb-4">
             {serverError}
           </Alert>
         )}
@@ -91,7 +91,7 @@ export default function Login() {
             </Form.Item>
           </Space>
 
-          <Button color="primary" htmlType="submit" shape="block">
+          <Button type="primary" htmlType="submit" shape="block">
             {t('auth.loginButton')}
           </Button>
 

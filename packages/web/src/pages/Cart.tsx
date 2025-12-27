@@ -92,7 +92,7 @@ export default function Cart() {
       <Title level={1} className="text-3xl md:text-4xl mb-6">{t('cart.title')}</Title>
 
       {cartItems.length === 0 ? (
-        <Alert type="info">{t('cart.empty')}</Alert>
+        <Alert color="info">{t('cart.empty')}</Alert>
       ) : (
         <>
           <div className="space-y-4">
@@ -133,7 +133,7 @@ export default function Cart() {
                     </div>
                     <Button
                       shape="circle"
-                      variant="ghost"
+                      ghost
                       className="text-error"
                       onClick={() => removeItem(item.id)}
                       loading={removeCartItem.isPending}
@@ -205,7 +205,7 @@ export default function Cart() {
 
                   {/* Place Order Button */}
                   <Button
-                    color="primary"
+                    type="primary"
                     size="lg"
                     onClick={placeOrder}
                     loading={createOrder.isPending}
@@ -216,12 +216,12 @@ export default function Cart() {
                   </Button>
                 </div>
               ) : (
-                <Alert type="warning">{t('cart.noAddress')}</Alert>
+                <Alert color="warning">{t('cart.noAddress')}</Alert>
               )
             ) : (
               <div className="flex justify-end">
                 <Button
-                  color="primary"
+                  type="primary"
                   size="lg"
                   onClick={placeOrder}
                   loading={createOrder.isPending}

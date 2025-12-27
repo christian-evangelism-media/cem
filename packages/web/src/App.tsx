@@ -4,7 +4,6 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useTranslation } from 'react-i18next'
 import { Alert, Button, Badge, Dropdown } from 'asterui'
 import { UserProvider, useUser } from './contexts/UserContext'
-import { ToastProvider, useToast } from './contexts/ToastContext'
 import { useTheme } from './hooks/useTheme'
 import { useState, useEffect } from 'react'
 import { api } from './services/api'
@@ -42,7 +41,6 @@ const queryClient = new QueryClient({
 
 function AppContent() {
   const { user, logout } = useUser()
-  const { toasts, removeToast } = useToast()
   const { theme, toggleTheme } = useTheme()
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
@@ -231,22 +229,18 @@ function AppContent() {
             </Link>
           )}
           {user ? (
-            <Dropdown
-              content={
-                <ul className="p-2 shadow menu menu-sm bg-base-100 rounded-box w-52">
-                  <li>
-                    <Link to="/account" onClick={() => (document.activeElement as HTMLElement)?.blur()}>
-                      {t('nav.account')}
-                    </Link>
-                  </li>
-                  <li>
-                    <button onClick={handleLogout}>{t('nav.logout')}</button>
-                  </li>
-                </ul>
-              }
-              placement="bottomRight"
-            >
-              <Button ghost>{t('nav.hello', { name: user.firstName })}</Button>
+            <Dropdown position="bottom" align="end">
+              <Dropdown.Trigger>
+                <Button ghost>{t('nav.hello', { name: user.firstName })}</Button>
+              </Dropdown.Trigger>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => navigate('/account')}>
+                  {t('nav.account')}
+                </Dropdown.Item>
+                <Dropdown.Item onClick={handleLogout}>
+                  {t('nav.logout')}
+                </Dropdown.Item>
+              </Dropdown.Menu>
             </Dropdown>
           ) : (
             <>
@@ -265,53 +259,39 @@ function AppContent() {
           <LanguageSwitcher />
           <LanguagePreferences />
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-          <Dropdown
-            content={
-              <ul className="p-2 shadow menu menu-sm bg-base-100 rounded-box w-52">
-                <li><Link to="/media" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.media')}</Link></li>
-                <li>
-                  <button onClick={() => { setDonateModalOpen(true); (document.activeElement as HTMLElement)?.blur(); }}>
-                    {t('nav.donate')}
-                  </button>
-                </li>
-                {user && (
-                  <>
-                    <li>
-                      <Link to="/cart" onClick={() => (document.activeElement as HTMLElement)?.blur()}>
-                        {t('media.cart', { count: cartItems.length })}
-                      </Link>
-                    </li>
-                    <li><Link to="/favorites" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.myFavorites')}</Link></li>
-                    <li><Link to="/orders" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.myOrders')}</Link></li>
-                    <li><Link to="/addresses" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.myAddresses')}</Link></li>
-                    <li><Link to="/messages" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.messages')}</Link></li>
-                    <li>
-                      <button onClick={() => { setContactModalOpen(true); (document.activeElement as HTMLElement)?.blur(); }}>
-                        {t('nav.contact')}
-                      </button>
-                    </li>
-                    <li className="menu-title">
-                      <span>{t('nav.hello', { name: user.firstName })}</span>
-                    </li>
-                    <li><Link to="/account" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.account')}</Link></li>
-                    <li><button onClick={() => { handleLogout(); (document.activeElement as HTMLElement)?.blur(); }}>{t('nav.logout')}</button></li>
-                  </>
-                )}
-                {!user && (
-                  <>
-                    <li><Link to="/login" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.login')}</Link></li>
-                    <li><Link to="/register" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.register')}</Link></li>
-                  </>
-                )}
-              </ul>
-            }
-            placement="bottomRight"
-          >
-            <Button ghost>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </Button>
+          <Dropdown position="bottom" align="end">
+            <Dropdown.Trigger>
+              <Button ghost>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </Button>
+            </Dropdown.Trigger>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={() => navigate('/media')}>{t('nav.media')}</Dropdown.Item>
+              <Dropdown.Item onClick={() => setDonateModalOpen(true)}>{t('nav.donate')}</Dropdown.Item>
+              {user && (
+                <>
+                  <Dropdown.Item onClick={() => navigate('/cart')}>
+                    {t('media.cart', { count: cartItems.length })}
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/favorites')}>{t('nav.myFavorites')}</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/orders')}>{t('nav.myOrders')}</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/addresses')}>{t('nav.myAddresses')}</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/messages')}>{t('nav.messages')}</Dropdown.Item>
+                  <Dropdown.Item onClick={() => setContactModalOpen(true)}>{t('nav.contact')}</Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item onClick={() => navigate('/account')}>{t('nav.account')}</Dropdown.Item>
+                  <Dropdown.Item onClick={handleLogout}>{t('nav.logout')}</Dropdown.Item>
+                </>
+              )}
+              {!user && (
+                <>
+                  <Dropdown.Item onClick={() => navigate('/login')}>{t('nav.login')}</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate('/register')}>{t('nav.register')}</Dropdown.Item>
+                </>
+              )}
+            </Dropdown.Menu>
           </Dropdown>
         </div>
       </nav>
@@ -376,20 +356,6 @@ function AppContent() {
         </Routes>
       </main>
 
-      {/* Toast notifications */}
-      {toasts.length > 0 && (
-        <div className="toast toast-bottom toast-end">
-          {toasts.map((toast) => (
-            <Alert
-              key={toast.id}
-              type={toast.type === 'success' ? 'success' : toast.type === 'error' ? 'error' : 'info'}
-              closable={{ onClose: () => removeToast(toast.id) }}
-            >
-              <span>{toast.message}</span>
-            </Alert>
-          ))}
-        </div>
-      )}
 
       {/* Contact Modal */}
       {user && <ContactModal isOpen={contactModalOpen} onClose={() => setContactModalOpen(false)} />}
@@ -405,9 +371,7 @@ function App() {
     <Router>
       <QueryClientProvider client={queryClient}>
         <UserProvider>
-          <ToastProvider>
-            <AppContent />
-          </ToastProvider>
+          <AppContent />
         </UserProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

@@ -40,7 +40,7 @@ export default function Addresses() {
       title: t('address.confirmDelete'),
       content: t('address.confirmDeleteMessage'),
       okText: t('common.delete'),
-      okType: 'danger',
+      type: 'error',
       cancelText: t('common.cancel'),
       onOk: () => {
         deleteAddressMutation.mutate(id)
@@ -74,7 +74,7 @@ export default function Addresses() {
   if (error) {
     return (
       <div className="m-8">
-        <Alert type="error">
+        <Alert color="error">
           {error instanceof Error ? error.message : t('address.loadError')}
         </Alert>
       </div>
@@ -85,7 +85,7 @@ export default function Addresses() {
     <div className="max-w-6xl mx-auto p-4 md:p-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <Title level={1} className="text-3xl md:text-4xl">{t('address.title')}</Title>
-        <Button color="primary" onClick={handleAddAddress}>
+        <Button type="primary" onClick={handleAddAddress}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -100,7 +100,7 @@ export default function Addresses() {
       </div>
 
       {!addresses || addresses.length === 0 ? (
-        <Alert type="info">{t('address.noAddresses')}</Alert>
+        <Alert color="info">{t('address.noAddresses')}</Alert>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {addresses.map((address) => (
@@ -109,7 +109,7 @@ export default function Addresses() {
               className={`shadow-xl ${address.isDefault ? 'ring-2 ring-primary' : ''}`}
             >
               {address.isDefault && (
-                <Badge color="primary" className="mb-2">{t('address.default')}</Badge>
+                <Badge type="primary" className="mb-2">{t('address.default')}</Badge>
               )}
               <Title level={2}>
                 {address.name}
@@ -128,14 +128,14 @@ export default function Addresses() {
               <div className="flex justify-end gap-2 mt-4">
                 <Button
                   size="sm"
-                  variant="ghost"
+                  ghost
                   onClick={() => handleEditAddress(address)}
                 >
                   {t('common.edit')}
                 </Button>
                 <Button
                   size="sm"
-                  variant="ghost"
+                  ghost
                   className="text-error"
                   onClick={() => handleDeleteAddress(address.id)}
                   loading={deleteAddressMutation.isPending}

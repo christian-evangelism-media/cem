@@ -23,7 +23,7 @@ export default function Landing() {
           <Paragraph className="text-sm md:text-base mb-4">{t('landing.browseDescription')}</Paragraph>
           <Flex justify="end">
             <RouterLink to="/media">
-              <Button color="primary">{t('landing.browseButton')}</Button>
+              <Button type="primary">{t('landing.browseButton')}</Button>
             </RouterLink>
           </Flex>
         </Card>

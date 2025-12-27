@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { message } from 'asterui'
 import { api } from '../services/api'
-import { useToast } from '../contexts/ToastContext'
 
 interface ContactModalProps {
   isOpen: boolean
@@ -11,7 +11,6 @@ interface ContactModalProps {
 
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const { t } = useTranslation()
-  const { showToast } = useToast()
   const queryClient = useQueryClient()
   const [subject, setSubject] = useState('')
   const [body, setBody] = useState('')
@@ -20,7 +19,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     mutationFn: (data: { subject: string; body: string }) =>
       api.post('/messages', data),
     onSuccess: () => {
-      showToast(t('contact.messageSent'), 'success')
+      message.success(t('contact.messageSent'))
       queryClient.invalidateQueries({ queryKey: ['messages'] })
       setSubject('')
       setBody('')

@@ -21,7 +21,7 @@ export default function Orders() {
       title: t('orders.cancelConfirmTitle'),
       content: t('orders.cancelConfirmMessage'),
       okText: t('orders.confirmCancel'),
-      type: 'danger',
+      type: 'error',
       cancelText: t('common.cancel'),
       onOk: () => {
         setCancelError(null)
@@ -108,7 +108,7 @@ export default function Orders() {
   if (error) {
     return (
       <div className="m-8">
-        <Alert type="error">
+        <Alert color="error">
           {error instanceof Error ? error.message : t('orders.loadError')}
         </Alert>
       </div>
@@ -122,8 +122,7 @@ export default function Orders() {
       {cancelError && (
         <Alert
           type="error"
-          closable
-          onClose={() => setCancelError(null)}
+          closable={{ onClose: () => setCancelError(null) }}
           className="mb-4"
         >
           {cancelError}
@@ -133,8 +132,7 @@ export default function Orders() {
       {reorderSuccess && (
         <Alert
           type="success"
-          closable
-          onClose={() => setReorderSuccess(null)}
+          closable={{ onClose: () => setReorderSuccess(null) }}
           className="mb-4"
         >
           {reorderSuccess}
@@ -142,7 +140,7 @@ export default function Orders() {
       )}
 
       {orders.length === 0 ? (
-        <Alert type="info">{t('orders.noOrders')}</Alert>
+        <Alert color="info">{t('orders.noOrders')}</Alert>
       ) : (
         <div className="space-y-4">
           {orders.map((order) => (
@@ -201,7 +199,7 @@ export default function Orders() {
                   </Button>
                 )}
                 <Button
-                  color="primary"
+                  type="primary"
                   size="sm"
                   onClick={() => handleReorder(order.id)}
                   loading={reorderingOrderId === order.id}

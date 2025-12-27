@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Modal, Alert, Form, Input, Checkbox, Button, Typography } from 'asterui'
+import { Modal, Alert, Form, Input, Checkbox, Button } from 'asterui'
 import AddressAutocomplete from './AddressAutocomplete'
 
 interface Address {

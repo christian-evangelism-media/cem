@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSendMessage } from '../hooks/useMessageQueries'
-import { Alert, Button, Input, Typography } from 'asterui'
+import { Alert, Button, Input, Textarea, Typography } from 'asterui'
 
 const { Title } = Typography
-const { TextArea } = Input
 
 interface FeedbackModalProps {
   orderId: number
@@ -60,7 +59,7 @@ export default function FeedbackModal({ orderId, orderNumber, onClose }: Feedbac
             <label className="label">
               <span className="label-text font-medium">{t('feedback.feedbackLabel')}</span>
             </label>
-            <TextArea
+            <Textarea
               className="w-full h-40 resize-none"
               placeholder={t('feedback.placeholder')}
               value={feedback}
@@ -70,7 +69,7 @@ export default function FeedbackModal({ orderId, orderNumber, onClose }: Feedbac
           </div>
 
           {sendMessage.isError && (
-            <Alert type="error">
+            <Alert color="error">
               {sendMessage.error instanceof Error
                 ? sendMessage.error.message
                 : t('feedback.error')}
@@ -79,7 +78,7 @@ export default function FeedbackModal({ orderId, orderNumber, onClose }: Feedbac
 
           <div className="modal-action mt-6">
             <Button
-              variant="ghost"
+              ghost
               onClick={onClose}
               disabled={sendMessage.isPending}
             >
@@ -87,7 +86,7 @@ export default function FeedbackModal({ orderId, orderNumber, onClose }: Feedbac
             </Button>
             <Button
               htmlType="submit"
-              color="primary"
+              type="primary"
               loading={sendMessage.isPending}
               disabled={!feedback.trim()}
             >

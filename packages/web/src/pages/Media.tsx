@@ -196,7 +196,7 @@ export default function Media() {
   if (error) {
     return (
       <div className="m-8">
-        <Alert type="error">
+        <Alert color="error">
           {error instanceof Error ? error.message : t('media.loadError')}
         </Alert>
       </div>
@@ -247,7 +247,7 @@ export default function Media() {
         <div className="flex gap-2 w-full sm:w-auto">
           {cartItems.length > 0 && (
             <Button
-              color="primary"
+              type="primary"
               size="sm"
               onClick={quickPlaceOrder}
               loading={createOrder.isPending}
@@ -276,7 +276,7 @@ export default function Media() {
 
       <div>
         {media.length === 0 ? (
-          <Alert type="info">{t('media.noMedia')}</Alert>
+          <Alert color="info">{t('media.noMedia')}</Alert>
         ) : (
           <div className="grid gap-2">
             {media.map((item) => (
@@ -288,7 +288,7 @@ export default function Media() {
                       {user && (
                         <Button
                           size="xs"
-                          variant="ghost"
+                          ghost
                           shape="circle"
                           onClick={() => handleToggleFavorite(item.id)}
                           loading={toggleFavorite.isPending}
@@ -333,7 +333,7 @@ export default function Media() {
                     {user && !isInCart(item.id) && (
                       <Button
                         size="xs"
-                        color="primary"
+                        type="primary"
                         onClick={() => addToCartHandler(item.id)}
                         loading={addToCart.isPending}
                         className="flex-1 md:flex-initial"
@@ -357,7 +357,7 @@ export default function Media() {
                         <Button
                           size="xs"
                           shape="circle"
-                          variant="ghost"
+                          ghost
                           className="text-error"
                           onClick={() => removeFromCart(item.id)}
                           loading={removeCartItem.isPending}

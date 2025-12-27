@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useUser } from '../contexts/UserContext'
-import { useToast } from '../contexts/ToastContext'
 import { api } from '../services/api'
-import { Button, Card, Form, Input, Typography } from 'asterui'
+import { Button, Card, Form, Input, Typography, message } from 'asterui'
 
 const { Title } = Typography
 
@@ -21,17 +20,16 @@ interface PasswordFormData {
 export default function Account() {
   const { t } = useTranslation()
   const { user, setUser } = useUser()
-  const { showToast } = useToast()
-  const [profileForm] = Form.useForm<ProfileFormData>()
-  const [passwordForm] = Form.useForm<PasswordFormData>()
+  const profileForm = Form.useForm<ProfileFormData>()
+  const passwordForm = Form.useForm<PasswordFormData>()
 
   const onProfileSubmit = async (data: ProfileFormData) => {
     try {
       const response = await api.auth.updateProfile(data)
       setUser(response.user)
-      showToast(t('account.profileUpdated'), 'success')
+      message.success(t('account.profileUpdated'))
     } catch (err) {
-      showToast(err instanceof Error ? err.message : t('account.profileUpdateFailed'), 'error')
+      message.error(err instanceof Error ? err.message : t('account.profileUpdateFailed'))
     }
   }
 
@@ -41,10 +39,10 @@ export default function Account() {
         currentPassword: data.currentPassword,
         newPassword: data.newPassword,
       })
-      showToast(t('account.passwordChanged'), 'success')
+      message.success(t('account.passwordChanged'))
       passwordForm.resetFields()
     } catch (err) {
-      showToast(err instanceof Error ? err.message : t('account.passwordChangeFailed'), 'error')
+      message.error(err instanceof Error ? err.message : t('account.passwordChangeFailed'))
     }
   }
 
@@ -106,7 +104,7 @@ export default function Account() {
 
           <Button
             htmlType="submit"
-            color="primary"
+            type="primary"
             className="w-full md:w-auto mt-4"
           >
             {t('account.updateProfile')}
@@ -168,7 +166,7 @@ export default function Account() {
 
           <Button
             htmlType="submit"
-            color="primary"
+            type="primary"
             className="w-full md:w-auto mt-4"
           >
             {t('account.changePasswordButton')}

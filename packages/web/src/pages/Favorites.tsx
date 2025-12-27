@@ -105,7 +105,7 @@ export default function Favorites() {
   if (error) {
     return (
       <div className="m-8">
-        <Alert type="error">
+        <Alert color="error">
           {error instanceof Error ? error.message : t('favorites.loadError')}
         </Alert>
       </div>
@@ -120,7 +120,7 @@ export default function Favorites() {
         {/* Quick Place Order Button - only show if favorited items are in cart */}
         {hasFavoritesInCart && (
           <Button
-            color="primary"
+            type="primary"
             size="sm"
             onClick={quickPlaceOrder}
             loading={createOrder.isPending}
@@ -131,7 +131,7 @@ export default function Favorites() {
       </div>
 
       {favorites.length === 0 ? (
-        <Alert type="info">{t('favorites.noFavorites')}</Alert>
+        <Alert color="info">{t('favorites.noFavorites')}</Alert>
       ) : (
         <div className="grid gap-2">
           {favorites.map((favorite) => (
@@ -174,7 +174,7 @@ export default function Favorites() {
                   {user && !isInCart(favorite.media.id) && (
                     <Button
                       size="xs"
-                      color="primary"
+                      type="primary"
                       onClick={() => handleAddToCart(favorite.media.id)}
                       loading={addToCart.isPending}
                       className="flex-1 md:flex-initial"
@@ -198,7 +198,7 @@ export default function Favorites() {
                       <Button
                         size="xs"
                         shape="circle"
-                        variant="ghost"
+                        ghost
                         className="text-error"
                         onClick={() => removeFromCart(favorite.media.id)}
                         loading={removeCartItem.isPending}
@@ -219,7 +219,7 @@ export default function Favorites() {
 
                   <Button
                     size="xs"
-                    variant="ghost"
+                    ghost
                     className="text-error flex-1 md:flex-initial"
                     onClick={() => handleRemoveFavorite(favorite.mediaId)}
                     loading={removeFavorite.isPending}
