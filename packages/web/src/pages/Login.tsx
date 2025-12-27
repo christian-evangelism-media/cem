@@ -5,7 +5,7 @@ import { useUser } from '../contexts/UserContext'
 import { api } from '../services/api'
 import { Form, Input, Checkbox, Button, Card, Flex, Space, Typography, Alert } from 'asterui'
 
-const { Link, Paragraph } = Typography
+const { Paragraph } = Typography
 
 interface LoginFormData {
   email: string
@@ -33,18 +33,19 @@ export default function Login() {
     }
   }, [form])
 
-  const handleSubmit = async (values: LoginFormData) => {
+  const handleSubmit = async (values: any) => {
+    const formData = values as LoginFormData
     setServerError('')
 
     try {
       // Save or clear email in localStorage based on remember checkbox
-      if (values.remember) {
-        localStorage.setItem(REMEMBERED_EMAIL_KEY, values.email)
+      if (formData.remember) {
+        localStorage.setItem(REMEMBERED_EMAIL_KEY, formData.email)
       } else {
         localStorage.removeItem(REMEMBERED_EMAIL_KEY)
       }
 
-      const response = await api.auth.login(values)
+      const response = await api.auth.login(formData)
       setUser(response.user)
       navigate('/media')
     } catch (err) {

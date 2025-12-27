@@ -229,7 +229,7 @@ function AppContent() {
             </Link>
           )}
           {user ? (
-            <Dropdown position="bottom" align="end">
+            <Dropdown placement="bottomRight">
               <Dropdown.Trigger>
                 <Button ghost>{t('nav.hello', { name: user.firstName })}</Button>
               </Dropdown.Trigger>
@@ -259,7 +259,7 @@ function AppContent() {
           <LanguageSwitcher />
           <LanguagePreferences />
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-          <Dropdown position="bottom" align="end">
+          <Dropdown placement="bottomRight">
             <Dropdown.Trigger>
               <Button ghost>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

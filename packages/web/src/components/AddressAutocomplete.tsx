@@ -38,7 +38,7 @@ export default function AddressAutocomplete({
   const [suggestions, setSuggestions] = useState<MapboxFeature[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
-  const debounceTimer = useRef<number | undefined>(undefined)
+  const debounceTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const wrapperRef = useRef<HTMLDivElement>(null)
 
   // Close dropdown when clicking outside

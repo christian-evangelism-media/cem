@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
@@ -15,7 +15,7 @@ export default function DonateSuccess() {
     queryFn: async () => {
       if (!sessionId) throw new Error('No session ID')
       const response = await $api.donations.session({ sessionId }).$get()
-      return response.donation
+      return response.data && 'donation' in response.data ? response.data.donation : null
     },
     enabled: !!sessionId,
   })
