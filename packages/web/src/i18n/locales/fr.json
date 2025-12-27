@@ -103,7 +103,9 @@
     "quickOrder": "Commande Rapide",
     "orderSuccess": "Commande passée avec succès!",
     "orderError": "Échec de la commande",
-    "loadError": "Échec du chargement des médias"
+    "loadError": "Échec du chargement des médias",
+    "filterLanguagesTitle": "Filtrer les Langues",
+    "filterLanguagesDescription": "Sélectionnez les langues à filtrer. Seuls les médias où toutes les langues de votre sélection sont disponibles seront affichés."
   },
   "orders": {
     "title": "Mes Commandes",
@@ -154,6 +156,7 @@
     "delete": "Supprimer",
     "confirm": "Confirmer",
     "ok": "OK",
+    "close": "Fermer",
     "notice": "Avis"
   },
   "address": {
@@ -196,13 +199,16 @@
     "placeOrder": "Passer la Commande",
     "shipping": "Expédition",
     "pickup": "Ramassage",
-    "placeOrderPickup": "Passer Commande de Ramassage"
+    "placeOrderPickup": "Passer Commande de Ramassage",
+    "removeFromCart": "Retirer du panier"
   },
   "favorites": {
     "title": "Mes Favoris",
     "noFavorites": "Vous n'avez pas encore d'articles favoris.",
     "loadError": "Échec du chargement des favoris",
-    "remove": "Supprimer"
+    "remove": "Supprimer",
+    "addToFavorites": "Ajouter aux favoris",
+    "removeFromFavorites": "Retirer des favoris"
   },
   "account": {
     "title": "Paramètres du Compte",

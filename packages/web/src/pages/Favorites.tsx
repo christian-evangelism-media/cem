@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useFavorites, useRemoveFavorite } from '../hooks/useFavoriteQueries'
@@ -7,7 +6,9 @@ import { useCreateOrder } from '../hooks/useMediaQueries'
 import { useAddresses } from '../hooks/useAddressQueries'
 import { useUser } from '../contexts/UserContext'
 import { API_URL } from '../services/api'
-import AlertModal from '../components/AlertModal'
+import { Alert, Badge, Button, Card, Loading, Modal, Select, Typography } from 'asterui'
+
+const { Title } = Typography
 
 export default function Favorites() {
   const { t } = useTranslation()
@@ -20,7 +21,6 @@ export default function Favorites() {
   const removeCartItem = useRemoveCartItem()
   const createOrder = useCreateOrder()
   const { data: addresses = [] } = useAddresses(!!user)
-  const [alertModal, setAlertModal] = useState<{ isOpen: boolean; message: string } | null>(null)
 
   const handleRemoveFavorite = (mediaId: number) => {
     removeFavorite.mutate(mediaId)
@@ -63,7 +63,11 @@ export default function Favorites() {
 
   const quickPlaceOrder = () => {
     if (addresses.length === 0) {
-      setAlertModal({ isOpen: true, message: t('cart.noAddress') })
+      Modal.warning({
+        title: t('common.notice'),
+        content: t('cart.noAddress'),
+        onOk: () => navigate('/addresses'),
+      })
       return
     }
 
@@ -93,15 +97,17 @@ export default function Favorites() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
+        <Loading size="lg" />
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="alert alert-error m-8">
-        <span>{error instanceof Error ? error.message : t('favorites.loadError')}</span>
+      <div className="m-8">
+        <Alert type="error">
+          {error instanceof Error ? error.message : t('favorites.loadError')}
+        </Alert>
       </div>
     )
   }
@@ -109,134 +115,122 @@ export default function Favorites() {
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-8">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold">{t('favorites.title')}</h1>
+        <Title level={1} className="text-3xl md:text-4xl">{t('favorites.title')}</Title>
 
         {/* Quick Place Order Button - only show if favorited items are in cart */}
         {hasFavoritesInCart && (
-          <button
+          <Button
+            color="primary"
+            size="sm"
             onClick={quickPlaceOrder}
-            className="btn btn-primary btn-sm"
-            disabled={createOrder.isPending}
+            loading={createOrder.isPending}
           >
-            {createOrder.isPending ? (
-              <span className="loading loading-spinner loading-xs"></span>
-            ) : (
-              t('media.quickOrder')
-            )}
-          </button>
+            {t('media.quickOrder')}
+          </Button>
         )}
       </div>
 
       {favorites.length === 0 ? (
-        <div className="alert alert-info">
-          <span>{t('favorites.noFavorites')}</span>
-        </div>
+        <Alert type="info">{t('favorites.noFavorites')}</Alert>
       ) : (
         <div className="grid gap-2">
           {favorites.map((favorite) => (
-            <div key={favorite.id} className="card bg-base-100 shadow">
-              <div className="card-body p-3 md:p-4">
-                <div className="flex flex-col md:flex-row justify-between items-start gap-3 md:gap-4">
-                  <div className="flex items-start gap-2 flex-wrap flex-1 w-full">
-                    <h2 className="card-title text-base md:text-lg w-full md:w-auto">{favorite.media.name}</h2>
-                    <div className="badge badge-sm badge-secondary">{favorite.media.type}</div>
-                    {favorite.media.languages.map(lang => (
-                      <div key={lang} className="badge badge-sm badge-accent">
-                        {t(`languages.${lang}`)}
-                      </div>
-                    ))}
-                  </div>
+            <Card key={favorite.id} className="shadow p-3 md:p-4">
+              <div className="flex flex-col md:flex-row justify-between items-start gap-3 md:gap-4">
+                <div className="flex items-start gap-2 flex-wrap flex-1 w-full">
+                  <Title level={2} className="text-base md:text-lg w-full md:w-auto">{favorite.media.name}</Title>
+                  <Badge color="secondary" size="sm">{favorite.media.type}</Badge>
+                  {favorite.media.languages.map(lang => (
+                    <Badge key={lang} color="accent" size="sm">
+                      {t(`languages.${lang}`)}
+                    </Badge>
+                  ))}
+                </div>
 
-                  <div className="flex flex-wrap gap-2 items-center w-full md:w-auto md:flex-shrink-0">
-                    {favorite.media.digitalPdfUrl && (
-                      <a
-                        href={`${API_URL}${favorite.media.digitalPdfUrl}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-xs btn-outline flex-1 md:flex-initial"
-                      >
-                        {t('media.viewDigital')}
-                      </a>
-                    )}
-                    {favorite.media.pressPdfUrl && (
-                      <a
-                        href={`${API_URL}${favorite.media.pressPdfUrl}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-xs btn-outline btn-secondary flex-1 md:flex-initial"
-                      >
-                        {t('media.viewPress')}
-                      </a>
-                    )}
-
-                    {user && !isInCart(favorite.media.id) && (
-                      <button
-                        onClick={() => handleAddToCart(favorite.media.id)}
-                        className="btn btn-xs btn-primary flex-1 md:flex-initial"
-                        disabled={addToCart.isPending}
-                      >
-                        {t('media.addToCart')}
-                      </button>
-                    )}
-
-                    {user && isInCart(favorite.media.id) && (
-                      <div className="flex items-center gap-2 w-full md:w-auto">
-                        <select
-                          value={getCartQuantity(favorite.media.id, favorite.media.allowedQuantities)}
-                          onChange={(e) => updateQuantity(favorite.media.id, parseInt(e.target.value))}
-                          className="select select-bordered select-xs flex-1 md:w-20"
-                        >
-                          {favorite.media.allowedQuantities.map((qty) => (
-                            <option key={qty} value={qty}>{qty}</option>
-                          ))}
-                        </select>
-                        <button
-                          onClick={() => removeFromCart(favorite.media.id)}
-                          className="btn btn-xs btn-circle btn-ghost text-error"
-                          disabled={removeCartItem.isPending}
-                          title="Remove from cart"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
-                        </button>
-                      </div>
-                    )}
-
-                    <button
-                      onClick={() => handleRemoveFavorite(favorite.mediaId)}
-                      className="btn btn-xs btn-ghost text-error flex-1 md:flex-initial"
-                      disabled={removeFavorite.isPending}
+                <div className="flex flex-wrap gap-2 items-center w-full md:w-auto md:flex-shrink-0">
+                  {favorite.media.digitalPdfUrl && (
+                    <a
+                      href={`${API_URL}${favorite.media.digitalPdfUrl}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      {t('favorites.remove')}
-                    </button>
-                  </div>
+                      <Button size="xs" variant="outline" className="flex-1 md:flex-initial">
+                        {t('media.viewDigital')}
+                      </Button>
+                    </a>
+                  )}
+                  {favorite.media.pressPdfUrl && (
+                    <a
+                      href={`${API_URL}${favorite.media.pressPdfUrl}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button size="xs" variant="outline" color="secondary" className="flex-1 md:flex-initial">
+                        {t('media.viewPress')}
+                      </Button>
+                    </a>
+                  )}
+
+                  {user && !isInCart(favorite.media.id) && (
+                    <Button
+                      size="xs"
+                      color="primary"
+                      onClick={() => handleAddToCart(favorite.media.id)}
+                      loading={addToCart.isPending}
+                      className="flex-1 md:flex-initial"
+                    >
+                      {t('media.addToCart')}
+                    </Button>
+                  )}
+
+                  {user && isInCart(favorite.media.id) && (
+                    <div className="flex items-center gap-2 w-full md:w-auto">
+                      <Select
+                        size="xs"
+                        value={getCartQuantity(favorite.media.id, favorite.media.allowedQuantities)}
+                        onChange={(value) => updateQuantity(favorite.media.id, Number(value))}
+                        className="flex-1 md:w-20"
+                      >
+                        {favorite.media.allowedQuantities.map((qty) => (
+                          <option key={qty} value={qty}>{qty}</option>
+                        ))}
+                      </Select>
+                      <Button
+                        size="xs"
+                        shape="circle"
+                        variant="ghost"
+                        className="text-error"
+                        onClick={() => removeFromCart(favorite.media.id)}
+                        loading={removeCartItem.isPending}
+                        title={t('cart.removeFromCart')}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-4 w-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </Button>
+                    </div>
+                  )}
+
+                  <Button
+                    size="xs"
+                    variant="ghost"
+                    className="text-error flex-1 md:flex-initial"
+                    onClick={() => handleRemoveFavorite(favorite.mediaId)}
+                    loading={removeFavorite.isPending}
+                  >
+                    {t('favorites.remove')}
+                  </Button>
                 </div>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
-      )}
-
-      {alertModal && (
-        <AlertModal
-          isOpen={alertModal.isOpen}
-          title={t('common.notice')}
-          message={alertModal.message}
-          type="warning"
-          onClose={() => {
-            setAlertModal(null)
-            if (alertModal.message === t('cart.noAddress')) {
-              navigate('/addresses')
-            }
-          }}
-        />
       )}
     </div>
   )

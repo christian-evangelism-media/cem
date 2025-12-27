@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Modal, Alert, Form, Input, Checkbox, Button, Typography } from 'asterui'
 import AddressAutocomplete from './AddressAutocomplete'
 
 interface Address {
@@ -131,177 +132,131 @@ export default function AddressForm({
     }
   }
 
-  if (!isOpen) return null
-
   return (
-    <div className="modal modal-open">
-      <div className="modal-box max-w-2xl">
-        <h3 className="font-bold text-lg mb-4">
-          {address ? t('address.editTitle') || 'Edit Address' : t('address.addTitle') || 'Add New Address'}
-        </h3>
+    <Modal
+      open={isOpen}
+      onCancel={onCancel}
+      title={address ? t('address.editTitle') || 'Edit Address' : t('address.addTitle') || 'Add New Address'}
+      width={800}
+      footer={null}
+    >
+      {error && (
+        <Alert type="error" className="mb-4">
+          <span>{error}</span>
+        </Alert>
+      )}
 
-        {error && (
-          <div className="alert alert-error mb-4">
-            <span>{error}</span>
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
           {/* Name Field */}
-          <div className="form-control mb-4">
-            <label className="label">
-              <span className="label-text">{t('address.name') || 'Recipient Name'}</span>
-            </label>
-            <input
+          <Form.Item label={t('address.name') || 'Recipient Name'} required className="mb-4">
+            <Input
               type="text"
-              className="input input-bordered w-full"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
             />
-          </div>
+          </Form.Item>
 
           {/* Label Field (optional - e.g., "Home", "Work") */}
-          <div className="form-control mb-4">
-            <label className="label">
-              <span className="label-text">{t('address.label') || 'Label (Optional)'}</span>
-            </label>
-            <input
+          <Form.Item label={t('address.label') || 'Label (Optional)'} className="mb-4">
+            <Input
               type="text"
-              className="input input-bordered w-full"
               placeholder={t('address.labelPlaceholder') || 'e.g., Home, Work, Church'}
               value={formData.label}
               onChange={(e) => setFormData({ ...formData, label: e.target.value })}
             />
-          </div>
+          </Form.Item>
 
           {/* Address Autocomplete */}
-          <div className="form-control mb-4">
-            <label className="label">
-              <span className="label-text">{t('address.search') || 'Search Address'}</span>
-            </label>
+          <Form.Item label={t('address.search') || 'Search Address'} className="mb-4">
             <AddressAutocomplete
               onSelect={handleAutocompleteSelect}
               defaultValue={formData.streetAddress}
               placeholder={t('address.searchPlaceholder') || 'Start typing your address...'}
             />
-          </div>
+          </Form.Item>
 
           {/* Street Address */}
-          <div className="form-control mb-4">
-            <label className="label">
-              <span className="label-text">{t('address.street') || 'Street Address'}</span>
-            </label>
-            <input
+          <Form.Item label={t('address.street') || 'Street Address'} required className="mb-4">
+            <Input
               type="text"
-              className="input input-bordered w-full"
               value={formData.streetAddress}
               onChange={(e) => setFormData({ ...formData, streetAddress: e.target.value })}
               required
             />
-          </div>
+          </Form.Item>
 
           {/* Street Address Line 2 */}
-          <div className="form-control mb-4">
-            <label className="label">
-              <span className="label-text">{t('address.street2') || 'Apartment, suite, etc. (Optional)'}</span>
-            </label>
-            <input
+          <Form.Item label={t('address.street2') || 'Apartment, suite, etc. (Optional)'} className="mb-4">
+            <Input
               type="text"
-              className="input input-bordered w-full"
               value={formData.streetAddress2}
               onChange={(e) => setFormData({ ...formData, streetAddress2: e.target.value })}
             />
-          </div>
+          </Form.Item>
 
           {/* City and Province */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">{t('address.city') || 'City'}</span>
-              </label>
-              <input
+            <Form.Item label={t('address.city') || 'City'} required>
+              <Input
                 type="text"
-                className="input input-bordered w-full"
                 value={formData.city}
                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                 required
               />
-            </div>
+            </Form.Item>
 
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">{t('address.province') || 'Province / State'}</span>
-              </label>
-              <input
+            <Form.Item label={t('address.province') || 'Province / State'}>
+              <Input
                 type="text"
-                className="input input-bordered w-full"
                 value={formData.province}
                 onChange={(e) => setFormData({ ...formData, province: e.target.value })}
               />
-            </div>
+            </Form.Item>
           </div>
 
           {/* Postal Code and Country */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">{t('address.postalCode') || 'Postal Code'}</span>
-              </label>
-              <input
+            <Form.Item label={t('address.postalCode') || 'Postal Code'}>
+              <Input
                 type="text"
-                className="input input-bordered w-full"
                 value={formData.postalCode}
                 onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
               />
-            </div>
+            </Form.Item>
 
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">{t('address.country') || 'Country Code (e.g., CA, US)'}</span>
-              </label>
-              <input
+            <Form.Item label={t('address.country') || 'Country Code (e.g., CA, US)'} required>
+              <Input
                 type="text"
-                className="input input-bordered w-full"
                 placeholder="CA"
                 maxLength={2}
                 value={formData.country}
                 onChange={(e) => setFormData({ ...formData, country: e.target.value.toUpperCase() })}
                 required
               />
-            </div>
+            </Form.Item>
           </div>
 
           {/* Is Default */}
-          <div className="form-control mb-4">
-            <label className="label cursor-pointer justify-start gap-2">
-              <input
-                type="checkbox"
-                className="checkbox"
-                checked={formData.isDefault}
-                onChange={(e) => setFormData({ ...formData, isDefault: e.target.checked })}
-              />
-              <span className="label-text">{t('address.setDefault') || 'Set as default address'}</span>
-            </label>
+          <div className="mb-4">
+            <Checkbox
+              checked={formData.isDefault}
+              onChange={(e) => setFormData({ ...formData, isDefault: e.target.checked })}
+            >
+              {t('address.setDefault') || 'Set as default address'}
+            </Checkbox>
           </div>
 
           {/* Action Buttons */}
-          <div className="modal-action">
-            <button type="button" className="btn" onClick={onCancel} disabled={isSubmitting}>
+          <div className="flex justify-end gap-2 mt-6">
+            <Button onClick={onCancel} disabled={isSubmitting}>
               {t('common.cancel') || 'Cancel'}
-            </button>
-            <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <span className="loading loading-spinner"></span>
-              ) : address ? (
-                t('common.update') || 'Update'
-              ) : (
-                t('common.add') || 'Add'
-              )}
-            </button>
+            </Button>
+            <Button type="primary" htmlType="submit" loading={isSubmitting}>
+              {address ? t('common.update') || 'Update' : t('common.add') || 'Add'}
+            </Button>
           </div>
         </form>
-      </div>
-    </div>
+      </Modal>
   )
 }

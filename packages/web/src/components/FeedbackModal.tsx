@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSendMessage } from '../hooks/useMessageQueries'
+import { Alert, Button, Input, Typography } from 'asterui'
+
+const { Title } = Typography
+const { TextArea } = Input
 
 interface FeedbackModalProps {
   orderId: number
@@ -34,18 +38,17 @@ export default function FeedbackModal({ orderId, orderNumber, onClose }: Feedbac
   return (
     <div className="modal modal-open">
       <div className="modal-box max-w-2xl">
-        <h3 className="font-bold text-xl mb-6">
+        <Title level={3} className="text-xl mb-6">
           {t('feedback.title', { orderNumber })}
-        </h3>
+        </Title>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="form-control">
             <label className="label">
               <span className="label-text font-medium">{t('feedback.subjectLabel')}</span>
             </label>
-            <input
-              type="text"
-              className="input input-bordered w-full"
+            <Input
+              className="w-full"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               required
@@ -57,8 +60,8 @@ export default function FeedbackModal({ orderId, orderNumber, onClose }: Feedbac
             <label className="label">
               <span className="label-text font-medium">{t('feedback.feedbackLabel')}</span>
             </label>
-            <textarea
-              className="textarea textarea-bordered w-full h-40 resize-none"
+            <TextArea
+              className="w-full h-40 resize-none"
               placeholder={t('feedback.placeholder')}
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}
@@ -67,51 +70,29 @@ export default function FeedbackModal({ orderId, orderNumber, onClose }: Feedbac
           </div>
 
           {sendMessage.isError && (
-            <div className="alert alert-error">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="stroke-current shrink-0 h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <span>
-                {sendMessage.error instanceof Error
-                  ? sendMessage.error.message
-                  : t('feedback.error')}
-              </span>
-            </div>
+            <Alert type="error">
+              {sendMessage.error instanceof Error
+                ? sendMessage.error.message
+                : t('feedback.error')}
+            </Alert>
           )}
 
           <div className="modal-action mt-6">
-            <button
-              type="button"
-              className="btn btn-ghost"
+            <Button
+              variant="ghost"
               onClick={onClose}
               disabled={sendMessage.isPending}
             >
               {t('common.cancel')}
-            </button>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={sendMessage.isPending || !feedback.trim()}
+            </Button>
+            <Button
+              htmlType="submit"
+              color="primary"
+              loading={sendMessage.isPending}
+              disabled={!feedback.trim()}
             >
-              {sendMessage.isPending ? (
-                <>
-                  <span className="loading loading-spinner loading-sm"></span>
-                  {t('feedback.sending')}
-                </>
-              ) : (
-                t('feedback.submit')
-              )}
-            </button>
+              {t('feedback.submit')}
+            </Button>
           </div>
         </form>
       </div>

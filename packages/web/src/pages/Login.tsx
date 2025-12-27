@@ -20,7 +20,7 @@ export default function Login() {
   const { t } = useTranslation()
   const { setUser } = useUser()
   const [serverError, setServerError] = useState('')
-  const [form] = Form.useForm()
+  const form = Form.useForm()
 
   // Load remembered email on component mount
   useEffect(() => {

@@ -76,7 +76,9 @@
     "placeOrder": "অর্ডার করুন",
     "orderSuccess": "অর্ডার সফলভাবে সম্পন্ন হয়েছে!",
     "orderError": "অর্ডার ব্যর্থ হয়েছে",
-    "loadError": "মিডিয়া লোড করতে ব্যর্থ"
+    "loadError": "মিডিয়া লোড করতে ব্যর্থ",
+    "filterLanguagesTitle": "ভাষা ফিল্টার করুন",
+    "filterLanguagesDescription": "ফিল্টার করার জন্য ভাষা নির্বাচন করুন। শুধুমাত্র সেই মিডিয়া প্রদর্শিত হবে যেখানে আপনার নির্বাচিত সমস্ত ভাষা উপলব্ধ।"
   },
   "orders": {
     "title": "আমার অর্ডার",
@@ -127,6 +129,7 @@
     "delete": "মুছুন",
     "confirm": "নিশ্চিত করুন",
     "ok": "OK",
+    "close": "বন্ধ করুন",
     "notice": "বিজ্ঞপ্তি"
   },
   "address": {
@@ -165,13 +168,16 @@
     "placeOrder": "অর্ডার করুন",
     "shipping": "শিপিং",
     "pickup": "পিকআপ",
-    "placeOrderPickup": "পিকআপ অর্ডার দিন"
+    "placeOrderPickup": "পিকআপ অর্ডার দিন",
+    "removeFromCart": "কার্ট থেকে সরান"
   },
   "favorites": {
     "title": "আমার প্রিয়",
     "noFavorites": "আপনার এখনও কোনো প্রিয় আইটেম নেই।",
     "loadError": "প্রিয় লোড করতে ব্যর্থ",
-    "remove": "সরান"
+    "remove": "সরান",
+    "addToFavorites": "প্রিয়তে যোগ করুন",
+    "removeFromFavorites": "প্রিয় থেকে সরান"
   },
   "account": {
     "title": "অ্যাকাউন্ট সেটিংস",

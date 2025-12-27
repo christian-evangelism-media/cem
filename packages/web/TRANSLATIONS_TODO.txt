@@ -23,6 +23,9 @@ English: "Remove from favorites"
 ### cart.removeFromCart
 English: "Remove from cart"
 
+### common.close
+English: "Close"
+
 ---
 
 ## Instructions for translating:

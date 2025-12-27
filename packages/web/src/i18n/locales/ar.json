@@ -76,7 +76,9 @@
     "placeOrder": "تقديم الطلب",
     "orderSuccess": "تم تقديم الطلب بنجاح!",
     "orderError": "فشل تقديم الطلب",
-    "loadError": "فشل تحميل الوسائط"
+    "loadError": "فشل تحميل الوسائط",
+    "filterLanguagesTitle": "تصفية اللغات",
+    "filterLanguagesDescription": "اختر اللغات للتصفية. سيتم عرض الوسائط التي تتوفر فيها جميع اللغات المحددة فقط."
   },
   "orders": {
     "title": "طلباتي",
@@ -127,6 +129,7 @@
     "delete": "حذف",
     "confirm": "تأكيد",
     "ok": "OK",
+    "close": "إغلاق",
     "notice": "إشعار"
   },
   "address": {
@@ -169,13 +172,16 @@
     "placeOrder": "تقديم الطلب",
     "shipping": "الشحن",
     "pickup": "الاستلام",
-    "placeOrderPickup": "تقديم طلب استلام"
+    "placeOrderPickup": "تقديم طلب استلام",
+    "removeFromCart": "إزالة من السلة"
   },
   "favorites": {
     "title": "مفضلاتي",
     "noFavorites": "ليس لديك عناصر مفضلة بعد.",
     "loadError": "فشل تحميل المفضلات",
-    "remove": "إزالة"
+    "remove": "إزالة",
+    "addToFavorites": "إضافة إلى المفضلات",
+    "removeFromFavorites": "إزالة من المفضلات"
   },
   "account": {
     "title": "إعدادات الحساب",

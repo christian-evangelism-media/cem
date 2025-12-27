@@ -3,6 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { DateTime } from 'luxon'
 import { api } from '../services/api'
+import { Badge, Button, Card, Loading, Typography } from 'asterui'
+
+const { Title, Paragraph, Text } = Typography
 
 interface Message {
   id: number
@@ -52,7 +55,7 @@ export default function Messages() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
+        <Loading size="lg" />
       </div>
     )
   }
@@ -64,55 +67,53 @@ export default function Messages() {
 
   return (
     <div className="container mx-auto p-4 max-w-6xl">
-      <h1 className="text-3xl font-bold mb-6">{t('messages.title')}</h1>
+      <Title level={1} className="text-3xl mb-6">{t('messages.title')}</Title>
 
       {receivedMessages.length === 0 ? (
-        <div className="card bg-base-100 shadow-xl">
-          <div className="card-body text-center text-base-content/70">
+        <Card className="shadow-xl">
+          <div className="text-center text-base-content/70">
             {t('messages.noMessages')}
           </div>
-        </div>
+        </Card>
       ) : (
         <>
           {/* Announcements Section */}
           {announcements.length > 0 && (
             <div className="mb-8">
-              <h2 className="text-2xl font-bold mb-4">{t('messages.announcements')}</h2>
+              <Title level={2} className="text-2xl mb-4">{t('messages.announcements')}</Title>
               <div className="space-y-4">
                 {announcements.map((message) => (
-                  <div
+                  <Card
                     key={message.id}
-                    className="card bg-base-100 shadow-xl cursor-pointer hover:shadow-2xl transition-shadow"
+                    className="shadow-xl cursor-pointer hover:shadow-2xl transition-shadow"
                     onClick={() => setSelectedMessage(message)}
                   >
-                    <div className="card-body">
-                      <div className="flex justify-between items-start">
-                        <h3 className="card-title">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5 text-primary"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
-                            />
-                          </svg>
-                          {message.subject}
-                        </h3>
-                        <span className="text-sm text-base-content/70">
-                          {DateTime.fromISO(message.createdAt)
-                            .setLocale(i18n.language)
-                            .toLocaleString(DateTime.DATETIME_SHORT)}
-                        </span>
-                      </div>
-                      <p className="text-base-content/70 line-clamp-2">{message.body}</p>
+                    <div className="flex justify-between items-start">
+                      <Title level={3} className="flex items-center gap-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5 text-primary"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
+                          />
+                        </svg>
+                        {message.subject}
+                      </Title>
+                      <Text className="text-sm text-base-content/70">
+                        {DateTime.fromISO(message.createdAt)
+                          .setLocale(i18n.language)
+                          .toLocaleString(DateTime.DATETIME_SHORT)}
+                      </Text>
                     </div>
-                  </div>
+                    <Paragraph className="text-base-content/70 line-clamp-2">{message.body}</Paragraph>
+                  </Card>
                 ))}
               </div>
             </div>
@@ -123,35 +124,33 @@ export default function Messages() {
             <div>
               <div className="space-y-4">
                 {responses.map((message) => (
-                  <div
+                  <Card
                     key={message.id}
-                    className="card bg-base-100 shadow-xl cursor-pointer hover:shadow-2xl transition-shadow border-l-4 border-success"
+                    className="shadow-xl cursor-pointer hover:shadow-2xl transition-shadow border-l-4 border-success"
                     onClick={() => setSelectedMessage(message)}
                   >
-                    <div className="card-body">
-                      <div className="flex justify-between items-start">
-                        <div className="flex items-center gap-3">
-                          <h3 className="card-title">{message.subject}</h3>
-                          {message.orderId && (
-                            <span className="badge badge-ghost">
-                              {t('messages.orderBadge', { id: message.orderId })}
-                            </span>
-                          )}
-                          <span className="badge badge-success">{t('messages.responded')}</span>
-                        </div>
-                        <span className="text-sm text-base-content/70">
-                          {message.respondedAt
-                            ? DateTime.fromISO(message.respondedAt)
-                                .setLocale(i18n.language)
-                                .toLocaleString(DateTime.DATETIME_SHORT)
-                            : DateTime.fromISO(message.createdAt)
-                                .setLocale(i18n.language)
-                                .toLocaleString(DateTime.DATETIME_SHORT)}
-                        </span>
+                    <div className="flex justify-between items-start">
+                      <div className="flex items-center gap-3">
+                        <Title level={3}>{message.subject}</Title>
+                        {message.orderId && (
+                          <Badge>
+                            {t('messages.orderBadge', { id: message.orderId })}
+                          </Badge>
+                        )}
+                        <Badge color="success">{t('messages.responded')}</Badge>
                       </div>
-                      <p className="text-base-content/70 line-clamp-2">{message.responseBody}</p>
+                      <Text className="text-sm text-base-content/70">
+                        {message.respondedAt
+                          ? DateTime.fromISO(message.respondedAt)
+                              .setLocale(i18n.language)
+                              .toLocaleString(DateTime.DATETIME_SHORT)
+                          : DateTime.fromISO(message.createdAt)
+                              .setLocale(i18n.language)
+                              .toLocaleString(DateTime.DATETIME_SHORT)}
+                      </Text>
                     </div>
-                  </div>
+                    <Paragraph className="text-base-content/70 line-clamp-2">{message.responseBody}</Paragraph>
+                  </Card>
                 ))}
               </div>
             </div>
@@ -164,7 +163,7 @@ export default function Messages() {
         <div className="modal modal-open">
           <div className="modal-box max-w-3xl">
             <div className="flex justify-between items-start mb-4">
-              <h3 className="font-bold text-xl">
+              <Title level={3} className="text-xl">
                 {selectedMessage.isBroadcast && (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -182,24 +181,24 @@ export default function Messages() {
                   </svg>
                 )}
                 {selectedMessage.subject}
-              </h3>
+              </Title>
               {selectedMessage.orderId && (
-                <span className="badge badge-ghost">
+                <Badge>
                   {t('messages.orderBadge', { id: selectedMessage.orderId })}
-                </span>
+                </Badge>
               )}
             </div>
 
             {/* Show announcement body for broadcasts */}
             {selectedMessage.isBroadcast && (
               <>
-                <div className="mb-4 text-sm text-base-content/70">
+                <Text className="text-sm mb-4 text-base-content/70">
                   {DateTime.fromISO(selectedMessage.createdAt)
                     .setLocale(i18n.language)
                     .toLocaleString(DateTime.DATETIME_FULL)}
-                </div>
+                </Text>
                 <div className="mb-6 p-4 bg-base-200 rounded">
-                  <p className="whitespace-pre-wrap">{selectedMessage.body}</p>
+                  <Paragraph className="whitespace-pre-wrap">{selectedMessage.body}</Paragraph>
                 </div>
               </>
             )}
@@ -208,34 +207,34 @@ export default function Messages() {
             {!selectedMessage.isBroadcast && (
               <>
                 <div className="mb-4">
-                  <h4 className="font-bold mb-2">{t('messages.yourMessage')}</h4>
+                  <Title level={4} className="mb-2">{t('messages.yourMessage')}</Title>
                   <div className="p-4 bg-base-200 rounded">
-                    <div className="text-xs text-base-content/70 mb-2">
+                    <Text className="text-xs text-base-content/70 mb-2">
                       {DateTime.fromISO(selectedMessage.createdAt)
                         .setLocale(i18n.language)
                         .toLocaleString(DateTime.DATETIME_FULL)}
-                    </div>
-                    <p className="whitespace-pre-wrap">{selectedMessage.body}</p>
+                    </Text>
+                    <Paragraph className="whitespace-pre-wrap">{selectedMessage.body}</Paragraph>
                   </div>
                 </div>
 
                 {selectedMessage.responseBody && (
                   <div className="mb-4">
-                    <h4 className="font-bold mb-2 flex items-center gap-2">
+                    <Title level={4} className="mb-2 flex items-center gap-2">
                       {t('messages.response')}
-                      <span className="badge badge-success badge-sm">{t('messages.responded')}</span>
-                    </h4>
+                      <Badge color="success" size="sm">{t('messages.responded')}</Badge>
+                    </Title>
                     <div className="p-4 bg-success bg-opacity-10 rounded border border-success">
-                      <p className="whitespace-pre-wrap">{selectedMessage.responseBody}</p>
+                      <Paragraph className="whitespace-pre-wrap">{selectedMessage.responseBody}</Paragraph>
                       {selectedMessage.respondedBy && selectedMessage.respondedAt && (
-                        <div className="text-xs text-base-content/70 mt-3 pt-3 border-t border-success/30">
+                        <Text className="text-xs text-base-content/70 mt-3 pt-3 border-t border-success/30">
                           {t('messages.respondedBy')}{' '}
                           {selectedMessage.respondedBy.firstName} {selectedMessage.respondedBy.lastName}{' '}
                           {t('messages.on')}{' '}
                           {DateTime.fromISO(selectedMessage.respondedAt)
                             .setLocale(i18n.language)
                             .toLocaleString(DateTime.DATETIME_FULL)}
-                        </div>
+                        </Text>
                       )}
                     </div>
                   </div>
@@ -244,9 +243,9 @@ export default function Messages() {
             )}
 
             <div className="modal-action">
-              <button className="btn" onClick={() => setSelectedMessage(null)}>
+              <Button onClick={() => setSelectedMessage(null)}>
                 {t('common.close')}
-              </button>
+              </Button>
             </div>
           </div>
           <div className="modal-backdrop" onClick={() => setSelectedMessage(null)}></div>

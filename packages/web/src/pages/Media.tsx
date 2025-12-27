@@ -259,7 +259,7 @@ export default function Media() {
 
           <Dropdown
             trigger={['click']}
-            overlay={languageFilterMenu}
+            content={languageFilterMenu}
             placement="bottomRight"
           >
             <Button variant="outline" size="sm" className="flex-1 sm:flex-initial">
@@ -351,7 +351,7 @@ export default function Media() {
                           className="flex-1 md:w-20"
                         >
                           {item.allowedQuantities.map((qty) => (
-                            <Select.Option key={qty} value={qty}>{qty}</Select.Option>
+                            <option key={qty} value={qty}>{qty}</option>
                           ))}
                         </Select>
                         <Button

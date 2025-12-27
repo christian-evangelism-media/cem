@@ -76,7 +76,9 @@
     "placeOrder": "ثبت سفارش",
     "orderSuccess": "سفارش با موفقیت ثبت شد!",
     "orderError": "ثبت سفارش ناموفق بود",
-    "loadError": "بارگذاری رسانه ناموفق بود"
+    "loadError": "بارگذاری رسانه ناموفق بود",
+    "filterLanguagesTitle": "فیلتر زبان‌ها",
+    "filterLanguagesDescription": "زبان‌ها را برای فیلتر کردن انتخاب کنید. فقط رسانه‌هایی نمایش داده می‌شوند که همه زبان‌های انتخابی شما در آن‌ها موجود باشد."
   },
   "orders": {
     "title": "سفارش‌های من",
@@ -127,6 +129,7 @@
     "delete": "حذف",
     "confirm": "تأیید",
     "ok": "OK",
+    "close": "بستن",
     "notice": "اطلاعیه"
   },
   "address": {
@@ -165,13 +168,16 @@
     "placeOrder": "ثبت سفارش",
     "shipping": "ارسال",
     "pickup": "دریافت حضوری",
-    "placeOrderPickup": "ثبت سفارش دریافت حضوری"
+    "placeOrderPickup": "ثبت سفارش دریافت حضوری",
+    "removeFromCart": "حذف از سبد خرید"
   },
   "favorites": {
     "title": "مورد علاقه‌های من",
     "noFavorites": "شما هنوز مورد علاقه ندارید.",
     "loadError": "بارگذاری مورد علاقه‌ها ناموفق بود",
-    "remove": "حذف"
+    "remove": "حذف",
+    "addToFavorites": "افزودن به مورد علاقه‌ها",
+    "removeFromFavorites": "حذف از مورد علاقه‌ها"
   },
   "account": {
     "title": "تنظیمات حساب",

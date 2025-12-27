@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useTranslation } from 'react-i18next'
+import { Alert, Button, Badge, Dropdown } from 'asterui'
 import { UserProvider, useUser } from './contexts/UserContext'
 import { ToastProvider, useToast } from './contexts/ToastContext'
 import { useTheme } from './hooks/useTheme'
@@ -130,7 +131,7 @@ function AppContent() {
       )}
 
       {user && !user.emailVerifiedAt && (
-        <div className="alert alert-warning">
+        <Alert type="warning">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="stroke-current shrink-0 h-6 w-6"
@@ -146,23 +147,21 @@ function AppContent() {
           </svg>
           <span>Please verify your email address. Check your inbox for the verification link.</span>
           <div>
-            <button
-              className="btn btn-sm btn-ghost"
+            <Button
+              size="sm"
+              ghost
               onClick={handleResendVerification}
               disabled={resendingVerification}
             >
               {resendingVerification ? 'Sending...' : 'Resend Email'}
-            </button>
+            </Button>
           </div>
-        </div>
+        </Alert>
       )}
       {verificationMessage && (
-        <div className="alert alert-info">
+        <Alert type="info" closable={{ onClose: () => setVerificationMessage('') }}>
           <span>{verificationMessage}</span>
-          <button className="btn btn-sm btn-ghost" onClick={() => setVerificationMessage('')}>
-            ×
-          </button>
-        </div>
+        </Alert>
       )}
       <nav className="navbar bg-base-100 shadow-lg">
         <div className="flex-1">
@@ -174,25 +173,43 @@ function AppContent() {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex flex-none gap-2">
-          <Link to="/media" className="btn btn-ghost">{t('nav.media')}</Link>
-          <button onClick={() => setDonateModalOpen(true)} className="btn btn-ghost">
+          <Link to="/media">
+            <Button ghost>{t('nav.media')}</Button>
+          </Link>
+          <Button ghost onClick={() => setDonateModalOpen(true)}>
             {t('nav.donate')}
-          </button>
-          {user && <Link to="/favorites" className="btn btn-ghost">{t('nav.myFavorites')}</Link>}
-          {user && <Link to="/orders" className="btn btn-ghost">{t('nav.myOrders')}</Link>}
-          {user && <Link to="/addresses" className="btn btn-ghost">{t('nav.myAddresses')}</Link>}
-          {user && <Link to="/messages" className="btn btn-ghost">{t('nav.messages')}</Link>}
+          </Button>
           {user && (
-            <button onClick={() => setContactModalOpen(true)} className="btn btn-ghost">
+            <Link to="/favorites">
+              <Button ghost>{t('nav.myFavorites')}</Button>
+            </Link>
+          )}
+          {user && (
+            <Link to="/orders">
+              <Button ghost>{t('nav.myOrders')}</Button>
+            </Link>
+          )}
+          {user && (
+            <Link to="/addresses">
+              <Button ghost>{t('nav.myAddresses')}</Button>
+            </Link>
+          )}
+          {user && (
+            <Link to="/messages">
+              <Button ghost>{t('nav.messages')}</Button>
+            </Link>
+          )}
+          {user && (
+            <Button ghost onClick={() => setContactModalOpen(true)}>
               {t('nav.contact')}
-            </button>
+            </Button>
           )}
           <LanguageSwitcher />
           <LanguagePreferences />
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           {user && (
-            <Link to="/cart" className="btn btn-ghost">
-              <div className="indicator">
+            <Link to="/cart">
+              <Button ghost className="relative">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -208,25 +225,37 @@ function AppContent() {
                   />
                 </svg>
                 {cartItems.length > 0 && (
-                  <span className="badge badge-sm badge-primary indicator-item">{cartItems.length}</span>
+                  <Badge count={cartItems.length} className="absolute -top-2 -right-2" />
                 )}
-              </div>
+              </Button>
             </Link>
           )}
           {user ? (
-            <div className="dropdown dropdown-end">
-              <div tabIndex={0} role="button" className="btn btn-ghost">
-                {t('nav.hello', { name: user.firstName })}
-              </div>
-              <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                <li><Link to="/account" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.account')}</Link></li>
-                <li><button onClick={handleLogout}>{t('nav.logout')}</button></li>
-              </ul>
-            </div>
+            <Dropdown
+              content={
+                <ul className="p-2 shadow menu menu-sm bg-base-100 rounded-box w-52">
+                  <li>
+                    <Link to="/account" onClick={() => (document.activeElement as HTMLElement)?.blur()}>
+                      {t('nav.account')}
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout}>{t('nav.logout')}</button>
+                  </li>
+                </ul>
+              }
+              placement="bottomRight"
+            >
+              <Button ghost>{t('nav.hello', { name: user.firstName })}</Button>
+            </Dropdown>
           ) : (
             <>
-              <Link to="/login" className="btn btn-sm btn-primary">{t('nav.login')}</Link>
-              <Link to="/register" className="btn btn-sm btn-secondary">{t('nav.register')}</Link>
+              <Link to="/login">
+                <Button type="primary" size="sm">{t('nav.login')}</Button>
+              </Link>
+              <Link to="/register">
+                <Button size="sm">{t('nav.register')}</Button>
+              </Link>
             </>
           )}
         </div>
@@ -236,50 +265,54 @@ function AppContent() {
           <LanguageSwitcher />
           <LanguagePreferences />
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost">
+          <Dropdown
+            content={
+              <ul className="p-2 shadow menu menu-sm bg-base-100 rounded-box w-52">
+                <li><Link to="/media" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.media')}</Link></li>
+                <li>
+                  <button onClick={() => { setDonateModalOpen(true); (document.activeElement as HTMLElement)?.blur(); }}>
+                    {t('nav.donate')}
+                  </button>
+                </li>
+                {user && (
+                  <>
+                    <li>
+                      <Link to="/cart" onClick={() => (document.activeElement as HTMLElement)?.blur()}>
+                        {t('media.cart', { count: cartItems.length })}
+                      </Link>
+                    </li>
+                    <li><Link to="/favorites" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.myFavorites')}</Link></li>
+                    <li><Link to="/orders" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.myOrders')}</Link></li>
+                    <li><Link to="/addresses" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.myAddresses')}</Link></li>
+                    <li><Link to="/messages" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.messages')}</Link></li>
+                    <li>
+                      <button onClick={() => { setContactModalOpen(true); (document.activeElement as HTMLElement)?.blur(); }}>
+                        {t('nav.contact')}
+                      </button>
+                    </li>
+                    <li className="menu-title">
+                      <span>{t('nav.hello', { name: user.firstName })}</span>
+                    </li>
+                    <li><Link to="/account" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.account')}</Link></li>
+                    <li><button onClick={() => { handleLogout(); (document.activeElement as HTMLElement)?.blur(); }}>{t('nav.logout')}</button></li>
+                  </>
+                )}
+                {!user && (
+                  <>
+                    <li><Link to="/login" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.login')}</Link></li>
+                    <li><Link to="/register" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.register')}</Link></li>
+                  </>
+                )}
+              </ul>
+            }
+            placement="bottomRight"
+          >
+            <Button ghost>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
-            </div>
-            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-              <li><Link to="/media" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.media')}</Link></li>
-              <li>
-                <button onClick={() => { setDonateModalOpen(true); (document.activeElement as HTMLElement)?.blur(); }}>
-                  {t('nav.donate')}
-                </button>
-              </li>
-              {user && (
-                <>
-                  <li>
-                    <Link to="/cart" onClick={() => (document.activeElement as HTMLElement)?.blur()}>
-                      {t('media.cart', { count: cartItems.length })}
-                    </Link>
-                  </li>
-                  <li><Link to="/favorites" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.myFavorites')}</Link></li>
-                  <li><Link to="/orders" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.myOrders')}</Link></li>
-                  <li><Link to="/addresses" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.myAddresses')}</Link></li>
-                  <li><Link to="/messages" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.messages')}</Link></li>
-                  <li>
-                    <button onClick={() => { setContactModalOpen(true); (document.activeElement as HTMLElement)?.blur(); }}>
-                      {t('nav.contact')}
-                    </button>
-                  </li>
-                  <li className="menu-title">
-                    <span>{t('nav.hello', { name: user.firstName })}</span>
-                  </li>
-                  <li><Link to="/account" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.account')}</Link></li>
-                  <li><button onClick={() => { handleLogout(); (document.activeElement as HTMLElement)?.blur(); }}>{t('nav.logout')}</button></li>
-                </>
-              )}
-              {!user && (
-                <>
-                  <li><Link to="/login" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.login')}</Link></li>
-                  <li><Link to="/register" onClick={() => (document.activeElement as HTMLElement)?.blur()}>{t('nav.register')}</Link></li>
-                </>
-              )}
-            </ul>
-          </div>
+            </Button>
+          </Dropdown>
         </div>
       </nav>
 
@@ -347,24 +380,13 @@ function AppContent() {
       {toasts.length > 0 && (
         <div className="toast toast-bottom toast-end">
           {toasts.map((toast) => (
-            <div
+            <Alert
               key={toast.id}
-              className={`alert ${
-                toast.type === 'success'
-                  ? 'alert-success'
-                  : toast.type === 'error'
-                  ? 'alert-error'
-                  : 'alert-info'
-              }`}
+              type={toast.type === 'success' ? 'success' : toast.type === 'error' ? 'error' : 'info'}
+              closable={{ onClose: () => removeToast(toast.id) }}
             >
               <span>{toast.message}</span>
-              <button
-                className="btn btn-sm btn-circle btn-ghost"
-                onClick={() => removeToast(toast.id)}
-              >
-                ✕
-              </button>
-            </div>
+            </Alert>
           ))}
         </div>
       )}

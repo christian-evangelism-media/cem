@@ -76,7 +76,9 @@
     "placeOrder": "下订单",
     "orderSuccess": "订单提交成功！",
     "orderError": "订单提交失败",
-    "loadError": "媒体加载失败"
+    "loadError": "媒体加载失败",
+    "filterLanguagesTitle": "筛选语言",
+    "filterLanguagesDescription": "选择要筛选的语言。仅显示您选择的所有语言均可用的媒体。"
   },
   "orders": {
     "title": "我的订单",
@@ -127,6 +129,7 @@
     "delete": "删除",
     "confirm": "确认",
     "ok": "OK",
+    "close": "关闭",
     "notice": "通知"
   },
   "address": {
@@ -165,13 +168,16 @@
     "placeOrder": "下订单",
     "shipping": "配送",
     "pickup": "自取",
-    "placeOrderPickup": "下自取订单"
+    "placeOrderPickup": "下自取订单",
+    "removeFromCart": "从购物车中移除"
   },
   "favorites": {
     "title": "我的收藏",
     "noFavorites": "您还没有收藏任何项目。",
     "loadError": "加载收藏失败",
-    "remove": "移除"
+    "remove": "移除",
+    "addToFavorites": "添加到收藏",
+    "removeFromFavorites": "从收藏中移除"
   },
   "account": {
     "title": "账户设置",

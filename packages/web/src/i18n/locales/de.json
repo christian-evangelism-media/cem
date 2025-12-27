@@ -76,7 +76,9 @@
     "placeOrder": "Bestellung aufgeben",
     "orderSuccess": "Bestellung erfolgreich aufgegeben!",
     "orderError": "Bestellung fehlgeschlagen",
-    "loadError": "Medien konnten nicht geladen werden"
+    "loadError": "Medien konnten nicht geladen werden",
+    "filterLanguagesTitle": "Sprachen filtern",
+    "filterLanguagesDescription": "Wählen Sie Sprachen zum Filtern aus. Es werden nur Medien angezeigt, bei denen alle Sprachen in Ihrer Auswahl verfügbar sind."
   },
   "orders": {
     "title": "Meine Bestellungen",
@@ -127,6 +129,7 @@
     "delete": "Löschen",
     "confirm": "Bestätigen",
     "ok": "OK",
+    "close": "Schließen",
     "notice": "Hinweis"
   },
   "address": {
@@ -165,13 +168,16 @@
     "placeOrder": "Bestellung aufgeben",
     "shipping": "Versand",
     "pickup": "Abholung",
-    "placeOrderPickup": "Abholauftrag aufgeben"
+    "placeOrderPickup": "Abholauftrag aufgeben",
+    "removeFromCart": "Aus Warenkorb entfernen"
   },
   "favorites": {
     "title": "Meine Favoriten",
     "noFavorites": "Sie haben noch keine Favoriten.",
     "loadError": "Favoriten konnten nicht geladen werden",
-    "remove": "Entfernen"
+    "remove": "Entfernen",
+    "addToFavorites": "Zu Favoriten hinzufügen",
+    "removeFromFavorites": "Aus Favoriten entfernen"
   },
   "account": {
     "title": "Kontoeinstellungen",

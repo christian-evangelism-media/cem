@@ -76,7 +76,9 @@
     "placeOrder": "Realizar Pedido",
     "orderSuccess": "¡Pedido realizado con éxito!",
     "orderError": "Error al realizar el pedido",
-    "loadError": "Error al cargar los medios"
+    "loadError": "Error al cargar los medios",
+    "filterLanguagesTitle": "Filtrar Idiomas",
+    "filterLanguagesDescription": "Seleccione idiomas para filtrar. Solo se mostrarán medios donde todos los idiomas de su selección estén disponibles."
   },
   "orders": {
     "title": "Mis Pedidos",
@@ -127,6 +129,7 @@
     "delete": "Eliminar",
     "confirm": "Confirmar",
     "ok": "OK",
+    "close": "Cerrar",
     "notice": "Aviso"
   },
   "address": {
@@ -165,13 +168,16 @@
     "placeOrder": "Realizar Pedido",
     "shipping": "Envío",
     "pickup": "Recogida",
-    "placeOrderPickup": "Realizar Pedido de Recogida"
+    "placeOrderPickup": "Realizar Pedido de Recogida",
+    "removeFromCart": "Eliminar del carrito"
   },
   "favorites": {
     "title": "Mis Favoritos",
     "noFavorites": "Aún no tienes artículos favoritos.",
     "loadError": "Error al cargar los favoritos",
-    "remove": "Eliminar"
+    "remove": "Eliminar",
+    "addToFavorites": "Añadir a favoritos",
+    "removeFromFavorites": "Eliminar de favoritos"
   },
   "account": {
     "title": "Configuración de Cuenta",
