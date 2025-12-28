@@ -9,7 +9,10 @@
     "login": "Ingia",
     "register": "Jisajili",
     "logout": "Toka",
-    "hello": "Habari, {{name}}"
+    "hello": "Habari, {{name}}",
+    "donate": "Toa Mchango",
+    "messages": "Ujumbe",
+    "contact": "Wasiliana Nasi"
   },
   "landing": {
     "title": "Mitandao ya Uinjilisti wa Kikristo",
@@ -76,7 +79,10 @@
     "placeOrder": "Weka Agizo",
     "orderSuccess": "Agizo limewekwa kwa mafanikio!",
     "orderError": "Imeshindikana kuweka agizo",
-    "loadError": "Imeshindikana kupakia mitandao"
+    "loadError": "Imeshindikana kupakia mitandao",
+    "quickOrder": "Oda ya Haraka",
+    "filterLanguagesTitle": "Chuja Lugha",
+    "filterLanguagesDescription": "Chagua lugha kuchuja. Ni media tu ambapo lugha zote ziko katika uteuzi wako zitaonyeshwa."
   },
   "orders": {
     "title": "Maagizo Yangu",
@@ -127,7 +133,9 @@
     "delete": "Futa",
     "confirm": "Thibitisha",
     "ok": "OK",
-    "notice": "Taarifa"
+    "notice": "Taarifa",
+    "close": "Funga",
+    "returnHome": "Rudi Nyumbani"
   },
   "address": {
     "title": "Anwani Zangu",
@@ -165,13 +173,20 @@
     "placeOrder": "Weka Agizo",
     "shipping": "Usafirishaji",
     "pickup": "Kuchukua",
-    "placeOrderPickup": "Weka Agizo la Kuchukua"
+    "placeOrderPickup": "Weka Agizo la Kuchukua",
+    "noAddress": "Unahitaji kuongeza anwani kabla ya kuweka oda.",
+    "selectAddress": "Tafadhali chagua anwani ya usafirishaji.",
+    "selectShippingAddress": "Chagua Anwani ya Usafirishaji",
+    "default": "Chaguo-msingi",
+    "removeFromCart": "Ondoa kutoka kwenye kikapu"
   },
   "favorites": {
     "title": "Favorite Zangu",
     "noFavorites": "Haijakuwa na vipengee vya favorite bado.",
     "loadError": "Imeshindikana kupakia favorite",
-    "remove": "Ondoa"
+    "remove": "Ondoa",
+    "addToFavorites": "Ongeza kwenye vipendeleo",
+    "removeFromFavorites": "Ondoa kutoka kwenye vipendeleo"
   },
   "account": {
     "title": "Mipangilio ya Akaunti",
@@ -239,7 +254,6 @@
     "el": "Kigiriki",
     "ht": "Kikrioli cha Haiti",
     "ilo": "Kiilokano",
-    "ff": "Kifulah",
     "ur": "Kiurdu",
     "he": "Kiebrania",
     "de": "Kijerumani",
@@ -247,6 +261,58 @@
     "mr": "Kimarathi",
     "sw": "Kiswahili",
     "te": "Kitelugu",
-    "tr": "Kituruki"
+    "tr": "Kituruki",
+    "ha": "Kihausa"
+  },
+  "messages": {
+    "title": "Ujumbe",
+    "responses": "Majibu",
+    "announcements": "Matangazo",
+    "noMessages": "Hakuna ujumbe bado",
+    "orderBadge": "Oda #{{id}}",
+    "responded": "Imejibiwa",
+    "yourMessage": "Ujumbe Wako",
+    "response": "Jibu kutoka kwa Wafanyakazi",
+    "respondedBy": "Imejibiwa na",
+    "on": "tarehe"
+  },
+  "contact": {
+    "title": "Wasiliana Nasi",
+    "subject": "Mada",
+    "subjectPlaceholder": "Maelezo mafupi ya swali lako",
+    "message": "Ujumbe",
+    "messagePlaceholder": "Tafadhali eleza swali au wasiwasi wako kwa undani...",
+    "responseTime": "Kwa kawaida tunajibu ndani ya siku 2-3 za kazi.",
+    "send": "Tuma Ujumbe",
+    "sending": "Inatuma...",
+    "messageSent": "Ujumbe wako umetumwa kwa mafanikio. Tutajibu haraka iwezekanavyo.",
+    "messageError": "Imeshindwa kutuma ujumbe. Tafadhali jaribu tena."
+  },
+  "donate": {
+    "title": "Unga Mkono Dhamira Yetu",
+    "description": "Unga mkono dhamira yetu ya kusaidia wahubiri ulimwenguni kote",
+    "selectAmount": "Chagua Kiasi",
+    "customAmount": "Kiasi Maalum",
+    "enterAmount": "Weka Kiasi",
+    "message": "Ujumbe (Hiari)",
+    "messagePlaceholder": "Acha ujumbe...",
+    "proceed": "Endelea na Malipo",
+    "processing": "Inachakata...",
+    "thankYou": "Asante!",
+    "successMessage": "Mchango wako umepokelewa kwa mafanikio.",
+    "amount": "Kiasi",
+    "yourMessage": "Ujumbe Wako",
+    "receiptEmail": "Risiti imetumwa kwa barua pepe yako.",
+    "cancelled": "Mchango Umeghairiwa",
+    "cancelMessage": "Mchango wako umeghairiwa. Hakuna malipo yaliyofanywa.",
+    "cancelHelp": "Ikiwa umepata matatizo yoyote, tafadhali wasiliana nasi.",
+    "invalidSession": "Kipindi cha mchango si halali",
+    "verifying": "Inathibitisha mchango wako..."
+  },
+  "lockdown": {
+    "active": "Mfumo uko katika Kufungwa kwa Dharura",
+    "message": "Mfumo umefungwa kwa sababu za usalama. Bado unaweza kuvinjari media, lakini ufikiaji wa akaunti hauko kwa sasa.",
+    "checkStatus": "Angalia Hali",
+    "checking": "Inaangalia..."
   }
 }

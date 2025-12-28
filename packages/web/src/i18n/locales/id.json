@@ -2,9 +2,12 @@
   "nav": {
     "home": "Media Evangelisasi Kristen",
     "media": "Media",
+    "donate": "Donasi",
     "myFavorites": "Favorit Saya",
     "myOrders": "Pesanan Saya",
     "myAddresses": "Alamat Saya",
+    "messages": "Pesan",
+    "contact": "Hubungi Kami",
     "account": "Akun",
     "login": "Masuk",
     "register": "Daftar",
@@ -76,7 +79,10 @@
     "placeOrder": "Buat Pesanan",
     "orderSuccess": "Pesanan berhasil dibuat!",
     "orderError": "Gagal membuat pesanan",
-    "loadError": "Gagal memuat media"
+    "loadError": "Gagal memuat media",
+    "quickOrder": "Pesanan Cepat",
+    "filterLanguagesTitle": "Filter berdasarkan Bahasa",
+    "filterLanguagesDescription": "Pilih bahasa untuk menampilkan media yang tersedia"
   },
   "orders": {
     "title": "Pesanan Saya",
@@ -127,7 +133,9 @@
     "delete": "Hapus",
     "confirm": "Konfirmasi",
     "ok": "OK",
-    "notice": "Pemberitahuan"
+    "notice": "Pemberitahuan",
+    "close": "Tutup",
+    "returnHome": "Kembali ke Beranda"
   },
   "address": {
     "title": "Alamat Saya",
@@ -165,13 +173,20 @@
     "placeOrder": "Buat Pesanan",
     "shipping": "Pengiriman",
     "pickup": "Pengambilan",
-    "placeOrderPickup": "Lakukan Pesanan Pengambilan"
+    "placeOrderPickup": "Lakukan Pesanan Pengambilan",
+    "noAddress": "Tidak ada alamat",
+    "selectAddress": "Pilih alamat",
+    "selectShippingAddress": "Pilih alamat pengiriman",
+    "default": "Default",
+    "removeFromCart": "Hapus dari keranjang"
   },
   "favorites": {
     "title": "Favorit Saya",
     "noFavorites": "Anda belum memiliki item favorit.",
     "loadError": "Gagal memuat favorit",
-    "remove": "Hapus"
+    "remove": "Hapus",
+    "addToFavorites": "Tambah ke Favorit",
+    "removeFromFavorites": "Hapus dari Favorit"
   },
   "account": {
     "title": "Pengaturan Akun",
@@ -207,6 +222,57 @@
     "next": "Berikutnya",
     "pageOf": "Halaman {{current}} dari {{total}}"
   },
+  "messages": {
+    "title": "Pesan",
+    "responses": "Tanggapan",
+    "announcements": "Pengumuman",
+    "noMessages": "Belum ada pesan",
+    "orderBadge": "Pesanan #{{id}}",
+    "responded": "Direspons",
+    "yourMessage": "Pesan Anda",
+    "response": "Tanggapan dari Staf",
+    "respondedBy": "Direspons oleh",
+    "on": "pada"
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "subject": "Subjek",
+    "message": "Pesan",
+    "send": "Kirim Pesan",
+    "sending": "Mengirim...",
+    "messageError": "Gagal mengirim pesan. Silakan coba lagi.",
+    "messagePlaceholder": "Harap jelaskan pertanyaan atau kekhawatiran Anda secara detail...",
+    "messageSent": "Pesan Anda telah berhasil dikirim. Kami akan merespons sesegera mungkin.",
+    "responseTime": "Kami biasanya merespons dalam 2-3 hari kerja.",
+    "subjectPlaceholder": "Deskripsi singkat tentang pertanyaan Anda"
+  },
+  "donate": {
+    "title": "Dukung Misi Kami",
+    "description": "Dukung misi kami untuk mendukung penginjil di seluruh dunia",
+    "selectAmount": "Pilih Jumlah",
+    "customAmount": "Jumlah Kustom",
+    "enterAmount": "Masukkan Jumlah",
+    "message": "Pesan (Opsional)",
+    "messagePlaceholder": "Tinggalkan pesan...",
+    "proceed": "Lanjut ke Pembayaran",
+    "processing": "Memproses...",
+    "thankYou": "Terima Kasih!",
+    "successMessage": "Donasi Anda telah berhasil diterima.",
+    "amount": "Jumlah",
+    "yourMessage": "Pesan Anda",
+    "receiptEmail": "Tanda terima telah dikirim ke alamat email Anda.",
+    "cancelled": "Donasi Dibatalkan",
+    "cancelMessage": "Donasi Anda dibatalkan. Tidak ada biaya yang dikenakan.",
+    "cancelHelp": "Jika Anda mengalami masalah, silakan hubungi kami.",
+    "invalidSession": "Sesi donasi tidak valid",
+    "verifying": "Memverifikasi donasi Anda..."
+  },
+  "lockdown": {
+    "message": "Sistem saat ini dalam mode lockdown darurat. Akses terbatas hanya untuk pengguna yang berwenang.",
+    "active": "Sistem dalam Lockdown Darurat",
+    "checkStatus": "Periksa Status",
+    "checking": "Memeriksa..."
+  },
   "feedback": {
     "title": "Umpan Balik untuk Pesanan #{{orderNumber}}",
     "subjectLabel": "Subjek",
@@ -239,7 +305,6 @@
     "el": "Greek",
     "ht": "Haitian Creole",
     "ilo": "Ilocano",
-    "ff": "Fulah",
     "ur": "Urdu",
     "he": "Hebrew",
     "de": "German",
@@ -247,6 +312,7 @@
     "mr": "Marathi",
     "sw": "Swahili",
     "te": "Telugu",
-    "tr": "Turkish"
+    "tr": "Turkish",
+    "ha": "Hausa"
   }
 }

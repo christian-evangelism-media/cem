@@ -2,14 +2,41 @@
   "nav": {
     "home": "Kafofin Sadarwar Kirista",
     "media": "Kafofin",
+    "donate": "Ba da Gudummawa",
     "myFavorites": "Abubuwan da Na Fi So",
     "myOrders": "Oda-odana",
     "myAddresses": "Adiresoshina",
+    "messages": "Saƙonni",
+    "contact": "Tuntube Mu",
     "account": "Asusu",
     "login": "Shiga",
     "register": "Yi Rajista",
     "logout": "Fita",
     "hello": "Sannu, {{name}}"
+  },
+  "messages": {
+    "title": "Saƙonni",
+    "responses": "Amsoshi",
+    "announcements": "Sanarwa",
+    "noMessages": "Babu saƙonni har yanzu",
+    "orderBadge": "Oda #{{id}}",
+    "responded": "An Amsa",
+    "yourMessage": "Saƙonku",
+    "response": "Amsa daga Ma'aikata",
+    "respondedBy": "An amsa ta",
+    "on": "a"
+  },
+  "contact": {
+    "title": "Tuntube Mu",
+    "subject": "Taken",
+    "subjectPlaceholder": "Taƙaitaccen bayani game da tambayarku",
+    "message": "Saƙo",
+    "messagePlaceholder": "Don Allah bayyana tambayar ku ko damuwar ku daki-daki...",
+    "responseTime": "Mukan ba da amsa cikin kwana 2-3 na aiki.",
+    "send": "Aika Saƙo",
+    "sending": "Ana aikawa...",
+    "messageSent": "An aika saƙonku nasara. Za mu amsa cikin sauri.",
+    "messageError": "Ba a iya aika saƙo ba. Don Allah sake gwadawa."
   },
   "landing": {
     "title": "Kafofin Sadarwar Kirista",
@@ -77,7 +104,9 @@
     "quickOrder": "Oda Mai Sauri",
     "orderSuccess": "An yi oda nasara!",
     "orderError": "Ba a yi oda ba",
-    "loadError": "Ba a iya ɗaukar kafofin ba"
+    "loadError": "Ba a iya ɗaukar kafofin ba",
+    "filterLanguagesTitle": "Tace Harsuna",
+    "filterLanguagesDescription": "Zaɓi harsuna don tacewa. Kafofin da duk harsuna da kuka zaɓa suna cikin su ne kawai za a nuna."
   },
   "orders": {
     "title": "Oda-odana",
@@ -128,7 +157,30 @@
     "delete": "Goge",
     "confirm": "Tabbatar",
     "ok": "OK",
-    "notice": "Sanarwa"
+    "close": "Rufe",
+    "notice": "Sanarwa",
+    "returnHome": "Koma Gida"
+  },
+  "donate": {
+    "title": "Tallafa Manufarmu",
+    "description": "Tallafa manufarmu don tallafa wa masu sadarwar bishara a duniya",
+    "selectAmount": "Zaɓi Adadin Kuɗi",
+    "customAmount": "Adadin Kuɗin Keɓaɓɓe",
+    "enterAmount": "Shigar da Adadin Kuɗi",
+    "message": "Saƙo (Na Zaɓi)",
+    "messagePlaceholder": "Bar saƙo...",
+    "proceed": "Ci gaba zuwa Biyan Kuɗi",
+    "processing": "Ana aiwatarwa...",
+    "thankYou": "Nagode!",
+    "successMessage": "An karɓi gudummawar ku nasara.",
+    "amount": "Adadin Kuɗi",
+    "yourMessage": "Saƙonku",
+    "receiptEmail": "An aika rasidin zuwa adireshin imel ɗin ku.",
+    "cancelled": "An Soke Gudummawa",
+    "cancelMessage": "An soke gudummawar ku. Ba a karɓi kuɗi ba.",
+    "cancelHelp": "Idan kun fuskanci matsala, don Allah tuntube mu.",
+    "invalidSession": "Zaman gudummawa ba daidai ba ne",
+    "verifying": "Ana tabbatar da gudummawar ku..."
   },
   "address": {
     "title": "Adiresoshina",
@@ -170,13 +222,16 @@
     "placeOrder": "Yi Oda",
     "shipping": "Jigilar Kaya",
     "pickup": "Ɗaukar Kaya",
-    "placeOrderPickup": "Yi Odar Ɗaukar Kaya"
+    "placeOrderPickup": "Yi Odar Ɗaukar Kaya",
+    "removeFromCart": "Cire daga kati"
   },
   "favorites": {
     "title": "Abubuwan da Na Fi So",
     "noFavorites": "Har yanzu ba ku da abubuwan da kuka fi so.",
     "loadError": "Ba a iya ɗaukar abubuwan da aka fi so ba",
-    "remove": "Cire"
+    "remove": "Cire",
+    "addToFavorites": "Ƙara zuwa abubuwan da aka fi so",
+    "removeFromFavorites": "Cire daga abubuwan da aka fi so"
   },
   "account": {
     "title": "Saitunan Asusu",
@@ -221,6 +276,12 @@
     "sending": "Ana aikawa...",
     "error": "Ba a iya aika ra'ayi ba",
     "defaultSubject": "Ra'ayi don Oda #{{orderNumber}}"
+  },
+  "lockdown": {
+    "active": "Tsarin Yana Cikin Kulle-kullen Gaggawa",
+    "message": "An kulle tsarin saboda dalilan tsaro. Kuna iya ci gaba da kallon kafofin, amma samun damar shiga asusu ba ya samuwa na ɗan lokaci.",
+    "checkStatus": "Bincika Matsayi",
+    "checking": "Ana bincikewa..."
   },
   "languages": {
     "en": "Turanci",

@@ -9,7 +9,10 @@
     "login": "Đăng Nhập",
     "register": "Đăng Ký",
     "logout": "Đăng Xuất",
-    "hello": "Xin chào, {{name}}"
+    "hello": "Xin chào, {{name}}",
+    "donate": "Quyên góp",
+    "messages": "Tin nhắn",
+    "contact": "Liên hệ chúng tôi"
   },
   "landing": {
     "title": "Phương Tiện Truyền Giáo Cơ Đốc",
@@ -76,7 +79,10 @@
     "placeOrder": "Đặt Hàng",
     "orderSuccess": "Đặt hàng thành công!",
     "orderError": "Đặt hàng thất bại",
-    "loadError": "Tải phương tiện thất bại"
+    "loadError": "Tải phương tiện thất bại",
+    "quickOrder": "Đặt hàng nhanh",
+    "filterLanguagesTitle": "Lọc ngôn ngữ",
+    "filterLanguagesDescription": "Chọn ngôn ngữ để lọc. Chỉ những phương tiện có tất cả các ngôn ngữ trong lựa chọn của bạn mới được hiển thị."
   },
   "orders": {
     "title": "Đơn Hàng Của Tôi",
@@ -127,10 +133,12 @@
     "delete": "Xóa",
     "confirm": "Xác Nhận",
     "ok": "OK",
-    "notice": "Thông Báo"
+    "notice": "Thông Báo",
+    "close": "Đóng",
+    "returnHome": "Quay về trang chủ"
   },
   "address": {
-    "title": "Địa Chỉ Của Tôi",
+    "title": "Địa chỉ của tôi",
     "addNew": "Thêm Địa Chỉ Mới",
     "addFirst": "Thêm Địa Chỉ Đầu Tiên Của Bạn",
     "addTitle": "Thêm Địa Chỉ Mới",
@@ -165,13 +173,20 @@
     "placeOrder": "Đặt Hàng",
     "shipping": "Vận Chuyển",
     "pickup": "Nhận Hàng",
-    "placeOrderPickup": "Đặt Đơn Hàng Nhận Tại Chỗ"
+    "placeOrderPickup": "Đặt Đơn Hàng Nhận Tại Chỗ",
+    "noAddress": "Bạn cần thêm địa chỉ trước khi đặt hàng.",
+    "selectAddress": "Vui lòng chọn địa chỉ giao hàng.",
+    "selectShippingAddress": "Chọn địa chỉ giao hàng",
+    "default": "Mặc định",
+    "removeFromCart": "Xóa khỏi giỏ hàng"
   },
   "favorites": {
     "title": "Yêu Thích Của Tôi",
     "noFavorites": "Bạn chưa có mục yêu thích nào.",
     "loadError": "Tải mục yêu thích thất bại",
-    "remove": "Xóa"
+    "remove": "Xóa",
+    "addToFavorites": "Thêm vào yêu thích",
+    "removeFromFavorites": "Xóa khỏi yêu thích"
   },
   "account": {
     "title": "Cài Đặt Tài Khoản",
@@ -239,7 +254,6 @@
     "el": "Greek",
     "ht": "Haitian Creole",
     "ilo": "Ilocano",
-    "ff": "Fulah",
     "ur": "Urdu",
     "he": "Hebrew",
     "de": "German",
@@ -247,6 +261,58 @@
     "mr": "Marathi",
     "sw": "Swahili",
     "te": "Telugu",
-    "tr": "Turkish"
+    "tr": "Turkish",
+    "ha": "Hausa"
+  },
+  "messages": {
+    "title": "Tin nhắn",
+    "responses": "Phản hồi",
+    "announcements": "Thông báo",
+    "noMessages": "Chưa có tin nhắn",
+    "orderBadge": "Đơn hàng #{{id}}",
+    "responded": "Đã phản hồi",
+    "yourMessage": "Tin nhắn của bạn",
+    "response": "Phản hồi từ nhân viên",
+    "respondedBy": "Được phản hồi bởi",
+    "on": "vào"
+  },
+  "contact": {
+    "title": "Liên hệ chúng tôi",
+    "subject": "Chủ đề",
+    "subjectPlaceholder": "Mô tả ngắn gọn về câu hỏi của bạn",
+    "message": "Tin nhắn",
+    "messagePlaceholder": "Vui lòng mô tả chi tiết câu hỏi hoặc mối quan tâm của bạn...",
+    "responseTime": "Chúng tôi thường phản hồi trong vòng 2-3 ngày làm việc.",
+    "send": "Gửi tin nhắn",
+    "sending": "Đang gửi...",
+    "messageSent": "Tin nhắn của bạn đã được gửi thành công. Chúng tôi sẽ phản hồi sớm nhất có thể.",
+    "messageError": "Gửi tin nhắn thất bại. Vui lòng thử lại."
+  },
+  "donate": {
+    "title": "Ủng hộ sứ mệnh của chúng tôi",
+    "description": "Ủng hộ sứ mệnh của chúng tôi trong việc hỗ trợ các nhà truyền giáo trên toàn thế giới",
+    "selectAmount": "Chọn số tiền",
+    "customAmount": "Số tiền tùy chỉnh",
+    "enterAmount": "Nhập số tiền",
+    "message": "Tin nhắn (Tùy chọn)",
+    "messagePlaceholder": "Để lại tin nhắn...",
+    "proceed": "Tiếp tục thanh toán",
+    "processing": "Đang xử lý...",
+    "thankYou": "Cảm ơn!",
+    "successMessage": "Khoản quyên góp của bạn đã được nhận thành công.",
+    "amount": "Số tiền",
+    "yourMessage": "Tin nhắn của bạn",
+    "receiptEmail": "Biên lai đã được gửi đến địa chỉ email của bạn.",
+    "cancelled": "Quyên góp đã bị hủy",
+    "cancelMessage": "Khoản quyên góp của bạn đã bị hủy. Không có khoản phí nào được thu.",
+    "cancelHelp": "Nếu bạn gặp bất kỳ vấn đề nào, vui lòng liên hệ với chúng tôi.",
+    "invalidSession": "Phiên quyên góp không hợp lệ",
+    "verifying": "Đang xác minh khoản quyên góp của bạn..."
+  },
+  "lockdown": {
+    "active": "Hệ thống đang ở chế độ khóa khẩn cấp",
+    "message": "Hệ thống đã bị khóa vì lý do bảo mật. Bạn vẫn có thể duyệt phương tiện, nhưng quyền truy cập tài khoản tạm thời không khả dụng.",
+    "checkStatus": "Kiểm tra trạng thái",
+    "checking": "Đang kiểm tra..."
   }
 }

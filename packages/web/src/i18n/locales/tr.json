@@ -9,7 +9,10 @@
     "login": "Giriş Yap",
     "register": "Kayıt Ol",
     "logout": "Çıkış Yap",
-    "hello": "Merhaba, {{name}}"
+    "hello": "Merhaba, {{name}}",
+    "donate": "Bağış Yap",
+    "messages": "Mesajlar",
+    "contact": "Bize Ulaşın"
   },
   "landing": {
     "title": "Hristiyan Müjdecilik Medyası",
@@ -76,7 +79,10 @@
     "placeOrder": "Sipariş Ver",
     "orderSuccess": "Sipariş başarıyla verildi!",
     "orderError": "Sipariş verilemedi",
-    "loadError": "Medya yüklenemedi"
+    "loadError": "Medya yüklenemedi",
+    "quickOrder": "Hızlı Sipariş",
+    "filterLanguagesTitle": "Dilleri Filtrele",
+    "filterLanguagesDescription": "Filtrelemek için dilleri seçin. Yalnızca tüm dillerin seçiminizde olduğu medya gösterilecektir."
   },
   "orders": {
     "title": "Siparişlerim",
@@ -127,7 +133,9 @@
     "delete": "Sil",
     "confirm": "Onayla",
     "ok": "OK",
-    "notice": "Bildirim"
+    "notice": "Bildirim",
+    "close": "Kapat",
+    "returnHome": "Ana Sayfaya Dön"
   },
   "address": {
     "title": "Adreslerim",
@@ -165,13 +173,20 @@
     "placeOrder": "Sipariş Ver",
     "shipping": "Kargo",
     "pickup": "Teslim Alma",
-    "placeOrderPickup": "Teslim Alma Siparişi Ver"
+    "placeOrderPickup": "Teslim Alma Siparişi Ver",
+    "noAddress": "Sipariş vermeden önce bir adres eklemeniz gerekiyor.",
+    "selectAddress": "Lütfen bir teslimat adresi seçin.",
+    "selectShippingAddress": "Teslimat Adresi Seçin",
+    "default": "Varsayılan",
+    "removeFromCart": "Sepetten çıkar"
   },
   "favorites": {
     "title": "Favorilerim",
     "noFavorites": "Henüz favori öğeniz yok.",
     "loadError": "Favoriler yüklenemedi",
-    "remove": "Kaldır"
+    "remove": "Kaldır",
+    "addToFavorites": "Favorilere ekle",
+    "removeFromFavorites": "Favorilerden çıkar"
   },
   "account": {
     "title": "Hesap Ayarları",
@@ -239,7 +254,6 @@
     "el": "Yunanca",
     "ht": "Haiti Kreolcesi",
     "ilo": "İlokanocası",
-    "ff": "Fulahça",
     "ur": "Urduca",
     "he": "İbranice",
     "de": "Almanca",
@@ -247,6 +261,58 @@
     "mr": "Marathice",
     "sw": "Svahilice",
     "te": "Teluguca",
-    "tr": "Türkçe"
+    "tr": "Türkçe",
+    "ha": "Hausa"
+  },
+  "messages": {
+    "title": "Mesajlar",
+    "responses": "Yanıtlar",
+    "announcements": "Duyurular",
+    "noMessages": "Henüz mesaj yok",
+    "orderBadge": "Sipariş #{{id}}",
+    "responded": "Yanıtlandı",
+    "yourMessage": "Mesajınız",
+    "response": "Personelden Yanıt",
+    "respondedBy": "Yanıtlayan",
+    "on": "tarihinde"
+  },
+  "contact": {
+    "title": "Bize Ulaşın",
+    "subject": "Konu",
+    "subjectPlaceholder": "Sorunuzun kısa açıklaması",
+    "message": "Mesaj",
+    "messagePlaceholder": "Lütfen sorunuzu veya endişenizi ayrıntılı olarak açıklayın...",
+    "responseTime": "Genellikle 2-3 iş günü içinde yanıt veririz.",
+    "send": "Mesaj Gönder",
+    "sending": "Gönderiliyor...",
+    "messageSent": "Mesajınız başarıyla gönderildi. En kısa sürede yanıt vereceğiz.",
+    "messageError": "Mesaj gönderilemedi. Lütfen tekrar deneyin."
+  },
+  "donate": {
+    "title": "Misyonumuzu Destekleyin",
+    "description": "Dünya çapındaki müjdecileri destekleme misyonumuzu destekleyin",
+    "selectAmount": "Tutar Seçin",
+    "customAmount": "Özel Tutar",
+    "enterAmount": "Tutar Girin",
+    "message": "Mesaj (İsteğe Bağlı)",
+    "messagePlaceholder": "Bir mesaj bırakın...",
+    "proceed": "Ödemeye Devam Et",
+    "processing": "İşleniyor...",
+    "thankYou": "Teşekkürler!",
+    "successMessage": "Bağışınız başarıyla alındı.",
+    "amount": "Tutar",
+    "yourMessage": "Mesajınız",
+    "receiptEmail": "E-posta adresinize bir makbuz gönderildi.",
+    "cancelled": "Bağış İptal Edildi",
+    "cancelMessage": "Bağışınız iptal edildi. Herhangi bir ücret alınmadı.",
+    "cancelHelp": "Herhangi bir sorun yaşadıysanız, lütfen bizimle iletişime geçin.",
+    "invalidSession": "Geçersiz bağış oturumu",
+    "verifying": "Bağışınız doğrulanıyor..."
+  },
+  "lockdown": {
+    "active": "Sistem Acil Durum Kilidi Altında",
+    "message": "Sistem güvenlik nedeniyle kilitlendi. Hala medyaya göz atabilirsiniz, ancak hesap erişimi geçici olarak kullanılamıyor.",
+    "checkStatus": "Durumu Kontrol Et",
+    "checking": "Kontrol ediliyor..."
   }
 }

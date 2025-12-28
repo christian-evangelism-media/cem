@@ -2,9 +2,12 @@
   "nav": {
     "home": "Kristiano nga Media ti Ebanhelisasion",
     "media": "Media",
+    "donate": "Agdonar",
     "myFavorites": "Dagiti Paboritoko",
     "myOrders": "Dagiti Order-ko",
     "myAddresses": "Dagiti Addressko",
+    "messages": "Dagiti Mensahe",
+    "contact": "Kontaken-kami",
     "account": "Akawnt",
     "login": "Sumrek",
     "register": "Agparehistro",
@@ -76,7 +79,10 @@
     "placeOrder": "Ag-order",
     "orderSuccess": "Naballigi ti panagiorder!",
     "orderError": "Napaay ti panagiorder",
-    "loadError": "Napaay ti panagkarga ti media"
+    "loadError": "Napaay ti panagkarga ti media",
+    "quickOrder": "Napartak nga Order",
+    "filterLanguagesTitle": "I-filter babaen kadagiti Pagsasao",
+    "filterLanguagesDescription": "Pilien dagiti pagsasao tapno maipakita ti magun-od a media"
   },
   "orders": {
     "title": "Dagiti Order-ko",
@@ -127,7 +133,9 @@
     "delete": "Ikkaten",
     "confirm": "Pasingkedan",
     "ok": "OK",
-    "notice": "Pakdaar"
+    "notice": "Pakdaar",
+    "close": "Iserraen",
+    "returnHome": "Agsubli iti Pagsaadan"
   },
   "address": {
     "title": "Dagiti Addressko",
@@ -165,13 +173,20 @@
     "placeOrder": "Ag-order",
     "shipping": "Panagited",
     "pickup": "Pickup",
-    "placeOrderPickup": "Mangaramid ti Order a Pickup"
+    "placeOrderPickup": "Mangaramid ti Order a Pickup",
+    "noAddress": "Awan ti address",
+    "selectAddress": "Pilien ti address",
+    "selectShippingAddress": "Pilien ti address ti panagited",
+    "default": "Default",
+    "removeFromCart": "Ikkaten manipud iti karton"
   },
   "favorites": {
     "title": "Dagiti Paboritoko",
     "noFavorites": "Awan pay ti paborito a mga item-mo.",
     "loadError": "Napaay ti panagkarga dagiti paborito",
-    "remove": "Ikkaten"
+    "remove": "Ikkaten",
+    "addToFavorites": "Inayon kadagiti Paborito",
+    "removeFromFavorites": "Ikkaten manipud kadagiti Paborito"
   },
   "account": {
     "title": "Dagiti Setting ti Akawnt",
@@ -207,6 +222,57 @@
     "next": "Sumaruno",
     "pageOf": "Panid {{current}} iti {{total}}"
   },
+  "messages": {
+    "title": "Dagiti Mensahe",
+    "responses": "Dagiti Sungbat",
+    "announcements": "Dagiti Pakdaar",
+    "noMessages": "Awan pay ti mensahe",
+    "orderBadge": "Order #{{id}}",
+    "responded": "Sinungbatan",
+    "yourMessage": "Ti Mensahe-mo",
+    "response": "Sungbat manipud iti Staff",
+    "respondedBy": "Sinungbatan ni",
+    "on": "idi"
+  },
+  "contact": {
+    "title": "Kontaken-kami",
+    "subject": "Suheto",
+    "message": "Mensahe",
+    "send": "Ipatulod ti Mensahe",
+    "sending": "Maipatpatulod...",
+    "messageError": "Napaay ti panangipatulod ti mensahe. Pangngaasi a padasen manen.",
+    "messagePlaceholder": "Pangngaasi nga ilawlawag ti saludsod wenno pakaseknan mo iti detalyado...",
+    "messageSent": "Siballigi a naipatulod ti mensahe mo. Sumungbat kami a dagus nga agmaymaysa.",
+    "responseTime": "Kadawyan a sumungbatkami iti 2-3 nga aldaw ti panagtrabaho.",
+    "subjectPlaceholder": "Ababa a deskripsion ti saludsod mo"
+  },
+  "donate": {
+    "title": "Suportaran ti Misyon-tayo",
+    "description": "Suportaran ti misyon-tayo a mangsuporta kadagiti ebanghelista iti intero a lubong",
+    "selectAmount": "Pilien ti Kaadu",
+    "customAmount": "Naipersonal a Kaadu",
+    "enterAmount": "Ikabil ti Kaadu",
+    "message": "Mensahe (Opsional)",
+    "messagePlaceholder": "Mangibati ti mensahe...",
+    "proceed": "Ituloy iti Panagbayad",
+    "processing": "Maproseso...",
+    "thankYou": "Agyaman-kami Unay!",
+    "successMessage": "Naawat ti donasion-mo a siballigi.",
+    "amount": "Kaadu",
+    "yourMessage": "Ti Mensahe-mo",
+    "receiptEmail": "Naipatuloden ti resibo iti email address-mo.",
+    "cancelled": "Naikalkat ti Donasion",
+    "cancelMessage": "Naikalkat ti donasion-mo. Awan ti siningil.",
+    "cancelHelp": "No nakapadaska kadagiti parikut, pangngaasi a kontaken-kami.",
+    "invalidSession": "Saan nga umiso a sesion ti donasion",
+    "verifying": "Mapaneknekan ti donasion-mo..."
+  },
+  "lockdown": {
+    "message": "Ti sistema ket itan iti emergency lockdown mode. Ti akseso ket limitado kadagiti napatalged nga agar-aramat laeng.",
+    "active": "Ti sistema ket adda iti Emerhensia a Lockdown",
+    "checkStatus": "Kitaen ti Kasasaad",
+    "checking": "Agkitkita..."
+  },
   "feedback": {
     "title": "Feedback para iti Order #{{orderNumber}}",
     "subjectLabel": "Suheto",
@@ -239,7 +305,6 @@
     "el": "Greek",
     "ht": "Haitian Creole",
     "ilo": "Ilocano",
-    "ff": "Fulah",
     "ur": "Urdu",
     "he": "Hebrew",
     "de": "German",
@@ -247,6 +312,7 @@
     "mr": "Marathi",
     "sw": "Swahili",
     "te": "Telugu",
-    "tr": "Turkish"
+    "tr": "Turkish",
+    "ha": "Hausa"
   }
 }

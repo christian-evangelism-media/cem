@@ -2,6 +2,7 @@
   "nav": {
     "home": "Médias d'Évangélisation Chrétienne",
     "media": "Médias",
+    "donate": "Faire un Don",
     "myFavorites": "Mes Favoris",
     "myOrders": "Mes Commandes",
     "myAddresses": "Mes Adresses",
@@ -157,7 +158,29 @@
     "confirm": "Confirmer",
     "ok": "OK",
     "close": "Fermer",
-    "notice": "Avis"
+    "notice": "Avis",
+    "returnHome": "Retour à l'Accueil"
+  },
+  "donate": {
+    "title": "Soutenez Notre Mission",
+    "description": "Soutenez notre mission de soutien aux évangélistes du monde entier",
+    "selectAmount": "Sélectionner le Montant",
+    "customAmount": "Montant Personnalisé",
+    "enterAmount": "Entrer le Montant",
+    "message": "Message (Optionnel)",
+    "messagePlaceholder": "Laisser un message...",
+    "proceed": "Procéder au Paiement",
+    "processing": "Traitement en cours...",
+    "thankYou": "Merci!",
+    "successMessage": "Votre don a été reçu avec succès.",
+    "amount": "Montant",
+    "yourMessage": "Votre Message",
+    "receiptEmail": "Un reçu a été envoyé à votre adresse e-mail.",
+    "cancelled": "Don Annulé",
+    "cancelMessage": "Votre don a été annulé. Aucun frais n'a été appliqué.",
+    "cancelHelp": "Si vous avez rencontré des problèmes, veuillez nous contacter.",
+    "invalidSession": "Session de don invalide",
+    "verifying": "Vérification de votre don..."
   },
   "address": {
     "title": "Mes Adresses",
@@ -254,6 +277,12 @@
     "error": "Échec de l'envoi des commentaires",
     "defaultSubject": "Commentaires pour Commande #{{orderNumber}}"
   },
+  "lockdown": {
+    "active": "Le Système est en Verrouillage d'Urgence",
+    "message": "Le système a été verrouillé pour des raisons de sécurité. Vous pouvez toujours consulter les médias, mais l'accès au compte est temporairement indisponible.",
+    "checkStatus": "Vérifier le Statut",
+    "checking": "Vérification..."
+  },
   "languages": {
     "en": "Anglais",
     "es": "Espagnol",
@@ -276,7 +305,7 @@
     "el": "Grec",
     "ht": "Créole haïtien",
     "ilo": "Ilocano",
-    "ff": "Peul",
+    "ha": "Haoussa",
     "ur": "Ourdou",
     "he": "Hébreu",
     "de": "Allemand",

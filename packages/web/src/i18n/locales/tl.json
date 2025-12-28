@@ -9,7 +9,10 @@
     "login": "Mag-login",
     "register": "Magrehistro",
     "logout": "Mag-logout",
-    "hello": "Kumusta, {{name}}"
+    "hello": "Kumusta, {{name}}",
+    "donate": "Mag-donate",
+    "messages": "Mga Mensahe",
+    "contact": "Makipag-ugnayan sa Amin"
   },
   "landing": {
     "title": "Kristiyanong Media ng Ebanhelisasyon",
@@ -76,7 +79,10 @@
     "placeOrder": "Mag-order",
     "orderSuccess": "Matagumpay na nag-order!",
     "orderError": "Hindi nag-succeed ang pag-order",
-    "loadError": "Hindi na-load ang media"
+    "loadError": "Hindi na-load ang media",
+    "quickOrder": "Mabilis na Order",
+    "filterLanguagesTitle": "I-filter ang mga Wika",
+    "filterLanguagesDescription": "Pumili ng mga wika upang i-filter. Ang media lamang kung saan ang lahat ng wika ay nasa iyong seleksyon ay ipapakita."
   },
   "orders": {
     "title": "Aking mga Order",
@@ -127,10 +133,12 @@
     "delete": "Tanggalin",
     "confirm": "Kumpirmahin",
     "ok": "OK",
-    "notice": "Paalala"
+    "notice": "Paalala",
+    "close": "Isara",
+    "returnHome": "Bumalik sa Home"
   },
   "address": {
-    "title": "Aking mga Address",
+    "title": "Aking Mga Address",
     "addNew": "Magdagdag ng Bagong Address",
     "addFirst": "Magdagdag ng Iyong Unang Address",
     "addTitle": "Magdagdag ng Bagong Address",
@@ -165,13 +173,20 @@
     "placeOrder": "Mag-order",
     "shipping": "Pagpapadala",
     "pickup": "Pagkuha",
-    "placeOrderPickup": "Mag-order ng Pagkuha"
+    "placeOrderPickup": "Mag-order ng Pagkuha",
+    "noAddress": "Kailangan mong magdagdag ng address bago mag-order.",
+    "selectAddress": "Mangyaring pumili ng shipping address.",
+    "selectShippingAddress": "Pumili ng Shipping Address",
+    "default": "Default",
+    "removeFromCart": "Alisin sa cart"
   },
   "favorites": {
     "title": "Aking mga Paboritong Item",
     "noFavorites": "Wala ka pang paboritong item.",
     "loadError": "Hindi na-load ang mga favorite",
-    "remove": "Tanggalin"
+    "remove": "Tanggalin",
+    "addToFavorites": "Idagdag sa mga paborito",
+    "removeFromFavorites": "Alisin sa mga paborito"
   },
   "account": {
     "title": "Mga Setting ng Account",
@@ -239,7 +254,6 @@
     "el": "Greek",
     "ht": "Haitian Creole",
     "ilo": "Ilocano",
-    "ff": "Fulah",
     "ur": "Urdu",
     "he": "Hebrew",
     "de": "German",
@@ -247,6 +261,58 @@
     "mr": "Marathi",
     "sw": "Swahili",
     "te": "Telugu",
-    "tr": "Turkish"
+    "tr": "Turkish",
+    "ha": "Hausa"
+  },
+  "messages": {
+    "title": "Mga Mensahe",
+    "responses": "Mga Tugon",
+    "announcements": "Mga Anunsyo",
+    "noMessages": "Walang mensahe pa",
+    "orderBadge": "Order #{{id}}",
+    "responded": "Tumugon",
+    "yourMessage": "Iyong Mensahe",
+    "response": "Tugon mula sa Staff",
+    "respondedBy": "Tumugon ni",
+    "on": "noong"
+  },
+  "contact": {
+    "title": "Makipag-ugnayan sa Amin",
+    "subject": "Paksa",
+    "subjectPlaceholder": "Maikling paglalarawan ng iyong katanungan",
+    "message": "Mensahe",
+    "messagePlaceholder": "Paki-detalye ang iyong tanong o alalahanin...",
+    "responseTime": "Karaniwang tumutugon kami sa loob ng 2-3 araw ng negosyo.",
+    "send": "Magpadala ng Mensahe",
+    "sending": "Nagpapadala...",
+    "messageSent": "Matagumpay na naipadala ang iyong mensahe. Tutugon kami sa lalong madaling panahon.",
+    "messageError": "Nabigo sa pagpadala ng mensahe. Pakisubukan muli."
+  },
+  "donate": {
+    "title": "Suportahan ang Aming Misyon",
+    "description": "Suportahan ang aming misyon na suportahan ang mga evangelista sa buong mundo",
+    "selectAmount": "Pumili ng Halaga",
+    "customAmount": "Custom na Halaga",
+    "enterAmount": "Ilagay ang Halaga",
+    "message": "Mensahe (Opsyonal)",
+    "messagePlaceholder": "Mag-iwan ng mensahe...",
+    "proceed": "Magpatuloy sa Pagbabayad",
+    "processing": "Pinoproseso...",
+    "thankYou": "Salamat!",
+    "successMessage": "Matagumpay na natanggap ang iyong donasyon.",
+    "amount": "Halaga",
+    "yourMessage": "Iyong Mensahe",
+    "receiptEmail": "Ang resibo ay naipadala sa iyong email address.",
+    "cancelled": "Nakansela ang Donasyon",
+    "cancelMessage": "Nakansela ang iyong donasyon. Walang singil na ginawa.",
+    "cancelHelp": "Kung nakaranas ka ng anumang problema, mangyaring makipag-ugnayan sa amin.",
+    "invalidSession": "Di-wastong session ng donasyon",
+    "verifying": "Bine-verify ang iyong donasyon..."
+  },
+  "lockdown": {
+    "active": "Ang System ay nasa Emergency Lockdown",
+    "message": "Ang sistema ay naka-lock down dahil sa mga dahilan ng seguridad. Maaari ka pa ring mag-browse ng media, ngunit ang pag-access sa account ay pansamantalang hindi available.",
+    "checkStatus": "Suriin ang Status",
+    "checking": "Sinusuri..."
   }
 }

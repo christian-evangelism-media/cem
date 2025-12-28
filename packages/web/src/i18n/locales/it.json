@@ -2,9 +2,12 @@
   "nav": {
     "home": "Media di Evangelizzazione Cristiana",
     "media": "Media",
+    "donate": "Dona",
     "myFavorites": "I Miei Preferiti",
     "myOrders": "I Miei Ordini",
     "myAddresses": "I Miei Indirizzi",
+    "messages": "Messaggi",
+    "contact": "Contattaci",
     "account": "Account",
     "login": "Accedi",
     "register": "Registrati",
@@ -76,7 +79,10 @@
     "placeOrder": "Effettua Ordine",
     "orderSuccess": "Ordine effettuato con successo!",
     "orderError": "Ordine non riuscito",
-    "loadError": "Caricamento media non riuscito"
+    "loadError": "Caricamento media non riuscito",
+    "quickOrder": "Ordine Rapido",
+    "filterLanguagesTitle": "Filtra per Lingue",
+    "filterLanguagesDescription": "Seleziona le lingue per visualizzare i media disponibili"
   },
   "orders": {
     "title": "I Miei Ordini",
@@ -127,7 +133,9 @@
     "delete": "Elimina",
     "confirm": "Conferma",
     "ok": "OK",
-    "notice": "Avviso"
+    "notice": "Avviso",
+    "close": "Chiudi",
+    "returnHome": "Torna alla Home"
   },
   "address": {
     "title": "I Miei Indirizzi",
@@ -165,13 +173,20 @@
     "placeOrder": "Effettua Ordine",
     "shipping": "Spedizione",
     "pickup": "Ritiro",
-    "placeOrderPickup": "Effettua Ordine di Ritiro"
+    "placeOrderPickup": "Effettua Ordine di Ritiro",
+    "noAddress": "Nessun indirizzo",
+    "selectAddress": "Seleziona indirizzo",
+    "selectShippingAddress": "Seleziona indirizzo di spedizione",
+    "default": "Predefinito",
+    "removeFromCart": "Rimuovi dal carrello"
   },
   "favorites": {
     "title": "I Miei Preferiti",
     "noFavorites": "Non hai ancora articoli preferiti.",
     "loadError": "Caricamento preferiti non riuscito",
-    "remove": "Rimuovi"
+    "remove": "Rimuovi",
+    "addToFavorites": "Aggiungi ai Preferiti",
+    "removeFromFavorites": "Rimuovi dai Preferiti"
   },
   "account": {
     "title": "Impostazioni Account",
@@ -207,6 +222,57 @@
     "next": "Successivo",
     "pageOf": "Pagina {{current}} di {{total}}"
   },
+  "messages": {
+    "title": "Messaggi",
+    "responses": "Risposte",
+    "announcements": "Annunci",
+    "noMessages": "Nessun messaggio ancora",
+    "orderBadge": "Ordine #{{id}}",
+    "responded": "Risposto",
+    "yourMessage": "Il Tuo Messaggio",
+    "response": "Risposta dallo Staff",
+    "respondedBy": "Risposto da",
+    "on": "il"
+  },
+  "contact": {
+    "title": "Contattaci",
+    "subject": "Oggetto",
+    "message": "Messaggio",
+    "send": "Invia Messaggio",
+    "sending": "Invio in corso...",
+    "messageError": "Invio del messaggio non riuscito. Riprova.",
+    "messagePlaceholder": "Descrivi in dettaglio la tua domanda o preoccupazione...",
+    "messageSent": "Il tuo messaggio è stato inviato con successo. Risponderemo il prima possibile.",
+    "responseTime": "Di solito rispondiamo entro 2-3 giorni lavorativi.",
+    "subjectPlaceholder": "Breve descrizione della tua richiesta"
+  },
+  "donate": {
+    "title": "Sostieni La Nostra Missione",
+    "description": "Sostieni la nostra missione di supportare gli evangelisti in tutto il mondo",
+    "selectAmount": "Seleziona Importo",
+    "customAmount": "Importo Personalizzato",
+    "enterAmount": "Inserisci Importo",
+    "message": "Messaggio (Opzionale)",
+    "messagePlaceholder": "Lascia un messaggio...",
+    "proceed": "Procedi al Pagamento",
+    "processing": "Elaborazione...",
+    "thankYou": "Grazie!",
+    "successMessage": "La tua donazione è stata ricevuta con successo.",
+    "amount": "Importo",
+    "yourMessage": "Il Tuo Messaggio",
+    "receiptEmail": "Una ricevuta è stata inviata al tuo indirizzo email.",
+    "cancelled": "Donazione Annullata",
+    "cancelMessage": "La tua donazione è stata annullata. Non sono stati effettuati addebiti.",
+    "cancelHelp": "Se hai riscontrato problemi, ti preghiamo di contattarci.",
+    "invalidSession": "Sessione di donazione non valida",
+    "verifying": "Verifica della tua donazione..."
+  },
+  "lockdown": {
+    "message": "Il sistema è attualmente in modalità lockdown di emergenza. L'accesso è limitato solo agli utenti autorizzati.",
+    "active": "Il sistema è in blocco di emergenza",
+    "checkStatus": "Verifica Stato",
+    "checking": "Verifica in corso..."
+  },
   "feedback": {
     "title": "Feedback per Ordine #{{orderNumber}}",
     "subjectLabel": "Oggetto",
@@ -239,7 +305,6 @@
     "el": "Greek",
     "ht": "Haitian Creole",
     "ilo": "Ilocano",
-    "ff": "Fulah",
     "ur": "Urdu",
     "he": "Hebrew",
     "de": "German",
@@ -247,6 +312,7 @@
     "mr": "Marathi",
     "sw": "Swahili",
     "te": "Telugu",
-    "tr": "Turkish"
+    "tr": "Turkish",
+    "ha": "Hausa"
   }
 }

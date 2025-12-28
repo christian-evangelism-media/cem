@@ -2,14 +2,41 @@
   "nav": {
     "home": "Medios de Evangelización Cristiana",
     "media": "Medios",
+    "donate": "Donar",
     "myFavorites": "Mis Favoritos",
     "myOrders": "Mis Pedidos",
     "myAddresses": "Mis Direcciones",
+    "messages": "Mensajes",
+    "contact": "Contáctanos",
     "account": "Cuenta",
     "login": "Iniciar Sesión",
     "register": "Registrarse",
     "logout": "Cerrar Sesión",
     "hello": "Hola, {{name}}"
+  },
+  "messages": {
+    "title": "Mensajes",
+    "responses": "Respuestas",
+    "announcements": "Anuncios",
+    "noMessages": "Aún no hay mensajes",
+    "orderBadge": "Pedido #{{id}}",
+    "responded": "Respondido",
+    "yourMessage": "Tu Mensaje",
+    "response": "Respuesta del Personal",
+    "respondedBy": "Respondido por",
+    "on": "el"
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subject": "Asunto",
+    "subjectPlaceholder": "Breve descripción de tu consulta",
+    "message": "Mensaje",
+    "messagePlaceholder": "Por favor describe tu pregunta o preocupación en detalle...",
+    "responseTime": "Normalmente respondemos en 2-3 días hábiles.",
+    "send": "Enviar Mensaje",
+    "sending": "Enviando...",
+    "messageSent": "Tu mensaje ha sido enviado con éxito. Responderemos lo antes posible.",
+    "messageError": "Error al enviar el mensaje. Por favor intenta de nuevo."
   },
   "landing": {
     "title": "Medios de Evangelización Cristiana",
@@ -74,6 +101,7 @@
     "filterLanguages": "Filtrar idiomas",
     "cart": "Carrito ({{count}} artículos)",
     "placeOrder": "Realizar Pedido",
+    "quickOrder": "Pedido Rápido",
     "orderSuccess": "¡Pedido realizado con éxito!",
     "orderError": "Error al realizar el pedido",
     "loadError": "Error al cargar los medios",
@@ -130,7 +158,29 @@
     "confirm": "Confirmar",
     "ok": "OK",
     "close": "Cerrar",
-    "notice": "Aviso"
+    "notice": "Aviso",
+    "returnHome": "Volver al Inicio"
+  },
+  "donate": {
+    "title": "Apoya Nuestra Misión",
+    "description": "Apoya nuestra misión de ayudar a evangelistas en todo el mundo",
+    "selectAmount": "Seleccionar Monto",
+    "customAmount": "Monto Personalizado",
+    "enterAmount": "Ingresar Monto",
+    "message": "Mensaje (Opcional)",
+    "messagePlaceholder": "Deja un mensaje...",
+    "proceed": "Proceder al Pago",
+    "processing": "Procesando...",
+    "thankYou": "¡Gracias!",
+    "successMessage": "Tu donación ha sido recibida con éxito.",
+    "amount": "Monto",
+    "yourMessage": "Tu Mensaje",
+    "receiptEmail": "Se ha enviado un recibo a tu correo electrónico.",
+    "cancelled": "Donación Cancelada",
+    "cancelMessage": "Tu donación fue cancelada. No se realizaron cargos.",
+    "cancelHelp": "Si experimentaste algún problema, por favor contáctanos.",
+    "invalidSession": "Sesión de donación inválida",
+    "verifying": "Verificando tu donación..."
   },
   "address": {
     "title": "Mis Direcciones",
@@ -165,6 +215,10 @@
   "cart": {
     "title": "Carrito de Compras",
     "empty": "Tu carrito está vacío",
+    "noAddress": "Necesitas agregar una dirección antes de realizar un pedido.",
+    "selectAddress": "Por favor selecciona una dirección de envío.",
+    "selectShippingAddress": "Seleccionar Dirección de Envío",
+    "default": "Predeterminada",
     "placeOrder": "Realizar Pedido",
     "shipping": "Envío",
     "pickup": "Recogida",
@@ -223,6 +277,12 @@
     "error": "Error al enviar comentarios",
     "defaultSubject": "Comentarios para Pedido #{{orderNumber}}"
   },
+  "lockdown": {
+    "active": "Sistema en Bloqueo de Emergencia",
+    "message": "El sistema ha sido bloqueado por razones de seguridad. Aún puedes explorar los medios, pero el acceso a la cuenta está temporalmente no disponible.",
+    "checkStatus": "Verificar Estado",
+    "checking": "Verificando..."
+  },
   "languages": {
     "en": "Inglés",
     "es": "Español",
@@ -245,7 +305,7 @@
     "el": "Griego",
     "ht": "Criollo Haitiano",
     "ilo": "Ilocano",
-    "ff": "Fula",
+    "ha": "Hausa",
     "ur": "Urdu",
     "he": "Hebreo",
     "de": "Alemán",
@@ -253,6 +313,6 @@
     "mr": "Marathi",
     "sw": "Swahili",
     "te": "Telugu",
-    "tr": "Turkish"
+    "tr": "Turco"
   }
 }

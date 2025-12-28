@@ -9,7 +9,10 @@
     "login": "Entrar",
     "register": "Cadastrar",
     "logout": "Sair",
-    "hello": "Olá, {{name}}"
+    "hello": "Olá, {{name}}",
+    "donate": "Doar",
+    "messages": "Mensagens",
+    "contact": "Contacte-nos"
   },
   "landing": {
     "title": "Mídia de Evangelização Cristã",
@@ -76,7 +79,10 @@
     "placeOrder": "Fazer Pedido",
     "orderSuccess": "Pedido realizado com sucesso!",
     "orderError": "Falha ao realizar pedido",
-    "loadError": "Falha ao carregar mídia"
+    "loadError": "Falha ao carregar mídia",
+    "quickOrder": "Pedido Rápido",
+    "filterLanguagesTitle": "Filtrar Idiomas",
+    "filterLanguagesDescription": "Selecione idiomas para filtrar. Somente mídia onde todos os idiomas estão em sua seleção será mostrada."
   },
   "orders": {
     "title": "Meus Pedidos",
@@ -127,7 +133,9 @@
     "delete": "Excluir",
     "confirm": "Confirmar",
     "ok": "OK",
-    "notice": "Aviso"
+    "notice": "Aviso",
+    "close": "Fechar",
+    "returnHome": "Voltar ao Início"
   },
   "address": {
     "title": "Meus Endereços",
@@ -165,13 +173,20 @@
     "placeOrder": "Fazer Pedido",
     "shipping": "Envio",
     "pickup": "Retirada",
-    "placeOrderPickup": "Fazer Pedido de Retirada"
+    "placeOrderPickup": "Fazer Pedido de Retirada",
+    "noAddress": "Você precisa adicionar um endereço antes de fazer um pedido.",
+    "selectAddress": "Por favor, selecione um endereço de entrega.",
+    "selectShippingAddress": "Selecionar Endereço de Entrega",
+    "default": "Padrão",
+    "removeFromCart": "Remover do carrinho"
   },
   "favorites": {
     "title": "Meus Favoritos",
     "noFavorites": "Você ainda não tem itens favoritos.",
     "loadError": "Falha ao carregar favoritos",
-    "remove": "Remover"
+    "remove": "Remover",
+    "addToFavorites": "Adicionar aos favoritos",
+    "removeFromFavorites": "Remover dos favoritos"
   },
   "account": {
     "title": "Configurações da Conta",
@@ -239,7 +254,6 @@
     "el": "Grego",
     "ht": "Crioulo Haitiano",
     "ilo": "Ilocano",
-    "ff": "Fula",
     "ur": "Urdu",
     "he": "Hebraico",
     "de": "Alemão",
@@ -247,6 +261,58 @@
     "mr": "Marathi",
     "sw": "Swahili",
     "te": "Telugu",
-    "tr": "Turkish"
+    "tr": "Turkish",
+    "ha": "Hausa"
+  },
+  "messages": {
+    "title": "Mensagens",
+    "responses": "Respostas",
+    "announcements": "Anúncios",
+    "noMessages": "Ainda sem mensagens",
+    "orderBadge": "Pedido #{{id}}",
+    "responded": "Respondido",
+    "yourMessage": "Sua Mensagem",
+    "response": "Resposta da Equipe",
+    "respondedBy": "Respondido por",
+    "on": "em"
+  },
+  "contact": {
+    "title": "Contacte-nos",
+    "subject": "Assunto",
+    "subjectPlaceholder": "Breve descrição da sua questão",
+    "message": "Mensagem",
+    "messagePlaceholder": "Por favor, descreva sua pergunta ou preocupação em detalhes...",
+    "responseTime": "Normalmente respondemos dentro de 2-3 dias úteis.",
+    "send": "Enviar Mensagem",
+    "sending": "Enviando...",
+    "messageSent": "Sua mensagem foi enviada com sucesso. Responderemos o mais breve possível.",
+    "messageError": "Falha ao enviar mensagem. Por favor, tente novamente."
+  },
+  "donate": {
+    "title": "Apoie Nossa Missão",
+    "description": "Apoie nossa missão de apoiar evangelistas em todo o mundo",
+    "selectAmount": "Selecionar Valor",
+    "customAmount": "Valor Personalizado",
+    "enterAmount": "Digite o Valor",
+    "message": "Mensagem (Opcional)",
+    "messagePlaceholder": "Deixe uma mensagem...",
+    "proceed": "Prosseguir para Pagamento",
+    "processing": "Processando...",
+    "thankYou": "Obrigado!",
+    "successMessage": "Sua doação foi recebida com sucesso.",
+    "amount": "Valor",
+    "yourMessage": "Sua Mensagem",
+    "receiptEmail": "Um recibo foi enviado para seu endereço de e-mail.",
+    "cancelled": "Doação Cancelada",
+    "cancelMessage": "Sua doação foi cancelada. Nenhuma cobrança foi feita.",
+    "cancelHelp": "Se você teve algum problema, por favor contacte-nos.",
+    "invalidSession": "Sessão de doação inválida",
+    "verifying": "Verificando sua doação..."
+  },
+  "lockdown": {
+    "active": "Sistema em Bloqueio de Emergência",
+    "message": "O sistema foi bloqueado por razões de segurança. Você ainda pode navegar na mídia, mas o acesso à conta está temporariamente indisponível.",
+    "checkStatus": "Verificar Status",
+    "checking": "Verificando..."
   }
 }

@@ -2,14 +2,41 @@
   "nav": {
     "home": "Christliche Evangelisationsmedien",
     "media": "Medien",
+    "donate": "Spenden",
     "myFavorites": "Meine Favoriten",
     "myOrders": "Meine Bestellungen",
     "myAddresses": "Meine Adressen",
+    "messages": "Nachrichten",
+    "contact": "Kontakt",
     "account": "Konto",
     "login": "Anmelden",
     "register": "Registrieren",
     "logout": "Abmelden",
     "hello": "Hallo, {{name}}"
+  },
+  "messages": {
+    "title": "Nachrichten",
+    "responses": "Antworten",
+    "announcements": "Ankündigungen",
+    "noMessages": "Noch keine Nachrichten",
+    "orderBadge": "Bestellung #{{id}}",
+    "responded": "Beantwortet",
+    "yourMessage": "Ihre Nachricht",
+    "response": "Antwort vom Personal",
+    "respondedBy": "Beantwortet von",
+    "on": "am"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subject": "Betreff",
+    "subjectPlaceholder": "Kurze Beschreibung Ihrer Anfrage",
+    "message": "Nachricht",
+    "messagePlaceholder": "Bitte beschreiben Sie Ihre Frage oder Ihr Anliegen im Detail...",
+    "responseTime": "Wir antworten in der Regel innerhalb von 2-3 Werktagen.",
+    "send": "Nachricht senden",
+    "sending": "Wird gesendet...",
+    "messageSent": "Ihre Nachricht wurde erfolgreich gesendet. Wir werden so bald wie möglich antworten.",
+    "messageError": "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
   },
   "landing": {
     "title": "Christliche Evangelisationsmedien",
@@ -74,6 +101,7 @@
     "filterLanguages": "Sprachen filtern",
     "cart": "Warenkorb ({{count}} Artikel)",
     "placeOrder": "Bestellung aufgeben",
+    "quickOrder": "Schnellbestellung",
     "orderSuccess": "Bestellung erfolgreich aufgegeben!",
     "orderError": "Bestellung fehlgeschlagen",
     "loadError": "Medien konnten nicht geladen werden",
@@ -130,7 +158,29 @@
     "confirm": "Bestätigen",
     "ok": "OK",
     "close": "Schließen",
-    "notice": "Hinweis"
+    "notice": "Hinweis",
+    "returnHome": "Zurück zur Startseite"
+  },
+  "donate": {
+    "title": "Unterstützen Sie unsere Mission",
+    "description": "Unterstützen Sie unsere Mission, Evangelisten weltweit zu helfen",
+    "selectAmount": "Betrag auswählen",
+    "customAmount": "Benutzerdefinierter Betrag",
+    "enterAmount": "Betrag eingeben",
+    "message": "Nachricht (Optional)",
+    "messagePlaceholder": "Hinterlassen Sie eine Nachricht...",
+    "proceed": "Zur Zahlung",
+    "processing": "Wird verarbeitet...",
+    "thankYou": "Vielen Dank!",
+    "successMessage": "Ihre Spende wurde erfolgreich empfangen.",
+    "amount": "Betrag",
+    "yourMessage": "Ihre Nachricht",
+    "receiptEmail": "Eine Quittung wurde an Ihre E-Mail-Adresse gesendet.",
+    "cancelled": "Spende abgebrochen",
+    "cancelMessage": "Ihre Spende wurde abgebrochen. Es wurden keine Gebühren erhoben.",
+    "cancelHelp": "Wenn Sie Probleme hatten, kontaktieren Sie uns bitte.",
+    "invalidSession": "Ungültige Spendensitzung",
+    "verifying": "Ihre Spende wird überprüft..."
   },
   "address": {
     "title": "Meine Adressen",
@@ -165,6 +215,10 @@
   "cart": {
     "title": "Warenkorb",
     "empty": "Ihr Warenkorb ist leer",
+    "noAddress": "Sie müssen eine Adresse hinzufügen, bevor Sie eine Bestellung aufgeben.",
+    "selectAddress": "Bitte wählen Sie eine Lieferadresse aus.",
+    "selectShippingAddress": "Lieferadresse auswählen",
+    "default": "Standard",
     "placeOrder": "Bestellung aufgeben",
     "shipping": "Versand",
     "pickup": "Abholung",
@@ -223,6 +277,12 @@
     "error": "Feedback konnte nicht gesendet werden",
     "defaultSubject": "Feedback für Bestellung #{{orderNumber}}"
   },
+  "lockdown": {
+    "active": "System im Notfall-Lockdown",
+    "message": "Das System wurde aus Sicherheitsgründen gesperrt. Sie können weiterhin Medien durchsuchen, aber der Kontozugriff ist vorübergehend nicht verfügbar.",
+    "checkStatus": "Status überprüfen",
+    "checking": "Wird überprüft..."
+  },
   "languages": {
     "en": "English",
     "es": "Spanish",
@@ -245,7 +305,7 @@
     "el": "Greek",
     "ht": "Haitian Creole",
     "ilo": "Ilocano",
-    "ff": "Fulah",
+    "ha": "Hausa",
     "ur": "Urdu",
     "he": "Hebrew",
     "de": "German",

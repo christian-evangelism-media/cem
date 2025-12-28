@@ -2,9 +2,12 @@
   "nav": {
     "home": "מדיה להטבות נוצריות",
     "media": "מדיה",
+    "donate": "תרומה",
     "myFavorites": "המועדפות שלי",
     "myOrders": "ההזמנות שלי",
     "myAddresses": "הכתובות שלי",
+    "messages": "הודעות",
+    "contact": "צור קשר",
     "account": "חשבון",
     "login": "התחברות",
     "register": "הרשמה",
@@ -76,7 +79,10 @@
     "placeOrder": "בצע הזמנה",
     "orderSuccess": "ההזמנה בוצעה בהצלחה!",
     "orderError": "ביצוע ההזמנה נכשל",
-    "loadError": "טעינת המדיה נכשלה"
+    "loadError": "טעינת המדיה נכשלה",
+    "quickOrder": "הזמנה מהירה",
+    "filterLanguagesTitle": "סנן לפי שפות",
+    "filterLanguagesDescription": "בחר שפות להצגת מדיה זמינה"
   },
   "orders": {
     "title": "ההזמנות שלי",
@@ -127,7 +133,9 @@
     "delete": "מחק",
     "confirm": "אשר",
     "ok": "OK",
-    "notice": "הודעה"
+    "notice": "הודעה",
+    "close": "סגור",
+    "returnHome": "חזור לדף הבית"
   },
   "address": {
     "title": "הכתובות שלי",
@@ -165,13 +173,20 @@
     "placeOrder": "בצע הזמנה",
     "shipping": "משלוח",
     "pickup": "איסוף",
-    "placeOrderPickup": "בצע הזמנת איסוף"
+    "placeOrderPickup": "בצע הזמנת איסוף",
+    "noAddress": "אין כתובת",
+    "selectAddress": "בחר כתובת",
+    "selectShippingAddress": "בחר כתובת למשלוח",
+    "default": "ברירת מחדל",
+    "removeFromCart": "הסר מהעגלה"
   },
   "favorites": {
     "title": "המועדפות שלי",
     "noFavorites": "אין לך עדיין פריטים מועדפים.",
     "loadError": "טעינת המועדפות נכשלה",
-    "remove": "הסר"
+    "remove": "הסר",
+    "addToFavorites": "הוסף למועדפים",
+    "removeFromFavorites": "הסר מהמועדפים"
   },
   "account": {
     "title": "הגדרות חשבון",
@@ -207,6 +222,57 @@
     "next": "הבא",
     "pageOf": "עמוד {{current}} מתוך {{total}}"
   },
+  "messages": {
+    "title": "הודעות",
+    "responses": "תגובות",
+    "announcements": "הודעות",
+    "noMessages": "אין הודעות עדיין",
+    "orderBadge": "הזמנה #{{id}}",
+    "responded": "נענה",
+    "yourMessage": "ההודעה שלך",
+    "response": "תגובה מהצוות",
+    "respondedBy": "נענה על ידי",
+    "on": "ב"
+  },
+  "contact": {
+    "title": "צור קשר",
+    "subject": "נושא",
+    "message": "הודעה",
+    "send": "שלח הודעה",
+    "sending": "שולח...",
+    "messageError": "שליחת ההודעה נכשלה. אנא נסה שוב.",
+    "messagePlaceholder": "אנא תאר את שאלתך או דאגתך בפירוט...",
+    "messageSent": "הודעתך נשלחה בהצלחה. נגיב בהקדם האפשרי.",
+    "responseTime": "אנו בדרך כלל עונים תוך 2-3 ימי עסקים.",
+    "subjectPlaceholder": "תיאור קצר של פנייתך"
+  },
+  "donate": {
+    "title": "תמוך במשימה שלנו",
+    "description": "תמוך במשימה שלנו לתמוך במטיפים ברחבי העולם",
+    "selectAmount": "בחר סכום",
+    "customAmount": "סכום מותאם אישית",
+    "enterAmount": "הזן סכום",
+    "message": "הודעה (אופציונלי)",
+    "messagePlaceholder": "השאר הודעה...",
+    "proceed": "המשך לתשלום",
+    "processing": "מעבד...",
+    "thankYou": "תודה רבה!",
+    "successMessage": "תרומתך התקבלה בהצלחה.",
+    "amount": "סכום",
+    "yourMessage": "ההודעה שלך",
+    "receiptEmail": "קבלה נשלחה לכתובת הדוא\"ל שלך.",
+    "cancelled": "התרומה בוטלה",
+    "cancelMessage": "תרומתך בוטלה. לא בוצעו חיובים.",
+    "cancelHelp": "אם נתקלת בבעיות, אנא צור איתנו קשר.",
+    "invalidSession": "הפעלת תרומה לא חוקית",
+    "verifying": "מאמת את תרומתך..."
+  },
+  "lockdown": {
+    "message": "המערכת כרגע במצב נעילה חירום. גישה מוגבלת למשתמשים מורשים בלבד.",
+    "active": "המערכת במצב נעילה חירום",
+    "checkStatus": "בדוק מצב",
+    "checking": "בודק..."
+  },
   "feedback": {
     "title": "משוב להזמנה #{{orderNumber}}",
     "subjectLabel": "נושא",
@@ -239,7 +305,6 @@
     "el": "Greek",
     "ht": "Haitian Creole",
     "ilo": "Ilocano",
-    "ff": "Fulah",
     "ur": "Urdu",
     "he": "Hebrew",
     "de": "German",
@@ -247,6 +312,7 @@
     "mr": "Marathi",
     "sw": "Swahili",
     "te": "Telugu",
-    "tr": "Turkish"
+    "tr": "Turkish",
+    "ha": "Hausa"
   }
 }

@@ -2,9 +2,12 @@
   "nav": {
     "home": "Medya Evanjelizasyon Kretyen",
     "media": "Medya",
+    "donate": "Fè Don",
     "myFavorites": "Favori Mwen",
     "myOrders": "Kòmand Mwen",
     "myAddresses": "Adrès Mwen",
+    "messages": "Mesaj",
+    "contact": "Kontakte Nou",
     "account": "Kont",
     "login": "Konekte",
     "register": "Enskri",
@@ -76,7 +79,10 @@
     "placeOrder": "Fè Kòmand",
     "orderSuccess": "Kòmand fèt avèk siksè!",
     "orderError": "Kòmand echwe",
-    "loadError": "Chajman medya echwe"
+    "loadError": "Chajman medya echwe",
+    "quickOrder": "Kòmand Rapid",
+    "filterLanguagesTitle": "Filtre pa Lang",
+    "filterLanguagesDescription": "Chwazi lang pou afiche medya ki disponib"
   },
   "orders": {
     "title": "Kòmand Mwen",
@@ -127,7 +133,9 @@
     "delete": "Efase",
     "confirm": "Konfime",
     "ok": "OK",
-    "notice": "Avi"
+    "notice": "Avi",
+    "close": "Fèmen",
+    "returnHome": "Retounen Lakay"
   },
   "address": {
     "title": "Adrès Mwen",
@@ -165,13 +173,20 @@
     "placeOrder": "Fè Kòmand",
     "shipping": "Livrezon",
     "pickup": "Ranmase",
-    "placeOrderPickup": "Fè Kòmand Ranmase"
+    "placeOrderPickup": "Fè Kòmand Ranmase",
+    "noAddress": "Pa gen adrès",
+    "selectAddress": "Chwazi adrès",
+    "selectShippingAddress": "Chwazi adrès livrezon",
+    "default": "Pa Defo",
+    "removeFromCart": "Retire nan panyen"
   },
   "favorites": {
     "title": "Favori Mwen",
     "noFavorites": "Ou pa gen atik favori ankò.",
     "loadError": "Echwe chajman favori yo",
-    "remove": "Retire"
+    "remove": "Retire",
+    "addToFavorites": "Ajoute nan Favori",
+    "removeFromFavorites": "Retire nan Favori"
   },
   "account": {
     "title": "Paramèt Kont",
@@ -207,6 +222,57 @@
     "next": "Apre",
     "pageOf": "Paj {{current}} sou {{total}}"
   },
+  "messages": {
+    "title": "Mesaj",
+    "responses": "Repons",
+    "announcements": "Anons",
+    "noMessages": "Pa gen mesaj ankò",
+    "orderBadge": "Kòmand #{{id}}",
+    "responded": "Reponn",
+    "yourMessage": "Mesaj Ou",
+    "response": "Repons nan pati Anplwaye yo",
+    "respondedBy": "Reponn pa",
+    "on": "nan"
+  },
+  "contact": {
+    "title": "Kontakte Nou",
+    "subject": "Sijè",
+    "message": "Mesaj",
+    "send": "Voye Mesaj",
+    "sending": "Ap voye...",
+    "messageError": "Echwe pou voye mesaj la. Tanpri eseye ankò.",
+    "messagePlaceholder": "Tanpri dekri kesyon ou oswa enkyetid ou an detay...",
+    "messageSent": "Mesaj ou a te voye avèk siksè. Nou pral reponn pi vit posib.",
+    "responseTime": "Nou tipikman reponn nan 2-3 jou travay.",
+    "subjectPlaceholder": "Deskripsyon kout sou demann ou"
+  },
+  "donate": {
+    "title": "Sipòte Misyon Nou",
+    "description": "Sipòte misyon nou pou ede evanjelis toupatou nan mond lan",
+    "selectAmount": "Chwazi Montan",
+    "customAmount": "Montan Pèsonalize",
+    "enterAmount": "Antre Montan",
+    "message": "Mesaj (Opsyonèl)",
+    "messagePlaceholder": "Kite yon mesaj...",
+    "proceed": "Kontinye nan Peman",
+    "processing": "Ap trete...",
+    "thankYou": "Mèsi Anpil!",
+    "successMessage": "Don ou resevwa avèk siksè.",
+    "amount": "Montan",
+    "yourMessage": "Mesaj Ou",
+    "receiptEmail": "Yon resi voye nan adrès imèl ou.",
+    "cancelled": "Don Anile",
+    "cancelMessage": "Don ou te anile. Pa gen chaj ki fèt.",
+    "cancelHelp": "Si ou te gen pwoblèm, tanpri kontakte nou.",
+    "invalidSession": "Sesyon don pa valid",
+    "verifying": "Ap verifye don ou..."
+  },
+  "lockdown": {
+    "message": "Sistèm nan aktyèlman nan mòd fèmti ijans. Aksè limite sèlman pou itilizatè otorize.",
+    "active": "Sistèm nan nan fermeture dijans",
+    "checkStatus": "Tcheke Estati",
+    "checking": "Ap tcheke..."
+  },
   "feedback": {
     "title": "Kòmantè pou Kòmand #{{orderNumber}}",
     "subjectLabel": "Sijè",
@@ -239,7 +305,6 @@
     "el": "Greek",
     "ht": "Haitian Creole",
     "ilo": "Ilocano",
-    "ff": "Fulah",
     "ur": "Urdu",
     "he": "Hebrew",
     "de": "German",
@@ -247,6 +312,7 @@
     "mr": "Marathi",
     "sw": "Swahili",
     "te": "Telugu",
-    "tr": "Turkish"
+    "tr": "Turkish",
+    "ha": "Hausa"
   }
 }

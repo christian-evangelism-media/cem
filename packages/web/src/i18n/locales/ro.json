@@ -9,7 +9,10 @@
     "login": "Autentificare",
     "register": "Înregistrare",
     "logout": "Deconectare",
-    "hello": "Bună, {{name}}"
+    "hello": "Bună, {{name}}",
+    "donate": "Donează",
+    "messages": "Mesaje",
+    "contact": "Contactează-ne"
   },
   "landing": {
     "title": "Media de Evanghelizare Creștină",
@@ -76,7 +79,10 @@
     "placeOrder": "Plasați Comanda",
     "orderSuccess": "Comanda a fost plasată cu succes!",
     "orderError": "Comanda a eșuat",
-    "loadError": "Încărcarea media a eșuat"
+    "loadError": "Încărcarea media a eșuat",
+    "quickOrder": "Comandă Rapidă",
+    "filterLanguagesTitle": "Filtrează Limbi",
+    "filterLanguagesDescription": "Selectează limbi pentru filtrare. Doar media unde toate limbile sunt în selecția ta va fi afișată."
   },
   "orders": {
     "title": "Comenzile Mele",
@@ -127,7 +133,9 @@
     "delete": "Ștergere",
     "confirm": "Confirmă",
     "ok": "OK",
-    "notice": "Notificare"
+    "notice": "Notificare",
+    "close": "Închide",
+    "returnHome": "Înapoi Acasă"
   },
   "address": {
     "title": "Adresele Mele",
@@ -165,13 +173,20 @@
     "placeOrder": "Plasați Comanda",
     "shipping": "Livrare",
     "pickup": "Ridicare",
-    "placeOrderPickup": "Plasați Comandă de Ridicare"
+    "placeOrderPickup": "Plasați Comandă de Ridicare",
+    "noAddress": "Trebuie să adaugi o adresă înainte de a plasa o comandă.",
+    "selectAddress": "Te rugăm să selectezi o adresă de livrare.",
+    "selectShippingAddress": "Selectează Adresa de Livrare",
+    "default": "Implicit",
+    "removeFromCart": "Elimină din coș"
   },
   "favorites": {
     "title": "Preferințele Mele",
     "noFavorites": "Nu aveți încă articole preferate.",
     "loadError": "Încărcarea preferințelor a eșuat",
-    "remove": "Ștergeți"
+    "remove": "Ștergeți",
+    "addToFavorites": "Adaugă la favorite",
+    "removeFromFavorites": "Elimină din favorite"
   },
   "account": {
     "title": "Setări Cont",
@@ -239,7 +254,6 @@
     "el": "Greek",
     "ht": "Haitian Creole",
     "ilo": "Ilocano",
-    "ff": "Fulah",
     "ur": "Urdu",
     "he": "Hebrew",
     "de": "German",
@@ -247,6 +261,58 @@
     "mr": "Marathi",
     "sw": "Swahili",
     "te": "Telugu",
-    "tr": "Turkish"
+    "tr": "Turkish",
+    "ha": "Hausa"
+  },
+  "messages": {
+    "title": "Mesaje",
+    "responses": "Răspunsuri",
+    "announcements": "Anunțuri",
+    "noMessages": "Încă nu există mesaje",
+    "orderBadge": "Comanda #{{id}}",
+    "responded": "Răspuns",
+    "yourMessage": "Mesajul Tău",
+    "response": "Răspuns de la Personal",
+    "respondedBy": "Răspuns de",
+    "on": "pe"
+  },
+  "contact": {
+    "title": "Contactează-ne",
+    "subject": "Subiect",
+    "subjectPlaceholder": "Descriere scurtă a întrebării tale",
+    "message": "Mesaj",
+    "messagePlaceholder": "Te rugăm să descrii întrebarea sau îngrijorarea ta în detaliu...",
+    "responseTime": "De obicei răspundem în 2-3 zile lucrătoare.",
+    "send": "Trimite Mesaj",
+    "sending": "Se trimite...",
+    "messageSent": "Mesajul tău a fost trimis cu succes. Vom răspunde cât mai curând posibil.",
+    "messageError": "Eroare la trimiterea mesajului. Te rugăm să încerci din nou."
+  },
+  "donate": {
+    "title": "Sprijină Misiunea Noastră",
+    "description": "Sprijină misiunea noastră de a susține evangheliștii din întreaga lume",
+    "selectAmount": "Selectează Suma",
+    "customAmount": "Sumă Personalizată",
+    "enterAmount": "Introdu Suma",
+    "message": "Mesaj (Opțional)",
+    "messagePlaceholder": "Lasă un mesaj...",
+    "proceed": "Continuă la Plată",
+    "processing": "Se procesează...",
+    "thankYou": "Mulțumim!",
+    "successMessage": "Donația ta a fost primită cu succes.",
+    "amount": "Sumă",
+    "yourMessage": "Mesajul Tău",
+    "receiptEmail": "O chitanță a fost trimisă la adresa ta de email.",
+    "cancelled": "Donație Anulată",
+    "cancelMessage": "Donația ta a fost anulată. Nu au fost efectuate taxe.",
+    "cancelHelp": "Dacă ai întâmpinat probleme, te rugăm să ne contactezi.",
+    "invalidSession": "Sesiune de donație invalidă",
+    "verifying": "Se verifică donația ta..."
+  },
+  "lockdown": {
+    "active": "Sistemul este în Blocare de Urgență",
+    "message": "Sistemul a fost blocat din motive de securitate. Încă poți naviga media, dar accesul la cont este temporar indisponibil.",
+    "checkStatus": "Verifică Starea",
+    "checking": "Se verifică..."
   }
 }

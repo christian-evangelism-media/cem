@@ -2,9 +2,12 @@
   "nav": {
     "home": "キリスト教伝道メディア",
     "media": "メディア",
+    "donate": "寄付",
     "myFavorites": "お気に入り",
     "myOrders": "注文履歴",
     "myAddresses": "マイアドレス",
+    "messages": "メッセージ",
+    "contact": "お問い合わせ",
     "account": "アカウント",
     "login": "ログイン",
     "register": "登録",
@@ -76,7 +79,10 @@
     "placeOrder": "注文する",
     "orderSuccess": "注文が完了しました！",
     "orderError": "注文に失敗しました",
-    "loadError": "メディアの読み込みに失敗しました"
+    "loadError": "メディアの読み込みに失敗しました",
+    "quickOrder": "クイック注文",
+    "filterLanguagesTitle": "言語で絞り込む",
+    "filterLanguagesDescription": "利用可能なメディアを表示する言語を選択してください"
   },
   "orders": {
     "title": "注文履歴",
@@ -127,7 +133,9 @@
     "delete": "削除",
     "confirm": "確認",
     "ok": "OK",
-    "notice": "お知らせ"
+    "notice": "お知らせ",
+    "close": "閉じる",
+    "returnHome": "ホームに戻る"
   },
   "address": {
     "title": "マイアドレス",
@@ -165,13 +173,20 @@
     "placeOrder": "注文する",
     "shipping": "配送",
     "pickup": "引き取り",
-    "placeOrderPickup": "引き取り注文を行う"
+    "placeOrderPickup": "引き取り注文を行う",
+    "noAddress": "住所がありません",
+    "selectAddress": "住所を選択",
+    "selectShippingAddress": "配送先住所を選択",
+    "default": "デフォルト",
+    "removeFromCart": "カートから削除"
   },
   "favorites": {
     "title": "お気に入り",
     "noFavorites": "まだお気に入りアイテムがありません。",
     "loadError": "お気に入りの読み込みに失敗しました",
-    "remove": "削除"
+    "remove": "削除",
+    "addToFavorites": "お気に入りに追加",
+    "removeFromFavorites": "お気に入りから削除"
   },
   "account": {
     "title": "アカウント設定",
@@ -207,6 +222,57 @@
     "next": "次へ",
     "pageOf": "{{total}}ページ中{{current}}ページ"
   },
+  "messages": {
+    "title": "メッセージ",
+    "responses": "返信",
+    "announcements": "お知らせ",
+    "noMessages": "まだメッセージがありません",
+    "orderBadge": "注文 #{{id}}",
+    "responded": "返信済み",
+    "yourMessage": "あなたのメッセージ",
+    "response": "スタッフからの返信",
+    "respondedBy": "返信者",
+    "on": "送信日時"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subject": "件名",
+    "message": "メッセージ",
+    "send": "メッセージを送信",
+    "sending": "送信中...",
+    "messageError": "メッセージの送信に失敗しました。もう一度お試しください。",
+    "messagePlaceholder": "お問い合わせ内容を詳しくご記入ください...",
+    "messageSent": "メッセージが正常に送信されました。できるだけ早くご返信いたします。",
+    "responseTime": "通常2〜3営業日以内に返信いたします。",
+    "subjectPlaceholder": "お問い合わせの簡単な説明"
+  },
+  "donate": {
+    "title": "私たちの使命をサポート",
+    "description": "世界中の伝道者をサポートする私たちの使命をサポートしてください",
+    "selectAmount": "金額を選択",
+    "customAmount": "カスタム金額",
+    "enterAmount": "金額を入力",
+    "message": "メッセージ（任意）",
+    "messagePlaceholder": "メッセージを残す...",
+    "proceed": "お支払いへ進む",
+    "processing": "処理中...",
+    "thankYou": "ありがとうございます！",
+    "successMessage": "ご寄付を正常に受け取りました。",
+    "amount": "金額",
+    "yourMessage": "あなたのメッセージ",
+    "receiptEmail": "領収書をメールアドレスに送信しました。",
+    "cancelled": "寄付がキャンセルされました",
+    "cancelMessage": "ご寄付はキャンセルされました。請求は行われていません。",
+    "cancelHelp": "問題が発生した場合は、お問い合わせください。",
+    "invalidSession": "無効な寄付セッション",
+    "verifying": "ご寄付を確認しています..."
+  },
+  "lockdown": {
+    "message": "システムは現在、緊急ロックダウンモードです。承認されたユーザーのみアクセスできます。",
+    "active": "システムは緊急ロックダウン中です",
+    "checkStatus": "ステータスを確認",
+    "checking": "確認中..."
+  },
   "feedback": {
     "title": "注文 #{{orderNumber}} へのフィードバック",
     "subjectLabel": "件名",
@@ -239,7 +305,6 @@
     "el": "Greek",
     "ht": "Haitian Creole",
     "ilo": "Ilocano",
-    "ff": "Fulah",
     "ur": "Urdu",
     "he": "Hebrew",
     "de": "German",
@@ -247,6 +312,7 @@
     "mr": "Marathi",
     "sw": "Swahili",
     "te": "Telugu",
-    "tr": "Turkish"
+    "tr": "Turkish",
+    "ha": "Hausa"
   }
 }

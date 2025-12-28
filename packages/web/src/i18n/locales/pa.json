@@ -9,7 +9,10 @@
     "login": "ਲਾਗਇਨ",
     "register": "ਰਜਿਸਟਰ",
     "logout": "ਲਾਗਆਉਟ",
-    "hello": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ, {{name}}"
+    "hello": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ, {{name}}",
+    "donate": "ਦਾਨ ਕਰੋ",
+    "messages": "ਸੁਨੇਹੇ",
+    "contact": "ਸੰਪਰਕ ਕਰੋ"
   },
   "landing": {
     "title": "ਈਸਾਈ ਪ੍ਰਚਾਰ ਮੀਡੀਆ",
@@ -76,7 +79,10 @@
     "placeOrder": "ਆਰਡਰ ਕਰੋ",
     "orderSuccess": "ਆਰਡਰ ਸਫਲਤਾਪੂਰਵਕ ਦਿੱਤਾ ਗਿਆ!",
     "orderError": "ਆਰਡਰ ਅਸਫਲ ਰਿਹਾ",
-    "loadError": "ਮੀਡੀਆ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ"
+    "loadError": "ਮੀਡੀਆ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ",
+    "quickOrder": "ਤੇਜ਼ ਆਰਡਰ",
+    "filterLanguagesTitle": "ਭਾਸ਼ਾਵਾਂ ਫਿਲਟਰ ਕਰੋ",
+    "filterLanguagesDescription": "ਫਿਲਟਰ ਕਰਨ ਲਈ ਭਾਸ਼ਾਵਾਂ ਚੁਣੋ। ਸਿਰਫ ਮੀਡੀਆ ਜਿੱਥੇ ਸਾਰੀਆਂ ਭਾਸ਼ਾਵਾਂ ਤੁਹਾਡੀ ਚੋਣ ਵਿੱਚ ਹਨ ਦਿਖਾਇਆ ਜਾਵੇਗਾ।"
   },
   "orders": {
     "title": "ਮੇਰੇ ਆਰਡਰ",
@@ -127,7 +133,9 @@
     "delete": "ਮਿਟਾਓ",
     "confirm": "ਪੁਸ਼ਟੀ ਕਰੋ",
     "ok": "OK",
-    "notice": "ਸੂਚਨਾ"
+    "notice": "ਸੂਚਨਾ",
+    "close": "ਬੰਦ ਕਰੋ",
+    "returnHome": "ਘਰ ਵਾਪਸ ਜਾਓ"
   },
   "address": {
     "title": "ਮੇਰੇ ਪਤੇ",
@@ -165,13 +173,20 @@
     "placeOrder": "ਆਰਡਰ ਕਰੋ",
     "shipping": "ਸ਼ਿਪਿੰਗ",
     "pickup": "ਪਿਕਅੱਪ",
-    "placeOrderPickup": "ਪਿਕਅੱਪ ਆਰਡਰ ਕਰੋ"
+    "placeOrderPickup": "ਪਿਕਅੱਪ ਆਰਡਰ ਕਰੋ",
+    "noAddress": "ਤੁਹਾਨੂੰ ਆਰਡਰ ਦੇਣ ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ ਪਤਾ ਜੋੜਨ ਦੀ ਲੋੜ ਹੈ।",
+    "selectAddress": "ਕਿਰਪਾ ਕਰਕੇ ਸ਼ਿਪਿੰਗ ਪਤਾ ਚੁਣੋ।",
+    "selectShippingAddress": "ਸ਼ਿਪਿੰਗ ਪਤਾ ਚੁਣੋ",
+    "default": "ਮੂਲ",
+    "removeFromCart": "ਕਾਰਟ ਤੋਂ ਹਟਾਓ"
   },
   "favorites": {
     "title": "ਮੇਰੇ ਪਸੰਦ",
     "noFavorites": "ਤੁਹਾਡੇ ਕੋਲ ਅਜੇ ਕੋਈ ਪਸੰਦ ਦੀਆਂ ਚੀਜ਼ਾਂ ਨਹੀਂ ਹਨ।",
     "loadError": "ਪਸੰਦ ਦੀਆਂ ਚੀਜ਼ਾਂ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ",
-    "remove": "ਹਟਾਓ"
+    "remove": "ਹਟਾਓ",
+    "addToFavorites": "ਮਨਪਸੰਦ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ",
+    "removeFromFavorites": "ਮਨਪਸੰਦ ਤੋਂ ਹਟਾਓ"
   },
   "account": {
     "title": "ਖਾਤਾ ਸੈਟਿੰਗਾਂ",
@@ -239,7 +254,6 @@
     "el": "Greek",
     "ht": "Haitian Creole",
     "ilo": "Ilocano",
-    "ff": "Fulah",
     "ur": "Urdu",
     "he": "Hebrew",
     "de": "German",
@@ -247,6 +261,58 @@
     "mr": "Marathi",
     "sw": "Swahili",
     "te": "Telugu",
-    "tr": "Turkish"
+    "tr": "Turkish",
+    "ha": "ਹੌਸਾ"
+  },
+  "messages": {
+    "title": "ਸੁਨੇਹੇ",
+    "responses": "ਜਵਾਬ",
+    "announcements": "ਘੋਸ਼ਣਾਵਾਂ",
+    "noMessages": "ਅਜੇ ਕੋਈ ਸੁਨੇਹੇ ਨਹੀਂ",
+    "orderBadge": "ਆਰਡਰ #{{id}}",
+    "responded": "ਜਵਾਬ ਦਿੱਤਾ",
+    "yourMessage": "ਤੁਹਾਡਾ ਸੁਨੇਹਾ",
+    "response": "ਸਟਾਫ ਵੱਲੋਂ ਜਵਾਬ",
+    "respondedBy": "ਦੁਆਰਾ ਜਵਾਬ ਦਿੱਤਾ ਗਿਆ",
+    "on": "ਤੇ"
+  },
+  "contact": {
+    "title": "ਸੰਪਰਕ ਕਰੋ",
+    "subject": "ਵਿਸ਼ਾ",
+    "subjectPlaceholder": "ਤੁਹਾਡੀ ਪੁੱਛਗਿੱਛ ਦਾ ਸੰਖੇਪ ਵੇਰਵਾ",
+    "message": "ਸੁਨੇਹਾ",
+    "messagePlaceholder": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਸਵਾਲ ਜਾਂ ਚਿੰਤਾ ਦਾ ਵਿਸਥਾਰ ਵਿੱਚ ਵਰਣਨ ਕਰੋ...",
+    "responseTime": "ਅਸੀਂ ਆਮ ਤੌਰ ਤੇ 2-3 ਕਾਰੋਬਾਰੀ ਦਿਨਾਂ ਵਿੱਚ ਜਵਾਬ ਦਿੰਦੇ ਹਾਂ।",
+    "send": "ਸੁਨੇਹਾ ਭੇਜੋ",
+    "sending": "ਭੇਜ ਰਿਹਾ ਹੈ...",
+    "messageSent": "ਤੁਹਾਡਾ ਸੁਨੇਹਾ ਸਫਲਤਾਪੂਰਵਕ ਭੇਜਿਆ ਗਿਆ ਹੈ। ਅਸੀਂ ਜਿੰਨੀ ਜਲਦੀ ਹੋ ਸਕੇ ਜਵਾਬ ਦੇਵਾਂਗੇ।",
+    "messageError": "ਸੁਨੇਹਾ ਭੇਜਣ ਵਿੱਚ ਅਸਫਲ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+  },
+  "donate": {
+    "title": "ਸਾਡੇ ਮਿਸ਼ਨ ਦਾ ਸਮਰਥਨ ਕਰੋ",
+    "description": "ਦੁਨੀਆ ਭਰ ਵਿੱਚ ਪ੍ਰਚਾਰਕਾਂ ਦਾ ਸਮਰਥਨ ਕਰਨ ਦੇ ਸਾਡੇ ਮਿਸ਼ਨ ਦਾ ਸਮਰਥਨ ਕਰੋ",
+    "selectAmount": "ਰਕਮ ਚੁਣੋ",
+    "customAmount": "ਕਸਟਮ ਰਕਮ",
+    "enterAmount": "ਰਕਮ ਦਾਖਲ ਕਰੋ",
+    "message": "ਸੁਨੇਹਾ (ਵਿਕਲਪਿਕ)",
+    "messagePlaceholder": "ਸੁਨੇਹਾ ਛੱਡੋ...",
+    "proceed": "ਭੁਗਤਾਨ ਲਈ ਅੱਗੇ ਵਧੋ",
+    "processing": "ਪ੍ਰਕਿਰਿਆ ਕਰ ਰਿਹਾ ਹੈ...",
+    "thankYou": "ਧੰਨਵਾਦ!",
+    "successMessage": "ਤੁਹਾਡਾ ਦਾਨ ਸਫਲਤਾਪੂਰਵਕ ਪ੍ਰਾਪਤ ਹੋਇਆ ਹੈ।",
+    "amount": "ਰਕਮ",
+    "yourMessage": "ਤੁਹਾਡਾ ਸੁਨੇਹਾ",
+    "receiptEmail": "ਇੱਕ ਰਸੀਦ ਤੁਹਾਡੇ ਈਮੇਲ ਪਤੇ ਤੇ ਭੇਜੀ ਗਈ ਹੈ।",
+    "cancelled": "ਦਾਨ ਰੱਦ ਕੀਤਾ ਗਿਆ",
+    "cancelMessage": "ਤੁਹਾਡਾ ਦਾਨ ਰੱਦ ਕੀਤਾ ਗਿਆ ਸੀ। ਕੋਈ ਖਰਚਾ ਨਹੀਂ ਲਿਆ ਗਿਆ।",
+    "cancelHelp": "ਜੇ ਤੁਹਾਨੂੰ ਕੋਈ ਸਮੱਸਿਆ ਆਈ ਹੈ, ਤਾਂ ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
+    "invalidSession": "ਅਵੈਧ ਦਾਨ ਸੈਸ਼ਨ",
+    "verifying": "ਤੁਹਾਡੇ ਦਾਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰ ਰਿਹਾ ਹੈ..."
+  },
+  "lockdown": {
+    "active": "ਸਿਸਟਮ ਐਮਰਜੈਂਸੀ ਲਾਕਡਾਊਨ ਵਿੱਚ ਹੈ",
+    "message": "ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਸਿਸਟਮ ਨੂੰ ਲਾਕ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਤੁਸੀਂ ਅਜੇ ਵੀ ਮੀਡੀਆ ਬ੍ਰਾਊਜ਼ ਕਰ ਸਕਦੇ ਹੋ, ਪਰ ਖਾਤਾ ਪਹੁੰਚ ਅਸਥਾਈ ਤੌਰ ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।",
+    "checkStatus": "ਸਥਿਤੀ ਜਾਂਚੋ",
+    "checking": "ਜਾਂਚ ਰਿਹਾ ਹੈ..."
   }
 }
