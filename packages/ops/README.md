@@ -44,7 +44,7 @@ Operations panel for the Christian Evangelism Media (CEM) platform, providing ma
 
 - Node.js 20+
 - npm or yarn
-- Running instance of [cem-api](https://github.com/christian-evangelism-media/cem-api)
+- Running instance of the API backend (see packages/api)
 - Operations account (admin, super_admin, support, or help role)
 
 ## Installation
@@ -67,7 +67,7 @@ Operations panel for the Christian Evangelism Media (CEM) platform, providing ma
 
    Edit `.env` and configure the following:
    ```env
-   # API URL (cem-api backend)
+   # API URL (backend)
    VITE_API_URL=http://localhost:3333
    ```
 
@@ -96,7 +96,7 @@ The build output will be in the `dist` directory.
 
 The first super_admin must be created directly in the database. Follow these steps:
 
-1. **Register a user account** on the public website (cem-web) or create one via the API
+1. **Register a user account** on the public website (web) or create one via the API
 2. **Connect to your PostgreSQL database**:
    ```bash
    PGPASSWORD=your_password psql -U postgres -d cem
@@ -241,7 +241,7 @@ src/
 
 This application requires users with `admin`, `super_admin`, `support`, or `help` roles. Regular users are redirected with an error message.
 
-Session-based authentication using HTTP-only cookies managed by cem-api.
+Session-based authentication using HTTP-only cookies managed by the API.
 
 ## License
 

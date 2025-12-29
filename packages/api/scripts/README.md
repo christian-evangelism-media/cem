@@ -44,7 +44,7 @@ Deactivates the emergency lockdown mode.
 2. **During Lockdown:**
    - All authenticated requests return HTTP 423 (Locked)
    - cem-ops shows full lockdown screen
-   - cem-web shows lockdown banner on login/register pages
+   - web shows lockdown banner on login/register pages
    - Public media browsing continues to work
 
 3. **Deactivation:**
@@ -85,13 +85,13 @@ UPDATE system_settings SET is_locked_down = true, updated_at = NOW() WHERE id = 
 
 - Bash shell
 - PostgreSQL client (`psql`) installed
-- `.env` file with database credentials in the cem-api directory
+- `.env` file with database credentials in the api directory
 - Appropriate database user permissions
 
 ## Troubleshooting
 
 **"Error: .env file not found"**
-- Make sure you're running the script from the cem-api directory
+- Make sure you're running the script from the api directory
 - Ensure `.env` file exists and is readable
 
 **"psql: connection refused"**

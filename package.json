@@ -4,16 +4,16 @@
   "description": "Christian Evangelism Media - Monorepo",
   "private": true,
   "scripts": {
-    "dev:api": "pnpm --filter cem-api dev",
-    "dev:web": "pnpm --filter cem-web dev",
-    "dev:ops": "pnpm --filter cem-ops dev",
-    "dev:scanner": "pnpm --filter cem-scanner dev",
-    "build:api": "pnpm --filter cem-api build",
-    "build:web": "pnpm --filter cem-web build",
-    "build:ops": "pnpm --filter cem-ops build",
-    "build:scanner": "pnpm --filter cem-scanner build",
+    "dev:api": "pnpm --filter api dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:ops": "pnpm --filter ops dev",
+    "dev:scanner": "pnpm --filter scanner dev",
+    "build:api": "pnpm --filter api build",
+    "build:web": "pnpm --filter web build",
+    "build:ops": "pnpm --filter ops build",
+    "build:scanner": "pnpm --filter scanner build",
     "build:all": "pnpm build:api && pnpm build:web && pnpm build:ops && pnpm build:scanner",
-    "generate:types": "pnpm --filter cem-api generate:types"
+    "generate:types": "pnpm --filter api generate:types"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
 import { createTuyau } from '@tuyau/client'
-import { api } from 'cem-api/api'
+import { api } from 'api/api'
 
 export const $api = createTuyau({
   api,

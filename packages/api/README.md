@@ -47,8 +47,8 @@ Backend API for the Christian Evangelism Media (CEM) platform, providing authent
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/christian-evangelism-media/cem-api.git
-   cd cem-api
+   git clone https://github.com/christian-evangelism-media/cem.git
+   cd cem/packages/api
    ```
 
 2. **Install dependencies**
@@ -139,7 +139,7 @@ The API will be available at `http://localhost:3333`.
    npm install -g pm2
 
    # Start in cluster mode (uses all CPU cores)
-   pm2 start bin/server.js -i max --name cem-api --log ./logs
+   pm2 start bin/server.js -i max --name api --log ./logs
 
    # Configure auto-restart on server reboot
    pm2 startup
@@ -147,17 +147,17 @@ The API will be available at `http://localhost:3333`.
 
    # Useful PM2 commands:
    pm2 status              # View all processes
-   pm2 logs cem-api        # View logs (all instances merged)
-   pm2 restart cem-api     # Restart all instances
-   pm2 stop cem-api        # Stop all instances
-   pm2 delete cem-api      # Remove from PM2
+   pm2 logs api        # View logs (all instances merged)
+   pm2 restart api     # Restart all instances
+   pm2 stop api        # Stop all instances
+   pm2 delete api      # Remove from PM2
    ```
 
    **Note:** When rebuilding, remember to:
    ```bash
    npm run build
    cp .env build/.env
-   pm2 restart cem-api
+   pm2 restart api
    ```
 
 5. **Or run directly (single process):**

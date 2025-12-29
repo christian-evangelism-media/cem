@@ -45,14 +45,14 @@ Public-facing web application for the Christian Evangelism Media (CEM) platform,
 
 - Node.js 20+
 - npm or yarn
-- Running instance of [cem-api](https://github.com/christian-evangelism-media/cem-api)
+- Running instance of the API backend (see packages/api)
 
 ## Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/christian-evangelism-media/cem-web.git
-   cd cem-web
+   git clone https://github.com/christian-evangelism-media/cem.git
+   cd cem/packages/web
    ```
 
 2. **Install dependencies**
@@ -67,7 +67,7 @@ Public-facing web application for the Christian Evangelism Media (CEM) platform,
 
    Edit `.env` and configure the following:
    ```env
-   # API URL (cem-api backend)
+   # API URL (backend)
    VITE_API_URL=http://localhost:3333
 
    # Mapbox API token (for address autocomplete)
@@ -167,7 +167,7 @@ Arabic, Bengali, German, Greek, English, Spanish, Persian, French, Hausa, Hebrew
 
 ## Authentication
 
-This application uses session-based authentication with HTTP-only cookies. Credentials are sent to the cem-api backend, which manages sessions.
+This application uses session-based authentication with HTTP-only cookies. Credentials are sent to the API backend, which manages sessions.
 
 ## License
 
