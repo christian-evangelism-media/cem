@@ -1,7 +1,7 @@
 import { useState, useDeferredValue } from 'react'
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { Modal, Button, Badge, Input, Loading, Toggle, Card, Grid } from 'asterui'
+import { Modal, Button, Badge, Input, Loading, Toggle, Card, Grid, Dropdown, Checkbox } from 'asterui'
 import { api } from '../services/api'
 import { useAuth } from '../contexts/AuthContext'
 import type { Media as MediaType, PaginatedResponse } from '../types'
@@ -181,14 +181,16 @@ export default function Media() {
             />
 
             {/* Language Filter */}
-            <div className="dropdown dropdown-end">
-              <div tabIndex={0} role="button" className="btn btn-outline btn-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                </svg>
-                <span>{t('media.filterLanguages')} ({selectedLanguages.length})</span>
-              </div>
-              <div tabIndex={0} className="dropdown-content z-[1] shadow bg-base-100 rounded-box w-[36rem] max-h-[32rem] overflow-y-auto mt-2 p-2">
+            <Dropdown placement="bottomRight" trigger={['click']}>
+              <Dropdown.Trigger>
+                <Button variant="outline" size="sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                  </svg>
+                  <span>{t('media.filterLanguages')} ({selectedLanguages.length})</span>
+                </Button>
+              </Dropdown.Trigger>
+              <Dropdown.Menu className="w-[36rem] max-h-[32rem] overflow-y-auto p-2">
                 <div className="px-2 py-3">
                   <h3 className="font-bold text-sm mb-1">{t('media.filterLanguages')}</h3>
                   <p className="text-xs text-base-content/70">
@@ -200,19 +202,18 @@ export default function Media() {
                   {availableLanguageCodes.map((code) => (
                     <Col span={8} key={code}>
                       <label className="label cursor-pointer justify-start gap-2 p-2">
-                        <input
-                          type="checkbox"
+                        <Checkbox
+                          size="sm"
                           checked={selectedLanguages.includes(code)}
-                          onChange={() => toggleLanguage(code)}
-                          className="checkbox checkbox-sm"
+                          onChange={(checked) => toggleLanguage(code)}
                         />
                         <span className="label-text text-sm">{t(`languageNames.${code}`)}</span>
                       </label>
                     </Col>
                   ))}
                 </Row>
-              </div>
-            </div>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
 
           <div className="overflow-x-auto">
@@ -268,7 +269,7 @@ export default function Media() {
                                   <div key={bundleSize} className={`flex items-center gap-1 ${isLow ? 'text-error font-semibold' : ''}`}>
                                     <Button
                                       size="xs"
-                                      className="btn-circle"
+                                      shape="circle"
                                       onClick={() => handleInventoryAdjust(item.id, Number(bundleSize), count - 1)}
                                       disabled={count <= 0}
                                     >
@@ -277,7 +278,7 @@ export default function Media() {
                                     <span className="font-mono min-w-[3rem] text-center">{count}×{bundleSize}</span>
                                     <Button
                                       size="xs"
-                                      className="btn-circle"
+                                      shape="circle"
                                       onClick={() => handleInventoryAdjust(item.id, Number(bundleSize), count + 1)}
                                     >
                                       +

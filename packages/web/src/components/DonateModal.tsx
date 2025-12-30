@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useMutation } from '@tanstack/react-query'
 import { $api } from '../services/tuyau'
-import { Grid } from 'asterui'
+import { Grid, Modal, Button, Input, Textarea } from 'asterui'
 
 const { Row, Col } = Grid
 
@@ -19,17 +19,6 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
   const [isCustom, setIsCustom] = useState(false)
 
   const presetAmounts = [10, 25, 50, 100, 250, 500]
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose()
-      }
-    }
-
-    document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
-  }, [isOpen, onClose])
 
   const createCheckout = useMutation({
     mutationFn: async (donationAmount: number) => {
@@ -74,123 +63,97 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
     setAmount('')
   }
 
-  if (!isOpen) return null
-
   return (
-    <div className="modal modal-open">
-      <div className="modal-box max-w-lg">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="font-bold text-lg">{t('donate.title') || 'Support Our Mission'}</h3>
-          <button
-            onClick={onClose}
-            className="btn btn-sm btn-circle btn-ghost"
-            aria-label="Close"
+    <Modal
+      open={isOpen}
+      onCancel={onClose}
+      title={t('donate.title') || 'Support Our Mission'}
+      width={512}
+      footer={[
+        <Button key="cancel" onClick={onClose}>
+          {t('common.cancel') || 'Cancel'}
+        </Button>,
+        <Button
+          key="donate"
+          type="primary"
+          onClick={handleDonate}
+          disabled={
+            createCheckout.isPending ||
+            (!isCustom && !amount) ||
+            (isCustom && (!customAmount || parseFloat(customAmount) <= 0))
+          }
+          loading={createCheckout.isPending}
+        >
+          {createCheckout.isPending
+            ? t('donate.processing') || 'Processing...'
+            : t('donate.proceed') || 'Proceed to Payment'}
+        </Button>,
+      ]}
+    >
+      <p className="mb-6 text-sm opacity-70">
+        {t('donate.description') ||
+          'Support our mission to support evangelists worldwide'}
+      </p>
+
+      <div className="space-y-4">
+        <div>
+          <label className="label">
+            <span className="label-text">{t('donate.selectAmount') || 'Select Amount'}</span>
+          </label>
+          <Row gutter={8} className="mb-2">
+            {presetAmounts.map((preset) => (
+              <Col span={8} key={preset}>
+                <Button
+                  onClick={() => handlePresetClick(preset)}
+                  type={amount === preset.toString() && !isCustom ? 'primary' : 'default'}
+                  block
+                >
+                  ${preset}
+                </Button>
+              </Col>
+            ))}
+          </Row>
+          <Button
+            onClick={handleCustomClick}
+            type={isCustom ? 'primary' : 'default'}
+            block
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+            {t('donate.customAmount') || 'Custom Amount'}
+          </Button>
         </div>
 
-        <p className="mb-6 text-sm opacity-70">
-          {t('donate.description') ||
-            'Support our mission to support evangelists worldwide'}
-        </p>
-
-        <div className="space-y-4">
+        {isCustom && (
           <div>
             <label className="label">
-              <span className="label-text">{t('donate.selectAmount') || 'Select Amount'}</span>
+              <span className="label-text">{t('donate.enterAmount') || 'Enter Amount'}</span>
             </label>
-            <Row gutter={8} className="mb-2">
-              {presetAmounts.map((preset) => (
-                <Col span={8} key={preset}>
-                  <button
-                    type="button"
-                    onClick={() => handlePresetClick(preset)}
-                    className={`btn w-full ${amount === preset.toString() && !isCustom ? 'btn-primary' : 'btn-outline'}`}
-                  >
-                    ${preset}
-                  </button>
-                </Col>
-              ))}
-            </Row>
-            <button
-              type="button"
-              onClick={handleCustomClick}
-              className={`btn btn-block ${isCustom ? 'btn-primary' : 'btn-outline'}`}
-            >
-              {t('donate.customAmount') || 'Custom Amount'}
-            </button>
-          </div>
-
-          {isCustom && (
-            <div>
-              <label className="label">
-                <span className="label-text">{t('donate.enterAmount') || 'Enter Amount'}</span>
-              </label>
-              <div className="join w-full">
-                <span className="join-item btn btn-disabled">$</span>
-                <input
-                  type="number"
-                  value={customAmount}
-                  onChange={(e) => setCustomAmount(e.target.value)}
-                  placeholder="0.00"
-                  min="1"
-                  step="0.01"
-                  className="input input-bordered join-item flex-1"
-                />
-              </div>
-            </div>
-          )}
-
-          <div>
-            <label className="label">
-              <span className="label-text">
-                {t('donate.message') || 'Message (Optional)'}
-              </span>
-            </label>
-            <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder={t('donate.messagePlaceholder') || 'Leave a message...'}
-              className="textarea textarea-bordered w-full"
-              rows={3}
+            <Input
+              type="number"
+              value={customAmount}
+              onChange={(e) => setCustomAmount(e.target.value)}
+              placeholder="0.00"
+              min="1"
+              step="0.01"
+              addonBefore="$"
+              className="w-full"
             />
           </div>
+        )}
 
-          <div className="modal-action">
-            <button onClick={onClose} className="btn btn-ghost">
-              {t('common.cancel') || 'Cancel'}
-            </button>
-            <button
-              onClick={handleDonate}
-              disabled={
-                createCheckout.isPending ||
-                (!isCustom && !amount) ||
-                (isCustom && (!customAmount || parseFloat(customAmount) <= 0))
-              }
-              className="btn btn-primary"
-            >
-              {createCheckout.isPending
-                ? t('donate.processing') || 'Processing...'
-                : t('donate.proceed') || 'Proceed to Payment'}
-            </button>
-          </div>
+        <div>
+          <label className="label">
+            <span className="label-text">
+              {t('donate.message') || 'Message (Optional)'}
+            </span>
+          </label>
+          <Textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder={t('donate.messagePlaceholder') || 'Leave a message...'}
+            rows={3}
+          />
         </div>
       </div>
-      <div className="modal-backdrop" onClick={onClose}></div>
-    </div>
+    </Modal>
   )
 }

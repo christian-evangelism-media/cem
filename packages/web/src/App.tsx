@@ -163,39 +163,29 @@ function AppContent() {
       )}
       <nav className="navbar bg-base-100 shadow-lg">
         <div className="flex-1">
-          <Link to="/" className="btn btn-ghost gap-2">
+          <Button ghost className="gap-2" onClick={() => navigate('/')}>
             <img src="/cem-logo.png" alt="CEM Logo" className="w-12 h-12" />
             <span className="hidden sm:inline text-xl">{t('nav.home')}</span>
-          </Link>
+          </Button>
         </div>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex flex-none gap-2">
-          <Link to="/media">
-            <Button ghost>{t('nav.media')}</Button>
-          </Link>
+          <Button ghost onClick={() => navigate('/media')}>{t('nav.media')}</Button>
           <Button ghost onClick={() => setDonateModalOpen(true)}>
             {t('nav.donate')}
           </Button>
           {user && (
-            <Link to="/favorites">
-              <Button ghost>{t('nav.myFavorites')}</Button>
-            </Link>
+            <Button ghost onClick={() => navigate('/favorites')}>{t('nav.myFavorites')}</Button>
           )}
           {user && (
-            <Link to="/orders">
-              <Button ghost>{t('nav.myOrders')}</Button>
-            </Link>
+            <Button ghost onClick={() => navigate('/orders')}>{t('nav.myOrders')}</Button>
           )}
           {user && (
-            <Link to="/addresses">
-              <Button ghost>{t('nav.myAddresses')}</Button>
-            </Link>
+            <Button ghost onClick={() => navigate('/addresses')}>{t('nav.myAddresses')}</Button>
           )}
           {user && (
-            <Link to="/messages">
-              <Button ghost>{t('nav.messages')}</Button>
-            </Link>
+            <Button ghost onClick={() => navigate('/messages')}>{t('nav.messages')}</Button>
           )}
           {user && (
             <Button ghost onClick={() => setContactModalOpen(true)}>
@@ -206,27 +196,25 @@ function AppContent() {
           <LanguagePreferences />
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           {user && (
-            <Link to="/cart">
-              <Button ghost className="relative">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-                {cartItems.length > 0 && (
-                  <Badge count={cartItems.length} className="absolute -top-2 -right-2" />
-                )}
-              </Button>
-            </Link>
+            <Button ghost className="relative" onClick={() => navigate('/cart')}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+              {cartItems.length > 0 && (
+                <Badge count={cartItems.length} className="absolute -top-2 -right-2" />
+              )}
+            </Button>
           )}
           {user ? (
             <Dropdown placement="bottomRight">
@@ -244,12 +232,8 @@ function AppContent() {
             </Dropdown>
           ) : (
             <>
-              <Link to="/login">
-                <Button type="primary" size="sm">{t('nav.login')}</Button>
-              </Link>
-              <Link to="/register">
-                <Button size="sm">{t('nav.register')}</Button>
-              </Link>
+              <Button type="primary" size="sm" onClick={() => navigate('/login')}>{t('nav.login')}</Button>
+              <Button size="sm" onClick={() => navigate('/register')}>{t('nav.register')}</Button>
             </>
           )}
         </div>

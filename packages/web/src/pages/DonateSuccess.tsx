@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { $api } from '../services/tuyau'
+import { Alert, Button } from 'asterui'
 
 export default function DonateSuccess() {
   const { t } = useTranslation()
@@ -24,7 +25,7 @@ export default function DonateSuccess() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-md mx-auto">
-          <div className="alert alert-error">
+          <Alert type="error">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="stroke-current shrink-0 h-6 w-6"
@@ -39,10 +40,10 @@ export default function DonateSuccess() {
               />
             </svg>
             <span>{t('donate.invalidSession') || 'Invalid donation session'}</span>
-          </div>
-          <button onClick={() => navigate('/')} className="btn btn-primary mt-4 w-full">
+          </Alert>
+          <Button onClick={() => navigate('/')} type="primary" block className="mt-4">
             {t('common.returnHome') || 'Return Home'}
-          </button>
+          </Button>
         </div>
       </div>
     )
@@ -109,12 +110,12 @@ export default function DonateSuccess() {
                 'A receipt has been sent to your email address.'}
             </p>
             <div className="card-actions justify-center mt-4">
-              <button onClick={() => navigate('/')} className="btn btn-primary">
+              <Button onClick={() => navigate('/')} type="primary">
                 {t('common.returnHome') || 'Return Home'}
-              </button>
-              <button onClick={() => navigate('/media')} className="btn btn-ghost">
+              </Button>
+              <Button onClick={() => navigate('/media')} ghost>
                 {t('nav.media') || 'Browse Media'}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { api } from '../services/api'
+import { Button } from 'asterui'
 
 export default function VerifyEmail() {
   const [searchParams] = useSearchParams()
@@ -92,12 +93,12 @@ export default function VerifyEmail() {
               <h2 className="card-title text-error mt-4">Verification Failed</h2>
               <p className="mt-2">{message}</p>
               <div className="card-actions mt-4">
-                <button
-                  className="btn btn-primary"
+                <Button
+                  type="primary"
                   onClick={() => navigate('/login')}
                 >
                   Go to Login
-                </button>
+                </Button>
               </div>
             </>
           )}

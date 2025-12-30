@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { api } from '../services/api'
+import { Alert, Button } from 'asterui'
 
 export default function LockdownBanner() {
   const { t } = useTranslation()
@@ -23,7 +24,7 @@ export default function LockdownBanner() {
   }
 
   return (
-    <div className="alert alert-error shadow-lg mb-6">
+    <Alert type="error" className="shadow-lg mb-6">
       <div className="flex-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -44,14 +45,14 @@ export default function LockdownBanner() {
         </div>
       </div>
       <div className="flex-none">
-        <button
+        <Button
           onClick={handleCheckStatus}
           disabled={isChecking}
-          className="btn btn-sm"
+          size="sm"
         >
           {isChecking ? t('lockdown.checking') : t('lockdown.checkStatus')}
-        </button>
+        </Button>
       </div>
-    </div>
+    </Alert>
   )
 }

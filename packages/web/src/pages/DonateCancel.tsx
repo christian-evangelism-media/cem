@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { Button } from 'asterui'
 
 export default function DonateCancel() {
   const { t } = useTranslation()
@@ -38,12 +39,12 @@ export default function DonateCancel() {
                 'If you experienced any issues, please contact us.'}
             </p>
             <div className="card-actions justify-center mt-4">
-              <button onClick={() => navigate('/')} className="btn btn-primary">
+              <Button onClick={() => navigate('/')} type="primary">
                 {t('common.returnHome') || 'Return Home'}
-              </button>
-              <button onClick={() => navigate('/media')} className="btn btn-ghost">
+              </Button>
+              <Button onClick={() => navigate('/media')} ghost>
                 {t('nav.media') || 'Browse Media'}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
