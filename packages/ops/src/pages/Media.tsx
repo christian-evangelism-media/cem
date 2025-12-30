@@ -1,10 +1,12 @@
 import { useState, useDeferredValue } from 'react'
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
+import { Modal, Button, Badge, Input, Loading, Toggle, Card, Grid } from 'asterui'
 import { api } from '../services/api'
 import { useAuth } from '../contexts/AuthContext'
 import type { Media as MediaType, PaginatedResponse } from '../types'
-import ConfirmModal from '../components/ConfirmModal'
+
+const { Row, Col } = Grid
 
 // Map ISO language codes to English names
 const languageNames: Record<string, string> = {
@@ -44,9 +46,7 @@ export default function Media() {
   const [page, setPage] = useState(1)
   const [searchInput, setSearchInput] = useState('')
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([])
-  const [deleteMediaId, setDeleteMediaId] = useState<number | null>(null)
   const [trackingModalMediaId, setTrackingModalMediaId] = useState<number | null>(null)
-  const [disableTrackingMediaId, setDisableTrackingMediaId] = useState<number | null>(null)
   const [lowStockThreshold, setLowStockThreshold] = useState<number>(100)
   const queryClient = useQueryClient()
   const { user } = useAuth()
@@ -120,8 +120,16 @@ export default function Media() {
   }
 
   const handleDisableTracking = (id: number) => {
-    enableTrackingMutation.mutate({ id, trackInventory: false })
-    setDisableTrackingMediaId(null)
+    Modal.confirm({
+      title: t('media.disableTracking'),
+      content: t('media.confirmDisableTracking'),
+      okText: t('media.disableTracking'),
+      cancelText: t('common.cancel'),
+      type: 'error',
+      onOk: () => {
+        enableTrackingMutation.mutate({ id, trackInventory: false })
+      },
+    })
   }
 
   const canEditMedia = (item: MediaType) => {
@@ -150,7 +158,7 @@ export default function Media() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
+        <Loading size="lg" />
       </div>
     )
   }
@@ -159,16 +167,15 @@ export default function Media() {
     <div className="p-8">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">{t('media.title')}</h1>
-        <button className="btn btn-primary">{t('media.addNew')}</button>
+        <Button type="primary">{t('media.addNew')}</Button>
       </div>
 
-      <div className="card bg-base-100 shadow-xl">
-        <div className="card-body">
+      <Card className="shadow-xl">
           <div className="mb-4 flex flex-wrap gap-3">
-            <input
+            <Input
               type="text"
               placeholder={t('media.searchPlaceholder')}
-              className="input input-bordered w-full max-w-md"
+              className="w-full max-w-md"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
             />
@@ -189,19 +196,21 @@ export default function Media() {
                   </p>
                 </div>
                 <div className="divider my-0"></div>
-                <div className="grid grid-cols-3 gap-1">
+                <Row gutter={4}>
                   {availableLanguageCodes.map((code) => (
-                    <label key={code} className="label cursor-pointer justify-start gap-2 p-2">
-                      <input
-                        type="checkbox"
-                        checked={selectedLanguages.includes(code)}
-                        onChange={() => toggleLanguage(code)}
-                        className="checkbox checkbox-sm"
-                      />
-                      <span className="label-text text-sm">{t(`languageNames.${code}`)}</span>
-                    </label>
+                    <Col span={8} key={code}>
+                      <label className="label cursor-pointer justify-start gap-2 p-2">
+                        <input
+                          type="checkbox"
+                          checked={selectedLanguages.includes(code)}
+                          onChange={() => toggleLanguage(code)}
+                          className="checkbox checkbox-sm"
+                        />
+                        <span className="label-text text-sm">{t(`languageNames.${code}`)}</span>
+                      </label>
+                    </Col>
                   ))}
-                </div>
+                </Row>
               </div>
             </div>
           </div>
@@ -227,19 +236,19 @@ export default function Media() {
                       <div className="flex items-center gap-2">
                         <span>{item.name}</span>
                         {!item.isVisible && (
-                          <span className="badge badge-sm badge-warning">{t('media.draft')}</span>
+                          <Badge size="sm" color="warning">{t('media.draft')}</Badge>
                         )}
                       </div>
                     </td>
                     <td>
-                      <span className="badge badge-secondary">{item.type}</span>
+                      <Badge color="secondary">{item.type}</Badge>
                     </td>
                     <td>
                       <div className="flex gap-1 flex-wrap">
                         {item.languages.map((lang) => (
-                          <span key={lang} className="badge badge-sm badge-accent">
+                          <Badge key={lang} size="sm" color="accent">
                             {t(`languageNames.${lang}`)}
-                          </span>
+                          </Badge>
                         ))}
                       </div>
                     </td>
@@ -257,82 +266,97 @@ export default function Media() {
                                 const isLow = item.lowStockThreshold !== null && totalTracts <= item.lowStockThreshold
                                 return (
                                   <div key={bundleSize} className={`flex items-center gap-1 ${isLow ? 'text-error font-semibold' : ''}`}>
-                                    <button
-                                      className="btn btn-xs btn-circle"
+                                    <Button
+                                      size="xs"
+                                      className="btn-circle"
                                       onClick={() => handleInventoryAdjust(item.id, Number(bundleSize), count - 1)}
                                       disabled={count <= 0}
                                     >
                                       -
-                                    </button>
+                                    </Button>
                                     <span className="font-mono min-w-[3rem] text-center">{count}×{bundleSize}</span>
-                                    <button
-                                      className="btn btn-xs btn-circle"
+                                    <Button
+                                      size="xs"
+                                      className="btn-circle"
                                       onClick={() => handleInventoryAdjust(item.id, Number(bundleSize), count + 1)}
                                     >
                                       +
-                                    </button>
+                                    </Button>
                                     {isLow && bundleSize === Object.keys(item.inventoryStock!).sort((a, b) => Number(b) - Number(a))[0] && (
-                                      <span className="ml-1 badge badge-error badge-xs">{t('media.lowStock')}</span>
+                                      <Badge size="xs" color="error" className="ml-1">{t('media.lowStock')}</Badge>
                                     )}
                                   </div>
                                 )
                               })}
                           </div>
                           {canToggleVisibility() && (
-                            <button
-                              className="btn btn-xs btn-ghost text-error"
-                              onClick={() => setDisableTrackingMediaId(item.id)}
+                            <Button
+                              size="xs"
+                              ghost
+                              className="text-error"
+                              onClick={() => handleDisableTracking(item.id)}
                             >
                               {t('media.disableTracking')}
-                            </button>
+                            </Button>
                           )}
                         </div>
                       ) : (
                         <div>
                           {canToggleVisibility() ? (
-                            <button
-                              className="btn btn-xs btn-primary"
+                            <Button
+                              size="xs"
+                              type="primary"
                               onClick={() => handleEnableTracking(item)}
                             >
                               {t('media.enable')}
-                            </button>
+                            </Button>
                           ) : (
-                            <span className="badge badge-ghost badge-sm">{t('media.noTracking')}</span>
+                            <Badge size="sm" color="default">{t('media.noTracking')}</Badge>
                           )}
                         </div>
                       )}
                     </td>
                     <td>
                       {canToggleVisibility() ? (
-                        <input
-                          type="checkbox"
-                          className="toggle toggle-success"
+                        <Toggle
                           checked={item.isVisible}
-                          onChange={() =>
+                          onChange={(checked) =>
                             toggleVisibleMutation.mutate({
                               id: item.id,
-                              isVisible: !item.isVisible,
+                              isVisible: checked,
                             })
                           }
                         />
                       ) : (
-                        <span className={`badge ${item.isVisible ? 'badge-success' : 'badge-warning'}`}>
+                        <Badge color={item.isVisible ? 'success' : 'warning'}>
                           {item.isVisible ? t('media.statusVisible') : t('media.statusDraft')}
-                        </span>
+                        </Badge>
                       )}
                     </td>
                     <td>
                       <div className="flex gap-2">
                         {canEditMedia(item) && (
-                          <button className="btn btn-sm btn-info">{t('media.edit')}</button>
+                          <Button size="sm" color="info">{t('media.edit')}</Button>
                         )}
                         {canEditMedia(item) && (
-                          <button
-                            className="btn btn-sm btn-error"
-                            onClick={() => setDeleteMediaId(item.id)}
+                          <Button
+                            size="sm"
+                            color="error"
+                            onClick={() => {
+                              Modal.confirm({
+                                title: t('media.deleteConfirm'),
+                                content: t('media.deleteMessage'),
+                                okText: t('common.delete'),
+                                cancelText: t('common.cancel'),
+                                type: 'error',
+                                onOk: () => {
+                                  deleteMutation.mutate(item.id)
+                                },
+                              })
+                            }}
                           >
                             {t('media.delete')}
-                          </button>
+                          </Button>
                         )}
                       </div>
                     </td>
@@ -345,106 +369,72 @@ export default function Media() {
           {data && data.meta.lastPage > 1 && (
             <div className="flex justify-center mt-4">
               <div className="join">
-                <button
-                  className="join-item btn"
+                <Button
+                  className="join-item"
                   onClick={() => setPage(page - 1)}
                   disabled={page === 1}
                 >
                   {t('common.previous')}
-                </button>
-                <button className="join-item btn">
+                </Button>
+                <Button className="join-item">
                   {t('common.page', { current: page, total: data.meta.lastPage })}
-                </button>
-                <button
-                  className="join-item btn"
+                </Button>
+                <Button
+                  className="join-item"
                   onClick={() => setPage(page + 1)}
                   disabled={page === data.meta.lastPage}
                 >
                   {t('common.next')}
-                </button>
+                </Button>
               </div>
             </div>
           )}
-        </div>
-      </div>
-
-      <ConfirmModal
-        isOpen={deleteMediaId !== null}
-        title={t('media.deleteConfirm')}
-        message={t('media.deleteMessage')}
-        confirmText={t('common.delete')}
-        cancelText={t('common.cancel')}
-        isDangerous={true}
-        onConfirm={() => {
-          if (deleteMediaId !== null) {
-            deleteMutation.mutate(deleteMediaId)
-          }
-        }}
-        onCancel={() => setDeleteMediaId(null)}
-      />
-
-      <ConfirmModal
-        isOpen={disableTrackingMediaId !== null}
-        title={t('media.disableTracking')}
-        message={t('media.confirmDisableTracking')}
-        confirmText={t('media.disableTracking')}
-        cancelText={t('common.cancel')}
-        isDangerous={true}
-        onConfirm={() => {
-          if (disableTrackingMediaId !== null) {
-            handleDisableTracking(disableTrackingMediaId)
-          }
-        }}
-        onCancel={() => setDisableTrackingMediaId(null)}
-      />
+      </Card>
 
       {/* Enable Inventory Tracking Modal */}
-      {trackingModalMediaId !== null && (
-        <dialog open className="modal">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">{t('media.enableInventoryTracking')}</h3>
-            <p className="py-4">{t('media.enableTrackingMessage')}</p>
+      <Modal
+        open={trackingModalMediaId !== null}
+        onCancel={() => setTrackingModalMediaId(null)}
+        title={t('media.enableInventoryTracking')}
+        footer={[
+          <Button
+            key="cancel"
+            onClick={() => setTrackingModalMediaId(null)}
+          >
+            {t('common.cancel')}
+          </Button>,
+          <Button
+            key="enable"
+            type="primary"
+            onClick={() => {
+              const item = data?.data.find((i) => i.id === trackingModalMediaId)
+              if (item) handleConfirmEnableTracking(item)
+            }}
+            disabled={enableTrackingMutation.isPending}
+            loading={enableTrackingMutation.isPending}
+          >
+            {t('media.enable')}
+          </Button>
+        ]}
+      >
+        <p className="mb-4">{t('media.enableTrackingMessage')}</p>
 
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">{t('media.lowStockThreshold')}</span>
-              </label>
-              <input
-                type="number"
-                className="input input-bordered"
-                value={lowStockThreshold}
-                onChange={(e) => setLowStockThreshold(Number(e.target.value))}
-                min={0}
-              />
-              <label className="label">
-                <span className="label-text-alt">{t('media.lowStockThresholdHint')}</span>
-              </label>
-            </div>
-
-            <div className="modal-action">
-              <button
-                className="btn"
-                onClick={() => setTrackingModalMediaId(null)}
-              >
-                {t('common.cancel')}
-              </button>
-              <button
-                className="btn btn-primary"
-                onClick={() => {
-                  const item = data?.data.find((i) => i.id === trackingModalMediaId)
-                  if (item) handleConfirmEnableTracking(item)
-                }}
-                disabled={enableTrackingMutation.isPending}
-              >
-                {enableTrackingMutation.isPending ? t('common.saving') : t('media.enable')}
-              </button>
-            </div>
-          </div>
-          <form method="dialog" className="modal-backdrop" onClick={() => setTrackingModalMediaId(null)}>
-            <button>close</button>
-          </form>
-        </dialog>
-      )}
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-2">
+            {t('media.lowStockThreshold')}
+          </label>
+          <Input
+            type="number"
+            className="w-full"
+            value={lowStockThreshold}
+            onChange={(e) => setLowStockThreshold(Number(e.target.value))}
+            min={0}
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            {t('media.lowStockThresholdHint')}
+          </p>
+        </div>
+      </Modal>
     </div>
   )
 }

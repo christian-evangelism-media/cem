@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { DateTime } from 'luxon'
+import { Loading, Badge, Select, Button, Input, Textarea, Card } from 'asterui'
 import { api } from '../services/api'
 import type { Order, PaginatedResponse } from '../types'
 import FeedbackModal from '../components/FeedbackModal'
@@ -31,34 +32,34 @@ export default function Orders() {
     return firstNonPending?.changedByUser || null
   }
 
-  const getStatusBadgeColor = (status: string) => {
+  const getStatusBadgeColor = (status: string): 'warning' | 'info' | 'primary' | 'accent' | 'success' | 'error' | 'default' => {
     switch (status) {
       case 'pending':
-        return 'badge-warning'
+        return 'warning'
       case 'processing':
       case 'packing':
-        return 'badge-info'
+        return 'info'
       case 'ready':
       case 'awaiting':
-        return 'badge-primary'
+        return 'primary'
       case 'shipping':
-        return 'badge-accent'
+        return 'accent'
       case 'shipped':
       case 'collected':
-        return 'badge-success'
+        return 'success'
       case 'cancelling':
       case 'cancelled':
-        return 'badge-error'
+        return 'error'
       default:
-        return 'badge-ghost'
+        return 'default'
     }
   }
 
-  const getDeliveryMethodBadge = (deliveryMethod: 'shipping' | 'pickup') => {
+  const getDeliveryMethodBadge = (deliveryMethod: 'shipping' | 'pickup'): 'secondary' | 'default' => {
     if (deliveryMethod === 'pickup') {
-      return 'badge-secondary'
+      return 'secondary'
     }
-    return 'badge-neutral'
+    return 'default'
   }
 
   const updateStatusMutation = useMutation({
@@ -124,7 +125,7 @@ export default function Orders() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
+        <Loading size="lg" />
       </div>
     )
   }
@@ -133,15 +134,13 @@ export default function Orders() {
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-8">{t('orders.title')}</h1>
 
-      <div className="card bg-base-100 shadow-xl">
-        <div className="card-body">
+      <Card className="shadow-xl">
           <div className="flex justify-between items-center mb-4">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">{t('orders.filterByStatus')}</span>
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                {t('orders.filterByStatus')}
               </label>
-              <select
-                className="select select-bordered"
+              <Select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
               >
@@ -153,7 +152,7 @@ export default function Orders() {
                     {t(`orders.statuses.${status}`)}
                   </option>
                 ))}
-              </select>
+              </Select>
             </div>
           </div>
           <div className="overflow-x-auto">
@@ -190,17 +189,17 @@ export default function Orders() {
                       )}
                     </td>
                     <td>
-                      <span className={`badge ${getDeliveryMethodBadge(order.deliveryMethod)}`}>
+                      <Badge color={getDeliveryMethodBadge(order.deliveryMethod)}>
                         {t(`orders.${order.deliveryMethod}`)}
-                      </span>
+                      </Badge>
                     </td>
                     <td>
                       <div className="flex flex-col gap-2">
-                        <span className={`badge ${getStatusBadgeColor(order.status)}`}>
+                        <Badge color={getStatusBadgeColor(order.status)}>
                           {t(`orders.statuses.${order.status}`)}
-                        </span>
-                        <select
-                          className="select select-bordered select-sm"
+                        </Badge>
+                        <Select
+                          size="sm"
                           value={order.status}
                           onChange={(e) =>
                             updateStatusMutation.mutate({
@@ -214,7 +213,7 @@ export default function Orders() {
                               {t(`orders.statuses.${status}`)}
                             </option>
                           ))}
-                        </select>
+                        </Select>
                       </div>
                     </td>
                     <td>
@@ -234,15 +233,16 @@ export default function Orders() {
                     <td>{t('orders.itemCount', { count: order.items?.length || 0 })}</td>
                     <td>
                       {order.messages && order.messages.length > 0 ? (
-                        <button
-                          className="badge badge-info gap-2 cursor-pointer hover:badge-primary transition-colors"
+                        <Badge
+                          color="info"
+                          className="gap-2 cursor-pointer hover:bg-primary transition-colors"
                           onClick={() => setFeedbackOrderId(order.id)}
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-4 h-4 stroke-current">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
                           </svg>
                           {order.messages.length}
-                        </button>
+                        </Badge>
                       ) : (
                         <span className="text-gray-400">-</span>
                       )}
@@ -250,70 +250,79 @@ export default function Orders() {
                     <td>
                       {editingTrackingId === order.id ? (
                         <div className="flex gap-1">
-                          <input
+                          <Input
                             type="text"
+                            size="sm"
                             value={trackingValue}
                             onChange={(e) => setTrackingValue(e.target.value)}
-                            className="input input-bordered input-sm w-32"
+                            className="w-32"
                             placeholder={t('orders.trackingNumber')}
                             autoFocus
                           />
-                          <button
-                            className="btn btn-sm btn-success"
+                          <Button
+                            size="sm"
+                            color="success"
                             onClick={() => saveTracking(order.id)}
                             disabled={updateTrackingMutation.isPending}
                           >
                             ✓
-                          </button>
-                          <button
-                            className="btn btn-sm btn-ghost"
+                          </Button>
+                          <Button
+                            size="sm"
+                            ghost
                             onClick={cancelEditTracking}
                           >
                             ✕
-                          </button>
+                          </Button>
                         </div>
                       ) : (
-                        <button
-                          className="btn btn-sm btn-ghost text-left justify-start w-full"
+                        <Button
+                          size="sm"
+                          ghost
+                          className="text-left justify-start w-full"
                           onClick={() => startEditTracking(order)}
                           title={order.trackingNumber ? t('orders.editTracking') : t('orders.addTracking')}
                         >
                           {order.trackingNumber || (
                             <span className="text-gray-400 italic">{t('orders.noTracking')}</span>
                           )}
-                        </button>
+                        </Button>
                       )}
                     </td>
                     <td>
                       {editingNotesId === order.id ? (
                         <div className="flex gap-1">
-                          <textarea
+                          <Textarea
                             value={notesValue}
                             onChange={(e) => setNotesValue(e.target.value)}
-                            className="textarea textarea-bordered textarea-sm w-48 min-h-16"
+                            className="w-48 min-h-16"
                             placeholder={t('orders.notes')}
                             autoFocus
                             rows={2}
                           />
                           <div className="flex flex-col gap-1">
-                            <button
-                              className="btn btn-sm btn-success"
+                            <Button
+                              size="sm"
+                              color="success"
                               onClick={() => saveNotes(order.id)}
                               disabled={updateNotesMutation.isPending}
                             >
                               ✓
-                            </button>
-                            <button
-                              className="btn btn-sm btn-ghost"
+                            </Button>
+                            <Button
+                              size="sm"
+                              ghost
                               onClick={cancelEditNotes}
                             >
                               ✕
-                            </button>
+                            </Button>
                           </div>
                         </div>
                       ) : (
-                        <button
-                          className="btn btn-sm btn-ghost text-left justify-start w-full h-auto whitespace-normal py-2"
+                        <Button
+                          size="sm"
+                          ghost
+                          className="text-left justify-start w-full h-auto whitespace-normal py-2"
                           onClick={() => startEditNotes(order)}
                           title={order.notes ? t('orders.editNotes') : t('orders.addNotes')}
                         >
@@ -322,7 +331,7 @@ export default function Orders() {
                           ) : (
                             <span className="text-gray-400 italic text-sm">{t('orders.noNotes')}</span>
                           )}
-                        </button>
+                        </Button>
                       )}
                     </td>
                     <td>
@@ -331,7 +340,7 @@ export default function Orders() {
                       )}
                     </td>
                     <td>
-                      <button className="btn btn-sm btn-info">{t('orders.viewDetails')}</button>
+                      <Button size="sm" color="info">{t('orders.viewDetails')}</Button>
                     </td>
                   </tr>
                 ))}
@@ -342,28 +351,27 @@ export default function Orders() {
           {data && data.meta.lastPage > 1 && (
             <div className="flex justify-center mt-4">
               <div className="join">
-                <button
-                  className="join-item btn"
+                <Button
+                  className="join-item"
                   onClick={() => setPage(page - 1)}
                   disabled={page === 1}
                 >
                   {t('common.previous')}
-                </button>
-                <button className="join-item btn">
+                </Button>
+                <Button className="join-item">
                   {t('common.page', { current: page, total: data.meta.lastPage })}
-                </button>
-                <button
-                  className="join-item btn"
+                </Button>
+                <Button
+                  className="join-item"
                   onClick={() => setPage(page + 1)}
                   disabled={page === data.meta.lastPage}
                 >
                   {t('common.next')}
-                </button>
+                </Button>
               </div>
             </div>
           )}
-        </div>
-      </div>
+      </Card>
 
       {/* Feedback Modal */}
       {feedbackOrderId && (() => {

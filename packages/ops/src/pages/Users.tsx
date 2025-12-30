@@ -1,12 +1,11 @@
 import { useState, useDeferredValue } from 'react'
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { useForm } from 'react-hook-form'
 import { DateTime } from 'luxon'
+import { Modal, Form, Input, Textarea, Button, Badge, Loading, Alert, Card, Select, Checkbox } from 'asterui'
 import { api } from '../services/api'
 import { useAuth } from '../contexts/AuthContext'
-import type { User, PaginatedResponse } from '../types'
-import ConfirmModal from '../components/ConfirmModal'
+import { type User, type PaginatedResponse } from '../types'
 
 interface CreateUserFormData {
   firstName: string
@@ -28,11 +27,12 @@ export default function Users() {
   const [showCreateModal, setShowCreateModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
   const [selectedUser, setSelectedUser] = useState<User | null>(null)
-  const [deleteUserId, setDeleteUserId] = useState<number | null>(null)
   const [createError, setCreateError] = useState('')
   const [editError, setEditError] = useState('')
   const [editingNotesId, setEditingNotesId] = useState<number | null>(null)
   const [notesValue, setNotesValue] = useState('')
+  const [isCreating, setIsCreating] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
   const queryClient = useQueryClient()
   const { user: currentUser } = useAuth()
   const { t, i18n } = useTranslation()
@@ -40,26 +40,8 @@ export default function Users() {
   // Defer search to avoid blocking input
   const search = useDeferredValue(searchInput)
 
-  const {
-    register: registerCreate,
-    handleSubmit: handleCreateSubmit,
-    reset: resetCreate,
-    formState: { errors: createErrors, isSubmitting: isCreating },
-  } = useForm<CreateUserFormData>({
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      role: 'user',
-    },
-  })
-
-  const {
-    register: registerEdit,
-    handleSubmit: handleEditSubmit,
-    reset: resetEdit,
-    formState: { errors: editErrors, isSubmitting: isEditing },
-  } = useForm<EditUserFormData>()
+  const createForm = Form.useForm<CreateUserFormData>()
+  const editForm = Form.useForm<EditUserFormData>()
 
   const { data, isLoading, error } = useQuery<PaginatedResponse<User>>({
     queryKey: ['users', page, search],
@@ -72,11 +54,13 @@ export default function Users() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] })
       setShowCreateModal(false)
-      resetCreate()
+      createForm.resetFields()
       setCreateError('')
+      setIsCreating(false)
     },
     onError: (error: Error) => {
       setCreateError(error.message)
+      setIsCreating(false)
     },
   })
 
@@ -86,11 +70,13 @@ export default function Users() {
       queryClient.invalidateQueries({ queryKey: ['users'] })
       setShowEditModal(false)
       setSelectedUser(null)
-      resetEdit()
+      editForm.resetFields()
       setEditError('')
+      setIsEditing(false)
     },
     onError: (error: Error) => {
       setEditError(error.message)
+      setIsEditing(false)
     },
   })
 
@@ -112,7 +98,6 @@ export default function Users() {
     mutationFn: (id: number) => api.users.delete(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] })
-      setDeleteUserId(null)
     },
   })
 
@@ -165,11 +150,13 @@ export default function Users() {
 
   const handleCreateUser = (data: CreateUserFormData) => {
     setCreateError('')
+    setIsCreating(true)
     createMutation.mutate(data)
   }
 
   const handleEditUser = (data: EditUserFormData) => {
     setEditError('')
+    setIsEditing(true)
     if (selectedUser) {
       updateMutation.mutate({
         id: selectedUser.id,
@@ -180,17 +167,18 @@ export default function Users() {
 
   const openEditModal = (user: User) => {
     setSelectedUser(user)
-    resetEdit({
+    editForm.setFieldsValue({
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      allowPickup: user.allowPickup,
     })
     setEditError('')
     setShowEditModal(true)
   }
 
   const openCreateModal = () => {
-    resetCreate({
+    createForm.setFieldsValue({
       firstName: '',
       lastName: '',
       email: '',
@@ -210,7 +198,7 @@ export default function Users() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
+        <Loading size="lg" />
       </div>
     )
   }
@@ -218,9 +206,9 @@ export default function Users() {
   if (error) {
     return (
       <div className="p-8">
-        <div className="alert alert-error">
-          <span>{t('common.errorLoading', { resource: t('nav.users').toLowerCase() })}: {error instanceof Error ? error.message : t('common.unknownError')}</span>
-        </div>
+        <Alert color="error">
+          {t('common.errorLoading', { resource: t('nav.users').toLowerCase() })}: {error instanceof Error ? error.message : t('common.unknownError')}
+        </Alert>
       </div>
     )
   }
@@ -229,22 +217,21 @@ export default function Users() {
     <div className="p-8">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">{t('users.title')}</h1>
-        <button className="btn btn-primary" onClick={openCreateModal}>
+        <Button type="primary" onClick={openCreateModal}>
           {t('users.addNew')}
-        </button>
+        </Button>
       </div>
 
-      <div className="card bg-base-100 shadow-xl">
-        <div className="card-body">
-          <div className="mb-4">
-            <input
-              type="text"
-              placeholder={t('users.searchPlaceholder')}
-              className="input input-bordered w-full max-w-md"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-            />
-          </div>
+      <Card className="shadow-xl">
+        <div className="mb-4">
+          <Input
+            type="text"
+            placeholder={t('users.searchPlaceholder')}
+            className="w-full max-w-md"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+        </div>
 
           <div className="overflow-x-auto">
             <table className="table">
@@ -269,15 +256,15 @@ export default function Users() {
                       <div className="flex items-center gap-2">
                         <span>{user.firstName} {user.lastName}</span>
                         {user.isBlocked && (
-                          <span className="badge badge-sm badge-error">{t('users.blocked')}</span>
+                          <Badge size="sm" color="error">{t('users.blocked')}</Badge>
                         )}
                       </div>
                     </td>
                     <td>{user.email}</td>
                     <td>
                       {canChangeRole(user) ? (
-                        <select
-                          className="select select-bordered select-sm"
+                        <Select
+                          size="sm"
                           value={user.role}
                           onChange={(e) =>
                             updateRoleMutation.mutate({
@@ -291,33 +278,33 @@ export default function Users() {
                               {t(`users.roles.${role}`)}
                             </option>
                           ))}
-                        </select>
+                        </Select>
                       ) : (
-                        <span className={`badge ${
-                          user.role === 'super_admin' ? 'badge-error' :
-                          user.role === 'admin' ? 'badge-primary' :
-                          user.role === 'support' ? 'badge-secondary' :
-                          user.role === 'help' ? 'badge-accent' :
-                          'badge-ghost'
-                        }`}>
+                        <Badge color={
+                          user.role === 'super_admin' ? 'error' :
+                          user.role === 'admin' ? 'primary' :
+                          user.role === 'support' ? 'secondary' :
+                          user.role === 'help' ? 'accent' :
+                          'default'
+                        }>
                           {t(`users.roles.${user.role}`)}
-                        </span>
+                        </Badge>
                       )}
                     </td>
                     <td>
                       {user.emailVerifiedAt ? (
-                        <span className="badge badge-success">{t('users.verifiedStatus.verified')}</span>
+                        <Badge color="success">{t('users.verifiedStatus.verified')}</Badge>
                       ) : (
-                        <span className="badge badge-warning">{t('users.verifiedStatus.unverified')}</span>
+                        <Badge color="warning">{t('users.verifiedStatus.unverified')}</Badge>
                       )}
                     </td>
                     <td>
                       {user.preferredLanguages ? (
                         <div className="flex gap-1 flex-wrap">
                           {user.preferredLanguages.map((lang) => (
-                            <span key={lang} className="badge badge-sm badge-accent">
+                            <Badge key={lang} size="sm" color="accent">
                               {lang}
-                            </span>
+                            </Badge>
                           ))}
                         </div>
                       ) : (
@@ -336,33 +323,37 @@ export default function Users() {
                         </div>
                       ) : editingNotesId === user.id ? (
                         <div className="flex gap-1">
-                          <textarea
+                          <Textarea
                             value={notesValue}
                             onChange={(e) => setNotesValue(e.target.value)}
-                            className="textarea textarea-bordered textarea-sm w-48 min-h-16"
+                            className="w-48 min-h-16"
                             placeholder={t('users.notes')}
                             autoFocus
                             rows={2}
                           />
                           <div className="flex flex-col gap-1">
-                            <button
-                              className="btn btn-sm btn-success"
+                            <Button
+                              size="sm"
+                              color="success"
                               onClick={() => saveNotes(user.id)}
                               disabled={updateNotesMutation.isPending}
                             >
                               ✓
-                            </button>
-                            <button
-                              className="btn btn-sm btn-ghost"
+                            </Button>
+                            <Button
+                              size="sm"
+                              ghost
                               onClick={cancelEditNotes}
                             >
                               ✕
-                            </button>
+                            </Button>
                           </div>
                         </div>
                       ) : (
-                        <button
-                          className="btn btn-sm btn-ghost text-left justify-start w-full h-auto whitespace-normal py-2"
+                        <Button
+                          size="sm"
+                          ghost
+                          className="text-left justify-start w-full h-auto whitespace-normal py-2"
                           onClick={() => startEditNotes(user)}
                           title={user.notes ? t('users.editNotes') : t('users.addNotes')}
                         >
@@ -371,7 +362,7 @@ export default function Users() {
                           ) : (
                             <span className="text-gray-400 italic text-sm">{t('users.noNotes')}</span>
                           )}
-                        </button>
+                        </Button>
                       )}
                     </td>
                     <td>
@@ -380,29 +371,43 @@ export default function Users() {
                     <td>
                       <div className="flex gap-2">
                         {canEditUser(user) && (
-                          <button
-                            className="btn btn-sm btn-info"
+                          <Button
+                            size="sm"
+                            color="info"
                             onClick={() => openEditModal(user)}
                           >
                             {t('users.edit')}
-                          </button>
+                          </Button>
                         )}
                         {canEditUser(user) && (
-                          <button
-                            className={`btn btn-sm ${user.isBlocked ? 'btn-success' : 'btn-warning'}`}
+                          <Button
+                            size="sm"
+                            color={user.isBlocked ? 'success' : 'warning'}
                             onClick={() => toggleBlockMutation.mutate(user.id)}
                             disabled={toggleBlockMutation.isPending}
                           >
                             {user.isBlocked ? t('users.unblock') : t('users.block')}
-                          </button>
+                          </Button>
                         )}
                         {canEditUser(user) && (
-                          <button
-                            className="btn btn-sm btn-error"
-                            onClick={() => setDeleteUserId(user.id)}
+                          <Button
+                            size="sm"
+                            color="error"
+                            onClick={() => {
+                              Modal.confirm({
+                                title: t('users.deleteConfirm'),
+                                content: t('users.deleteMessage'),
+                                okText: t('common.delete'),
+                                cancelText: t('common.cancel'),
+                                type: 'error',
+                                onOk: () => {
+                                  deleteMutation.mutate(user.id)
+                                },
+                              })
+                            }}
                           >
                             {t('users.delete')}
-                          </button>
+                          </Button>
                         )}
                       </div>
                     </td>
@@ -415,282 +420,194 @@ export default function Users() {
           {data && data.meta.lastPage > 1 && (
             <div className="flex justify-center mt-4">
               <div className="join">
-                <button
-                  className="join-item btn"
+                <Button
+                  className="join-item"
                   onClick={() => setPage(page - 1)}
                   disabled={page === 1}
                 >
                   {t('common.previous')}
-                </button>
-                <button className="join-item btn">
+                </Button>
+                <Button className="join-item">
                   {t('common.page', { current: page, total: data.meta.lastPage })}
-                </button>
-                <button
-                  className="join-item btn"
+                </Button>
+                <Button
+                  className="join-item"
                   onClick={() => setPage(page + 1)}
                   disabled={page === data.meta.lastPage}
                 >
                   {t('common.next')}
-                </button>
+                </Button>
               </div>
             </div>
           )}
-        </div>
-      </div>
+      </Card>
 
       {/* Create User Modal */}
-      {showCreateModal && (
-        <div className="modal modal-open">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg mb-4">{t('users.createTitle')}</h3>
+      <Modal
+        open={showCreateModal}
+        onCancel={() => setShowCreateModal(false)}
+        title={t('users.createTitle')}
+        footer={null}
+      >
+        {createError && (
+          <Alert color="error" className="mb-4">
+            {createError}
+          </Alert>
+        )}
 
-            {createError && (
-              <div className="alert alert-error mb-4">
-                <span>{createError}</span>
-              </div>
-            )}
+        <Form
+          form={createForm}
+          onFinish={handleCreateUser}
+          initialValues={{
+            firstName: '',
+            lastName: '',
+            email: '',
+            role: 'user',
+          }}
+        >
+          <Form.Item
+            name="firstName"
+            label={t('users.firstName')}
+            rules={[
+              { required: true, message: t('users.validation.firstNameRequired') },
+              { min: 2, message: t('users.validation.firstNameMin') },
+            ]}
+          >
+            <Input className="w-full" />
+          </Form.Item>
 
-            <form onSubmit={handleCreateSubmit(handleCreateUser)} noValidate>
-              <div className="form-control mb-1">
-                <label className="label">
-                  <span className="label-text">{t('users.firstName')}</span>
-                </label>
-                <input
-                  type="text"
-                  {...registerCreate('firstName', {
-                    required: t('users.validation.firstNameRequired'),
-                    minLength: { value: 2, message: t('users.validation.firstNameMin') },
-                  })}
-                  className={`input input-bordered w-full ${createErrors.firstName ? 'input-error' : ''}`}
-                />
-                <div className="h-6 mt-1">
-                  {createErrors.firstName && (
-                    <span className="text-error text-sm">{createErrors.firstName.message}</span>
-                  )}
-                </div>
-              </div>
+          <Form.Item
+            name="lastName"
+            label={t('users.lastName')}
+            rules={[
+              { required: true, message: t('users.validation.lastNameRequired') },
+              { min: 2, message: t('users.validation.lastNameMin') },
+            ]}
+          >
+            <Input className="w-full" />
+          </Form.Item>
 
-              <div className="form-control mb-1">
-                <label className="label">
-                  <span className="label-text">{t('users.lastName')}</span>
-                </label>
-                <input
-                  type="text"
-                  {...registerCreate('lastName', {
-                    required: t('users.validation.lastNameRequired'),
-                    minLength: { value: 2, message: t('users.validation.lastNameMin') },
-                  })}
-                  className={`input input-bordered w-full ${createErrors.lastName ? 'input-error' : ''}`}
-                />
-                <div className="h-6 mt-1">
-                  {createErrors.lastName && (
-                    <span className="text-error text-sm">{createErrors.lastName.message}</span>
-                  )}
-                </div>
-              </div>
+          <Form.Item
+            name="email"
+            label={t('users.email')}
+            rules={[
+              { required: true, message: t('users.validation.emailRequired') },
+              { type: 'email', message: t('users.validation.emailInvalid') },
+            ]}
+          >
+            <Input type="email" className="w-full" />
+          </Form.Item>
 
-              <div className="form-control mb-1">
-                <label className="label">
-                  <span className="label-text">{t('users.email')}</span>
-                </label>
-                <input
-                  type="email"
-                  {...registerCreate('email', {
-                    required: t('users.validation.emailRequired'),
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: t('users.validation.emailInvalid'),
-                    },
-                  })}
-                  className={`input input-bordered w-full ${createErrors.email ? 'input-error' : ''}`}
-                />
-                <div className="h-6 mt-1">
-                  {createErrors.email && (
-                    <span className="text-error text-sm">{createErrors.email.message}</span>
-                  )}
-                </div>
-              </div>
+          <Form.Item name="role" label={t('users.role')}>
+            <Select>
+              {getRoleOptions().map((role) => (
+                <option key={role} value={role}>
+                  {t(`users.roles.${role}`)}
+                </option>
+              ))}
+            </Select>
+          </Form.Item>
 
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text">{t('users.role')}</span>
-                </label>
-                <select
-                  {...registerCreate('role')}
-                  className="select select-bordered w-full"
-                >
-                  {getRoleOptions().map((role) => (
-                    <option key={role} value={role}>
-                      {t(`users.roles.${role}`)}
-                    </option>
-                  ))}
-                </select>
-              </div>
+          <Alert color="info" className="mb-4">
+            <div className="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span className="text-sm">{t('users.userCreatedInfo')}</span>
+            </div>
+          </Alert>
 
-              <div className="alert alert-info mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <span className="text-sm">{t('users.userCreatedInfo')}</span>
-              </div>
-
-              <div className="modal-action">
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => setShowCreateModal(false)}
-                >
-                  {t('users.cancel')}
-                </button>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  disabled={isCreating}
-                >
-                  {isCreating ? (
-                    <>
-                      <span className="loading loading-spinner"></span>
-                      {t('users.creating')}
-                    </>
-                  ) : (
-                    t('users.create')
-                  )}
-                </button>
-              </div>
-            </form>
+          <div className="flex justify-end gap-2">
+            <Button onClick={() => setShowCreateModal(false)}>
+              {t('users.cancel')}
+            </Button>
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={isCreating}
+            >
+              {t('users.create')}
+            </Button>
           </div>
-        </div>
-      )}
+        </Form>
+      </Modal>
 
       {/* Edit User Modal */}
-      {showEditModal && selectedUser && (
-        <div className="modal modal-open">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg mb-4">{t('users.editTitle')}</h3>
-
-            {editError && (
-              <div className="alert alert-error mb-4">
-                <span>{editError}</span>
-              </div>
-            )}
-
-            <form onSubmit={handleEditSubmit(handleEditUser)} noValidate>
-              <div className="form-control mb-1">
-                <label className="label">
-                  <span className="label-text">{t('users.firstName')}</span>
-                </label>
-                <input
-                  type="text"
-                  {...registerEdit('firstName', {
-                    required: t('users.validation.firstNameRequired'),
-                    minLength: { value: 2, message: t('users.validation.firstNameMin') },
-                  })}
-                  className={`input input-bordered w-full ${editErrors.firstName ? 'input-error' : ''}`}
-                />
-                <div className="h-6 mt-1">
-                  {editErrors.firstName && (
-                    <span className="text-error text-sm">{editErrors.firstName.message}</span>
-                  )}
-                </div>
-              </div>
-
-              <div className="form-control mb-1">
-                <label className="label">
-                  <span className="label-text">{t('users.lastName')}</span>
-                </label>
-                <input
-                  type="text"
-                  {...registerEdit('lastName', {
-                    required: t('users.validation.lastNameRequired'),
-                    minLength: { value: 2, message: t('users.validation.lastNameMin') },
-                  })}
-                  className={`input input-bordered w-full ${editErrors.lastName ? 'input-error' : ''}`}
-                />
-                <div className="h-6 mt-1">
-                  {editErrors.lastName && (
-                    <span className="text-error text-sm">{editErrors.lastName.message}</span>
-                  )}
-                </div>
-              </div>
-
-              <div className="form-control mb-1">
-                <label className="label">
-                  <span className="label-text">{t('users.email')}</span>
-                </label>
-                <input
-                  type="email"
-                  {...registerEdit('email', {
-                    required: t('users.validation.emailRequired'),
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: t('users.validation.emailInvalid'),
-                    },
-                  })}
-                  className={`input input-bordered w-full ${editErrors.email ? 'input-error' : ''}`}
-                />
-                <div className="h-6 mt-1">
-                  {editErrors.email && (
-                    <span className="text-error text-sm">{editErrors.email.message}</span>
-                  )}
-                </div>
-              </div>
-
-              <div className="form-control mb-4">
-                <label className="label cursor-pointer justify-start gap-3">
-                  <input
-                    type="checkbox"
-                    {...registerEdit('allowPickup')}
-                    className="checkbox"
-                  />
-                  <span className="label-text">{t('users.allowPickup')}</span>
-                </label>
-              </div>
-
-              <div className="modal-action">
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => {
-                    setShowEditModal(false)
-                    setSelectedUser(null)
-                  }}
-                >
-                  {t('users.cancel')}
-                </button>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  disabled={isEditing}
-                >
-                  {isEditing ? (
-                    <>
-                      <span className="loading loading-spinner"></span>
-                      {t('users.saving')}
-                    </>
-                  ) : (
-                    t('users.save')
-                  )}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      <ConfirmModal
-        isOpen={deleteUserId !== null}
-        title={t('users.deleteConfirm')}
-        message={t('users.deleteMessage')}
-        confirmText={t('common.delete')}
-        cancelText={t('common.cancel')}
-        isDangerous={true}
-        onConfirm={() => {
-          if (deleteUserId !== null) {
-            deleteMutation.mutate(deleteUserId)
-          }
+      <Modal
+        open={showEditModal && selectedUser !== null}
+        onCancel={() => {
+          setShowEditModal(false)
+          setSelectedUser(null)
         }}
-        onCancel={() => setDeleteUserId(null)}
-      />
+        title={t('users.editTitle')}
+        footer={null}
+      >
+        {editError && (
+          <Alert color="error" className="mb-4">
+            {editError}
+          </Alert>
+        )}
+
+        <Form
+          form={editForm}
+          onFinish={handleEditUser}
+        >
+          <Form.Item
+            name="firstName"
+            label={t('users.firstName')}
+            rules={[
+              { required: true, message: t('users.validation.firstNameRequired') },
+              { min: 2, message: t('users.validation.firstNameMin') },
+            ]}
+          >
+            <Input className="w-full" />
+          </Form.Item>
+
+          <Form.Item
+            name="lastName"
+            label={t('users.lastName')}
+            rules={[
+              { required: true, message: t('users.validation.lastNameRequired') },
+              { min: 2, message: t('users.validation.lastNameMin') },
+            ]}
+          >
+            <Input className="w-full" />
+          </Form.Item>
+
+          <Form.Item
+            name="email"
+            label={t('users.email')}
+            rules={[
+              { required: true, message: t('users.validation.emailRequired') },
+              { type: 'email', message: t('users.validation.emailInvalid') },
+            ]}
+          >
+            <Input type="email" className="w-full" />
+          </Form.Item>
+
+          <Form.Item name="allowPickup" valuePropName="checked">
+            <Checkbox>{t('users.allowPickup')}</Checkbox>
+          </Form.Item>
+
+          <div className="flex justify-end gap-2">
+            <Button
+              onClick={() => {
+                setShowEditModal(false)
+                setSelectedUser(null)
+              }}
+            >
+              {t('users.cancel')}
+            </Button>
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={isEditing}
+            >
+              {t('users.save')}
+            </Button>
+          </div>
+        </Form>
+      </Modal>
     </div>
   )
 }

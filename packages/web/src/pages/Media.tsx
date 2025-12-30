@@ -15,6 +15,7 @@ import {
   Checkbox,
   Divider,
   Dropdown,
+  Grid,
   Loading,
   Modal,
   Pagination,
@@ -23,6 +24,7 @@ import {
 } from 'asterui'
 
 const { Title, Paragraph } = Typography
+const { Row, Col } = Grid
 
 // Map UI language codes to media language values
 const languageMap: Record<string, string> = {
@@ -224,18 +226,20 @@ export default function Media() {
         </Paragraph>
       </div>
       <Divider className="my-2" />
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
+      <Row gutter={4}>
         {availableLanguageCodes.map((code) => (
-          <label key={code} className="label cursor-pointer justify-start gap-2 p-2">
-            <Checkbox
-              size="sm"
-              checked={manualLanguageSelection.includes(languageMap[code])}
-              onChange={() => toggleLanguage(code)}
-            />
-            <span className="label-text text-sm">{t(`languages.${code}`)}</span>
-          </label>
+          <Col xs={12} sm={8} key={code}>
+            <label className="label cursor-pointer justify-start gap-2 p-2">
+              <Checkbox
+                size="sm"
+                checked={manualLanguageSelection.includes(languageMap[code])}
+                onChange={() => toggleLanguage(code)}
+              />
+              <span className="label-text text-sm">{t(`languages.${code}`)}</span>
+            </label>
+          </Col>
         ))}
-      </div>
+      </Row>
     </div>
   )
 

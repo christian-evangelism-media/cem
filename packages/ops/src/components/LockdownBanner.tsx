@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Card, Button } from 'asterui'
 import { api } from '../services/api'
 
 export default function LockdownBanner() {
@@ -24,8 +25,8 @@ export default function LockdownBanner() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 p-4">
-      <div className="card w-full max-w-md bg-base-100 shadow-xl">
-        <div className="card-body items-center text-center">
+      <Card className="w-full max-w-md shadow-xl">
+        <div className="flex flex-col items-center text-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-16 w-16 text-error mb-4"
@@ -40,19 +41,17 @@ export default function LockdownBanner() {
               d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
             />
           </svg>
-          <h2 className="card-title text-2xl text-error">{t('lockdown.active')}</h2>
-          <p className="text-base-content/70">{t('lockdown.message')}</p>
-          <div className="card-actions mt-6">
-            <button
-              onClick={handleCheckStatus}
-              disabled={isChecking}
-              className="btn btn-primary"
-            >
-              {isChecking ? t('lockdown.checking') : t('lockdown.checkStatus')}
-            </button>
-          </div>
+          <h2 className="text-2xl text-error font-bold mb-2">{t('lockdown.active')}</h2>
+          <p className="text-base-content/70 mb-6">{t('lockdown.message')}</p>
+          <Button
+            type="primary"
+            onClick={handleCheckStatus}
+            loading={isChecking}
+          >
+            {t('lockdown.checkStatus')}
+          </Button>
         </div>
-      </div>
+      </Card>
     </div>
   )
 }

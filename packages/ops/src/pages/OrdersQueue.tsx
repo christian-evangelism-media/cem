@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { DateTime } from 'luxon'
+import { Card, Badge, Button, Loading } from 'asterui'
 import { api } from '../services/api'
 import type { DashboardStats } from '../types'
 
@@ -27,7 +28,7 @@ export default function OrdersQueue() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
+        <Loading size="lg" />
       </div>
     )
   }
@@ -44,23 +45,22 @@ export default function OrdersQueue() {
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-4">{t('ordersQueue.title')}</h1>
 
-      <div className="card bg-base-100 shadow-xl">
-        <div className="card-body">
-          <div className="flex justify-between items-center mb-4">
-            <div className="flex items-center gap-6">
-              <span className="text-lg text-base-content/70">
-                {pendingOrders} {t('dashboard.pending')}
-              </span>
-              <span className="text-lg text-base-content/70">
-                {cancellingOrders} {t('dashboard.cancelling')}
-              </span>
-            </div>
-            {cancellingOrders > 0 && (
-              <div className="badge badge-warning badge-lg">
-                {cancellingOrders} {t('dashboard.cancellingBadge')}
-              </div>
-            )}
+      <Card className="shadow-xl">
+        <div className="flex justify-between items-center mb-4">
+          <div className="flex items-center gap-6">
+            <span className="text-lg text-base-content/70">
+              {pendingOrders} {t('dashboard.pending')}
+            </span>
+            <span className="text-lg text-base-content/70">
+              {cancellingOrders} {t('dashboard.cancelling')}
+            </span>
           </div>
+          {cancellingOrders > 0 && (
+            <Badge color="warning" size="lg">
+              {cancellingOrders} {t('dashboard.cancellingBadge')}
+            </Badge>
+          )}
+        </div>
           <div className="overflow-x-auto">
             <table className="table">
               <thead>
@@ -91,18 +91,18 @@ export default function OrdersQueue() {
                         )}
                       </td>
                       <td>
-                        <span className={`badge ${
-                          order.status === 'pending' ? 'badge-warning' :
-                          order.status === 'processing' ? 'badge-info' :
-                          order.status === 'packing' ? 'badge-info' :
-                          order.status === 'ready' ? 'badge-accent' :
-                          order.status === 'shipping' ? 'badge-primary' :
-                          order.status === 'shipped' ? 'badge-success' :
-                          order.status === 'cancelling' ? 'badge-warning' :
-                          'badge-error'
-                        }`}>
+                        <Badge color={
+                          order.status === 'pending' ? 'warning' :
+                          order.status === 'processing' ? 'info' :
+                          order.status === 'packing' ? 'info' :
+                          order.status === 'ready' ? 'default' :
+                          order.status === 'shipping' ? 'primary' :
+                          order.status === 'shipped' ? 'success' :
+                          order.status === 'cancelling' ? 'warning' :
+                          'error'
+                        }>
                           {t(`orders.statuses.${order.status}`)}
-                        </span>
+                        </Badge>
                       </td>
                       <td>
                         <div className="space-y-1">
@@ -120,15 +120,16 @@ export default function OrdersQueue() {
                       <td>
                         <div className="flex gap-2">
                           {(order.status === 'pending' || order.status === 'cancelling') && (
-                            <button
-                              className="btn btn-sm btn-success"
+                            <Button
+                              size="sm"
+                              color="success"
                               onClick={() => grabOrderMutation.mutate(order.id)}
-                              disabled={grabOrderMutation.isPending}
+                              loading={grabOrderMutation.isPending}
                             >
                               {t('orders.grab')}
-                            </button>
+                            </Button>
                           )}
-                          <button className="btn btn-sm btn-info">{t('orders.view')}</button>
+                          <Button size="sm" color="info">{t('orders.view')}</Button>
                         </div>
                       </td>
                     </tr>
@@ -141,8 +142,7 @@ export default function OrdersQueue() {
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
+      </Card>
     </div>
   )
 }

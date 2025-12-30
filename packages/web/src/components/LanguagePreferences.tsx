@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useUser } from '../contexts/UserContext'
 import { api } from '../services/api'
+import { Grid } from 'asterui'
+
+const { Row, Col } = Grid
 
 const languageCodes = [
   'ar', 'bn', 'de', 'el', 'en', 'es', 'fa', 'ff', 'fr', 'he', 'hi', 'ht',
@@ -60,19 +63,21 @@ export default function LanguagePreferences() {
           </p>
         </div>
         <div className="divider my-0"></div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-1">
+        <Row gutter={4}>
           {languageCodes.map((code) => (
-            <label key={code} className="label cursor-pointer justify-start gap-2 p-2">
-              <input
-                type="checkbox"
-                checked={selectedLanguages.includes(code)}
-                onChange={() => toggleLanguage(code)}
-                className="checkbox checkbox-sm"
-              />
-              <span className="label-text text-sm">{t(`languages.${code}`)}</span>
-            </label>
+            <Col xs={24} sm={8} key={code}>
+              <label className="label cursor-pointer justify-start gap-2 p-2">
+                <input
+                  type="checkbox"
+                  checked={selectedLanguages.includes(code)}
+                  onChange={() => toggleLanguage(code)}
+                  className="checkbox checkbox-sm"
+                />
+                <span className="label-text text-sm">{t(`languages.${code}`)}</span>
+              </label>
+            </Col>
           ))}
-        </div>
+        </Row>
       </div>
     </div>
   )

@@ -2,7 +2,11 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { DateTime } from 'luxon'
+import { Card, Badge, Button, Loading, Textarea, Modal, Typography, Grid } from 'asterui'
 import { api } from '../services/api'
+
+const { Text, Title } = Typography
+const { Row, Col } = Grid
 
 interface Message {
   id: number
@@ -71,7 +75,7 @@ export default function MessagesQueue() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
+        <Loading size="lg" />
       </div>
     )
   }
@@ -90,30 +94,29 @@ export default function MessagesQueue() {
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-4">{t('messagesQueue.title')}</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="stats shadow">
-          <div className="stat">
-            <div className="stat-title">{t('messagesQueue.unread')}</div>
-            <div className="stat-value text-warning">{unreadMessages}</div>
-          </div>
-        </div>
-        <div className="stats shadow">
-          <div className="stat">
-            <div className="stat-title">{t('messagesQueue.contact')}</div>
-            <div className="stat-value text-info">{contactMessages}</div>
-          </div>
-        </div>
-        <div className="stats shadow">
-          <div className="stat">
-            <div className="stat-title">{t('messagesQueue.feedback')}</div>
-            <div className="stat-value text-secondary">{feedbackMessages}</div>
-          </div>
-        </div>
-      </div>
+      <Row gutter={16} className="mb-6">
+        <Col xs={24} md={8}>
+          <Card className="shadow p-4">
+            <Text className="text-xs opacity-70">{t('messagesQueue.unread')}</Text>
+            <Title level={2} className="text-2xl text-warning">{unreadMessages}</Title>
+          </Card>
+        </Col>
+        <Col xs={24} md={8}>
+          <Card className="shadow p-4">
+            <Text className="text-xs opacity-70">{t('messagesQueue.contact')}</Text>
+            <Title level={2} className="text-2xl text-info">{contactMessages}</Title>
+          </Card>
+        </Col>
+        <Col xs={24} md={8}>
+          <Card className="shadow p-4">
+            <Text className="text-xs opacity-70">{t('messagesQueue.feedback')}</Text>
+            <Title level={2} className="text-2xl text-secondary">{feedbackMessages}</Title>
+          </Card>
+        </Col>
+      </Row>
 
-      <div className="card bg-base-100 shadow-xl">
-        <div className="card-body">
-          <div className="overflow-x-auto">
+      <Card className="shadow-xl">
+        <div className="overflow-x-auto">
             <table className="table">
               <thead>
                 <tr>
@@ -138,13 +141,13 @@ export default function MessagesQueue() {
                       >
                         <td>{message.id}</td>
                         <td>
-                          <span className={`badge ${
-                            message.type === 'contact' ? 'badge-info' :
-                            message.type === 'order_feedback' ? 'badge-secondary' :
-                            'badge-neutral'
-                          }`}>
+                          <Badge color={
+                            message.type === 'contact' ? 'info' :
+                            message.type === 'order_feedback' ? 'secondary' :
+                            'default'
+                          }>
                             {t(`messagesQueue.types.${message.type}`)}
-                          </span>
+                          </Badge>
                         </td>
                         <td>
                           <div>
@@ -162,7 +165,7 @@ export default function MessagesQueue() {
                         </td>
                         <td>
                           {message.orderId ? (
-                            <span className="badge badge-ghost">#{message.orderId}</span>
+                            <Badge color="default">#{message.orderId}</Badge>
                           ) : (
                             <span className="text-gray-400">-</span>
                           )}
@@ -170,9 +173,9 @@ export default function MessagesQueue() {
                         <td>
                           {message.responseBody ? (
                             <div>
-                              <span className="badge badge-success">
+                              <Badge color="success">
                                 {t('messagesQueue.responded')}
-                              </span>
+                              </Badge>
                               {message.respondedBy && (
                                 <div className="text-xs text-gray-500 mt-1">
                                   {message.respondedBy.firstName} {message.respondedBy.lastName}
@@ -180,9 +183,9 @@ export default function MessagesQueue() {
                               )}
                             </div>
                           ) : message.isRead ? (
-                            <span className="badge badge-info">{t('messagesQueue.read')}</span>
+                            <Badge color="info">{t('messagesQueue.read')}</Badge>
                           ) : (
-                            <span className="badge badge-warning">{t('messagesQueue.unread')}</span>
+                            <Badge color="warning">{t('messagesQueue.unread')}</Badge>
                           )}
                         </td>
                         <td>
@@ -192,23 +195,25 @@ export default function MessagesQueue() {
                         </td>
                         <td>
                           <div className="flex gap-2">
-                            <button
-                              className="btn btn-sm btn-info"
+                            <Button
+                              size="sm"
+                              color="info"
                               onClick={() => {
                                 setSelectedMessage(message)
                                 setResponseBody(message.responseBody || '')
                               }}
                             >
                               {t('messagesQueue.view')}
-                            </button>
+                            </Button>
                             {!message.isRead && (
-                              <button
-                                className="btn btn-sm btn-ghost"
+                              <Button
+                                size="sm"
+                                ghost
                                 onClick={() => toggleReadMutation.mutate(message.id)}
                                 disabled={toggleReadMutation.isPending}
                               >
                                 {t('messagesQueue.markRead')}
-                              </button>
+                              </Button>
                             )}
                           </div>
                         </td>
@@ -223,24 +228,57 @@ export default function MessagesQueue() {
                 )}
               </tbody>
             </table>
-          </div>
         </div>
-      </div>
+      </Card>
 
       {/* Message Detail Modal */}
-      {selectedMessage && (
-        <div className="modal modal-open">
-          <div className="modal-box max-w-3xl">
-            <h3 className="font-bold text-lg mb-4">
-              {selectedMessage.subject}
-              <span className={`badge ml-2 ${
-                selectedMessage.type === 'contact' ? 'badge-info' :
-                selectedMessage.type === 'order_feedback' ? 'badge-secondary' :
-                'badge-neutral'
-              }`}>
-                {t(`messagesQueue.types.${selectedMessage.type}`)}
-              </span>
-            </h3>
+      <Modal
+        open={selectedMessage !== null}
+        onCancel={() => {
+          setSelectedMessage(null)
+          setResponseBody('')
+        }}
+        title={
+          <div>
+            {selectedMessage?.subject}
+            <Badge
+              color={
+                selectedMessage?.type === 'contact' ? 'info' :
+                selectedMessage?.type === 'order_feedback' ? 'secondary' :
+                'default'
+              }
+              className="ml-2"
+            >
+              {selectedMessage && t(`messagesQueue.types.${selectedMessage.type}`)}
+            </Badge>
+          </div>
+        }
+        width={768}
+        footer={[
+          !selectedMessage?.responseBody && (
+            <Button
+              key="respond"
+              type="primary"
+              onClick={handleRespond}
+              disabled={!responseBody.trim() || respondMutation.isPending}
+              loading={respondMutation.isPending}
+            >
+              {t('messagesQueue.sendResponse')}
+            </Button>
+          ),
+          <Button
+            key="close"
+            onClick={() => {
+              setSelectedMessage(null)
+              setResponseBody('')
+            }}
+          >
+            {t('common.close')}
+          </Button>
+        ]}
+      >
+        {selectedMessage && (
+          <div>
 
             <div className="mb-4">
               <div className="text-sm text-gray-500 mb-2">
@@ -285,46 +323,21 @@ export default function MessagesQueue() {
 
             {!selectedMessage.responseBody && (
               <div className="mb-4">
-                <label className="label">
-                  <span className="label-text font-bold">{t('messagesQueue.yourResponse')}</span>
+                <label className="block text-sm font-bold mb-2">
+                  {t('messagesQueue.yourResponse')}
                 </label>
-                <textarea
-                  className="textarea textarea-bordered w-full h-32"
+                <Textarea
+                  rows={4}
+                  className="w-full"
                   value={responseBody}
                   onChange={(e) => setResponseBody(e.target.value)}
                   placeholder={t('messagesQueue.responsePlaceholder')}
                 />
               </div>
             )}
-
-            <div className="modal-action">
-              {!selectedMessage.responseBody && (
-                <button
-                  className="btn btn-primary"
-                  onClick={handleRespond}
-                  disabled={!responseBody.trim() || respondMutation.isPending}
-                >
-                  {respondMutation.isPending ? (
-                    <span className="loading loading-spinner"></span>
-                  ) : (
-                    t('messagesQueue.sendResponse')
-                  )}
-                </button>
-              )}
-              <button
-                className="btn"
-                onClick={() => {
-                  setSelectedMessage(null)
-                  setResponseBody('')
-                }}
-              >
-                {t('common.close')}
-              </button>
-            </div>
           </div>
-          <div className="modal-backdrop" onClick={() => setSelectedMessage(null)}></div>
-        </div>
-      )}
+        )}
+      </Modal>
     </div>
   )
 }

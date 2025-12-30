@@ -2,8 +2,11 @@ import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { DateTime } from 'luxon'
+import { Loading, Card, Select, Input, Textarea, Button, Grid } from 'asterui'
 import { api } from '../services/api'
 import type { Order } from '../types'
+
+const { Row, Col } = Grid
 
 const statusOptions = ['pending', 'processing', 'packing', 'ready', 'shipping', 'shipped', 'cancelled']
 
@@ -80,7 +83,7 @@ export default function MyOrders() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <span className="loading loading-spinner loading-lg"></span>
+        <Loading size="lg" />
       </div>
     )
   }
@@ -89,18 +92,18 @@ export default function MyOrders() {
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-8">{t('orders.currentOrdersTitle')}</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <Row gutter={24}>
         {data?.orders && data.orders.length > 0 ? (
           data.orders.map((order) => (
-            <div key={order.id} className="card bg-base-100 shadow-xl">
-              <div className="card-body">
+            <Col xs={24} lg={12} key={order.id}>
+            <Card className="shadow-xl">
                 {/* Header with Order ID and Status */}
                 <div className="flex justify-between items-start mb-4">
-                  <h2 className="card-title">
+                  <h2 className="text-lg font-bold">
                     {t('orders.orderNumber')}{order.id}
                   </h2>
-                  <select
-                    className="select select-bordered select-sm"
+                  <Select
+                    size="sm"
                     value={order.status}
                     onChange={(e) =>
                       updateStatusMutation.mutate({
@@ -114,7 +117,7 @@ export default function MyOrders() {
                         {t(`orders.statuses.${status}`)}
                       </option>
                     ))}
-                  </select>
+                  </Select>
                 </div>
 
                 {/* Customer Info */}
@@ -178,31 +181,36 @@ export default function MyOrders() {
                   </h3>
                   {editingTrackingId === order.id ? (
                     <div className="flex gap-2">
-                      <input
+                      <Input
                         type="text"
+                        size="sm"
                         value={trackingValue}
                         onChange={(e) => setTrackingValue(e.target.value)}
-                        className="input input-bordered input-sm flex-1"
+                        className="flex-1"
                         placeholder={t('orders.trackingNumber')}
                         autoFocus
                       />
-                      <button
-                        className="btn btn-sm btn-success"
+                      <Button
+                        size="sm"
+                        color="success"
                         onClick={() => saveTracking(order.id)}
                         disabled={updateTrackingMutation.isPending}
                       >
                         ✓
-                      </button>
-                      <button
-                        className="btn btn-sm btn-ghost"
+                      </Button>
+                      <Button
+                        size="sm"
+                        ghost
                         onClick={cancelEditTracking}
                       >
                         ✕
-                      </button>
+                      </Button>
                     </div>
                   ) : (
-                    <button
-                      className="btn btn-sm btn-ghost w-full justify-start text-left"
+                    <Button
+                      size="sm"
+                      ghost
+                      className="w-full justify-start text-left"
                       onClick={() => startEditTracking(order)}
                     >
                       {order.trackingNumber ? (
@@ -210,7 +218,7 @@ export default function MyOrders() {
                       ) : (
                         <span className="text-gray-400 italic">{t('orders.noTracking')}</span>
                       )}
-                    </button>
+                    </Button>
                   )}
                 </div>
 
@@ -221,33 +229,37 @@ export default function MyOrders() {
                   </h3>
                   {editingNotesId === order.id ? (
                     <div className="space-y-2">
-                      <textarea
+                      <Textarea
                         value={notesValue}
                         onChange={(e) => setNotesValue(e.target.value)}
-                        className="textarea textarea-bordered w-full"
+                        className="w-full"
                         placeholder={t('orders.notes')}
                         autoFocus
                         rows={3}
                       />
                       <div className="flex gap-2">
-                        <button
-                          className="btn btn-sm btn-success"
+                        <Button
+                          size="sm"
+                          color="success"
                           onClick={() => saveNotes(order.id)}
                           disabled={updateNotesMutation.isPending}
                         >
                           {t('users.save')}
-                        </button>
-                        <button
-                          className="btn btn-sm btn-ghost"
+                        </Button>
+                        <Button
+                          size="sm"
+                          ghost
                           onClick={cancelEditNotes}
                         >
                           {t('users.cancel')}
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   ) : (
-                    <button
-                      className="btn btn-sm btn-ghost w-full justify-start text-left h-auto whitespace-normal py-2"
+                    <Button
+                      size="sm"
+                      ghost
+                      className="w-full justify-start text-left h-auto whitespace-normal py-2"
                       onClick={() => startEditNotes(order)}
                     >
                       {order.notes ? (
@@ -255,18 +267,20 @@ export default function MyOrders() {
                       ) : (
                         <span className="text-gray-400 italic text-sm">{t('orders.noNotes')}</span>
                       )}
-                    </button>
+                    </Button>
                   )}
                 </div>
-              </div>
-            </div>
+            </Card>
+            </Col>
           ))
         ) : (
-          <div className="col-span-full text-center text-gray-500 py-12">
-            {t('common.noData')}
-          </div>
+          <Col span={24}>
+            <div className="text-center text-gray-500 py-12">
+              {t('common.noData')}
+            </div>
+          </Col>
         )}
-      </div>
+      </Row>
     </div>
   )
 }

@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { useUser } from '../contexts/UserContext'
 import { api } from '../services/api'
-import { Button, Card, Form, Input, Typography, message } from 'asterui'
+import { Button, Card, Form, Input, Typography, message, Grid } from 'asterui'
 
 const { Title } = Typography
+const { Row, Col } = Grid
 
 interface ProfileFormData {
   firstName: string
@@ -67,29 +68,33 @@ export default function Account() {
             email: user.email,
           }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Form.Item
-              name="firstName"
-              label={t('account.firstName')}
-              rules={[
-                { required: true, message: t('account.firstNameRequired') },
-                { min: 2, message: t('account.firstNameMinLength') },
-              ]}
-            >
-              <Input className="w-full" />
-            </Form.Item>
+          <Row gutter={16}>
+            <Col xs={24} md={12}>
+              <Form.Item
+                name="firstName"
+                label={t('account.firstName')}
+                rules={[
+                  { required: true, message: t('account.firstNameRequired') },
+                  { min: 2, message: t('account.firstNameMinLength') },
+                ]}
+              >
+                <Input className="w-full" />
+              </Form.Item>
+            </Col>
 
-            <Form.Item
-              name="lastName"
-              label={t('account.lastName')}
-              rules={[
-                { required: true, message: t('account.lastNameRequired') },
-                { min: 2, message: t('account.lastNameMinLength') },
-              ]}
-            >
-              <Input className="w-full" />
-            </Form.Item>
-          </div>
+            <Col xs={24} md={12}>
+              <Form.Item
+                name="lastName"
+                label={t('account.lastName')}
+                rules={[
+                  { required: true, message: t('account.lastNameRequired') },
+                  { min: 2, message: t('account.lastNameMinLength') },
+                ]}
+              >
+                <Input className="w-full" />
+              </Form.Item>
+            </Col>
+          </Row>
 
           <Form.Item
             name="email"

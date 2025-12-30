@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next'
 import { useUser } from '../contexts/UserContext'
 import AddressForm from '../components/AddressForm'
 import { useAddresses, useCreateAddress, useUpdateAddress, useDeleteAddress, type Address } from '../hooks/useAddressQueries'
-import { Alert, Badge, Button, Card, Loading, Modal, Typography } from 'asterui'
+import { Alert, Badge, Button, Card, Loading, Modal, Typography, Grid } from 'asterui'
 
 const { Title, Paragraph } = Typography
+const { Row, Col } = Grid
 
 export default function Addresses() {
   const { t } = useTranslation()
@@ -102,10 +103,10 @@ export default function Addresses() {
       {!addresses || addresses.length === 0 ? (
         <Alert color="info">{t('address.noAddresses')}</Alert>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <Row gutter={16}>
           {addresses.map((address) => (
+            <Col xs={24} md={12} lg={8} key={address.id}>
             <Card
-              key={address.id}
               className={`shadow-xl ${address.isDefault ? 'ring-2 ring-primary' : ''}`}
             >
               {address.isDefault && (
@@ -144,8 +145,9 @@ export default function Addresses() {
                 </Button>
               </div>
             </Card>
+            </Col>
           ))}
-        </div>
+        </Row>
       )}
 
       <AddressForm

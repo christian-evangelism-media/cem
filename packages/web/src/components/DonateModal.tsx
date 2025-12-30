@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useMutation } from '@tanstack/react-query'
 import { $api } from '../services/tuyau'
+import { Grid } from 'asterui'
+
+const { Row, Col } = Grid
 
 interface DonateModalProps {
   isOpen: boolean
@@ -110,18 +113,19 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
             <label className="label">
               <span className="label-text">{t('donate.selectAmount') || 'Select Amount'}</span>
             </label>
-            <div className="grid grid-cols-3 gap-2 mb-2">
+            <Row gutter={8} className="mb-2">
               {presetAmounts.map((preset) => (
-                <button
-                  key={preset}
-                  type="button"
-                  onClick={() => handlePresetClick(preset)}
-                  className={`btn ${amount === preset.toString() && !isCustom ? 'btn-primary' : 'btn-outline'}`}
-                >
-                  ${preset}
-                </button>
+                <Col span={8} key={preset}>
+                  <button
+                    type="button"
+                    onClick={() => handlePresetClick(preset)}
+                    className={`btn w-full ${amount === preset.toString() && !isCustom ? 'btn-primary' : 'btn-outline'}`}
+                  >
+                    ${preset}
+                  </button>
+                </Col>
               ))}
-            </div>
+            </Row>
             <button
               type="button"
               onClick={handleCustomClick}

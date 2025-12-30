@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { Badge, Button } from 'asterui'
 import { useAuth } from '../contexts/AuthContext'
 import { useTheme } from '../hooks/useTheme'
 import { api } from '../services/api'
@@ -177,7 +178,7 @@ export default function Layout({ children }: LayoutProps) {
                 </svg>
                 {t('nav.ordersQueue')}
                 {showOrdersQueueBadge && (
-                  <span className="badge badge-warning badge-sm">{newOrdersCount}</span>
+                  <Badge size="sm" color="warning">{newOrdersCount}</Badge>
                 )}
               </Link>
             </li>
@@ -191,7 +192,7 @@ export default function Layout({ children }: LayoutProps) {
                   </svg>
                   {t('nav.messagesQueue')}
                   {showMessagesQueueBadge && (
-                    <span className="badge badge-error badge-sm">{newMessagesCount}</span>
+                    <Badge size="sm" color="error">{newMessagesCount}</Badge>
                   )}
                 </Link>
               </li>
@@ -288,10 +289,11 @@ export default function Layout({ children }: LayoutProps) {
 
             {/* Maintenance Mode Toggle - Admin+ only */}
             {(user?.role === 'admin' || user?.role === 'super_admin') && (
-              <button
+              <Button
                 onClick={handleToggleMaintenance}
                 disabled={isTogglingMaintenance}
-                className={`btn w-full mb-4 ${maintenanceData?.isActive ? 'btn-success' : 'btn-warning'}`}
+                color={maintenanceData?.isActive ? 'success' : 'warning'}
+                className="w-full mb-4"
                 title={maintenanceData?.isActive ? t('nav.deactivateMaintenanceTitle') : t('nav.activateMaintenanceTitle')}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -305,21 +307,22 @@ export default function Layout({ children }: LayoutProps) {
                     ? t('nav.deactivateMaintenance')
                     : t('nav.activateMaintenance')}
                 </span>
-              </button>
+              </Button>
             )}
 
             {/* Emergency Lockdown Button - Large, prominent, easy to click in emergency */}
-            <button
+            <Button
               onClick={handleEmergencyLockdown}
               disabled={isActivatingLockdown}
-              className="btn btn-error w-full mb-8 h-20 text-lg"
+              color="error"
+              className="w-full mb-8 h-20 text-lg"
               title={t('nav.emergencyLockdownTitle')}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
               <span className="font-bold">{isActivatingLockdown ? t('nav.activatingLockdown') : t('nav.emergencyLockdown')}</span>
-            </button>
+            </Button>
 
             <div className="flex items-center justify-between mb-2">
               <div className="text-sm">
@@ -332,12 +335,12 @@ export default function Layout({ children }: LayoutProps) {
               </div>
             </div>
 
-            <button onClick={logout} className="btn btn-sm btn-ghost w-full">
+            <Button onClick={logout} size="sm" ghost className="w-full">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
               </svg>
               {t('nav.logout')}
-            </button>
+            </Button>
           </div>
         </aside>
       </div>
