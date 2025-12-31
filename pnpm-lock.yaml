@@ -119,6 +119,9 @@ importers:
 
   packages/ops:
     dependencies:
+      '@aster-ui/icons':
+        specifier: ^0.2.0
+        version: 0.2.0(asterui@0.12.77(qrcode@1.5.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
       '@tailwindcss/vite':
         specifier: ^4.1.16
         version: 4.1.18(rolldown-vite@7.1.14(@types/node@24.10.4)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.2))
@@ -337,6 +340,9 @@ importers:
 
   packages/web:
     dependencies:
+      '@aster-ui/icons':
+        specifier: ^0.2.0
+        version: 0.2.0(asterui@0.12.76(qrcode@1.5.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
       '@mapbox/search-js-react':
         specifier: ^1.5.0
         version: 1.5.1(mapbox-gl@3.17.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -686,6 +692,12 @@ packages:
   '@arr/every@1.0.1':
     resolution: {integrity: sha512-UQFQ6SgyJ6LX42W8rHCs8KVc0JS0tzVL9ct4XYedJukskYVWTo49tNiMEK9C2HTyarbNiT/RVIRSY82vH+6sTg==}
     engines: {node: '>=4'}
+
+  '@aster-ui/icons@0.2.0':
+    resolution: {integrity: sha512-ynnB1/9P3QdZ+Bo41vkgtH5f2jXMArWxO/h57YwcS8ABjXbjRhDdVElA7d4NORqvZdeJxdwlrIyXAIzhBQkvrA==}
+    peerDependencies:
+      asterui: ^0.12.0
+      react: ^18.0.0 || ^19.0.0
 
   '@aws-crypto/sha256-browser@5.2.0':
     resolution: {integrity: sha512-AXfN/lGotSQwu6HNcEsIASo7kWXZ5HYWvfOmSNKDsEqC4OashTp8alTmaz+F7TC2L083SFv5RdB+qU3Vs1kZqw==}
@@ -7396,6 +7408,16 @@ snapshots:
       tinyexec: 1.0.2
 
   '@arr/every@1.0.1': {}
+
+  '@aster-ui/icons@0.2.0(asterui@0.12.76(qrcode@1.5.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      asterui: 0.12.76(qrcode@1.5.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      react: 19.2.3
+
+  '@aster-ui/icons@0.2.0(asterui@0.12.77(qrcode@1.5.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      asterui: 0.12.77(qrcode@1.5.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      react: 19.2.3
 
   '@aws-crypto/sha256-browser@5.2.0':
     dependencies:

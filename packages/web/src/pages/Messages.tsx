@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { DateTime } from 'luxon'
 import { api } from '../services/api'
-import { Badge, Button, Card, Loading, Typography } from 'asterui'
+import { Badge, Button, Card, Container, Loading, Typography } from 'asterui'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -66,7 +66,7 @@ export default function Messages() {
   const responses = receivedMessages.filter(msg => !msg.isBroadcast && msg.responseBody)
 
   return (
-    <div className="container mx-auto p-4 max-w-6xl">
+    <Container size="2xl" className="p-4">
       <Title level={1} className="text-3xl mb-6">{t('messages.title')}</Title>
 
       {receivedMessages.length === 0 ? (
@@ -251,6 +251,6 @@ export default function Messages() {
           <div className="modal-backdrop" onClick={() => setSelectedMessage(null)}></div>
         </div>
       )}
-    </div>
+    </Container>
   )
 }

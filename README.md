@@ -20,7 +20,7 @@ cem/
 ### Install Dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 This installs dependencies for all packages in the monorepo.
@@ -31,16 +31,16 @@ Run individual packages:
 
 ```bash
 # Backend API
-npm run dev:api
+pnpm dev:api
 
 # Public website
-npm run dev:web
+pnpm dev:web
 
 # Operations panel
-npm run dev:ops
+pnpm dev:ops
 
 # Scanner app
-npm run dev:scanner
+pnpm dev:scanner
 ```
 
 ### Building
@@ -48,16 +48,16 @@ npm run dev:scanner
 Build all packages:
 
 ```bash
-npm run build:all
+pnpm build:all
 ```
 
 Or build individually:
 
 ```bash
-npm run build:api
-npm run build:web
-npm run build:ops
-npm run build:scanner
+pnpm build:api
+pnpm build:web
+pnpm build:ops
+pnpm build:scanner
 ```
 
 ## Type Safety with Tuyau
@@ -69,7 +69,7 @@ This monorepo uses [Tuyau](https://tuyau.dev) to generate TypeScript types from 
 **Important:** When you modify API routes, controllers, or request/response structures, you MUST regenerate types:
 
 ```bash
-npm run generate:types
+pnpm generate:types
 ```
 
 This command:
@@ -79,7 +79,7 @@ This command:
 
 ### When to Regenerate Types
 
-Run `npm run generate:types` after:
+Run `pnpm generate:types` after:
 - Adding/removing API endpoints
 - Changing request parameters
 - Modifying response structures
@@ -90,7 +90,7 @@ Run `npm run generate:types` after:
 For the best developer experience:
 
 1. Make API changes
-2. Run `npm run generate:types`
+2. Run `pnpm generate:types`
 3. Frontend apps immediately see updated types
 4. TypeScript compiler catches any mismatches
 
@@ -107,7 +107,7 @@ AdonisJS 6 backend providing:
 - Maintenance mode
 - Emergency lockdown
 
-**Dev server:** `npm run dev:api` (port 3333)
+**Dev server:** `pnpm dev:api` (port 3333)
 
 ### packages/web
 
@@ -117,7 +117,7 @@ React 19 public website where users:
 - Manage addresses and preferences
 - View order history
 
-**Dev server:** `npm run dev:web` (port 5173)
+**Dev server:** `pnpm dev:web` (port 5173)
 
 ### packages/ops
 
@@ -130,7 +130,7 @@ React 19 operations panel for staff:
 - Health monitoring
 - Maintenance mode control
 
-**Dev server:** `npm run dev:ops` (port 5173)
+**Dev server:** `pnpm dev:ops` (port 5173)
 
 ### packages/scanner
 
@@ -139,7 +139,7 @@ Ionic/React mobile app for warehouse:
 - Order fulfillment (ship/unship)
 - Batch operations
 
-**Dev server:** `npm run dev:scanner` (port 5173)
+**Dev server:** `pnpm dev:scanner` (port 5173)
 
 ## Database
 
@@ -149,7 +149,7 @@ Ionic/React mobile app for warehouse:
 cd packages/api
 cp .env.example .env
 # Configure database credentials in .env
-npm run migration:run
+pnpm migration:run
 ```
 
 ### Migrations
@@ -186,9 +186,9 @@ Each package requires its own `.env` file:
 
 ```bash
 cd packages/api
-npm run build
+pnpm build
 cd build
-npm ci --omit=dev
+pnpm install --prod --frozen-lockfile
 node bin/server.js
 ```
 
@@ -197,17 +197,17 @@ node bin/server.js
 ```bash
 # Web
 cd packages/web
-npm run build
+pnpm build
 # Deploy dist/ to static hosting
 
 # Ops
 cd packages/ops
-npm run build
+pnpm build
 # Deploy dist/ to static hosting
 
 # Scanner
 cd packages/scanner
-npm run build
+pnpm build
 npx cap sync android
 npx cap open android
 # Build APK in Android Studio
@@ -232,7 +232,7 @@ Dual-licensed under MIT OR The Unlicense.
 
 ### Type Generation is Required
 
-**The frontends will not have correct types until you run `npm run generate:types`** after API changes. This is the trade-off for having automatic type generation - you must remember to run the command.
+**The frontends will not have correct types until you run `pnpm generate:types`** after API changes. This is the trade-off for having automatic type generation - you must remember to run the command.
 
 ### Monorepo Benefits
 

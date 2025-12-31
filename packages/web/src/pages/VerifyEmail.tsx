@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { api } from '../services/api'
-import { Button } from 'asterui'
+import { Button, Card } from 'asterui'
+import { CheckCircleIcon, XCircleIcon } from '@aster-ui/icons'
 
 export default function VerifyEmail() {
   const [searchParams] = useSearchParams()
@@ -45,65 +46,51 @@ export default function VerifyEmail() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200">
-      <div className="card w-full max-w-md bg-base-100 shadow-xl">
-        <div className="card-body items-center text-center">
-          {status === 'verifying' && (
+      <Card
+        variant="shadow"
+        className="w-full max-w-md"
+        bodyClassName="items-center text-center"
+        title={
+          status === 'verifying' ? (
             <>
-              <span className="loading loading-spinner loading-lg text-primary"></span>
-              <h2 className="card-title mt-4">Verifying your email...</h2>
+              <span className="loading loading-spinner loading-lg text-primary block mx-auto"></span>
+              <span className="block mt-4">Verifying your email...</span>
             </>
-          )}
+          ) : status === 'success' ? (
+            <>
+              <CheckCircleIcon size={64} className="text-success mx-auto" />
+              <span className="block text-success mt-4">Email Verified!</span>
+            </>
+          ) : (
+            <>
+              <XCircleIcon size={64} className="text-error mx-auto" />
+              <span className="block text-error mt-4">Verification Failed</span>
+            </>
+          )
+        }
+        actions={
+          status === 'error' ? (
+            <Button
+              type="primary"
+              onClick={() => navigate('/login')}
+            >
+              Go to Login
+            </Button>
+          ) : undefined
+        }
+        actionsJustify="center"
+      >
+        {status === 'success' && (
+          <>
+            <p className="mt-2">{message}</p>
+            <p className="text-sm text-gray-500 mt-2">Redirecting to login...</p>
+          </>
+        )}
 
-          {status === 'success' && (
-            <>
-              <svg
-                className="w-16 h-16 text-success"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <h2 className="card-title text-success mt-4">Email Verified!</h2>
-              <p className="mt-2">{message}</p>
-              <p className="text-sm text-gray-500 mt-2">Redirecting to login...</p>
-            </>
-          )}
-
-          {status === 'error' && (
-            <>
-              <svg
-                className="w-16 h-16 text-error"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <h2 className="card-title text-error mt-4">Verification Failed</h2>
-              <p className="mt-2">{message}</p>
-              <div className="card-actions mt-4">
-                <Button
-                  type="primary"
-                  onClick={() => navigate('/login')}
-                >
-                  Go to Login
-                </Button>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
+        {status === 'error' && (
+          <p className="mt-2">{message}</p>
+        )}
+      </Card>
     </div>
   )
 }
