@@ -1,8 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { api } from '../services/api'
-import { Button, Card } from 'asterui'
-import { CheckCircleIcon, XCircleIcon } from '@aster-ui/icons'
+import { Button, Result } from 'asterui'
 
 export default function VerifyEmail() {
   const [searchParams] = useSearchParams()
@@ -46,51 +45,37 @@ export default function VerifyEmail() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200">
-      <Card
-        variant="shadow"
-        className="w-full max-w-md"
-        bodyClassName="items-center text-center"
-        title={
-          status === 'verifying' ? (
-            <>
-              <span className="loading loading-spinner loading-lg text-primary block mx-auto"></span>
-              <span className="block mt-4">Verifying your email...</span>
-            </>
-          ) : status === 'success' ? (
-            <>
-              <CheckCircleIcon size={64} className="text-success mx-auto" />
-              <span className="block text-success mt-4">Email Verified!</span>
-            </>
-          ) : (
-            <>
-              <XCircleIcon size={64} className="text-error mx-auto" />
-              <span className="block text-error mt-4">Verification Failed</span>
-            </>
-          )
-        }
-        actions={
-          status === 'error' ? (
-            <Button
-              type="primary"
-              onClick={() => navigate('/login')}
-            >
-              Go to Login
-            </Button>
-          ) : undefined
-        }
-        actionsJustify="center"
-      >
+      <div className="w-full max-w-md">
+        {status === 'verifying' && (
+          <Result
+            icon={<span className="loading loading-spinner loading-lg text-primary"></span>}
+            title="Verifying your email..."
+          />
+        )}
+
         {status === 'success' && (
-          <>
-            <p className="mt-2">{message}</p>
-            <p className="text-sm text-gray-500 mt-2">Redirecting to login...</p>
-          </>
+          <Result
+            status="success"
+            title="Email Verified!"
+            subTitle={message}
+          >
+            <p className="text-sm text-gray-500">Redirecting to login...</p>
+          </Result>
         )}
 
         {status === 'error' && (
-          <p className="mt-2">{message}</p>
+          <Result
+            status="error"
+            title="Verification Failed"
+            subTitle={message}
+            extra={
+              <Button type="primary" onClick={() => navigate('/login')}>
+                Go to Login
+              </Button>
+            }
+          />
         )}
-      </Card>
+      </div>
     </div>
   )
 }

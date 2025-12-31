@@ -3,8 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { $api } from '../services/tuyau'
-import { Alert, Button, Card, Container } from 'asterui'
-import { CheckCircleIcon } from '@aster-ui/icons'
+import { Alert, Button, Container, Result } from 'asterui'
 
 export default function DonateSuccess() {
   const { t } = useTranslation()
@@ -61,20 +60,11 @@ export default function DonateSuccess() {
 
   return (
     <Container size="md" className="py-8">
-      <Card
-        variant="shadow"
-        bodyClassName="text-center"
-        title={
-          <>
-            <div className="flex justify-center mb-4">
-              <CheckCircleIcon size={64} className="text-success" />
-            </div>
-            <span className="block text-center text-2xl">
-              {t('donate.thankYou') || 'Thank You!'}
-            </span>
-          </>
-        }
-        actions={
+      <Result
+        status="success"
+        title={t('donate.thankYou') || 'Thank You!'}
+        subTitle={t('donate.successMessage') || 'Your donation has been received successfully.'}
+        extra={
           <>
             <Button onClick={() => navigate('/')} type="primary">
               {t('common.returnHome') || 'Return Home'}
@@ -84,12 +74,7 @@ export default function DonateSuccess() {
             </Button>
           </>
         }
-        actionsJustify="center"
       >
-        <p className="text-lg">
-          {t('donate.successMessage') ||
-            'Your donation has been received successfully.'}
-        </p>
         {donation && (
           <div className="stats stats-vertical shadow mt-4">
             <div className="stat">
@@ -108,10 +93,9 @@ export default function DonateSuccess() {
           </div>
         )}
         <p className="mt-4 text-sm opacity-70">
-          {t('donate.receiptEmail') ||
-            'A receipt has been sent to your email address.'}
+          {t('donate.receiptEmail') || 'A receipt has been sent to your email address.'}
         </p>
-      </Card>
+      </Result>
     </Container>
   )
 }

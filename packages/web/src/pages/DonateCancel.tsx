@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { Button, Card, Container } from 'asterui'
-import { ExclamationTriangleIcon } from '@aster-ui/icons'
+import { Button, Container, Result } from 'asterui'
 
 export default function DonateCancel() {
   const { t } = useTranslation()
@@ -9,20 +8,11 @@ export default function DonateCancel() {
 
   return (
     <Container size="md" className="py-8">
-      <Card
-        variant="shadow"
-        bodyClassName="text-center"
-        title={
-          <>
-            <div className="flex justify-center mb-4">
-              <ExclamationTriangleIcon size={64} className="text-warning" />
-            </div>
-            <span className="block text-center text-2xl">
-              {t('donate.cancelled') || 'Donation Cancelled'}
-            </span>
-          </>
-        }
-        actions={
+      <Result
+        status="warning"
+        title={t('donate.cancelled') || 'Donation Cancelled'}
+        subTitle={t('donate.cancelMessage') || 'Your donation was cancelled. No charges were made.'}
+        extra={
           <>
             <Button onClick={() => navigate('/')} type="primary">
               {t('common.returnHome') || 'Return Home'}
@@ -32,17 +22,11 @@ export default function DonateCancel() {
             </Button>
           </>
         }
-        actionsJustify="center"
       >
-        <p className="text-lg">
-          {t('donate.cancelMessage') ||
-            'Your donation was cancelled. No charges were made.'}
+        <p className="text-sm opacity-70">
+          {t('donate.cancelHelp') || 'If you experienced any issues, please contact us.'}
         </p>
-        <p className="mt-4 text-sm opacity-70">
-          {t('donate.cancelHelp') ||
-            'If you experienced any issues, please contact us.'}
-        </p>
-      </Card>
+      </Result>
     </Container>
   )
 }
