@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { message, Modal, Button, Input, Textarea, Alert } from 'asterui'
+import { message, Modal, Button, Form, Input, Textarea, Alert } from 'asterui'
 import { api } from '../services/api'
 
 interface ContactModalProps {
@@ -84,10 +84,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       </Alert>
 
       <form id="contact-form" onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="label">
-            <span className="label-text font-medium">{t('contact.subject')}</span>
-          </label>
+        <Form.Item label={<span className="font-medium">{t('contact.subject')}</span>}>
           <Input
             type="text"
             value={subject}
@@ -96,12 +93,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             maxLength={200}
             required
           />
-        </div>
+        </Form.Item>
 
-        <div>
-          <label className="label">
-            <span className="label-text font-medium">{t('contact.message')}</span>
-          </label>
+        <Form.Item label={<span className="font-medium">{t('contact.message')}</span>}>
           <Textarea
             value={body}
             onChange={(e) => setBody(e.target.value)}
@@ -110,7 +104,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             rows={10}
             className="resize-none"
           />
-        </div>
+        </Form.Item>
 
         {sendMessageMutation.isError && (
           <Alert type="error">

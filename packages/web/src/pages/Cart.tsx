@@ -5,7 +5,7 @@ import { useCart, useUpdateCartItem, useRemoveCartItem } from '../hooks/useCartQ
 import { useCreateOrder } from '../hooks/useMediaQueries'
 import { useAddresses } from '../hooks/useAddressQueries'
 import { useUser } from '../contexts/UserContext'
-import { Alert, Badge, Button, Card, Loading, Modal, Select, Typography } from 'asterui'
+import { Alert, Badge, Button, Card, Form, Loading, Modal, Select, Typography } from 'asterui'
 
 const { Title } = Typography
 
@@ -115,10 +115,7 @@ export default function Cart() {
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="form-control">
-                      <label className="label">
-                        <span className="label-text">{t('media.quantity')}</span>
-                      </label>
+                    <Form.Item label={t('media.quantity')}>
                       <Select
                         value={item.quantity}
                         onChange={(value) => updateQuantity(item.id, Number(value))}
@@ -130,7 +127,7 @@ export default function Cart() {
                           </option>
                         ))}
                       </Select>
-                    </div>
+                    </Form.Item>
                     <Button
                       shape="circle"
                       ghost

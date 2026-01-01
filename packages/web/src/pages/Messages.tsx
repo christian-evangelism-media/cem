@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { DateTime } from 'luxon'
 import { api } from '../services/api'
-import { Badge, Button, Card, Container, Loading, Typography } from 'asterui'
+import { Badge, Button, Card, Container, Loading, Modal, Typography } from 'asterui'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -159,15 +159,17 @@ export default function Messages() {
       )}
 
       {/* Message Detail Modal */}
-      {selectedMessage && (
-        <div className="modal modal-open">
-          <div className="modal-box max-w-3xl">
-            <div className="flex justify-between items-start mb-4">
-              <Title level={3} className="text-xl">
+      <Modal
+        open={!!selectedMessage}
+        onClose={() => setSelectedMessage(null)}
+        title={
+          selectedMessage && (
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-2">
                 {selectedMessage.isBroadcast && (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-primary inline mr-2"
+                    className="h-5 w-5 text-primary"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -180,15 +182,25 @@ export default function Messages() {
                     />
                   </svg>
                 )}
-                {selectedMessage.subject}
-              </Title>
+                <span>{selectedMessage.subject}</span>
+              </div>
               {selectedMessage.orderId && (
                 <Badge>
                   {t('messages.orderBadge', { id: selectedMessage.orderId })}
                 </Badge>
               )}
             </div>
-
+          )
+        }
+        width="48rem"
+        footer={
+          <Button onClick={() => setSelectedMessage(null)}>
+            {t('common.close')}
+          </Button>
+        }
+      >
+        {selectedMessage && (
+          <>
             {/* Show announcement body for broadcasts */}
             {selectedMessage.isBroadcast && (
               <>
@@ -241,16 +253,9 @@ export default function Messages() {
                 )}
               </>
             )}
-
-            <div className="modal-action">
-              <Button onClick={() => setSelectedMessage(null)}>
-                {t('common.close')}
-              </Button>
-            </div>
-          </div>
-          <div className="modal-backdrop" onClick={() => setSelectedMessage(null)}></div>
-        </div>
-      )}
+          </>
+        )}
+      </Modal>
     </Container>
   )
 }

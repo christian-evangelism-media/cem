@@ -1,7 +1,7 @@
 import { useState, useDeferredValue } from 'react'
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { Modal, Button, Badge, Input, Loading, Toggle, Card, Grid, Dropdown, Checkbox } from 'asterui'
+import { Modal, Button, Badge, Input, Loading, Toggle, Card, Grid, Dropdown, Checkbox, Divider } from 'asterui'
 import { api } from '../services/api'
 import { useAuth } from '../contexts/AuthContext'
 import type { Media as MediaType, PaginatedResponse } from '../types'
@@ -197,17 +197,17 @@ export default function Media() {
                     {t('media.filterInfo')}
                   </p>
                 </div>
-                <div className="divider my-0"></div>
+                <Divider className="my-0" />
                 <Row gutter={4}>
                   {availableLanguageCodes.map((code) => (
                     <Col span={8} key={code}>
-                      <label className="label cursor-pointer justify-start gap-2 p-2">
+                      <label className="cursor-pointer flex items-center justify-start gap-2 p-2">
                         <Checkbox
                           size="sm"
                           checked={selectedLanguages.includes(code)}
                           onChange={(checked) => toggleLanguage(code)}
                         />
-                        <span className="label-text text-sm">{t(`languageNames.${code}`)}</span>
+                        <span className="text-sm">{t(`languageNames.${code}`)}</span>
                       </label>
                     </Col>
                   ))}

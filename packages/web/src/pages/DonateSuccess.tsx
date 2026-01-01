@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { $api } from '../services/tuyau'
-import { Alert, Button, Container, Result } from 'asterui'
+import { Alert, Button, Container, Loading, Result, Stats } from 'asterui'
 
 export default function DonateSuccess() {
   const { t } = useTranslation()
@@ -51,7 +51,7 @@ export default function DonateSuccess() {
     return (
       <Container size="md" className="py-8">
         <div className="text-center">
-          <span className="loading loading-spinner loading-lg"></span>
+          <Loading size="lg" type="spinner" />
           <p className="mt-4">{t('donate.verifying') || 'Verifying your donation...'}</p>
         </div>
       </Container>
@@ -76,21 +76,19 @@ export default function DonateSuccess() {
         }
       >
         {donation && (
-          <div className="stats stats-vertical shadow mt-4">
-            <div className="stat">
-              <div className="stat-title">{t('donate.amount') || 'Amount'}</div>
-              <div className="stat-value text-primary">
-                ${donation.amount.toFixed(2)}
-              </div>
-              <div className="stat-desc">{donation.currency}</div>
-            </div>
+          <Stats vertical className="shadow mt-4">
+            <Stats.Stat
+              title={t('donate.amount') || 'Amount'}
+              value={<span className="text-primary">${donation.amount.toFixed(2)}</span>}
+              desc={donation.currency}
+            />
             {donation.message && (
-              <div className="stat">
-                <div className="stat-title">{t('donate.yourMessage') || 'Your Message'}</div>
-                <div className="stat-desc text-left">{donation.message}</div>
-              </div>
+              <Stats.Stat
+                title={t('donate.yourMessage') || 'Your Message'}
+                desc={<div className="text-left">{donation.message}</div>}
+              />
             )}
-          </div>
+          </Stats>
         )}
         <p className="mt-4 text-sm opacity-70">
           {t('donate.receiptEmail') || 'A receipt has been sent to your email address.'}

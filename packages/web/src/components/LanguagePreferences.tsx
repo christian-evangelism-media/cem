@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useUser } from '../contexts/UserContext'
 import { api } from '../services/api'
-import { Grid, Dropdown, Button, Badge, Checkbox } from 'asterui'
+import { Grid, Dropdown, Button, Badge, Checkbox, Divider } from 'asterui'
 
 const { Row, Col } = Grid
 
@@ -64,7 +64,7 @@ export default function LanguagePreferences() {
             Select languages you commonly work with. Media matching your preferences will appear first.
           </p>
         </div>
-        <div className="divider my-0"></div>
+        <Divider className="my-0" />
         <Row gutter={4}>
           {languageCodes.map((code) => (
             <Col xs={24} sm={8} key={code}>

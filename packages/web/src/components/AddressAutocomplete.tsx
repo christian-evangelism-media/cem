@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Input, Loading } from 'asterui'
 
 interface MapboxFeature {
   id: string
@@ -133,9 +134,9 @@ export default function AddressAutocomplete({
 
   return (
     <div ref={wrapperRef} className="relative w-full">
-      <input
+      <Input
         type="text"
-        className={`input input-bordered w-full ${className}`}
+        className={`w-full ${className}`}
         placeholder={placeholder || t('address.searchPlaceholder') || 'Start typing your address...'}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
@@ -144,7 +145,7 @@ export default function AddressAutocomplete({
 
       {isLoading && (
         <div className="absolute end-3 top-1/2 -translate-y-1/2">
-          <span className="loading loading-spinner loading-sm"></span>
+          <Loading size="sm" type="spinner" />
         </div>
       )}
 

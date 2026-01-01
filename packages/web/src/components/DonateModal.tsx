@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useMutation } from '@tanstack/react-query'
 import { $api } from '../services/tuyau'
-import { Grid, Modal, Button, Input, Textarea } from 'asterui'
+import { Grid, Modal, Button, Form, Input, Textarea } from 'asterui'
 
 const { Row, Col } = Grid
 
@@ -96,10 +96,7 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
       </p>
 
       <div className="space-y-4">
-        <div>
-          <label className="label">
-            <span className="label-text">{t('donate.selectAmount') || 'Select Amount'}</span>
-          </label>
+        <Form.Item label={t('donate.selectAmount') || 'Select Amount'}>
           <Row gutter={8} className="mb-2">
             {presetAmounts.map((preset) => (
               <Col span={8} key={preset}>
@@ -120,13 +117,10 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
           >
             {t('donate.customAmount') || 'Custom Amount'}
           </Button>
-        </div>
+        </Form.Item>
 
         {isCustom && (
-          <div>
-            <label className="label">
-              <span className="label-text">{t('donate.enterAmount') || 'Enter Amount'}</span>
-            </label>
+          <Form.Item label={t('donate.enterAmount') || 'Enter Amount'}>
             <Input
               type="number"
               value={customAmount}
@@ -137,22 +131,17 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
               addonBefore="$"
               className="w-full"
             />
-          </div>
+          </Form.Item>
         )}
 
-        <div>
-          <label className="label">
-            <span className="label-text">
-              {t('donate.message') || 'Message (Optional)'}
-            </span>
-          </label>
+        <Form.Item label={t('donate.message') || 'Message (Optional)'}>
           <Textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder={t('donate.messagePlaceholder') || 'Leave a message...'}
             rows={3}
           />
-        </div>
+        </Form.Item>
       </div>
     </Modal>
   )

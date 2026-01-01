@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSendMessage } from '../hooks/useMessageQueries'
-import { Alert, Button, Input, Textarea, Typography } from 'asterui'
-
-const { Title } = Typography
+import { Alert, Button, Form, Input, Modal, Space, Textarea } from 'asterui'
 
 interface FeedbackModalProps {
   orderId: number
@@ -14,16 +12,12 @@ interface FeedbackModalProps {
 export default function FeedbackModal({ orderId, orderNumber, onClose }: FeedbackModalProps) {
   const { t } = useTranslation()
   const sendMessage = useSendMessage()
-  const [feedback, setFeedback] = useState('')
-  const [subject, setSubject] = useState(t('feedback.defaultSubject', { orderNumber }))
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
+  const handleSubmit = (values: any) => {
     sendMessage.mutate(
       {
-        subject,
-        body: feedback,
+        subject: values.subject,
+        body: values.feedback,
         orderId,
       },
       {
@@ -35,66 +29,56 @@ export default function FeedbackModal({ orderId, orderNumber, onClose }: Feedbac
   }
 
   return (
-    <div className="modal modal-open">
-      <div className="modal-box max-w-2xl">
-        <Title level={3} className="text-xl mb-6">
-          {t('feedback.title', { orderNumber })}
-        </Title>
+    <Modal
+      open={true}
+      onClose={onClose}
+      title={t('feedback.title', { orderNumber })}
+      width="48rem"
+      footer={null}
+    >
+      <Form
+        onFinish={handleSubmit}
+        initialValues={{
+          subject: t('feedback.defaultSubject', { orderNumber }),
+          feedback: '',
+        }}
+      >
+        <Form.Item name="subject" label={t('feedback.subjectLabel')} rules={{ required: true, max: 200 }}>
+          <Input className="w-full" maxLength={200} />
+        </Form.Item>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text font-medium">{t('feedback.subjectLabel')}</span>
-            </label>
-            <Input
-              className="w-full"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-              required
-              maxLength={200}
-            />
-          </div>
+        <Form.Item name="feedback" label={t('feedback.feedbackLabel')} rules={{ required: true }}>
+          <Textarea
+            className="w-full h-40 resize-none"
+            placeholder={t('feedback.placeholder')}
+          />
+        </Form.Item>
 
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text font-medium">{t('feedback.feedbackLabel')}</span>
-            </label>
-            <Textarea
-              className="w-full h-40 resize-none"
-              placeholder={t('feedback.placeholder')}
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-              required
-            />
-          </div>
+        {sendMessage.isError && (
+          <Alert color="error">
+            {sendMessage.error instanceof Error
+              ? sendMessage.error.message
+              : t('feedback.error')}
+          </Alert>
+        )}
 
-          {sendMessage.isError && (
-            <Alert color="error">
-              {sendMessage.error instanceof Error
-                ? sendMessage.error.message
-                : t('feedback.error')}
-            </Alert>
-          )}
-
-          <div className="modal-action mt-6">
-            <Button
-              ghost
-              onClick={onClose}
-              disabled={sendMessage.isPending}
-            >
-              {t('common.cancel')}
-            </Button>
-            <Button
-              htmlType="submit"
-              type="primary"
-              loading={sendMessage.isPending}
-              disabled={!feedback.trim()}
-            >
-              {t('feedback.submit')}
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
+        <div className="mt-6 flex justify-end gap-2">
+          <Button
+            ghost
+            onClick={onClose}
+            disabled={sendMessage.isPending}
+          >
+            {t('common.cancel')}
+          </Button>
+          <Button
+            htmlType="submit"
+            color="primary"
+            loading={sendMessage.isPending}
+          >
+            {t('feedback.submit')}
+          </Button>
+        </div>
+      </Form>
+    </Modal>
   )
 }

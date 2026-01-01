@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { api } from '../services/api'
-import { Button, Result } from 'asterui'
+import { Button, Loading, Result } from 'asterui'
 
 export default function VerifyEmail() {
   const [searchParams] = useSearchParams()
@@ -48,7 +48,7 @@ export default function VerifyEmail() {
       <div className="w-full max-w-md">
         {status === 'verifying' && (
           <Result
-            icon={<span className="loading loading-spinner loading-lg text-primary"></span>}
+            icon={<Loading size="lg" type="spinner" className="text-primary" />}
             title="Verifying your email..."
           />
         )}

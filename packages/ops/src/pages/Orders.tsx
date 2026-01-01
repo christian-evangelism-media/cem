@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { DateTime } from 'luxon'
-import { Loading, Badge, Select, Button, Input, Textarea, Card } from 'asterui'
+import { Loading, Badge, Select, Button, Input, Textarea, Card, Form } from 'asterui'
 import { api } from '../services/api'
 import type { Order, PaginatedResponse } from '../types'
 import FeedbackModal from '../components/FeedbackModal'
@@ -135,11 +135,8 @@ export default function Orders() {
       <h1 className="text-3xl font-bold mb-8">{t('orders.title')}</h1>
 
       <Card className="shadow-xl">
-          <div className="flex justify-between items-center mb-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                {t('orders.filterByStatus')}
-              </label>
+          <div className="mb-4">
+            <Form.Item label={t('orders.filterByStatus')}>
               <Select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
@@ -153,7 +150,7 @@ export default function Orders() {
                   </option>
                 ))}
               </Select>
-            </div>
+            </Form.Item>
           </div>
           <div className="overflow-x-auto">
             <table className="table">
