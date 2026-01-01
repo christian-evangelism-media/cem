@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { Badge, Button } from 'asterui'
+import { Badge, Button, Navbar } from 'asterui'
 import {
   Bars3Icon,
   HomeIcon,
@@ -148,16 +148,19 @@ export default function Layout({ children }: LayoutProps) {
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className="navbar bg-base-100 shadow-lg lg:hidden">
-          <div className="flex-none">
+        <Navbar
+          color="base"
+          shadow="lg"
+          className="lg:hidden"
+          start={
             <label htmlFor="my-drawer" className="cursor-pointer p-2">
               <Bars3Icon size={24} />
             </label>
-          </div>
-          <div className="flex-1">
+          }
+          center={
             <span className="text-xl font-bold">{t('nav.appName')}</span>
-          </div>
-        </div>
+          }
+        />
 
         {/* Page content */}
         <main className="flex-1 overflow-y-auto">

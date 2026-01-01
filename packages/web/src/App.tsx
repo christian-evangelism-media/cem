@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useTranslation } from 'react-i18next'
-import { Alert, Button, Badge, Dropdown } from 'asterui'
+import { Alert, Button, Badge, Dropdown, Navbar } from 'asterui'
 import { UserProvider, useUser } from './contexts/UserContext'
 import { useTheme } from './hooks/useTheme'
 import { useState, useEffect } from 'react'
@@ -161,13 +161,17 @@ function AppContent() {
           <span>{verificationMessage}</span>
         </Alert>
       )}
-      <nav className="navbar bg-base-100 shadow-lg">
-        <div className="flex-1">
+      <Navbar
+        color="base"
+        shadow="lg"
+        start={
           <Button ghost className="gap-2" onClick={() => navigate('/')}>
             <img src="/cem-logo.png" alt="CEM Logo" className="w-12 h-12" />
             <span className="hidden sm:inline text-xl">{t('nav.home')}</span>
           </Button>
-        </div>
+        }
+        end={
+          <>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex flex-none gap-2">
@@ -278,7 +282,9 @@ function AppContent() {
             </Dropdown.Menu>
           </Dropdown>
         </div>
-      </nav>
+          </>
+        }
+      />
 
       <main>
         <Routes>
