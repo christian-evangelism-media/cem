@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
-import { Card, Loading, Typography, Grid } from 'asterui'
+import { Card, Loading, Typography, Grid, Stats } from 'asterui'
 import { api } from '../services/api'
 import type { DashboardStats } from '../types'
 
-const { Title, Text } = Typography
+const { Title } = Typography
 const { Row, Col } = Grid
 
 export default function Dashboard() {
@@ -30,49 +30,32 @@ export default function Dashboard() {
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-4">{t('dashboard.title')}</h1>
 
-      <Row gutter={16} className="mb-4">
-        <Col xs={12} md={8} lg={4}>
-          <Card className="shadow p-4">
-            <Text className="text-xs opacity-70">{t('dashboard.totalUsers')}</Text>
-            <Title level={2} className="text-2xl text-primary">{stats?.totalUsers || 0}</Title>
-          </Card>
-        </Col>
-
-        <Col xs={12} md={8} lg={4}>
-          <Card className="shadow p-4">
-            <Text className="text-xs opacity-70">{t('dashboard.ordersShipped')}</Text>
-            <Title level={2} className="text-2xl text-secondary">{stats?.ordersShipped || 0}</Title>
-          </Card>
-        </Col>
-
-        <Col xs={12} md={8} lg={4}>
-          <Card className="shadow p-4">
-            <Text className="text-xs opacity-70">{t('dashboard.totalMedia')}</Text>
-            <Title level={2} className="text-2xl text-accent">{stats?.totalMedia || 0}</Title>
-          </Card>
-        </Col>
-
-        <Col xs={12} md={8} lg={4}>
-          <Card className="shadow p-4">
-            <Text className="text-xs opacity-70">{t('dashboard.uniqueCountries')}</Text>
-            <Title level={2} className="text-2xl text-success">{stats?.uniqueCountries || 0}</Title>
-          </Card>
-        </Col>
-
-        <Col xs={12} md={8} lg={4}>
-          <Card className="shadow p-4">
-            <Text className="text-xs opacity-70">{t('dashboard.uniqueCities')}</Text>
-            <Title level={2} className="text-2xl text-info">{stats?.uniqueCities || 0}</Title>
-          </Card>
-        </Col>
-
-        <Col xs={12} md={8} lg={4}>
-          <Card className="shadow p-4">
-            <Text className="text-xs opacity-70">{t('dashboard.tractsShipped')}</Text>
-            <Title level={2} className="text-2xl text-warning">{stats?.totalTractsShipped?.toLocaleString() || 0}</Title>
-          </Card>
-        </Col>
-      </Row>
+      <Stats className="mb-4 shadow">
+        <Stats.Stat
+          title={t('dashboard.totalUsers')}
+          value={<span className="text-primary">{stats?.totalUsers || 0}</span>}
+        />
+        <Stats.Stat
+          title={t('dashboard.ordersShipped')}
+          value={<span className="text-secondary">{stats?.ordersShipped || 0}</span>}
+        />
+        <Stats.Stat
+          title={t('dashboard.totalMedia')}
+          value={<span className="text-accent">{stats?.totalMedia || 0}</span>}
+        />
+        <Stats.Stat
+          title={t('dashboard.uniqueCountries')}
+          value={<span className="text-success">{stats?.uniqueCountries || 0}</span>}
+        />
+        <Stats.Stat
+          title={t('dashboard.uniqueCities')}
+          value={<span className="text-info">{stats?.uniqueCities || 0}</span>}
+        />
+        <Stats.Stat
+          title={t('dashboard.tractsShipped')}
+          value={<span className="text-warning">{stats?.totalTractsShipped?.toLocaleString() || 0}</span>}
+        />
+      </Stats>
 
       {/* Charts */}
       <Row gutter={16} className="mb-4">
@@ -116,28 +99,20 @@ export default function Dashboard() {
       </Row>
 
       {/* Actionable Metrics */}
-      <Row gutter={16} className="mb-4">
-        <Col xs={24} md={8}>
-          <Card className="shadow p-4">
-            <Text className="text-xs opacity-70">{t('dashboard.ordersReadyToShip')}</Text>
-            <Title level={2} className="text-2xl text-primary">{stats?.ordersReadyToShip || 0}</Title>
-          </Card>
-        </Col>
-
-        <Col xs={24} md={8}>
-          <Card className="shadow p-4">
-            <Text className="text-xs opacity-70">{t('dashboard.ordersAwaitingPickup')}</Text>
-            <Title level={2} className="text-2xl text-secondary">{stats?.ordersAwaitingPickup || 0}</Title>
-          </Card>
-        </Col>
-
-        <Col xs={24} md={8}>
-          <Card className="shadow p-4">
-            <Text className="text-xs opacity-70">{t('dashboard.lowStockMedia')}</Text>
-            <Title level={2} className="text-2xl text-warning">{stats?.lowStockMedia || 0}</Title>
-          </Card>
-        </Col>
-      </Row>
+      <Stats className="mb-4 shadow">
+        <Stats.Stat
+          title={t('dashboard.ordersReadyToShip')}
+          value={<span className="text-primary">{stats?.ordersReadyToShip || 0}</span>}
+        />
+        <Stats.Stat
+          title={t('dashboard.ordersAwaitingPickup')}
+          value={<span className="text-secondary">{stats?.ordersAwaitingPickup || 0}</span>}
+        />
+        <Stats.Stat
+          title={t('dashboard.lowStockMedia')}
+          value={<span className="text-warning">{stats?.lowStockMedia || 0}</span>}
+        />
+      </Stats>
     </div>
   )
 }

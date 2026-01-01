@@ -2,11 +2,10 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { DateTime } from 'luxon'
-import { Card, Badge, Button, Loading, Textarea, Modal, Typography, Grid } from 'asterui'
+import { Card, Badge, Button, Loading, Textarea, Modal, Typography, Stats } from 'asterui'
 import { api } from '../services/api'
 
 const { Text, Title } = Typography
-const { Row, Col } = Grid
 
 interface Message {
   id: number
@@ -94,26 +93,20 @@ export default function MessagesQueue() {
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-4">{t('messagesQueue.title')}</h1>
 
-      <Row gutter={16} className="mb-6">
-        <Col xs={24} md={8}>
-          <Card className="shadow p-4">
-            <Text className="text-xs opacity-70">{t('messagesQueue.unread')}</Text>
-            <Title level={2} className="text-2xl text-warning">{unreadMessages}</Title>
-          </Card>
-        </Col>
-        <Col xs={24} md={8}>
-          <Card className="shadow p-4">
-            <Text className="text-xs opacity-70">{t('messagesQueue.contact')}</Text>
-            <Title level={2} className="text-2xl text-info">{contactMessages}</Title>
-          </Card>
-        </Col>
-        <Col xs={24} md={8}>
-          <Card className="shadow p-4">
-            <Text className="text-xs opacity-70">{t('messagesQueue.feedback')}</Text>
-            <Title level={2} className="text-2xl text-secondary">{feedbackMessages}</Title>
-          </Card>
-        </Col>
-      </Row>
+      <Stats className="mb-6 shadow">
+        <Stats.Stat
+          title={t('messagesQueue.unread')}
+          value={<span className="text-warning">{unreadMessages}</span>}
+        />
+        <Stats.Stat
+          title={t('messagesQueue.contact')}
+          value={<span className="text-info">{contactMessages}</span>}
+        />
+        <Stats.Stat
+          title={t('messagesQueue.feedback')}
+          value={<span className="text-secondary">{feedbackMessages}</span>}
+        />
+      </Stats>
 
       <Card className="shadow-xl">
         <div className="overflow-x-auto">
